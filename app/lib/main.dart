@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
@@ -10,23 +12,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  Game game = Game('पहेली');
-  MyApp({Key? key}) {
-    game.addGuess('हेवेली');
-    game.addGuess('अच्छा');
-    game.addGuess('बहुत');
-    game.addGuess('पहेली');
-  }
+  Game game = Game();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Paheli',
+      title: game.length.toString() + ' अक्षर का शब्द ढूंढें',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: GameWidget(lines: game.lines),
+      home: GameWidget(game: game),
     );
   }
 }

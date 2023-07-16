@@ -1,11 +1,68 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
 import 'package:paheli/models/lines.dart';
 
+const List<String> words = [
+  'नमस्ते',
+  'शुक्रिया',
+  'खुशी',
+  'प्यार',
+  'दोस्त',
+  'किताब',
+  'खाना',
+  'पानी',
+  'सुंदर',
+  'अच्छा',
+  'माँ',
+  'बाप',
+  'भाई',
+  'बहन',
+  'समय',
+  'खेल',
+  'गाना',
+  'सफेद',
+  'काला',
+  'सूरज',
+  'चांद',
+  'तारा',
+  'फूल',
+  'वृक्ष',
+  'पक्षी',
+  'बारिश',
+  'हवा',
+  'मिट्टी',
+  'समुद्र',
+  'गगन',
+  'आग',
+  'धूप',
+  'छाता',
+  'चिड़िया',
+  'बंदर',
+  'बच्चा',
+  'मिठाई',
+  'पूजा',
+  'धन',
+  'विद्या',
+  'ग्रंथ',
+  'ज्ञान',
+  'स्वास्थ्य',
+  'सौंदर्य',
+  'समृद्धि',
+  'यात्रा',
+  'संगीत',
+  'नृत्य',
+  'कला',
+  'महान'
+];
+
 class Game {
-  String word;
-  Game(this.word);
+  late String word;
+  Game() {
+    word = words[Random().nextInt(words.length)];
+  }
   Lines lines = Lines(lines: []);
   int get length => word.characters.length;
   bool addGuess(String guess) {
@@ -27,5 +84,9 @@ class Game {
     }
     lines.addLine(Line(cells: cells));
     return true;
+  }
+
+  void reset() {
+    word = words[Random().nextInt(words.length)];
   }
 }
