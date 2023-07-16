@@ -10,8 +10,10 @@ class LinesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: lines.wordLength,
-      children: List.generate(
-          lines.totalCells, (i) => CellWidget(cell: lines.atIndex(i))),
+      children: [
+        for (var l in lines.lines)
+          for (var c in l.cells) CellWidget(cell: c)
+      ],
     );
   }
 }
