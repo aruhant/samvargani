@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/lines.dart';
-import 'package:paheli/widgets/line_widget.dart';
 import 'package:paheli/widgets/lines_widget.dart';
 
 class GameWidget extends StatelessWidget {

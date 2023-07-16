@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/lines.dart';
+import 'package:paheli/widgets/cell_widget.dart';
 import 'package:paheli/widgets/line_widget.dart';
 
 class LinesWidget extends StatelessWidget {
@@ -7,10 +8,10 @@ class LinesWidget extends StatelessWidget {
   final Lines lines;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: lines.lines.map<Widget>((e) => LineWidget(line: e)).toList(),
-      ),
+    return GridView.count(
+      crossAxisCount: lines.wordLength,
+      children: List.generate(
+          lines.totalCells, (i) => CellWidget(cell: lines.atIndex(i))),
     );
   }
 }
