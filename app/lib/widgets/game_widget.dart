@@ -14,10 +14,13 @@ class GameWidget extends StatefulWidget {
 
 class _GameWidgetState extends State<GameWidget> {
   TextEditingController controller = TextEditingController();
+  String message = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text(widget.game.length.toString() + ' अक्षर का शब्द ढूंढें'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -30,10 +33,11 @@ class _GameWidgetState extends State<GameWidget> {
               onSubmitted: (value) {
                 setState(() {
                   controller.clear();
-                  widget.game.addGuess(value);
+                  message = widget.game.addGuess(value.trim());
                 });
               },
             ),
+            Text(message),
             TextButton(
               onPressed: () {
                 setState(() {

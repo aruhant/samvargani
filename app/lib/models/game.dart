@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:paheli/models/wordlist.dart';
 
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
@@ -67,9 +68,19 @@ class Game {
   }
   Lines lines = Lines(lines: []);
   int get length => word.characters.length;
-  bool addGuess(String guess) {
-    print(guess + ' ${word.characters.toList()} ' + guess.length.toString());
-    if (word.characters.length != guess.characters.length) return false;
+  String addGuess(String guess) {
+    //print(guess + ' ${word.characters.toList()} ' + guess.length.toString());
+
+    if (word.characters.length != guess.characters.length)
+      return '${guess.length} अक्षर नहीं है';
+    if (!wordList.contains(guess)) return 'यह शब्द नहीं है';
+    if (guess.trim().isEmpty) {
+      lines.addLine(Line(cells: [
+        for (int i = 0; i < guess.characters.length; i++)
+          Cell('', state: CellState.empty)
+      ]));
+      return '';
+    }
     List<Cell> cells = [];
     for (int i = 0; i < guess.characters.length; i++) {
       if (word.characters.characterAt(i) == guess.characters.characterAt(i)) {
@@ -85,10 +96,12 @@ class Game {
       }
     }
     lines.addLine(Line(cells: cells));
-    return true;
+    return '';
   }
 
   void reset() {
     word = words[Random().nextInt(words.length)];
+    lines = Lines(lines: []);
+    addGuess(' ' * word.characters.length);
   }
 }
