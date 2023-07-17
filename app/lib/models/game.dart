@@ -62,6 +62,8 @@ class Game {
   late String word;
   Game() {
     word = words[Random().nextInt(words.length)];
+// add a string filled with spaces, same length as word
+    addGuess(' ' * word.characters.length);
   }
   Lines lines = Lines(lines: []);
   int get length => word.characters.length;

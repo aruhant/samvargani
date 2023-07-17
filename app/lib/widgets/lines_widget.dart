@@ -9,6 +9,7 @@ class LinesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      shrinkWrap: true,
       crossAxisCount: wordLength,
       children: [
         for (var line in lines.lines)

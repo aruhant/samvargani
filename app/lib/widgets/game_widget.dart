@@ -13,34 +13,37 @@ class GameWidget extends StatefulWidget {
 }
 
 class _GameWidgetState extends State<GameWidget> {
-  String guess = '';
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          LinesWidget(lines: widget.game.lines, wordLength: widget.game.length),
-          TextField(
-            controller: TextEditingController(text: guess),
-            onChanged: (value) => setState(() => guess = value),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(), labelText: 'उत्तर'),
-            onSubmitted: (value) {
-              setState(() {
-                guess = '';
-                widget.game.addGuess(value);
-              });
-            },
-          ),
-          TextButton(
-            onPressed: () {
-              setState(() {
-                widget.game.reset();
-              });
-            },
-            child: Text('रीसेट'),
-          ),
-        ],
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            LinesWidget(
+                lines: widget.game.lines, wordLength: widget.game.length),
+            TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'उत्तर'),
+              onSubmitted: (value) {
+                setState(() {
+                  controller.clear();
+                  widget.game.addGuess(value);
+                });
+              },
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  widget.game.reset();
+                });
+              },
+              child: Text('रीसेट'),
+            ),
+          ],
+        ),
       ),
     );
   }
