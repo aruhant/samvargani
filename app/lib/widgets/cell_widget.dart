@@ -17,7 +17,7 @@ class CellWidget extends StatelessWidget {
                   : cell.state == CellState.incorrect
                       ? Colors.red
                       : Colors.yellow),
-      child: Text(cell.value,
+      child: Text(cell.myLetter.value,
           style: TextStyle(
               color: cell.state == CellState.correct
                   ? Colors.black

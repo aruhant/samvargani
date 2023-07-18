@@ -60,20 +60,21 @@ const List<String> words = [
 ];
 
 class Game {
-  late String word;
+  late String answer;
   Game() {
-    word = words[Random().nextInt(words.length)];
+    answer = words[Random().nextInt(words.length)];
 // add a string filled with spaces, same length as word
-    addGuess(' ' * word.characters.length);
+    addGuess(' ' * answer.characters.length);
   }
   Lines lines = Lines(lines: []);
-  int get length => word.characters.length;
+  int get length => answer.characters.length;
   String addGuess(String guess) {
     //print(guess + ' ${word.characters.toList()} ' + guess.length.toString());
 
-    if (word.characters.length != guess.characters.length)
-      return '${guess.length} अक्षर नहीं है';
-    if (!wordList.contains(guess)) return 'यह शब्द नहीं है';
+    if (answer.characters.length != guess.characters.length)
+      return 'यह ${guess.characters.length} अक्षर का शब्द नहीं है!';
+    if (!wordList.contains(guess))
+      return 'आपका उत्तर $guess शब्दकोष में नहीं है!';
     if (guess.trim().isEmpty) {
       lines.addLine(Line(cells: [
         for (int i = 0; i < guess.characters.length; i++)
@@ -83,10 +84,10 @@ class Game {
     }
     List<Cell> cells = [];
     for (int i = 0; i < guess.characters.length; i++) {
-      if (word.characters.characterAt(i) == guess.characters.characterAt(i)) {
+      if (answer.characters.characterAt(i) == guess.characters.characterAt(i)) {
         cells.add(Cell(guess.characters.characterAt(i).toString(),
             state: CellState.correct));
-      } else if (word.characters
+      } else if (answer.characters
           .contains(guess.characters.characterAt(i).toString())) {
         cells.add(Cell(guess.characters.characterAt(i).toString(),
             state: CellState.misplaced));
@@ -100,8 +101,8 @@ class Game {
   }
 
   void reset() {
-    word = words[Random().nextInt(words.length)];
+    answer = words[Random().nextInt(words.length)];
     lines = Lines(lines: []);
-    addGuess(' ' * word.characters.length);
+    addGuess(' ' * answer.characters.length);
   }
 }
