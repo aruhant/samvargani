@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:paheli/models/wordlist.dart';
-
+import 'package:paheli/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
@@ -61,39 +61,36 @@ const List<String> words = [
 
 class Game {
   late String answer;
+  Lines lines = Lines(lines: []);
   Game() {
     answer = words[Random().nextInt(words.length)];
-// add a string filled with spaces, same length as word
-    addGuess(' ' * answer.characters.length);
+    addGuess(' ' * length);
   }
-  Lines lines = Lines(lines: []);
-  int get length => answer.characters.length;
-  String addGuess(String guess) {
-    //print(guess + ' ${word.characters.toList()} ' + guess.length.toString());
+  int get length => answer.hindiCharacterList().length;
+  get answerList => answer.hindiCharacterList();
 
-    if (answer.characters.length != guess.characters.length)
-      return 'यह ${guess.characters.length} अक्षर का शब्द नहीं है!';
+  String addGuess(String guess) {
+    List<String> guessList = guess.hindiCharacterList();
+    if (length != guessList.length)
+      return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
     if (!wordList.contains(guess))
       return 'आपका उत्तर $guess शब्दकोष में नहीं है!';
     if (guess.trim().isEmpty) {
       lines.addLine(Line(cells: [
-        for (int i = 0; i < guess.characters.length; i++)
+        for (int i = 0; i < guessList.length; i++)
           Cell('', state: CellState.empty)
       ]));
       return '';
     }
     List<Cell> cells = [];
-    for (int i = 0; i < guess.characters.length; i++) {
-      if (answer.characters.characterAt(i) == guess.characters.characterAt(i)) {
-        cells.add(Cell(guess.characters.characterAt(i).toString(),
-            state: CellState.correct));
+    for (int i = 0; i < guessList.length; i++) {
+      if (answerList[i] == guessList[i]) {
+        cells.add(Cell(guessList[i], state: CellState.correct));
       } else if (answer.characters
           .contains(guess.characters.characterAt(i).toString())) {
-        cells.add(Cell(guess.characters.characterAt(i).toString(),
-            state: CellState.misplaced));
+        cells.add(Cell(guessList[i], state: CellState.misplaced));
       } else {
-        cells.add(Cell(guess.characters.characterAt(i).toString(),
-            state: CellState.incorrect));
+        cells.add(Cell(guessList[i], state: CellState.incorrect));
       }
     }
     lines.addLine(Line(cells: cells));

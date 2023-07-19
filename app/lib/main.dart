@@ -4,6 +4,7 @@ import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/models/line.dart';
 import 'package:paheli/models/lines.dart';
+import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/game_widget.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("अँग्रेजों".hindiCharacterList());
     return MaterialApp(
       title: game.length.toString() + ' अक्षर का शब्द ढूंढें',
       theme: ThemeData(
