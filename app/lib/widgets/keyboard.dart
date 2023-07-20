@@ -13,9 +13,13 @@ const _keys = [
 
 class HindiKeyboard extends StatelessWidget {
   const HindiKeyboard(
-      {required this.onTap, super.key, required this.highlights});
+      {required this.onTap,
+      super.key,
+      required this.highlights,
+      required this.lowlights});
   final Function(String) onTap;
   final List<String> highlights;
+  final List<String> lowlights;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +38,7 @@ class HindiKeyboard extends StatelessWidget {
                         text: e,
                         onTap: onTap,
                         highlight: highlights.contains(e),
+                        lowlight: lowlights.contains(e),
                       ))
                   .toList(),
             ),
@@ -44,10 +49,15 @@ class HindiKeyboard extends StatelessWidget {
 }
 
 class _Key extends StatelessWidget {
-  _Key({required this.text, required this.onTap, required this.highlight});
+  _Key(
+      {required this.text,
+      required this.onTap,
+      required this.highlight,
+      required this.lowlight});
   final String text;
   final Function(String) onTap;
   final bool highlight;
+  final bool lowlight;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -58,7 +68,11 @@ class _Key extends StatelessWidget {
           margin: const EdgeInsets.all(2),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: highlight ? Colors.green : Colors.black12),
+              color: highlight
+                  ? Colors.green
+                  : lowlight
+                      ? Colors.red
+                      : Colors.black12),
           child: TextButton(
             onPressed: () => onTap(text),
             child: AutoSizeText(text,
