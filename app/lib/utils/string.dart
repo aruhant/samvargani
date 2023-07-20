@@ -13,4 +13,8 @@ extension StringExtension on String {
     print(stringList);
     return stringList;
   }
+
+  String get matra {
+    return this.replaceAll(RegExp(r'[क-ह]'), '');
+  }
 }

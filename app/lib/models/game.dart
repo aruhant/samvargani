@@ -64,8 +64,10 @@ class Game {
   List<Line> get lines => [
         ..._lines,
         Line(
-            cells: List<Cell>.generate(answer.hindiCharacterList().length,
-                (index) => Cell(' ', state: CellState.empty)))
+            cells: List<Cell>.generate(
+                answer.hindiCharacterList().length,
+                (index) => Cell(answer.hindiCharacterList()[index].matra,
+                    state: CellState.empty)))
       ];
   Game() {
     answer = words[Random().nextInt(words.length)];
