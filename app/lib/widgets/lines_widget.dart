@@ -13,26 +13,13 @@ class LinesWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        // color: Colors.grey,
-        borderRadius: BorderRadius.circular(10),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          for (var line in lines.lines) LineWidget(line: line),
+          for (var line in lines.lines) LineWidget(line: line, group: group),
         ],
       ),
     );
   }
-  //   return GridView.count(
-  //     shrinkWrap: true,
-  //     crossAxisCount: wordLength,
-  //     children: [
-  //       for (var line in lines.lines)
-  //         for (var cell in line.cells) CellWidget(cell: cell)
-  //     ],
-  //   );
-  // }
 }

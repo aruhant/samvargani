@@ -64,7 +64,7 @@ class Game {
   Lines get lines => (_lines.lines.isEmpty)
       ? Lines(lines: [
           Line(
-              cells: List<Cell>.generate(answer.characters.length,
+              cells: List<Cell>.generate(answer.hindiCharacterList().length,
                   (index) => Cell(' ', state: CellState.empty)))
         ])
       : _lines;

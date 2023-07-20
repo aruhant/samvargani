@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/widgets/keyboard.dart';
 import 'package:paheli/widgets/lines_widget.dart';
 
 class GameWidget extends StatefulWidget {
@@ -16,9 +17,7 @@ class _GameWidgetState extends State<GameWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${widget.game.length} अक्षर का शब्द ढूंढें'),
-      ),
+      appBar: AppBar(title: Text('${widget.game.length} अक्षर का शब्द ढूंढें')),
       backgroundColor: const Color.fromRGBO(244, 241, 222, 1),
       body: SingleChildScrollView(
         child: Column(
@@ -45,6 +44,7 @@ class _GameWidgetState extends State<GameWidget> {
               ),
             ),
             Text(message),
+            HindiKeyboard(onTap: (t) {}, highlights: []),
             TextButton(
               onPressed: () => setState(() => widget.game.reset()),
               child: const Text('रीसेट'),

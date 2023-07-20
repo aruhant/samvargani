@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 
 class CellWidget extends StatelessWidget {
-  const CellWidget({required this.cell, super.key});
+  const CellWidget({required this.cell, super.key, required this.group});
+  final AutoSizeGroup group;
   final Cell cell;
   @override
   Widget build(BuildContext context) {
@@ -25,13 +26,14 @@ class CellWidget extends StatelessWidget {
                                 ? const Color.fromRGBO(242, 204, 143, 1)
                                 : Colors.black38),
             child: Center(
-              child: AutoSizeText(cell.myLetter.value,
-                  maxLines: 1,
-                  maxFontSize: 10000,
-                  minFontSize: 1,
-                  style: const TextStyle(
-                      color: Color.fromRGBO(61, 64, 91, 1), fontSize: 10000)),
-            )),
+                child: AutoSizeText(cell.myLetter.value,
+                    group: group,
+                    maxLines: 1,
+                    maxFontSize: 10000,
+                    minFontSize: 1,
+                    style: const TextStyle(
+                        color: Color.fromRGBO(61, 64, 91, 1),
+                        fontSize: 10000)))),
       ),
     );
   }
