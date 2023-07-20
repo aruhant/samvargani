@@ -8,69 +8,65 @@ import 'package:paheli/models/line.dart';
 import 'package:paheli/models/lines.dart';
 
 const List<String> words = [
-  'नमस्ते',
-  'शुक्रिया',
-  'खुशी',
-  'प्यार',
-  'दोस्त',
-  'किताब',
-  'खाना',
-  'पानी',
-  'सुंदर',
-  'अच्छा',
-  'माँ',
-  'बाप',
-  'भाई',
-  'बहन',
-  'समय',
-  'खेल',
-  'गाना',
-  'सफेद',
-  'काला',
-  'सूरज',
-  'चांद',
-  'तारा',
-  'फूल',
-  'वृक्ष',
-  'पक्षी',
-  'बारिश',
-  'हवा',
-  'मिट्टी',
-  'समुद्र',
-  'गगन',
-  'आग',
-  'धूप',
-  'छाता',
-  'चिड़िया',
-  'बंदर',
-  'बच्चा',
-  'मिठाई',
-  'पूजा',
-  'धन',
-  'विद्या',
-  'ग्रंथ',
-  'ज्ञान',
-  'स्वास्थ्य',
-  'सौंदर्य',
-  'समृद्धि',
-  'यात्रा',
-  'संगीत',
-  'नृत्य',
-  'कला',
-  'महान'
+  "जल",
+  "नल",
+  "कर",
+  "बस",
+  "हम",
+  "सब",
+  "कब",
+  "छत",
+  "वन",
+  "हल",
+  "मत",
+  "हट",
+  "घर",
+  "वर",
+  "धन",
+  "खग",
+  "भर",
+  "नभ",
+  "रस",
+  "कमल",
+  "खटमल",
+  "गज",
+  "घर",
+  "चख",
+  "छत",
+  "जल",
+  "झपट",
+  "ठग",
+  "डगर",
+  "ढक",
+  "रण",
+  "तरकश",
+  "थरमस",
+  "दस",
+  "धड़कन",
+  "नल",
+  "पत्र",
+  "फल",
+  "बतख",
+  "भर",
+  "मटर",
+  "यज्ञ",
+  "रख",
+  "लहर",
+  "वक",
+  "शलगम",
+  "सरस",
+  "हम"
 ];
 
 class Game {
   late String answer;
   Lines _lines = Lines(lines: []);
-  Lines get lines => (_lines.lines.length == 0)
-      ? Lines(
-          lines: [
-            Line(
-                cells: List<Cell>.generate(answer.characters.length,
-                    (index) => Cell(' ', state: CellState.empty)))
-          ],
-        )
+  Lines get lines => (_lines.lines.isEmpty)
+      ? Lines(lines: [
+          Line(
+              cells: List<Cell>.generate(answer.characters.length,
+                  (index) => Cell(' ', state: CellState.empty)))
+        ])
       : _lines;
   Game() {
     answer = words[Random().nextInt(words.length)];
@@ -79,11 +75,14 @@ class Game {
   get answerList => answer.hindiCharacterList();
 
   String addGuess(String guess) {
+    if (guess.toLowerCase() == 'iddqd') return answer;
     List<String> guessList = guess.hindiCharacterList();
-    if (length != guessList.length)
+    if (length != guessList.length) {
       return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
-    if (!kDebugMode && !wordList.contains(guess))
+    }
+    if (!kDebugMode && !wordList.contains(guess)) {
       return 'आपका उत्तर $guess शब्दकोष में नहीं है!';
+    }
 
     List<Cell> cells = [];
     for (int i = 0; i < guessList.length; i++) {

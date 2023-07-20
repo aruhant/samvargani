@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/lines.dart';
-import 'package:paheli/widgets/cell_widget.dart';
 import 'package:paheli/widgets/line_widget.dart';
 
 class LinesWidget extends StatelessWidget {

@@ -14,8 +14,8 @@ class HindiCharacter {
   String value;
   HindiCharacter(this.value) {
     adha = value;
-    value.runes.forEach((int rune) {
-      var character = new String.fromCharCode(rune);
+    for (var rune in value.runes) {
+      var character = String.fromCharCode(rune);
       if ('ा	िी	ु	ू	ृ	ॄ	ॅ	ॆ	े	ै	ॉ	ॊ	ो	ौ'.contains(character)) {
         matra = character;
       } else if (value.indexOf('्') - value.indexOf(character) == 1) {
@@ -23,7 +23,7 @@ class HindiCharacter {
       } else {
         mainLetter = character;
       }
-    });
+    }
   }
 }
 
