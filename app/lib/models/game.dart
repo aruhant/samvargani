@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:paheli/models/wordlist.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:flutter/material.dart';
@@ -61,10 +62,18 @@ const List<String> words = [
 
 class Game {
   late String answer;
-  Lines lines = Lines(lines: []);
+  Lines _lines = Lines(lines: []);
+  Lines get lines => (_lines.lines.length == 0)
+      ? Lines(
+          lines: [
+            Line(
+                cells: List<Cell>.generate(answer.characters.length,
+                    (index) => Cell(' ', state: CellState.empty)))
+          ],
+        )
+      : _lines;
   Game() {
     answer = words[Random().nextInt(words.length)];
-    addGuess(' ' * length);
   }
   int get length => answer.hindiCharacterList().length;
   get answerList => answer.hindiCharacterList();
@@ -73,15 +82,9 @@ class Game {
     List<String> guessList = guess.hindiCharacterList();
     if (length != guessList.length)
       return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
-    if (!wordList.contains(guess))
+    if (!kDebugMode && !wordList.contains(guess))
       return 'आपका उत्तर $guess शब्दकोष में नहीं है!';
-    if (guess.trim().isEmpty) {
-      lines.addLine(Line(cells: [
-        for (int i = 0; i < guessList.length; i++)
-          Cell('', state: CellState.empty)
-      ]));
-      return '';
-    }
+
     List<Cell> cells = [];
     for (int i = 0; i < guessList.length; i++) {
       if (answerList[i] == guessList[i]) {
@@ -93,13 +96,13 @@ class Game {
         cells.add(Cell(guessList[i], state: CellState.incorrect));
       }
     }
-    lines.addLine(Line(cells: cells));
+    _lines.addLine(Line(cells: cells));
     return '';
   }
 
   void reset() {
     answer = words[Random().nextInt(words.length)];
-    lines = Lines(lines: []);
+    _lines = Lines(lines: []);
     addGuess(' ' * answer.characters.length);
   }
 }
