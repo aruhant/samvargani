@@ -17,4 +17,8 @@ extension StringExtension on String {
   String get matra {
     return this.replaceAll(RegExp(r'[क-ह]'), '');
   }
+
+  String get vyanjan {
+    return this.replaceAll(RegExp(r'[ा-ौ]'), '');
+  }
 }
