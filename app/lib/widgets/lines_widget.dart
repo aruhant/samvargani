@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:paheli/models/lines.dart';
+import 'package:paheli/models/line.dart';
 import 'package:paheli/widgets/line_widget.dart';
 
 class LinesWidget extends StatelessWidget {
   const LinesWidget({required this.lines, required this.wordLength, super.key});
-  final Lines lines;
+  final List<Line> lines;
   final int wordLength;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class LinesWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          for (var line in lines.lines) LineWidget(line: line, group: group),
+          for (var line in lines) LineWidget(line: line, group: group),
         ],
       ),
     );

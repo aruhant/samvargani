@@ -5,7 +5,6 @@ import 'package:paheli/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
-import 'package:paheli/models/lines.dart';
 
 const List<String> words = [
   "जल",
@@ -60,14 +59,14 @@ const List<String> words = [
 
 class Game {
   late String answer;
-  Lines _lines = Lines(lines: []);
-  Lines get lines => (_lines.lines.isEmpty)
-      ? Lines(lines: [
-          Line(
-              cells: List<Cell>.generate(answer.hindiCharacterList().length,
-                  (index) => Cell(' ', state: CellState.empty)))
-        ])
-      : _lines;
+  List<Line> _lines = [];
+
+  List<Line> get lines => [
+        ..._lines,
+        Line(
+            cells: List<Cell>.generate(answer.hindiCharacterList().length,
+                (index) => Cell(' ', state: CellState.empty)))
+      ];
   Game() {
     answer = words[Random().nextInt(words.length)];
   }
@@ -95,13 +94,13 @@ class Game {
         cells.add(Cell(guessList[i], state: CellState.incorrect));
       }
     }
-    _lines.addLine(Line(cells: cells));
+    _lines.add(Line(cells: cells));
     return '';
   }
 
   void reset() {
     answer = words[Random().nextInt(words.length)];
-    _lines = Lines(lines: []);
+    _lines.clear();
     addGuess(' ' * answer.characters.length);
   }
 }
