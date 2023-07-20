@@ -44,7 +44,11 @@ class _GameWidgetState extends State<GameWidget> {
               ),
             ),
             Text(message),
-            HindiKeyboard(onTap: (t) {}, highlights: []),
+            HindiKeyboard(
+              onTap: (t) {},
+              highlights: [],
+              lowlights: [],
+            ),
             TextButton(
               onPressed: () => setState(() => widget.game.reset()),
               child: const Text('रीसेट'),

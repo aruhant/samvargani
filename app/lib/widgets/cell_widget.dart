@@ -24,7 +24,13 @@ class CellWidget extends StatelessWidget {
                             ? const Color.fromRGBO(224, 122, 95, 1)
                             : cell.state == CellState.misplaced
                                 ? const Color.fromRGBO(242, 204, 143, 1)
-                                : Colors.black38),
+                                : cell.state == CellState.partiallyCorrect
+                                    ? const Color.fromRGBO(129, 178, 154, 0.6)
+                                    : cell.state == CellState.partiallMisplaced
+                                        ? const Color.fromRGBO(
+                                            224, 122, 95, 0.6)
+                                        : const Color.fromRGBO(
+                                            129, 178, 154, 1)),
             child: Center(
                 child: AutoSizeText(cell.myLetter.value,
                     group: group,
