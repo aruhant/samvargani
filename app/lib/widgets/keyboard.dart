@@ -46,7 +46,7 @@ class HindiKeyboard extends StatelessWidget {
 }
 
 class _Key extends StatelessWidget {
-  _Key(
+  const _Key(
       {required this.text,
       required this.onTap,
       required this.highlight,

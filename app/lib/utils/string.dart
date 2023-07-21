@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension StringExtension on String {
-  List<String> hindiCharacterList() {
-    print(this);
+  List<String> get allCharacters {
     List<String> stringList = characters.toList();
     for (int i = 0; i < stringList.length; i++) {
       if (stringList[i].contains('्')) {
@@ -10,15 +9,9 @@ extension StringExtension on String {
         stringList.removeAt(i + 1);
       }
     }
-    print(stringList);
     return stringList;
   }
 
-  String get matra {
-    return this.replaceAll(RegExp(r'[क-ह]'), '');
-  }
-
-  String get vyanjan {
-    return this.replaceAll(RegExp(r'[ा-ौ]'), '');
-  }
+  String get matra => replaceAll(RegExp(r'[ऄ-ह,क़-ॡ,ॲ-ॿ]'), '');
+  String get vyanjan => replaceAll(RegExp(r'[ा-ौ]'), '');
 }

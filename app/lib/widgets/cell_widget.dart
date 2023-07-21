@@ -16,21 +16,7 @@ class CellWidget extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: cell.state == CellState.empty
-                    ? Colors.black12
-                    : cell.state == CellState.correct
-                        ? const Color.fromRGBO(129, 178, 154, 1)
-                        : cell.state == CellState.incorrect
-                            ? const Color.fromRGBO(224, 122, 95, 1)
-                            : cell.state == CellState.misplaced
-                                ? const Color.fromRGBO(242, 204, 143, 1)
-                                : cell.state == CellState.partiallyCorrect
-                                    ? const Color.fromRGBO(129, 178, 154, 0.6)
-                                    : cell.state == CellState.partiallMisplaced
-                                        ? const Color.fromRGBO(
-                                            224, 122, 95, 0.6)
-                                        : const Color.fromRGBO(
-                                            129, 178, 154, 1)),
+                color: cell.state.color),
             child: Center(
                 child: AutoSizeText(cell.myLetter.value,
                     group: group,
