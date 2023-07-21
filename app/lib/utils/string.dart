@@ -12,6 +12,21 @@ extension StringExtension on String {
     return stringList;
   }
 
-  String get matra => replaceAll(RegExp(r'[ऄ-ह,क़-ॡ,ॲ-ॿ]'), '');
-  String get vyanjan => replaceAll(RegExp(r'[ा-ौ]'), '');
+  String get matra {
+    //String toReturn = replaceAll(RegExp(r'[ऄ-ह,क़-ॡ,ॲ-ॿ]'), '');
+    return this.replaceAll(this.vyanjan, '');
+  }
+
+  String get vyanjan {
+    String vyanjan = replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
+    if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) {
+      return vyanjan;
+    }
+    for (int i = 0; i < vyanjan.length; i++) {
+      if (vyanjan[i] == '्') {
+        vyanjan = vyanjan.substring(i + 1);
+      }
+    }
+    return vyanjan;
+  }
 }

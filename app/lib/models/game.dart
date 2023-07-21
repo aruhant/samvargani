@@ -6,6 +6,7 @@ import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
 
 const List<String> words = [
+  "श्रृंगार",
   "उत्सुकता",
   "आकर्षक",
   "साहसिक",
@@ -67,11 +68,12 @@ class Game {
         Line(
             cells: List<Cell>.generate(
                 answer.allCharacters.length,
-                (index) => Cell(answer.allCharacters[index].matra,
+                (index) => Cell(' ' + answer.allCharacters[index].matra + ' ',
                     state: CellState.empty)))
       ];
   Game() {
     answer = words[Random().nextInt(words.length)];
+    answer = 'प्रामाणिक';
   }
   int get length => answer.allCharacters.length;
   get answerList => answer.allCharacters;
