@@ -13,8 +13,10 @@ extension StringExtension on String {
   }
 
   String get matra {
-    //String toReturn = replaceAll(RegExp(r'[ऄ-ह,क़-ॡ,ॲ-ॿ]'), '');
-    return this.replaceAll(this.vyanjan, '');
+    // write the above in one line
+    return contains(vyanjan + '्')
+        ? vyanjan + replaceAll(vyanjan, '')
+        : replaceAll(vyanjan, '');
   }
 
   String get vyanjan {
@@ -22,11 +24,6 @@ extension StringExtension on String {
     if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) {
       return vyanjan;
     }
-    for (int i = 0; i < vyanjan.length; i++) {
-      if (vyanjan[i] == '्') {
-        vyanjan = vyanjan.substring(i + 1);
-      }
-    }
-    return vyanjan;
+    return vyanjan[vyanjan.length - 1];
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:paheli/models/wordlist.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
@@ -68,7 +69,8 @@ class Game {
         Line(
             cells: List<Cell>.generate(
                 answer.allCharacters.length,
-                (index) => Cell(' ' + answer.allCharacters[index].matra + ' ',
+                (index) => Cell(
+                    answer.allCharacters[index].matra.characters.join(' '),
                     state: CellState.empty)))
       ];
   Game() {
