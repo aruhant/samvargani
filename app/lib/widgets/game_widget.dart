@@ -49,9 +49,7 @@ class _GameWidgetState extends State<GameWidget> {
             ),
             Text(message),
             HindiKeyboard(
-              onTap: (t) {
-                controller.text += t;
-              },
+              onTap: (t) => controller.text += t,
               highlights: widget.game.lines
                   .map((line) => line.cells
                       .where((element) => [
@@ -62,7 +60,14 @@ class _GameWidgetState extends State<GameWidget> {
                           ].contains(element.state))
                       .map((e) => e.value.vyanjan))
                   .expand((element) => element)
-                  .toList(),
+                  .toList()
+                ..addAll(widget.game.answer.allCharacters.map((e) => e.matra))
+                ..add(widget.game.answer.allCharacters
+                        .map((e) => e.matra)
+                        .join()
+                        .contains('्')
+                    ? '्'
+                    : ''),
               lowlights: widget.game.lines
                   .map((line) => line.cells
                       .where((element) => CellState.incorrect == element.state)

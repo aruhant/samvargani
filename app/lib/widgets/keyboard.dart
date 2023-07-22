@@ -2,14 +2,19 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 const _keys = [
+  ["अ", "आ", "इ", "ई", "उ", "ऊ", "ए", "ऐ", "ओ", "औ"],
   ["क", "ख", "ग", "घ", "ङ", "च", "छ", "ज", "झ", "ञ"],
   ["ट", "ठ", "ड", "ढ", "ण", "त", "थ", "द", "ध", "न"],
   ["प", "फ", "ब", "भ", "म", "य", "र", "ल", "व", "श"],
-  ["ष", "स", "ह"]
+  ["ष", "स", "ह", "क्ष", "त्र", "ज्ञ", "ऋ", /*"ॠ",*/ "अं", "अः", "अँ"],
+  ["क़", "ख़", "ग़", "ज़", "ड़", "ढ़", "फ़", "य़"],
+  ["्", "ा", "ि", "ी", "ु", "ू", "ृ"],
+  ["े", "ै", "ो", "ौ", "ं", "़", "ः", "ँ"]
 ];
+AutoSizeGroup _group = AutoSizeGroup();
 
 class HindiKeyboard extends StatelessWidget {
-  const HindiKeyboard(
+  HindiKeyboard(
       {required this.onTap,
       super.key,
       required this.highlights,
@@ -21,7 +26,6 @@ class HindiKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black12,
-      padding: const EdgeInsets.all(30),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -61,18 +65,23 @@ class _Key extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1,
         child: Container(
-          padding: const EdgeInsets.all(1),
+          padding: const EdgeInsets.all(0),
           margin: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(2),
               color: highlight
-                  ? Colors.green
+                  ? Color.fromRGBO(129, 178, 154, 1)
                   : lowlight
-                      ? Colors.red
+                      ? Color.fromRGBO(224, 122, 95, 1)
                       : Colors.black12),
           child: TextButton(
+            clipBehavior: Clip.antiAlias,
+            // style with no padding
+            style: ButtonStyle(
+                padding: MaterialStateProperty.all(EdgeInsets.zero)),
             onPressed: () => onTap(text),
             child: AutoSizeText(text,
+                group: _group,
                 maxLines: 1,
                 style: const TextStyle(
                     color: Color.fromRGBO(61, 64, 91, 1), fontSize: 10000)),
