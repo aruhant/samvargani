@@ -37,6 +37,7 @@ dependencies:
   auto_size_text:
 
 dev_dependencies:
+  flutter_launcher_icons:
   flutter_test:
     sdk: flutter
 
@@ -87,3 +88,27 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path_ios: "../graphics/icon_ios.png"
+  image_path_android: "../graphics/icon_ios.png"
+  adaptive_icon_background: "../graphics/background.png"
+  adaptive_icon_foreground: "../graphics/foreground.png"
+  remove_alpha_ios: true
+  macos:
+    generate: true
+    image_path: "../graphics/icon_ios.png"
+  web:
+    generate: true
+    image_path: "../graphics/icon_ios.png"
+    background_color: "#FFF"
+    theme_color: "#333"
+  windows:
+    generate: true
+    image_path: "../graphics/icon_ios.png"
+flutter_native_splash:
+  color: "#EEEEEE"
+  color_dark: "#333333"
+  image: "../graphics/foreground.png"
+  ios_content_mode: scaleAspectFit
