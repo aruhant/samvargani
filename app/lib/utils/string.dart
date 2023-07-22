@@ -13,7 +13,6 @@ extension StringExtension on String {
   }
 
   String get matra {
-    // write the above in one line
     return contains(vyanjan + '्')
         ? vyanjan + replaceAll(vyanjan, '')
         : replaceAll(vyanjan, '');

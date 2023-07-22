@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("अँग्रेजों".allCharacters);
     return MaterialApp(
       title: '${game.length} अक्षर का शब्द ढूंढें',
       theme: ThemeData(

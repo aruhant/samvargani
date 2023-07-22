@@ -75,7 +75,6 @@ class Game {
       ];
   Game() {
     answer = words[Random().nextInt(words.length)];
-    answer = 'प्रामाणिक';
   }
   int get length => answer.allCharacters.length;
   get answerList => answer.allCharacters;

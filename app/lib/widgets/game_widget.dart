@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/keyboard.dart';
 import 'package:paheli/widgets/lines_widget.dart';
 
@@ -45,9 +49,26 @@ class _GameWidgetState extends State<GameWidget> {
             ),
             Text(message),
             HindiKeyboard(
-              onTap: (t) {},
-              highlights: const [],
-              lowlights: const [],
+              onTap: (t) {
+                controller.text += t;
+              },
+              highlights: widget.game.lines
+                  .map((line) => line.cells
+                      .where((element) => [
+                            CellState.correct,
+                            CellState.correctVyanjan,
+                            CellState.misplaced,
+                            CellState.misplacedVyanjan
+                          ].contains(element.state))
+                      .map((e) => e.value.vyanjan))
+                  .expand((element) => element)
+                  .toList(),
+              lowlights: widget.game.lines
+                  .map((line) => line.cells
+                      .where((element) => CellState.incorrect == element.state)
+                      .map((e) => e.value.vyanjan))
+                  .expand((element) => element)
+                  .toList(),
             ),
             TextButton(
               onPressed: () => setState(() => widget.game.reset()),
