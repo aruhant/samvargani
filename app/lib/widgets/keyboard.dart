@@ -8,8 +8,8 @@ const _keys = [
   ["प", "फ", "ब", "भ", "म", "य", "र", "ल", "व", "श"],
   ["ष", "स", "ह", "क्ष", "त्र", "ज्ञ", "ऋ", /*"ॠ",*/ "अं", "अः", "अँ"],
   ["क़", "ख़", "ग़", "ज़", "ड़", "ढ़", "फ़", "य़"],
-  ["्", "ा", "ि", "ी", "ु", "ू", "ृ"],
-  ["े", "ै", "ो", "ौ", "ं", "़", "ः", "ँ"]
+  ["्", "ा", "ि", "ी", "ु", "ू", "े", "ै", "⌫"],
+  ["ो", "ौ", "ृ", "ं", "़", "ः", "ँ", "⏎"]
 ];
 AutoSizeGroup _group = AutoSizeGroup();
 
@@ -73,7 +73,9 @@ class _Key extends StatelessWidget {
                   ? Color.fromRGBO(129, 178, 154, 1)
                   : lowlight
                       ? Color.fromRGBO(224, 122, 95, 1)
-                      : Colors.black12),
+                      : ['⌫', '⏎'].contains(text)
+                          ? Colors.black38
+                          : Colors.black12),
           child: TextButton(
             clipBehavior: Clip.antiAlias,
             // style with no padding
