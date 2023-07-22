@@ -16,10 +16,14 @@ AutoSizeGroup _group = AutoSizeGroup();
 class HindiKeyboard extends StatelessWidget {
   HindiKeyboard(
       {required this.onTap,
+      required this.onReturn,
+      required this.onBackspace,
       super.key,
       required this.highlights,
       required this.lowlights});
   final Function(String) onTap;
+  final Function() onReturn, onBackspace;
+
   final List<String> highlights;
   final List<String> lowlights;
   @override
@@ -37,7 +41,15 @@ class HindiKeyboard extends StatelessWidget {
               children: row
                   .map<Widget>((e) => _Key(
                         text: e,
-                        onTap: onTap,
+                        onTap: (t) {
+                          if (t == '⏎') {
+                            onReturn();
+                          } else if (t == '⌫') {
+                            onBackspace();
+                          } else {
+                            onTap(t);
+                          }
+                        },
                         highlight: highlights.contains(e),
                         lowlight: lowlights.contains(e),
                       ))

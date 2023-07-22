@@ -50,6 +50,13 @@ class _GameWidgetState extends State<GameWidget> {
             Text(message),
             HindiKeyboard(
               onTap: (t) => controller.text += t,
+              onReturn: () => setState(() {
+                message = widget.game.addGuess(controller.text.trim());
+                controller.clear();
+              }),
+              onBackspace: () => setState(() => controller.text = controller
+                  .text
+                  .substring(0, max(0, controller.text.length - 1))),
               highlights: widget.game.lines
                   .map((line) => line.cells
                       .where((element) => [
