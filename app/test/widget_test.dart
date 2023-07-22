@@ -13,20 +13,15 @@ void main() {
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
           '${character} ---> ${character.matra} + ${character.vyanjan}');
     }
-    print("पत्ता".characters.toList());
-    print("पत्ता".allCharacters);
-    for (String character in 'पत्ता'.allCharacters) {
+    // write the same code but for for उन्मुक्त
+    print('उन्मुक्त'.characters.toList());
+    print('उन्मुक्त'.allCharacters);
+    for (String character in 'उन्मुक्त'.allCharacters) {
       print(
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
           '${character} ---> ${character.matra} + ${character.vyanjan}');
     }
-    print("प्रसन्न".characters.toList());
-    print("प्रसन्न".allCharacters);
-    for (String character in 'प्रसन्न'.allCharacters) {
-      print(
-          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
-          '${character} ---> ${character.matra} + ${character.vyanjan}');
-    }
+
     for (String word in words) {
       print('--------------\n$word');
       for (String character in word.allCharacters) {

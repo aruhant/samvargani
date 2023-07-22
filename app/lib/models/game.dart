@@ -110,7 +110,9 @@ class Game {
       return CellState.correctVyanjan;
     } else if (answer.allCharacters.contains(guessCharacter)) {
       return CellState.misplaced;
-    } else if (answer.vyanjan.contains(guessCharacter.vyanjan)) {
+    } else if (answer.allCharacters
+        .map((e) => e.vyanjan)
+        .contains(guessCharacter.vyanjan)) {
       return CellState.misplacedVyanjan;
     } else {
       return CellState.incorrect;
