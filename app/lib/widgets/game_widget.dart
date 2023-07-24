@@ -86,7 +86,10 @@ class _GameWidgetState extends State<GameWidget> {
                   .toList(),
             ),
             TextButton(
-              onPressed: () => setState(() => widget.game.reset()),
+              onPressed: () => setState(() {
+                (widget.game.reset());
+                message = '';
+              }),
               child: const Text('रीसेट'),
             ),
           ],

@@ -10,15 +10,13 @@ void main() {
     for (String character in 'श्री'.allCharacters) {
       print(
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
-          '${character} ---> ${character.matra} + ${character.vyanjan}');
+          '$character ---> ${character.matra} + ${character.vyanjan}');
     }
     // write the same code but for for उन्मुक्त
-    print('उन्मुक्त'.characters.toList());
-    print('उन्मुक्त'.allCharacters);
     for (String character in 'उन्मुक्त'.allCharacters) {
       print(
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
-          '${character} ---> ${character.matra} + ${character.vyanjan}');
+          '$character ---> ${character.matra} + ${character.vyanjan}');
     }
 
     for (String word in words) {

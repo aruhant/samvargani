@@ -82,9 +82,9 @@ class _Key extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(2),
               color: highlight
-                  ? Color.fromRGBO(129, 178, 154, 1)
+                  ? const Color.fromRGBO(129, 178, 154, 1)
                   : lowlight
-                      ? Color.fromRGBO(224, 122, 95, 1)
+                      ? const Color.fromRGBO(224, 122, 95, 1)
                       : ['⌫', '⏎'].contains(text)
                           ? Colors.black38
                           : Colors.black12),

@@ -24,7 +24,7 @@ extension StringExtension on String {
     if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) {
       return vyanjan;
     }
-    if (vyanjan.length == 0) return '';
+    if (vyanjan.isEmpty) return '';
 
     return vyanjan[vyanjan.length - 1];
   }

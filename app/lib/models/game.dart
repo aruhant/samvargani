@@ -63,7 +63,7 @@ const List<String> words = [
 class Game {
   late String answer;
   final List<Line> _lines = [];
-
+  final Function(GameResult) onSuceess;
   List<Line> get lines => [
         ..._lines,
         Line(
@@ -73,7 +73,7 @@ class Game {
                     answer.allCharacters[index].matra.characters.join(' '),
                     state: CellState.empty)))
       ];
-  Game() {
+  Game({required this.onSuceess}) {
     answer = words[Random().nextInt(words.length)];
   }
   int get length => answer.allCharacters.length;
@@ -85,6 +85,11 @@ class Game {
     if (length != guessList.length) {
       return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
     }
+    // check if guess has any english characters and return english error
+    if (guess.contains(RegExp(r'[a-z,A-Z]'))) {
+      // give me a hindi full stop character
+      return 'यह एक हिंदी शब्द है। कोई अंग्रेजी अक्षर मौजूद नहीं हैं।';
+    }
     if (!kDebugMode && !wordList.contains(guess)) {
       return 'आपका उत्तर $guess शब्दकोष में नहीं है!';
     }
@@ -95,12 +100,18 @@ class Game {
           Cell(guessList[i], state: getStateForCell(answer, guessList[i], i)));
     }
     _lines.add(Line(cells: cells));
+    if (answer == guess) {
+      onSuceess(GameResult(answer, _lines.length));
+      return 'बधाई हो! आपने शब्द ढूंढ लिया है!';
+    }
+    ;
     return '';
   }
 
   void reset() {
     answer = words[Random().nextInt(words.length)];
     _lines.clear();
+    // reset a message that might have been printed
   }
 
   CellState getStateForCell(String answer, String guessCharacter, int index) {
@@ -118,4 +129,10 @@ class Game {
       return CellState.incorrect;
     }
   }
+}
+
+class GameResult {
+  final String answer;
+  final int tries;
+  GameResult(this.answer, this.tries);
 }

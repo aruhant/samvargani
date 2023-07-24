@@ -38,6 +38,8 @@ dependencies:
 
 dev_dependencies:
   flutter_launcher_icons:
+  expandable_menu:
+  introduction_screen:
   flutter_test:
     sdk: flutter
 
