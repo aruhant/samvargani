@@ -11,16 +11,15 @@ class PracticeGame extends StatefulWidget {
 }
 
 class PracticeGameState extends State<PracticeGame> {
+  late Game game;
   @override
   void initState() {
     super.initState();
     game = Game(onSuceess: onSuceess);
   }
 
-  late Game game;
-
-  onSuceess(GameResult result) {
-    showDialog(
+  onSuceess(GameResult result) async {
+    await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
     game.reset();

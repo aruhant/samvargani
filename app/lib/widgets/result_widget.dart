@@ -11,10 +11,10 @@ class ResultWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            gradient: const LinearGradient(
-                colors: [Colors.deepPurple, Colors.deepPurpleAccent],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight)),
+            gradient: const LinearGradient(colors: [
+              Color.fromRGBO(165, 165, 165, 1),
+              Color.fromRGBO(245, 245, 245, 1),
+            ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
         padding: const EdgeInsets.all(18),
         margin: const EdgeInsets.all(18),
         child: Column(
@@ -22,11 +22,20 @@ class ResultWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text('आप सफल हैं!',
+            const Text('आप सफल हुए!',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.pinkAccent)),
             Text(
-                'आपको जीतने में ${gameResult.tries} शब्द ${gameResult.tries == 1 ? 'लगा।' : 'लगे।'}'),
+              'आपको जीतने में ${gameResult.tries} शब्द ${gameResult.tries == 1 ? 'लगा।' : 'लगे।'}',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
