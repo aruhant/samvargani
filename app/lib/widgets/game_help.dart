@@ -74,16 +74,15 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       ),
       pages: [
         PageViewModel(
-          title: "Fractional shares",
-          body:
-              "Instead of having to buy an entire share, invest any amount you want.",
+          title: "संवर्गाणी में आपका स्वागत है",
+          body: "संवर्गानी अनेक शब्दो वाले खेल का समुह हैं।",
           image: _buildImage('img1.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learn as you go",
+          title: "शब्द खोक हमारा पहला खेल हैं",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "शब्द खोज में आपको मेरा एक शब्द ढूंढ़ना होगा। इसमें आप अपना उत्तर मुझे बताएंगे और मैं आपको बताऊंगा कि आपका और मेरे अक्षर में कितना अंतर है",
           image: _buildImage('img2.jpg'),
           decoration: pageDecoration,
         ),
