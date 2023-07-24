@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paheli/widgets/game_help.dart';
 import 'package:paheli/widgets/practice_game.dart';
 
 void main() {
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const PracticeGame(),
+      // home: const PracticeGame(),
+      home: GameHelpWidget(),
     );
   }
 }
