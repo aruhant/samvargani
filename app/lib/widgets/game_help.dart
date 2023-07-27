@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/widgets/practice_game.dart';
 
 class GameHelpWidget extends StatefulWidget {
@@ -15,6 +16,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
+    UserPrefs.instance.firstRunDone();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => const PracticeGame()),
     );
@@ -75,24 +77,125 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       pages: [
         PageViewModel(
           title: "संवर्गाणी में आपका स्वागत है",
-          body: "संवर्गानी अनेक शब्दो वाले खेल का समुह हैं।",
+          body:
+              "संवर्गानी का पहला खेल शब्द-खोज है। आइए जानें इस दिलचस्प खेल के बारे में।",
           image: _buildImage('img1.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "शब्द खोक हमारा पहला खेल हैं",
+          title:
+              "इस खेल में, आपको कम से कम प्रयास में 2-5 अक्षर का शब्द बुझाना है।",
           body:
-              "शब्द खोज में आपको मेरा एक शब्द ढूंढ़ना होगा। इसमें आप अपना उत्तर मुझे बताएंगे और मैं आपको बताऊंगा कि आपका और मेरे अक्षर में कितना अंतर है",
+              "उदाहरण के तौर पर आइए एक खेल देखें, जिसमें मान लीजिए कि शब्द '' है।",
           image: _buildImage('img2.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Kids and teens",
+          title: "4 अक्षर का शब्द",
           body:
-              "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+              "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
           image: _buildImage('img3.jpg'),
           decoration: pageDecoration,
         ),
+        PageViewModel(
+          title: "हमारा पहला उत्तर :-",
+          body:
+              "अब हमें 4 अक्षरों वाले एक वैध शब्द का अनुमान लगाना है। ध्यान दें कि हमारे उत्तर में मात्रा और आधा अक्षर होना आवश्यक है, लेकिन ध्यान रखें कि अंतिम शब्द में मात्रा और आधा अक्षर होगा। अभी, यह समझने के लिए कि अंतिम शब्द में कौन से अक्षर मौजूद हैं, आइए एक चार अक्षर वाले शब्द का प्रयास करें - - 'सतियाना'",
+          image: _buildImage('img4.jpg'),
+          decoration: pageDecoration,
+        ),
+        PageViewModel(
+          title: "red coloured 's'",
+          body:
+              "जैसा कि हम देख सकते हैं 's' को लाल रंग से चिह्नित किया गया है - इसका मतलब है कि शब्द में 's' का कोई भी व्युत्पन्न शामिल नहीं है। इसका मतलब यह है कि शब्द के कोई भी स्थान पे 'सा', 'सी, 'सू', 'सो,' 'त्सा' आदि उपस्थित नहीं है।",
+          image: _buildImage('img5.jpg'),
+          decoration: pageDecoration,
+        ),
+        PageViewModel(
+          title: "yellow coloured 't'",
+          body:
+              "'टी' को पीले रंग से चिह्नित किया गया है। इसका अर्थ है 't' या इसका कोई व्युत्पन्न शब्द में मौजूद है, लेकिन उस तीसरे स्थान पर नहीं।",
+          image: _buildImage('img5.jpg'),
+          decoration: pageDecoration,
+        ),
+        PageViewModel(
+          title: "हल्का हरा रंग 'H'",
+          body:
+              "'H' को हल्के हरे रंग से चिह्नित किया गया है। इसका मतलब यह है कि 'एच' मौके पर मौजूद है, सिर्फ फॉर्म में नहीं। इसका मतलब यह है कि उस स्थान पर 'HI', 'HO', 'HOO' इत्यादि हो सकते हैं। इसे ठीक करने के लिए वहां दिए गए मात्रा और आधा अक्षर का उपयोग करें।",
+          image: _buildImage('img5.jpg'),
+          decoration: pageDecoration,
+        ),
+        PageViewModel(
+          title: "गहरा हरा 'एन'",
+          body:
+              "'एन' अक्षर को गहरे हरे रंग से चिह्नित किया गया है। इसका मतलब यह है कि यह सही जगह पर है और सही स्थान पर है और इसे बदलने की आवश्यकता नहीं है।",
+          image: _buildImage('img5.jpg'),
+          decoration: pageDecoration,
+        ),
+        PageViewModel(
+          title: "विजय",
+          body:
+              "अब, आपमें से कुछ लोगों को यह बात पहले ही मिल गई होगी। हाँ वास्तव में यह है - 'एबीसीडी'",
+          image: _buildImage('img5.jpg'),
+          decoration: pageDecoration,
+        ), /*
+        PageViewModel(
+          title: "Full Screen Page",
+          body:
+              "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
+          image: _buildFullscreenImage(),
+          decoration: pageDecoration.copyWith(
+            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+            safeArea: 100,
+          ),
+        ),
+        PageViewModel(
+          title: "Another title page",
+          body: "Another beautiful body text for this example onboarding",
+          image: _buildImage('img2.jpg'),
+          footer: ElevatedButton(
+            onPressed: () {
+              introKey.currentState?.animateScroll(0);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.lightBlue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            child: const Text(
+              'FooButton',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          decoration: pageDecoration.copyWith(
+            bodyFlex: 6,
+            imageFlex: 6,
+            safeArea: 80,
+          ),
+        ),
+        PageViewModel(
+          title: "Title of last page - reversed",
+          bodyWidget: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Click on ", style: bodyStyle),
+              Icon(Icons.edit),
+              Text(" to edit a post", style: bodyStyle),
+            ],
+          ),
+          decoration: pageDecoration.copyWith(
+            bodyFlex: 2,
+            imageFlex: 4,
+            bodyAlignment: Alignment.bottomCenter,
+            imageAlignment: Alignment.topCenter,
+          ),
+          image: _buildImage('img1.jpg'),
+          reverse: true,
+        ),*/
       ],
       onDone: () => _onIntroEnd(context),
       onSkip: () => _onIntroEnd(context), // You can override onSkip callback

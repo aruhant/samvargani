@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
@@ -15,7 +17,8 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   void initState() {
     super.initState();
-    game = Game(onSuceess: onSuceess);
+    game = Game(
+        answer: words[Random().nextInt(words.length)], onSuceess: onSuceess);
   }
 
   onSuceess(GameResult result) async {

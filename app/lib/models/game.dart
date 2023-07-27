@@ -73,9 +73,7 @@ class Game {
                     answer.allCharacters[index].matra.characters.join(' '),
                     state: CellState.empty)))
       ];
-  Game({required this.onSuceess}) {
-    answer = words[Random().nextInt(words.length)];
-  }
+  Game({required this.onSuceess, required this.answer}) {}
   int get length => answer.allCharacters.length;
   get answerList => answer.allCharacters;
 
@@ -104,7 +102,7 @@ class Game {
       onSuceess(GameResult(answer, _lines.length));
       return 'बधाई हो! आपने शब्द ढूंढ लिया है!';
     }
-    ;
+
     return '';
   }
 

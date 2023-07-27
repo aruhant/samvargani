@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/widgets/game_help.dart';
 import 'package:paheli/widgets/practice_game.dart';
 
 void main() {
+  UserPrefs.init();
   runApp(const MyApp());
 }
 
@@ -17,7 +19,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const PracticeGame(),
-      home: GameHelpWidget(),
+      home: (UserPrefs.instance.firstRun)
+          ? const GameHelpWidget()
+          : const PracticeGame(),
     );
   }
 }
