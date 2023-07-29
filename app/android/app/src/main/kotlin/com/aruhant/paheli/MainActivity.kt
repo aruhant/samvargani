@@ -1,4 +1,4 @@
-package com.aruhant.paheli.paheli
+package com.aruhant.paheli
 
 import io.flutter.embedding.android.FlutterActivity
 
