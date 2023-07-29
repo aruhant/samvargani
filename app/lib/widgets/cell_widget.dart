@@ -11,21 +11,25 @@ class CellWidget extends StatelessWidget {
     return Expanded(
       child: AspectRatio(
         aspectRatio: 1,
-        child: Container(
-            padding: const EdgeInsets.all(10),
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: cell.state.color),
-            child: Center(
-                child: AutoSizeText(cell.myLetter.value,
-                    group: group,
-                    maxLines: 1,
-                    maxFontSize: 10000,
-                    minFontSize: 1,
-                    style: const TextStyle(
-                        color: Color.fromRGBO(61, 64, 91, 1),
-                        fontSize: 10000)))),
+        child: Tooltip(
+          triggerMode: TooltipTriggerMode.tap,
+          message: cell.state.tooltip(cell.myLetter.value),
+          child: Container(
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: cell.state.color),
+              child: Center(
+                  child: AutoSizeText(cell.myLetter.value,
+                      group: group,
+                      maxLines: 1,
+                      maxFontSize: 10000,
+                      minFontSize: 1,
+                      style: const TextStyle(
+                          color: Color.fromRGBO(61, 64, 91, 1),
+                          fontSize: 10000)))),
+        ),
       ),
     );
   }

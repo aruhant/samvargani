@@ -52,51 +52,43 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       key: introKey,
       globalBackgroundColor: Colors.white,
       allowImplicitScrolling: true,
-      autoScrollDuration: 3000,
-      infiniteAutoScroll: true,
-      globalHeader: Align(
-        alignment: Alignment.topRight,
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('flutter.png', 100),
-          ),
-        ),
-      ),
-      globalFooter: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: ElevatedButton(
-          child: const Text(
-            'Let\'s go right away!',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-          ),
-          onPressed: () => _onIntroEnd(context),
-        ),
-      ),
+      autoScrollDuration: 13000,
+      infiniteAutoScroll: false,
+      // globalHeader: Align(
+      //   alignment: Alignment.topRight,
+      //   child: SafeArea(
+      //     child: Padding(
+      //       padding: const EdgeInsets.only(top: 16, right: 16),
+      //       child: _buildImage('flutter.png', 100),
+      //     ),
+      //   ),
+      // ),
       pages: [
         PageViewModel(
-          title: "संवर्गाणी में आपका स्वागत है",
+          title:
+              "संवर्गनी में आपका स्वागत है, आइए जानें इस दिलचस्प खेल के बारे में।",
           body:
-              "संवर्गानी का पहला खेल शब्द-खोज है। आइए जानें इस दिलचस्प खेल के बारे में।",
-          image: _buildImage('img1.jpg'),
+              "इस खेल में, आपको कम से कम प्रयास में एक 2-से-5 अक्षर का शब्द बुझाना है।",
+          image: _buildImage('icon.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title:
               "इस खेल में, आपको कम से कम प्रयास में 2-5 अक्षर का शब्द बुझाना है।",
           body:
-              "उदाहरण के तौर पर आइए एक खेल देखें, जिसमें मान लीजिए कि शब्द '' है।",
-          image: _buildImage('img2.jpg'),
+              "प्रत्येक उत्तर के बाद आपको पता चलेगा कि आपके अनुमान में कौन से अक्षर सही हैं",
+          image: _buildImage('intro1.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "4 अक्षर का शब्द",
+          title:
+              "लाल रंग से चिह्नित अक्षर सही उत्तर में कहीं भी मौजूद नहीं हैं, हरे रंग से चिह्नित अक्षर अपने सही स्थान पर हैं, पीले रंग से चिह्नित अक्षर अपने सही स्थान पर नहीं हैं",
           body:
-              "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
-          image: _buildImage('img3.jpg'),
+              "खेल के दौरान इस संकेतिका को देखने के लिए आप अक्षरों को छू सकते हैं",
+          // "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
+          image: _buildImage('intro2.png'),
           decoration: pageDecoration,
-        ),
+        ), /*
         PageViewModel(
           title: "हमारा पहला उत्तर :-",
           body:
@@ -138,7 +130,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               "अब, आपमें से कुछ लोगों को यह बात पहले ही मिल गई होगी। हाँ वास्तव में यह है - 'एबीसीडी'",
           image: _buildImage('img5.jpg'),
           decoration: pageDecoration,
-        ), /*
+        ),*/ /*
         PageViewModel(
           title: "Full Screen Page",
           body:

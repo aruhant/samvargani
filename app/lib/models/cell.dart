@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paheli/utils/string.dart';
 
 enum CellState {
   correct(),
@@ -22,6 +23,23 @@ enum CellState {
         return const Color.fromRGBO(129, 178, 154, 0.4);
       case CellState.misplacedVyanjan:
         return const Color.fromARGB(255, 242, 183, 143);
+    }
+  }
+
+  String tooltip(String s) {
+    switch (this) {
+      case CellState.correct:
+        return '${s}- सही स्थान पर है, सही मात्रा के साथ';
+      case CellState.incorrect:
+        return '${s.vyanjan} - शब्द में कहीं भी मौजूद नहीं है';
+      case CellState.empty:
+        return '';
+      case CellState.misplaced:
+        return '${s} - शब्द में मौजूद है, लेकिन यह स्थान सही नहीं है';
+      case CellState.correctVyanjan:
+        return '${s.vyanjan} - सही स्थान पर है, लेकिन यह मात्रा सही नहीं है';
+      case CellState.misplacedVyanjan:
+        return '${s.vyanjan}  - शब्द में मौजूद है, लेकिन यह स्थान एवं मात्रा सही नहीं है';
     }
   }
 }
