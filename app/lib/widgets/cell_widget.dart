@@ -12,6 +12,17 @@ class CellWidget extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1,
         child: Tooltip(
+          showDuration: Duration(seconds: 10),
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: Colors.black87,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: Offset(0, 5))
+              ]),
           triggerMode: TooltipTriggerMode.tap,
           message: cell.state.tooltip(cell.myLetter.value),
           child: Container(

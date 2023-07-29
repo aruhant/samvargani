@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,19 +42,21 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
     const bodyStyle = TextStyle(fontSize: 19.0);
 
     const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+      titleTextStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
-      bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      // bodyPadding: EdgeInsets.all(20),
+      // contentMargin: EdgeInsets.all(20),
+      bodyAlignment: Alignment.centerLeft,
       pageColor: Colors.white,
-      imagePadding: EdgeInsets.zero,
+      imagePadding: EdgeInsets.all(16),
     );
 
     return IntroductionScreen(
       key: introKey,
+
       globalBackgroundColor: Colors.white,
       allowImplicitScrolling: true,
-      autoScrollDuration: 13000,
-      infiniteAutoScroll: false,
+      autoScrollDuration: null,
       // globalHeader: Align(
       //   alignment: Alignment.topRight,
       //   child: SafeArea(
@@ -82,9 +85,15 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
         ),
         PageViewModel(
           title:
-              "लाल रंग से चिह्नित अक्षर सही उत्तर में कहीं भी मौजूद नहीं हैं, हरे रंग से चिह्नित अक्षर अपने सही स्थान पर हैं, पीले रंग से चिह्नित अक्षर अपने सही स्थान पर नहीं हैं",
-          body:
               "खेल के दौरान इस संकेतिका को देखने के लिए आप अक्षरों को छू सकते हैं",
+          bodyWidget: AutoSizeText(
+            "🟥 से चिह्नित अक्षर सही उत्तर में कहीं भी मौजूद नहीं हैं\n🟩 से चिह्नित अक्षर अपने सही स्थान पर हैं\n🟧 से चिह्नित अक्षर अपने सही स्थान पर नहीं हैं",
+            style: TextStyle(fontSize: 60),
+            maxLines: 3,
+            maxFontSize: 60,
+            minFontSize: 5,
+            textAlign: TextAlign.left,
+          ),
           // "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
           image: _buildImage('intro2.png'),
           decoration: pageDecoration,
