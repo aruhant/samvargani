@@ -8,7 +8,7 @@
 PRODUCT_NAME = paheli
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = aruhant.github.io.paheli
+PRODUCT_BUNDLE_IDENTIFIER = com.aruhant.paheli.paheli
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 aruhant.github.io. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.aruhant.paheli. All rights reserved.
