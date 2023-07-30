@@ -56,7 +56,7 @@ class _GameWidgetState extends State<GameWidget> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Text(LocaleKeys.appTitle.tr(),
+                Text(LocaleKeys.app_title.tr(),
                     style: TextStyle(
                         fontSize: 40,
                         color: Color.fromRGBO(61, 64, 91, 1),

@@ -3,7 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/widgets/practice_game.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class GameHelpWidget extends StatefulWidget {
   const GameHelpWidget({Key? key}) : super(key: key);
@@ -67,10 +69,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       // ),
       pages: [
         PageViewModel(
-          title:
-              "संवर्गनी में आपका स्वागत है, आइए जानें इस दिलचस्प खेल के बारे में।",
-          body:
-              "इस खेल में, आपको कम से कम प्रयास में एक 2-से-5 अक्षर का शब्द बुझाना है।",
+          title: LocaleKeys.intro_page1_title.tr(),
+          body: LocaleKeys.intro_page1_body.tr(),
           image: _buildImage('icon.png'),
           decoration: pageDecoration,
         ),
