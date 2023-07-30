@@ -19,10 +19,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const GameHelpWidget(),
-      // home:  true && (UserPrefs.instance.firstRun)
-      //     ? const GameHelpWidget()
-      //     : const PracticeGame(),
+      home: true && (UserPrefs.instance.firstRun)
+          ? const GameHelpWidget()
+          : const PracticeGame(),
     );
   }
 }

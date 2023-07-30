@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/wordlist.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
@@ -61,24 +62,27 @@ const List<String> words = [
 ];
 
 class Game {
-  late String answer;
+  String answerValue;
+  GameAnswer answer;
+
   final List<Line> _lines = [];
   final Function(GameResult) onSuceess;
   List<Line> get lines => [
         ..._lines,
         Line(
             cells: List<Cell>.generate(
-                answer.allCharacters.length,
+                answerValue.allCharacters.length,
                 (index) => Cell(
-                    answer.allCharacters[index].matra.characters.join(' '),
+                    answerValue.allCharacters[index].matra.characters.join(' '),
                     state: CellState.empty)))
       ];
-  Game({required this.onSuceess, required this.answer}) {}
-  int get length => answer.allCharacters.length;
-  get answerList => answer.allCharacters;
+  Game({required this.onSuceess, required this.answer})
+      : answerValue = answer.answer;
+  int get length => answerValue.allCharacters.length;
+  get answerList => answerValue.allCharacters;
 
   String addGuess(String guess) {
-    if (guess.toLowerCase() == 'iddqd') return answer;
+    if (guess.toLowerCase() == 'iddqd') return answerValue;
     List<String> guessList = guess.allCharacters;
     if (length != guessList.length) {
       return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
@@ -94,11 +98,11 @@ class Game {
 
     List<Cell> cells = [];
     for (int i = 0; i < guessList.length; i++) {
-      cells.add(
-          Cell(guessList[i], state: getStateForCell(answer, guessList[i], i)));
+      cells.add(Cell(guessList[i],
+          state: getStateForCell(answerValue, guessList[i], i)));
     }
     _lines.add(Line(cells: cells));
-    if (answer == guess) {
+    if (answerValue == guess) {
       onSuceess(GameResult(answer, _lines.length));
       return 'बधाई हो! आपने शब्द ढूंढ लिया है!';
     }
@@ -107,9 +111,8 @@ class Game {
   }
 
   void reset() {
-    answer = words[Random().nextInt(words.length)];
+    answerValue = words[Random().nextInt(words.length)];
     _lines.clear();
-    // reset a message that might have been printed
   }
 
   CellState getStateForCell(String answer, String guessCharacter, int index) {
@@ -130,7 +133,7 @@ class Game {
 }
 
 class GameResult {
-  final String answer;
+  final GameAnswer answer;
   final int tries;
   GameResult(this.answer, this.tries);
 }

@@ -33,5 +33,5 @@ final List<GameAnswer> gameAnswers = [
   GameAnswer(answer: 'मुस्कान', meaning: 'हँसी'),
   GameAnswer(answer: 'स्नेह', meaning: 'प्रेम'),
   GameAnswer(answer: 'बेख़बर', meaning: 'अनजान'),
-  GameAnswer(answer: 'धैर्य', meaning: 'साहस')
+  GameAnswer(answer: 'धैर्य', meaning: 'साहस'),
 ];

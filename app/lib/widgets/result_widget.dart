@@ -29,8 +29,9 @@ class ResultWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.pinkAccent)),
             Text(
-              'आपको जीतने में ${gameResult.tries} शब्द ${gameResult.tries == 1 ? 'लगा।' : 'लगे।'}',
-              style: TextStyle(
+              // tell them what the word was and its meaning
+              'शब्द: ${gameResult.answer.answer}\nइसका अर्थ है: ${gameResult.answer.meaning}\nआपको जीतने में ${gameResult.tries} शब्द ${gameResult.tries == 1 ? 'लगा।' : 'लगे।'}',
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
@@ -40,7 +41,7 @@ class ResultWidget extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text('OK'))
+                child: const Icon(Icons.close, size: 50))
           ],
         ),
       ),

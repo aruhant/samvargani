@@ -94,11 +94,11 @@ class _GameWidgetState extends State<GameWidget> {
                           .map((e) => e.value.vyanjan))
                       .expand((element) => element)
                       .toList()
-                    ..addAll(widget.game.answer.allCharacters
+                    ..addAll(widget.game.answerValue.allCharacters
                         .map((e) => e.matra.runes
                             .map((e) => String.fromCharCode(e).matra))
                         .expand((element) => element))
-                    ..add(widget.game.answer.allCharacters
+                    ..add(widget.game.answerValue.allCharacters
                             .map((e) => e.matra)
                             .join()
                             .contains('्')
