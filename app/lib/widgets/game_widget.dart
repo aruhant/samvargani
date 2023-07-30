@@ -46,6 +46,7 @@ class _GameWidgetState extends State<GameWidget> {
             maxSpeed: 1,
             maxSize: 30,
             minSpeed: 0.2,
+            minSize: 150,
             randomItemsColors: widget.game.answer.colors,
             randomItemsBehaviours: widget.game.answer.icons!
                 .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
@@ -96,11 +97,11 @@ class _GameWidgetState extends State<GameWidget> {
                           .map((e) => e.value.vyanjan))
                       .expand((element) => element)
                       .toList()
-                    ..addAll(widget.game.answerValue.allCharacters
+                    ..addAll(widget.game.answer.answer.allCharacters
                         .map((e) => e.matra.runes
                             .map((e) => String.fromCharCode(e).matra))
                         .expand((element) => element))
-                    ..add(widget.game.answerValue.allCharacters
+                    ..add(widget.game.answer.answer.allCharacters
                             .map((e) => e.matra)
                             .join()
                             .contains('्')

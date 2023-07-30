@@ -62,7 +62,6 @@ const List<String> words = [
 ];
 
 class Game {
-  String answerValue;
   GameAnswer answer;
 
   final List<Line> _lines = [];
@@ -71,18 +70,18 @@ class Game {
         ..._lines,
         Line(
             cells: List<Cell>.generate(
-                answerValue.allCharacters.length,
+                answer.answer.allCharacters.length,
                 (index) => Cell(
-                    answerValue.allCharacters[index].matra.characters.join(' '),
+                    answer.answer.allCharacters[index].matra.characters
+                        .join(' '),
                     state: CellState.empty)))
       ];
-  Game({required this.onSuceess, required this.answer})
-      : answerValue = answer.answer;
-  int get length => answerValue.allCharacters.length;
-  get answerList => answerValue.allCharacters;
+  Game({required this.onSuceess, required this.answer});
+  int get length => answer.answer.allCharacters.length;
+  get answerList => answer.answer.allCharacters;
 
   String addGuess(String guess) {
-    if (guess.toLowerCase() == 'iddqd') return answerValue;
+    if (guess.toLowerCase() == 'iddqd') return answer.answer;
     List<String> guessList = guess.allCharacters;
     if (length != guessList.length) {
       return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
@@ -99,19 +98,19 @@ class Game {
     List<Cell> cells = [];
     for (int i = 0; i < guessList.length; i++) {
       cells.add(Cell(guessList[i],
-          state: getStateForCell(answerValue, guessList[i], i)));
+          state: getStateForCell(answer.answer, guessList[i], i)));
     }
     _lines.add(Line(cells: cells));
-    if (answerValue == guess) {
+    if (answer.answer == guess) {
       onSuceess(GameResult(answer, _lines.length));
-      return 'बधाई हो! आपने शब्द ढूंढ लिया है!';
+      return '';
     }
 
     return '';
   }
 
   void reset() {
-    answerValue = words[Random().nextInt(words.length)];
+    answer = gameAnswers[Random().nextInt(gameAnswers.length)];
     _lines.clear();
   }
 
