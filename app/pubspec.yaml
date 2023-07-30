@@ -43,6 +43,7 @@ dev_dependencies:
   expandable_menu:
   easy_localization:
   introduction_screen:
+  flex_color_scheme:
   flutter_test:
     sdk: flutter
 

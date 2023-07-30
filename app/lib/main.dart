@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/widgets/game_help.dart';
 import 'package:paheli/widgets/practice_game.dart';
-
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
@@ -26,10 +26,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: FlexThemeData.light(scheme: FlexScheme.mandyRed),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
+      themeMode: ThemeMode.system,
       home: true && (UserPrefs.instance.firstRun)
           ? const GameHelpWidget()
           : const PracticeGame(),
