@@ -46,7 +46,7 @@ class _GameWidgetState extends State<GameWidget> {
             maxSpeed: 1,
             maxSize: 30,
             minSpeed: 0.2,
-            randomItemsColors: [Colors.yellowAccent, Colors.white],
+            randomItemsColors: widget.game.answer.colors,
             randomItemsBehaviours: widget.game.answer.icons!
                 .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
                 .toList(),

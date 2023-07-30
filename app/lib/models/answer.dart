@@ -5,6 +5,7 @@ class GameAnswer {
   final String meaning;
   final List<String?>? hints;
   final Color? backgroundColor;
+  final List<Color> colors;
   final List<IconData> icons;
   final List<String>? images;
   final bool moveHorizontal, moveVertical;
@@ -12,6 +13,7 @@ class GameAnswer {
     required this.answer,
     required this.meaning,
     this.hints,
+    this.colors = const [Colors.white, Colors.blue],
     this.backgroundColor = const Color.fromARGB(255, 180, 207, 229),
     this.icons = const [Icons.cloud],
     this.images,
