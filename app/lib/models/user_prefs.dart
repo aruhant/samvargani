@@ -12,6 +12,7 @@ class UserPrefs {
       : _firstRun = firstRun,
         _darkMode = darkMode,
         _sharedPrefs = sharedPrefs;
+
   static UserPrefs? _instance;
   static UserPrefs get instance => _instance!;
   bool get darkMode => _darkMode;

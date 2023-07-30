@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   auto_size_text:
   shared_preferences:
+  vitality:
 
 dev_dependencies:
   flutter_launcher_icons:

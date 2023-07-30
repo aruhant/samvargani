@@ -477,6 +477,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  vitality:
+    dependency: "direct main"
+    description:
+      name: vitality
+      sha256: "4c8028f082776cc73d8f8f8e0b7dae4d20c6ffa3a242437efe178c1879a38d8d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   win32:
     dependency: transitive
     description:
