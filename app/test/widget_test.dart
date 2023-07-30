@@ -24,7 +24,7 @@ void main() {
       for (String character in word.allCharacters) {
         print(
             // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
-            '${character} ---> ${character.matra} + ${character.vyanjan}');
+            '$character ---> ${character.matra} + ${character.vyanjan}');
       }
     }
   });

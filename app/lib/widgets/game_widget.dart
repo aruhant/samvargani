@@ -1,8 +1,9 @@
 import 'dart:math';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/keyboard.dart';
 import 'package:paheli/widgets/lines_widget.dart';
@@ -48,14 +49,14 @@ class _GameWidgetState extends State<GameWidget> {
             minSpeed: 0.2,
             minSize: 150,
             randomItemsColors: widget.game.answer.colors,
-            randomItemsBehaviours: widget.game.answer.icons!
+            randomItemsBehaviours: widget.game.answer.icons
                 .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
                 .toList(),
           ),
           SingleChildScrollView(
             child: Column(
               children: [
-                const Text('संवर्गनी',
+                Text(LocaleKeys.appTitle.tr(),
                     style: TextStyle(
                         fontSize: 40,
                         color: Color.fromRGBO(61, 64, 91, 1),

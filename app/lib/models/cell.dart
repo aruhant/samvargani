@@ -29,13 +29,13 @@ enum CellState {
   String tooltip(String s) {
     switch (this) {
       case CellState.correct:
-        return '${s}- सही स्थान पर है, सही मात्रा के साथ';
+        return '$s- सही स्थान पर है, सही मात्रा के साथ';
       case CellState.incorrect:
         return '${s.vyanjan} - शब्द में कहीं भी मौजूद नहीं है';
       case CellState.empty:
         return '';
       case CellState.misplaced:
-        return '${s} - शब्द में मौजूद है, लेकिन यह स्थान सही नहीं है';
+        return '$s - शब्द में मौजूद है, लेकिन यह स्थान सही नहीं है';
       case CellState.correctVyanjan:
         return '${s.vyanjan} - सही स्थान पर है, लेकिन यह मात्रा सही नहीं है';
       case CellState.misplacedVyanjan:

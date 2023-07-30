@@ -14,7 +14,7 @@ const _keys = [
 AutoSizeGroup _group = AutoSizeGroup();
 
 class HindiKeyboard extends StatelessWidget {
-  HindiKeyboard(
+  const HindiKeyboard(
       {required this.onTap,
       required this.onReturn,
       required this.onBackspace,

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPrefs {
-  bool _darkMode;
+  final bool _darkMode;
   bool _firstRun;
-  SharedPreferences _sharedPrefs;
+  final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
       required bool firstRun,
