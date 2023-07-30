@@ -5,21 +5,18 @@ class GameAnswer {
   final String meaning;
   final List<String?>? hints;
   final Color? backgroundColor;
-  final List<IconData>? icons;
+  final List<IconData> icons;
   final List<String>? images;
-  final AxisDirection direction;
+  final bool moveHorizontal, moveVertical;
   GameAnswer({
     required this.answer,
     required this.meaning,
     this.hints,
-    this.backgroundColor = Colors.cyan,
-    this.icons = const [
-      Icons.cloud,
-      Icons.cloud_circle_outlined,
-      Icons.airplanemode_active,
-    ],
+    this.backgroundColor = const Color.fromARGB(255, 180, 207, 229),
+    this.icons = const [Icons.cloud],
     this.images,
-    this.direction = AxisDirection.right,
+    this.moveHorizontal = true,
+    this.moveVertical = false,
   });
 }
 

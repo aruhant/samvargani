@@ -26,28 +26,30 @@ class _GameWidgetState extends State<GameWidget> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(title: Text('${widget.game.length} अक्षर का शब्द ढूंढें')),
+      appBar: AppBar(
+          shadowColor: Colors.transparent,
+          title: Text('${widget.game.length} अक्षर का शब्द ढूंढें'),
+          backgroundColor: Colors.transparent),
       backgroundColor: const Color.fromRGBO(244, 241, 222, 1),
       body: Stack(
         children: [
           Vitality.randomly(
             height: size.height,
             width: size.width,
-            background: Colors.blueGrey,
+            background: widget.game.answer.backgroundColor,
             maxOpacity: 0.8,
             minOpacity: 0.3,
             itemsCount: 8,
-            enableXMovements: false,
+            enableXMovements: widget.game.answer.moveHorizontal,
+            enableYMovements: widget.game.answer.moveVertical,
             whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
-            maxSpeed: 1.5,
+            maxSpeed: 1,
             maxSize: 30,
-            minSpeed: 1,
+            minSpeed: 0.2,
             randomItemsColors: [Colors.yellowAccent, Colors.white],
-            randomItemsBehaviours: [
-              ItemBehaviour(shape: ShapeType.Icon, icon: Icons.star),
-              ItemBehaviour(shape: ShapeType.Icon, icon: Icons.star_border),
-              ItemBehaviour(shape: ShapeType.StrokeCircle),
-            ],
+            randomItemsBehaviours: widget.game.answer.icons!
+                .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
+                .toList(),
           ),
           SingleChildScrollView(
             child: Column(

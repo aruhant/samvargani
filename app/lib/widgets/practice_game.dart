@@ -19,7 +19,7 @@ class PracticeGameState extends State<PracticeGame> {
   void initState() {
     super.initState();
     game = Game(
-        answer: gameAnswers[Random().nextInt(words.length)],
+        answer: gameAnswers[Random().nextInt(gameAnswers.length)],
         onSuceess: onSuceess);
   }
 
