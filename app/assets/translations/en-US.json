@@ -35,10 +35,10 @@
 "gameResult":{
     "victoryMessage":"You won!",
     "meaning":"Meaning: {}",
-    "tries": "Tries to win: {} words"
+    "tries": "Tries to win: {}"
 },
 "practiceGame":{
-    "resetButton": "Reset"
+    "resetButton": "Give Up"
 
 }
 }

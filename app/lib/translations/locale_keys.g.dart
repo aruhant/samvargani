@@ -16,8 +16,8 @@ abstract class  LocaleKeys {
   static const intro_page3_title = 'intro.page3.title';
   static const intro_page3_body = 'intro.page3.body';
   static const intro_page3 = 'intro.page3';
-  static const intro_skip = 'intro.skip';
   static const intro_done = 'intro.done';
+  static const intro_skip = 'intro.skip';
   static const intro = 'intro';
   static const game_title = 'game.title';
   static const game_answerLabel = 'game.answerLabel';

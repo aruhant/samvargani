@@ -37,10 +37,10 @@
     "gameResult":{
         "victoryMessage":"आप सफल हुए!",
         "meaning":"अर्थ: {}",
-        "tries": "जीतने में प्रयास: {} शब्द"
+        "tries": "जीतने में प्रयास: {}"
     },
     "practiceGame":{
-        "resetButton": "रीसेट"
+        "resetButton": "हार मानिये"
 
     }
 }

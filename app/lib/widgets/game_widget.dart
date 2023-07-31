@@ -39,8 +39,8 @@ class _GameWidgetState extends State<GameWidget> {
               height: size.height,
               width: size.width,
               background: widget.game.answer.backgroundColor,
-              maxOpacity: 0.3,
-              minOpacity: 0.1,
+              maxOpacity: 0.4,
+              minOpacity: 0.15,
               itemsCount: 6,
               enableXMovements: widget.game.answer.moveHorizontal,
               enableYMovements: widget.game.answer.moveVertical,
@@ -57,7 +57,7 @@ class _GameWidgetState extends State<GameWidget> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Text(LocaleKeys.app_title.tr(),
                       style: const TextStyle(
                           fontSize: 40,
