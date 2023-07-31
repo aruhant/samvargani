@@ -27,108 +27,110 @@ class _GameWidgetState extends State<GameWidget> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-          shadowColor: Colors.transparent,
-          title:
-              Text(LocaleKeys.game_title.tr(args: ['${widget.game.length}'])),
-          backgroundColor: Colors.transparent),
-      backgroundColor: const Color.fromRGBO(244, 241, 222, 1),
-      body: Stack(
-        children: [
-          Vitality.randomly(
-            height: size.height,
-            width: size.width,
-            background: widget.game.answer.backgroundColor,
-            maxOpacity: 0.8,
-            minOpacity: 0.3,
-            itemsCount: 8,
-            enableXMovements: widget.game.answer.moveHorizontal,
-            enableYMovements: widget.game.answer.moveVertical,
-            whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
-            maxSpeed: 1,
-            maxSize: 30,
-            minSpeed: 0.2,
-            minSize: 150,
-            randomItemsColors: widget.game.answer.colors,
-            randomItemsBehaviours: widget.game.answer.icons
-                .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
-                .toList(),
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Text(LocaleKeys.app_title.tr(),
-                    style: const TextStyle(
-                        fontSize: 40,
-                        color: Color.fromRGBO(61, 64, 91, 1),
-                        fontWeight: FontWeight.bold)),
-                LinesWidget(
-                    lines: widget.game.lines, wordLength: widget.game.length),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: TextField(
-                    controller: controller,
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: LocaleKeys.game_answerLabel.tr()),
-                    onSubmitted: (value) {
-                      setState(() {
-                        controller.clear();
-                        message = widget.game.addGuess(value.trim());
-                      });
-                    },
-                  ),
-                ),
-                Text(message),
-                HindiKeyboard(
-                  onTap: (t) => controller.text += t,
-                  onReturn: () => setState(() {
-                    message = widget.game.addGuess(controller.text.trim());
-                    controller.clear();
-                  }),
-                  onBackspace: () => setState(() => controller.text = controller
-                      .text
-                      .substring(0, max(0, controller.text.length - 1))),
-                  highlights: widget.game.lines
-                      .map((line) => line.cells
-                          .where((element) => [
-                                CellState.correct,
-                                CellState.correctVyanjan,
-                                CellState.misplaced,
-                                CellState.misplacedVyanjan
-                              ].contains(element.state))
-                          .map((e) => e.value.vyanjan))
-                      .expand((element) => element)
-                      .toList()
-                    ..addAll(widget.game.answer.answer.allCharacters
-                        .map((e) => e.matra.runes
-                            .map((e) => String.fromCharCode(e).matra))
-                        .expand((element) => element))
-                    ..add(widget.game.answer.answer.allCharacters
-                            .map((e) => e.matra)
-                            .join()
-                            .contains('्')
-                        ? '्'
-                        : ''),
-                  lowlights: widget.game.lines
-                      .map((line) => line.cells
-                          .where(
-                              (element) => CellState.incorrect == element.state)
-                          .map((e) => e.value.vyanjan))
-                      .expand((element) => element)
-                      .toList(),
-                ),
-                TextButton(
-                  onPressed: () => setState(() {
-                    (widget.game.reset());
-                    message = '';
-                  }),
-                  child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-                ),
-              ],
+      // appBar: AppBar(
+      //     shadowColor: Colors.transparent,
+      //     title:
+      //         Text(LocaleKeys.game_title.tr(args: ['${widget.game.length}'])),
+      //     backgroundColor: Colors.transparent),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Vitality.randomly(
+              height: size.height,
+              width: size.width,
+              background: widget.game.answer.backgroundColor,
+              maxOpacity: 0.3,
+              minOpacity: 0.1,
+              itemsCount: 6,
+              enableXMovements: widget.game.answer.moveHorizontal,
+              enableYMovements: widget.game.answer.moveVertical,
+              whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
+              maxSpeed: 0.4,
+              maxSize: 30,
+              minSpeed: 0.15,
+              minSize: 150,
+              randomItemsColors: widget.game.answer.colors,
+              randomItemsBehaviours: widget.game.answer.icons
+                  .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
+                  .toList(),
             ),
-          ),
-        ],
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 30),
+                  Text(LocaleKeys.app_title.tr(),
+                      style: const TextStyle(
+                          fontSize: 40,
+                          color: Color.fromRGBO(61, 64, 91, 1),
+                          fontWeight: FontWeight.bold)),
+                  LinesWidget(
+                      lines: widget.game.lines, wordLength: widget.game.length),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: TextField(
+                      controller: controller,
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.game_answerLabel.tr()),
+                      onSubmitted: (value) {
+                        setState(() {
+                          controller.clear();
+                          message = widget.game.addGuess(value.trim());
+                        });
+                      },
+                    ),
+                  ),
+                  Text(message),
+                  HindiKeyboard(
+                    onTap: (t) => controller.text += t,
+                    onReturn: () => setState(() {
+                      message = widget.game.addGuess(controller.text.trim());
+                      controller.clear();
+                    }),
+                    onBackspace: () => setState(() => controller.text =
+                        controller.text
+                            .substring(0, max(0, controller.text.length - 1))),
+                    highlights: widget.game.lines
+                        .map((line) => line.cells
+                            .where((element) => [
+                                  CellState.correct,
+                                  CellState.correctVyanjan,
+                                  CellState.misplaced,
+                                  CellState.misplacedVyanjan
+                                ].contains(element.state))
+                            .map((e) => e.value.vyanjan))
+                        .expand((element) => element)
+                        .toList()
+                      ..addAll(widget.game.answer.answer.allCharacters
+                          .map((e) => e.matra.runes
+                              .map((e) => String.fromCharCode(e).matra))
+                          .expand((element) => element))
+                      ..add(widget.game.answer.answer.allCharacters
+                              .map((e) => e.matra)
+                              .join()
+                              .contains('्')
+                          ? '्'
+                          : ''),
+                    lowlights: widget.game.lines
+                        .map((line) => line.cells
+                            .where((element) =>
+                                CellState.incorrect == element.state)
+                            .map((e) => e.value.vyanjan))
+                        .expand((element) => element)
+                        .toList(),
+                  ),
+                  TextButton(
+                    onPressed: () => setState(() {
+                      (widget.game.reset());
+                      message = '';
+                    }),
+                    child: Text(LocaleKeys.practiceGame_resetButton.tr()),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
