@@ -47,7 +47,7 @@ class _GameWidgetState extends State<GameWidget> {
               whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
               maxSpeed: 0.4,
               maxSize: 30,
-              minSpeed: 0.15,
+              minSpeed: 0.25,
               minSize: 150,
               randomItemsColors: widget.game.answer.colors,
               randomItemsBehaviours: widget.game.answer.icons

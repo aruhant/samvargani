@@ -18,7 +18,8 @@ class PracticeGameState extends State<PracticeGame> {
   void initState() {
     super.initState();
     game = Game(
-        answer: gameAnswers[Random().nextInt(gameAnswers.length)],
+        //answer: gameAnswers[Random().nextInt(gameAnswers.length)],
+        answer: GameAnswer(answer: "बरसात", meaning: "पानी बरसने का समय"),
         onSuceess: onSuceess);
   }
 

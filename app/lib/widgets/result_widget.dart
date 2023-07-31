@@ -14,8 +14,8 @@ class ResultWidget extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             gradient: const LinearGradient(colors: [
-              Color.fromRGBO(165, 165, 165, 1),
-              Color.fromRGBO(245, 245, 245, 1),
+              Color.fromRGBO(3, 88, 75, 1),
+              Color.fromRGBO(72, 3, 126, 1),
             ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
         padding: const EdgeInsets.all(18),
         margin: const EdgeInsets.all(18),
@@ -29,7 +29,7 @@ class ResultWidget extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
-                    color: Colors.pinkAccent)),
+                    color: Colors.white)),
             Text(
               gameResult.answer.answer,
               style: const TextStyle(

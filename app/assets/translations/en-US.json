@@ -38,7 +38,7 @@
     "tries": "Tries to win: {}"
 },
 "practiceGame":{
-    "resetButton": "Give Up"
+    "resetButton": "Give Up?"
 
 }
 }
