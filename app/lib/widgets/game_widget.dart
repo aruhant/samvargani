@@ -29,7 +29,8 @@ class _GameWidgetState extends State<GameWidget> {
     return Scaffold(
       appBar: AppBar(
           shadowColor: Colors.transparent,
-          title: Text('${widget.game.length} अक्षर का शब्द ढूंढें'),
+          title:
+              Text(LocaleKeys.game_title.tr(args: ['${widget.game.length}'])),
           backgroundColor: Colors.transparent),
       backgroundColor: const Color.fromRGBO(244, 241, 222, 1),
       body: Stack(
@@ -57,7 +58,7 @@ class _GameWidgetState extends State<GameWidget> {
             child: Column(
               children: [
                 Text(LocaleKeys.app_title.tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 40,
                         color: Color.fromRGBO(61, 64, 91, 1),
                         fontWeight: FontWeight.bold)),
@@ -67,8 +68,9 @@ class _GameWidgetState extends State<GameWidget> {
                   padding: const EdgeInsets.symmetric(horizontal: 18),
                   child: TextField(
                     controller: controller,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'उत्तर'),
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        labelText: LocaleKeys.game_answerLabel.tr()),
                     onSubmitted: (value) {
                       setState(() {
                         controller.clear();
@@ -121,7 +123,7 @@ class _GameWidgetState extends State<GameWidget> {
                     (widget.game.reset());
                     message = '';
                   }),
-                  child: const Text('रीसेट'),
+                  child: Text(LocaleKeys.practiceGame_resetButton.tr()),
                 ),
               ],
             ),

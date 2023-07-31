@@ -1,0 +1,42 @@
+{
+    "app": {
+        "title": "Samvargani",
+        "description": "Samvargani est un jeu intéressant qui vous aide à apprendre l'hindi. C'est un excellent moyen d'améliorer votre vocabulaire hindi et c'est une application incontournable pour les personnes intéressées par l'apprentissage de l'hindi."
+    },
+    "author": {
+        "name": "Aruhant Mehta",
+        "bio": "Aruhant Mehta est un étudiant de 17 ans passionné de programmation informatique et de technologie. Il apprend actuellement Python et Flutter. Il est également étudiant en danse classique indienne Kathak."
+    },
+    "intro": {
+        "page1": {
+            "title": "Bienvenue dans Samvargani !",
+            "body": "Découvrons ensemble ce jeu intéressant."
+        },
+        "page2": {
+            "title": "Dans ce jeu, vous devez deviner un mot en hindi de 2 à 5 lettres en utilisant le moins d'essais possible.",
+            "body": "Après chaque proposition, vous serez informé quelles lettres de votre proposition sont correctes."
+        },
+        "page3": {
+            "title": "Pendant le jeu, vous pouvez toucher les lettres pour voir cette légende.",
+            "body": "🟥 La lettre ne fait pas partie de la bonne réponse.\n🟩 La lettre est présente dans la bonne réponse et à la bonne position.\n🟧 La lettre est présente dans la bonne réponse, mais pas à la bonne position."
+        },
+        "done": "Terminé",
+        "skip": "Passer"
+    },
+    "game": {
+        "title": "Devinez un mot de {} lettres",
+        "answerLabel": "Votre réponse :",
+        "gameMessages": {
+            "wrongWordLength": "La réponse n'est pas un mot de {} lettres !",
+            "notInDictonary": "Votre réponse {} n'est pas dans le dictionnaire hindi !"
+        }
+    },
+    "gameResult": {
+        "victoryMessage": "Vous avez gagné !",
+        "meaning": "Signification : {}",
+        "tries": "Essais pour gagner : {} mots"
+    },
+    "practiceGame": {
+        "resetButton": "Réinitialiser"
+    }
+}

@@ -24,7 +24,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
     );
   }
 
-  Widget _buildFullscreenImage() {
+/*   Widget _buildFullscreenImage() {
     return Image.asset(
       'assets/fullscreen.jpg',
       fit: BoxFit.cover,
@@ -32,7 +32,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       width: double.infinity,
       alignment: Alignment.center,
     );
-  }
+  } */
 
   Widget _buildImage(String assetName, [double width = 350]) {
     return Image.asset('assets/$assetName', width: width);
@@ -75,19 +75,16 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title:
-              "इस खेल में, आपको कम से कम प्रयास में 2-5 अक्षर का शब्द बुझाना है।",
-          body:
-              "प्रत्येक उत्तर के बाद आपको पता चलेगा कि आपके अनुमान में कौन से अक्षर सही हैं",
+          title: LocaleKeys.intro_page2_title.tr(),
+          body: LocaleKeys.intro_page2_body.tr(),
           image: _buildImage('intro1.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title:
-              "खेल के दौरान इस संकेतिका को देखने के लिए आप अक्षरों को छू सकते हैं",
-          bodyWidget: const AutoSizeText(
-            "🟥 से चिह्नित अक्षर सही उत्तर में कहीं भी मौजूद नहीं हैं\n🟩 से चिह्नित अक्षर अपने सही स्थान पर हैं\n🟧 से चिह्नित अक्षर अपने सही स्थान पर नहीं हैं",
-            style: TextStyle(fontSize: 60),
+          title: LocaleKeys.intro_page3_title.tr(),
+          bodyWidget: AutoSizeText(
+            LocaleKeys.intro_page3_body.tr(),
+            style: const TextStyle(fontSize: 60),
             maxLines: 3,
             maxFontSize: 60,
             minFontSize: 5,
@@ -205,9 +202,11 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       showBackButton: false,
       //rtl: true, // Display as right-to-left
       back: const Icon(Icons.arrow_back),
-      skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
+      skip: Text(LocaleKeys.intro_skip.tr(),
+          style: const TextStyle(fontWeight: FontWeight.w600)),
       next: const Icon(Icons.arrow_forward),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+      done: Text(LocaleKeys.intro_done.tr(),
+          style: const TextStyle(fontWeight: FontWeight.w600)),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb

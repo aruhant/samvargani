@@ -1,0 +1,44 @@
+{
+    "app": {
+        "title": "Samvargani",
+        "description": "Samvargani is an interesting game that helps you learn Hindi. It is a great way to improve your Hindi vocabulary and is a must-have app for people interested in learning Hindi."
+    },
+    "author": {
+        "name": "Aruhant Mehta",
+        "bio": "Aruhant Mehta is a 17 year old student who is enthusiastic about computer programming and technology. He is currently learning Python and Flutter. He is also a student of the Indian classical dance Kathak."
+    },
+    "intro": {
+        "page1": {
+            "title": "Welcome to Samvargani!",
+            "body": "Let's learn about this interesting game."
+        },
+        "page2":{
+            
+            "title": "In this game, you have to guess a 2-to-5 letter Hindi word in as few tries as possible.",
+            "body": "After each guess, you will be told which letters in your guess are correct."
+        },
+        "page3":{
+            "title": "During the game, you can touch the letters to see this legend.",
+            "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟧 The letter is present in the correct answer but not at the correct position."
+        }    ,
+        "done": "Done",
+        "skip": "Skip"
+    },
+    "game":{
+        "title": "Guess a {} letter word",
+        "answerLabel": "Your answer:",
+ "gameMessages":{ 
+    "wrongWordLength": "The answer is not a {} letter word!",
+    "notInDictonary":"Your answer {} is not in the Hindi dictionary!"
+}
+    },
+"gameResult":{
+    "victoryMessage":"You won!",
+    "meaning":"Meaning: {}",
+    "tries": "Tries to win: {} words"
+},
+"practiceGame":{
+    "resetButton": "Reset"
+
+}
+}

@@ -3,9 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/wordlist.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 const List<String> words = [
   "श्रृंगार",
@@ -84,15 +86,20 @@ class Game {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
     List<String> guessList = guess.allCharacters;
     if (length != guessList.length) {
-      return 'यह ${guessList.length} अक्षर का शब्द नहीं है!';
+      return LocaleKeys.game_gameMessages_wrongWordLength
+          .tr(args: [guessList.length.toString()]);
     }
-    // check if guess has any english characters and return english error
-    if (guess.contains(RegExp(r'[a-z,A-Z]'))) {
-      // give me a hindi full stop character
-      return 'यह एक हिंदी शब्द है। कोई अंग्रेजी अक्षर मौजूद नहीं हैं।';
-    }
+//  /*    if (guess.contains(RegExp(r'[a-z,A-Z]'))) {
+//       // give me a hindi full stop character
+//       return 'यह एक हिंदी शब्द है। कोई अंग्रेजी अक्षर मौजूद नहीं हैं।';
+//     }
+//     // check if guess has any non-hindi character by using not contains
+//     if (!guess.contains(RegExp(r'[^ऀ-ॿ]'))) {
+//       return 'यह एक हिंदी शब्द है। कोई अंग्रेजी अक्षर मौजूद नहीं हैं।';
+//     } */
+
     if (!kDebugMode && !wordList.contains(guess)) {
-      return 'आपका उत्तर $guess शब्दकोष में नहीं है!';
+      return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
     }
 
     List<Cell> cells = [];

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ResultWidget extends StatelessWidget {
   const ResultWidget({required this.gameResult, super.key});
@@ -22,15 +24,32 @@ class ResultWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text('आप सफल हुए!',
+            Text(LocaleKeys.gameResult_victoryMessage.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     color: Colors.pinkAccent)),
             Text(
-              // tell them what the word was and its meaning
-              'शब्द: ${gameResult.answer.answer}\nइसका अर्थ है: ${gameResult.answer.meaning}\nआपको जीतने में ${gameResult.tries} शब्द ${gameResult.tries == 1 ? 'लगा।' : 'लगे।'}',
+              gameResult.answer.answer,
+              style: const TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              LocaleKeys.gameResult_meaning
+                  .tr(args: [gameResult.answer.meaning]),
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              LocaleKeys.gameResult_tries
+                  .tr(args: [gameResult.tries.toString()]),
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,

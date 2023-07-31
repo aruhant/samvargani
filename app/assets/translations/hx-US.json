@@ -1,0 +1,42 @@
+{
+    "app": {
+        "title": "54mv4rg4n1",
+        "description": "54mv4rg4n1 is 4n 1nt3r35t1n6 64m3 th4t h3lps y0u l34rn H1nd1. 1t 15 4 6r34t w4y t0 1mpr0v3 y0ur H1nd1 v0c4b, 4nd 15 4 mu5t-h4v3 4pp f0r p30pl3 1nt3r35t3d 1n l34rn1n6 H1nd1."
+    },
+    "author": {
+        "name": "4ruh4nt M3ht4",
+        "bio": "4ruh4nt M3ht4 15 4 17 y34r 0ld 5tud3nt wh0 15 3nthu51545t1c 4b0ut c0mpu73r pr06r4mm1n6 4nd t3chn0l06y. H3 15 curr3ntly l34rn1n6 Pyth0n 4nd Flutt3r. H3 15 4l50 4 5tud3nt 0f th3 1nd14n cl4551c4l d4nc3 K4th4k."
+    },
+    "intro": {
+        "page1": {
+            "title": "W3lc0m3 t0 54mv4rg4n1!",
+            "body": "L37'5 l34rn 4b0ut th15 1nt3r35t1n6 64m3."
+        },
+        "page2": {
+            "title": "1n th15 64m3, y0u h4v3 t0 63$$ 4 2-t0-5 l3tt3r H1nd1 w0rd 1n 45 f3w tr135 45 p0551bl3.",
+            "body": "4ft3r 34ch 63$$, y0u w1ll b3 t0ld wh1ch l3tt3r5 1n y0ur 63$$ 4r3 c0rr3ct."
+        },
+        "page3": {
+            "title": "Dur1n6 th3 64m3, y0u c4n t0uch th3 l3tt3r5 t0 533 th15 l3g3nd.",
+            "body": "🟥 Th3 l3tt3r 15 n0t pr353nt 1n th3 c0rr3ct 4n5w3r.\n🟩 Th3 l3tt3r 15 pr353nt 1n th3 c0rr3ct 4n5w3r 4t th3 c0rr3ct p051t10n.\n🟧 Th3 l3tt3r 15 pr353nt 1n th3 c0rr3ct 4n5w3r but n0t 4t th3 c0rr3ct p051t10n."
+        },
+        "done": "D0n3",
+        "skip": "5k1p"
+    },
+    "game": {
+        "title": "Gu355 4 {} l3tt3r w0rd",
+        "answerLabel": "Y0ur 4n5w3r:",
+        "gameMessages": {
+            "wrongWordLength": "Th3 4n5w3r 15 n0t 4 {} l3tt3r w0rd!",
+            "notInDictonary": "Y0ur 4n5w3r {} 15 n0t 1n th3 H1nd1 d1ct10n4ry!"
+        }
+    },
+    "gameResult": {
+        "victoryMessage": "Y0u w0n!",
+        "meaning": "M34n1n6: {}",
+        "tries": "Tr135 t0 w1n: {} w0rd5"
+    },
+    "practiceGame": {
+        "resetButton": "R353t"
+    }
+}
