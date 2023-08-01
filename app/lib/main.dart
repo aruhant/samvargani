@@ -12,7 +12,7 @@ Future<void> main() async {
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('hi', 'IN')],
       path: 'assets/translations',
-      fallbackLocale: const Locale('hi', 'IN'),
+      fallbackLocale: const Locale('en', 'US'),
       child: const MyApp()));
 }
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: FlexThemeData.light(scheme: FlexScheme.money),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
       themeMode: ThemeMode.system,
-      home: true && (UserPrefs.instance.firstRun)
+      home: true || (UserPrefs.instance.firstRun)
           ? const GameHelpWidget()
           : const PracticeGame(),
     );

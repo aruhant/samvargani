@@ -40,14 +40,14 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
-
     const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: bodyStyle,
+      titleTextStyle: TextStyle(
+          fontSize: 40.0, fontWeight: FontWeight.w700, color: Colors.black),
+      bodyTextStyle: TextStyle(
+          fontSize: 30.0, fontWeight: FontWeight.w400, color: Colors.black),
       // bodyPadding: EdgeInsets.all(20),
       // contentMargin: EdgeInsets.all(20),
-      bodyAlignment: Alignment.centerLeft,
+      bodyAlignment: Alignment.center,
       pageColor: Colors.white,
       imagePadding: EdgeInsets.all(16),
     );
