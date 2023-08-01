@@ -113,7 +113,6 @@ class Game {
     _lines.add(Line(cells: cells));
     if (answer.answer == guess) {
       onSuceess(GameResult(answer, _lines.length));
-      UserPrefs.instance.makeProgress();
       return '';
     }
 

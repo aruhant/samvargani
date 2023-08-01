@@ -13,8 +13,8 @@ class ResultWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            border:
-                Border.all(color: Color.fromARGB(255, 246, 107, 0), width: 5),
+            border: Border.all(
+                color: const Color.fromARGB(255, 246, 107, 0), width: 5),
             gradient: const LinearGradient(colors: [
               Color.fromRGBO(230, 154, 39, 1),
               Color.fromRGBO(229, 130, 0, 1),
@@ -39,7 +39,6 @@ class ResultWidget extends StatelessWidget {
                         color: Color.fromARGB(255, 6, 7, 10))),
               ],
             ),
-
             Column(
               children: [
                 Text(
@@ -70,15 +69,15 @@ class ResultWidget extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            // TextButton(
-            //     onPressed: () {
-            //       Navigator.pop(context);
-            //     },
-            //     child: const Icon(
-            //       Icons.close,
-            //       size: 50,
-            //       color: Color.fromARGB(255, 6, 7, 10),
-            //     ))
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.close,
+                  size: 50,
+                  color: Color.fromARGB(255, 6, 7, 10),
+                ))
           ],
         ),
       ),
