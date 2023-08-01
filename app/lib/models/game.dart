@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
@@ -117,12 +116,6 @@ class Game {
     }
 
     return '';
-  }
-
-  void reset() {
-    UserPrefs.instance.makeProgress();
-    answer = gameAnswers[UserPrefs.instance.practiceGameIndex];
-    _lines.clear();
   }
 
   CellState getStateForCell(String answer, String guessCharacter, int index) {

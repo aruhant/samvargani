@@ -12,8 +12,9 @@ import 'package:vitality/models/WhenOutOfScreenMode.dart';
 import 'package:vitality/vitality.dart';
 
 class GameWidget extends StatefulWidget {
-  const GameWidget({required this.game, super.key});
+  const GameWidget({required this.game, this.footer, super.key});
   final Game game;
+  final Widget? footer;
 
   @override
   State<GameWidget> createState() => _GameWidgetState();
@@ -25,17 +26,16 @@ class _GameWidgetState extends State<GameWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(widget.game.answer.answer);
+    print(widget.game.answer.backgroundColor);
+    print(widget.game.answer.icons);
 
     return Scaffold(
-      // appBar: AppBar(
-      //     shadowColor: Colors.transparent,
-      //     title:
-      //         Text(LocaleKeys.game_title.tr(args: ['${widget.game.length}'])),
-      //     backgroundColor: Colors.transparent),
       body: SafeArea(
         child: Stack(
           children: [
             Vitality.randomly(
+              key: ValueKey(widget.game),
               height: size.height,
               width: size.width,
               background: widget.game.answer.backgroundColor,
@@ -119,13 +119,7 @@ class _GameWidgetState extends State<GameWidget> {
                         .expand((element) => element)
                         .toList(),
                   ),
-                  TextButton(
-                    onPressed: () => setState(() {
-                      (widget.game.reset());
-                      message = '';
-                    }),
-                    child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-                  ),
+                  if (widget.footer != null) widget.footer!
                 ],
               ),
             ),

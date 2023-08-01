@@ -19,7 +19,6 @@ extension StringExtension on String {
   }
 
   String get vyanjan {
-    print('<$this>');
     String vyanjan = replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
     if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) {
       return vyanjan;
