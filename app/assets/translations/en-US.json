@@ -33,7 +33,7 @@
 }
     },
 "gameResult":{
-    "victoryMessage":"You won!",
+    "victoryMessage":"You win!",
     "meaning":"Meaning: {}",
     "tries": "Tries to win: {}"
 },

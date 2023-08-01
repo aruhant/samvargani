@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/models/wordlist.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
@@ -78,7 +79,9 @@ class Game {
                         .join(' '),
                     state: CellState.empty)))
       ];
-  Game({required this.onSuceess, required this.answer});
+  // Game({required this.onSuceess, required this.answer});
+  Game.practice({required this.onSuceess})
+      : answer = gameAnswers[UserPrefs.instance.practiceGameIndex];
   int get length => answer.answer.allCharacters.length;
   get answerList => answer.answer.allCharacters;
 
@@ -110,6 +113,7 @@ class Game {
     _lines.add(Line(cells: cells));
     if (answer.answer == guess) {
       onSuceess(GameResult(answer, _lines.length));
+      UserPrefs.instance.makeProgress();
       return '';
     }
 
@@ -117,7 +121,8 @@ class Game {
   }
 
   void reset() {
-    answer = gameAnswers[Random().nextInt(gameAnswers.length)];
+    UserPrefs.instance.makeProgress();
+    answer = gameAnswers[UserPrefs.instance.practiceGameIndex];
     _lines.clear();
   }
 
