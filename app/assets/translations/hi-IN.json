@@ -7,11 +7,8 @@
         "name": "अरुहंत मेहता",
         "bio": "अरुहंत मेहता एक 17 वर्षीय छात्र हैं जो  कंप्यूटर प्रोग्रामिंग और टेक्नोलॉजी के प्रति उत्साही हैं। वह वर्तमान में पायथन और फ्लटर सीख रहे हैं। वह भारतीय शास्त्रीय नृत्य कला कथक के भी छात्र हैं।"
     },
-    "intro": {
-        "page0": {
-            "title": "संवर्गनी में आपका स्वागत है!",
-            "body": "आइए जानें इस दिलचस्प खेल के बारे में।"
-        },        "page1": {
+    "intro": {    
+        "page1": {
             "title": "संवर्गनी में आपका स्वागत है!",
             "body": "आइए जानें इस दिलचस्प खेल के बारे में।"
         },
@@ -28,6 +25,23 @@
                 },
                 "skip": "छोड़ें",
                 "done": "समाप्त"
+    },
+    "cellTooltip": {
+        "correctWithMatra": "इस स्थान पर '{}', इसी मात्रा के साथ मौजुद हे।",
+        "correctWithAdha": "इस स्थान पर '{}' इसी आधे अक्षर के साथ मौजुद हे।",
+        "correctWithMatraAndAdha": "इस स्थान पर '{}' इसी आधे अक्षर और मात्रा के साथ मौजुद हे",
+        "correctWithoutMatraAndAdha": "इस स्थान पर '{}' एसे ही, बिना आधे अक्षर या मात्रा के साथ मौजुद हे।",
+        "incorrect": "न '{}', न '{}' साथ दुसरा कोई आधा अक्षर या मात्रा शब्द में मौजुद हे।",
+        "misplacedWithMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन {} की मात्रा के साथ नहीं",
+        "misplacedWithAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन आधे {} के साथ नहीं",
+        "misplacedWithMatraAndAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन आधे {} या {} की मात्रा के साथ नहीं",
+        "misplacedWithoutMatraAndAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन कोई आधे अक्षर या मात्रा के साथ",
+        "correctVyanjan": "{} is the correct letter at this position, but its variant is incorrect.",
+        "misplacedVyanjan": "{} is present in the correct answer but in a different variant, and at a different position.",
+        "emptyWithMatra": "This cell contains {} matra with a full letter and no half letter.",
+        "emptyWithAdha":"This cell contains half {} along with some full letter, but no matra.",
+        "emptyWithMatraAndAdha":"This cell contains half {} and {} matra along with some full letter.",
+        "emptyWithoutMatraAndAdha":"This cell only contains a full letter with no additional matra or half letter."
     },
     "game":{
         "title": "{} अक्षर का शब्द ढूंढें",
