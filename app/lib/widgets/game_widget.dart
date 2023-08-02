@@ -39,16 +39,16 @@ class _GameWidgetState extends State<GameWidget> {
               height: size.height,
               width: size.width,
               background: widget.game.answer.backgroundColor,
-              maxOpacity: 0.4, // 0,4
-              minOpacity: 0.15, // 0,15
-              itemsCount: 6, // 6
+              maxOpacity: widget.game.answer.maxOpacity, // 0,4
+              minOpacity: widget.game.answer.minOpacity, // 0,15
+              itemsCount: widget.game.answer.itemsCount, // 6
               enableXMovements: widget.game.answer.moveHorizontal,
               enableYMovements: widget.game.answer.moveVertical,
               whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
-              maxSpeed: 0.4, // 0,4
-              maxSize: 30, // 30
-              minSpeed: 0.25, // 0,25
-              minSize: 150, // 150
+              maxSpeed: widget.game.answer.maxSpeed, // 0,4
+              maxSize: widget.game.answer.maxSize, // 30
+              minSpeed: widget.game.answer.minSpeed, // 0,25
+              minSize: widget.game.answer.minSize, // 150
               randomItemsColors: widget.game.answer.colors,
               randomItemsBehaviours: widget.game.answer.icons
                   .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
