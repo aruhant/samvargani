@@ -24,6 +24,7 @@ class CellWidget extends StatelessWidget {
                     offset: const Offset(0, 5))
               ]),
           triggerMode: TooltipTriggerMode.tap,
+          textStyle: const TextStyle(color: Colors.white),
           message: cell.state.tooltip(cell.myLetter.value),
           child: Container(
               padding: const EdgeInsets.all(10),

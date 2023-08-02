@@ -33,7 +33,7 @@ enum CellState {
       case CellState.incorrect:
         return '${s.vyanjan} - शब्द में कहीं भी मौजूद नहीं है';
       case CellState.empty:
-        return '';
+        return s.trim().isEmpty ? '' : ' ';
       case CellState.misplaced:
         return '$s - शब्द में मौजूद है, लेकिन यह स्थान सही नहीं है';
       case CellState.correctVyanjan:

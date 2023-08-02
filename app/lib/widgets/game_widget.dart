@@ -68,9 +68,29 @@ class _GameWidgetState extends State<GameWidget> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: TextField(
+                      style: const TextStyle(
+                          fontSize: 20, color: Color.fromRGBO(61, 64, 91, 1)),
                       controller: controller,
                       decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
+                          fillColor: Colors.black12,
+                          labelStyle:
+                              TextStyle(color: Color.fromRGBO(61, 64, 91, 1)),
+                          filled: true,
+                          enabledBorder: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(11, 29, 190, 1))),
+                          border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(11, 29, 190, 1))),
+                          focusedBorder: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(61, 64, 91, 1))),
                           labelText: LocaleKeys.game_answerLabel.tr()),
                       onSubmitted: (value) {
                         setState(() {

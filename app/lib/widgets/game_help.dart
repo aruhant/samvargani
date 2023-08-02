@@ -42,14 +42,14 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
   Widget build(BuildContext context) {
     const pageDecoration = PageDecoration(
       titleTextStyle: TextStyle(
-          fontSize: 40.0, fontWeight: FontWeight.w700, color: Colors.black),
+          fontSize: 24.0, fontWeight: FontWeight.w700, color: Colors.black),
       bodyTextStyle: TextStyle(
-          fontSize: 30.0, fontWeight: FontWeight.w400, color: Colors.black),
+          fontSize: 18.0, fontWeight: FontWeight.w400, color: Colors.black),
       // bodyPadding: EdgeInsets.all(20),
       // contentMargin: EdgeInsets.all(20),
       bodyAlignment: Alignment.center,
       pageColor: Colors.white,
-      imagePadding: EdgeInsets.all(16),
+      imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
     );
 
     return IntroductionScreen(
@@ -84,10 +84,10 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           title: LocaleKeys.intro_page3_title.tr(),
           bodyWidget: AutoSizeText(
             LocaleKeys.intro_page3_body.tr(),
-            style: const TextStyle(fontSize: 60),
-            maxLines: 3,
+            style: const TextStyle(fontSize: 60, color: Colors.black),
+            maxLines: 6,
             maxFontSize: 60,
-            minFontSize: 5,
+            minFontSize: 14,
             textAlign: TextAlign.left,
           ),
           // "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
