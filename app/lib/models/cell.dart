@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 enum CellState {
   correct(),
@@ -27,19 +29,96 @@ enum CellState {
   }
 
   String tooltip(String s) {
+    bool containsMatra = s.matraOnly.isNotEmpty;
+    bool containsAdha = s.halfOnly.isNotEmpty;
+
     switch (this) {
       case CellState.correct:
-        return '$s- सही स्थान पर है, सही मात्रा के साथ';
-      case CellState.incorrect:
-        return '${s.vyanjan} - शब्द में कहीं भी मौजूद नहीं है';
-      case CellState.empty:
-        return s.trim().isEmpty ? '' : ' ';
-      case CellState.misplaced:
-        return '$s - शब्द में मौजूद है, लेकिन यह स्थान सही नहीं है';
+        if (containsMatra) {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_correctWithMatraAndAdha.tr(args: [s]);
+          } else {
+            return LocaleKeys.cellTooltip_correctWithMatra.tr(args: [s]);
+          }
+        } else {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_correctWithAdha.tr(args: [s]);
+          } else {
+            return LocaleKeys.cellTooltip_correctWithoutMatraAndAdha
+                .tr(args: [s]);
+          }
+        }
       case CellState.correctVyanjan:
-        return '${s.vyanjan} - सही स्थान पर है, लेकिन यह मात्रा सही नहीं है';
+        if (containsMatra) {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_correctVyanjanWithMatraAndAdha
+                .tr(args: [s.vyanjan, s.halfOnly, s.matraOnly]);
+          } else {
+            return LocaleKeys.cellTooltip_correctVyanjanWithMatra
+                .tr(args: [s.vyanjan, s.matraOnly]);
+          }
+        } else {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_correctVyanjanWithAdha
+                .tr(args: [s.vyanjan, s.halfOnly]);
+          } else {
+            return LocaleKeys.cellTooltip_correctVyanjanWithoutMatraAndAdha
+                .tr(args: [s.vyanjan]);
+          }
+        }
+      case CellState.misplaced:
+        if (containsMatra) {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_misplacedWithMatraAndAdha
+                .tr(args: [s]);
+          } else {
+            return LocaleKeys.cellTooltip_misplacedWithMatra.tr(args: [s]);
+          }
+        } else {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_misplacedWithAdha.tr(args: [s]);
+          } else {
+            return LocaleKeys.cellTooltip_misplacedWithoutMatraAndAdha
+                .tr(args: [s]);
+          }
+        }
+
       case CellState.misplacedVyanjan:
-        return '${s.vyanjan}  - शब्द में मौजूद है, लेकिन यह स्थान एवं मात्रा सही नहीं है';
+        if (containsMatra) {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_misplacedVyanjanWithMatraAndAdha
+                .tr(args: [s.vyanjan, s.halfOnly, s.matraOnly]);
+          } else {
+            return LocaleKeys.cellTooltip_misplacedVyanjanWithMatra
+                .tr(args: [s.vyanjan, s.matraOnly]);
+          }
+        } else {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_misplacedVyanjanWithAdha
+                .tr(args: [s.vyanjan, s.halfOnly]);
+          } else {
+            return LocaleKeys.cellTooltip_misplacedVyanjanWithoutMatraAndAdha
+                .tr(args: [s.vyanjan]);
+          }
+        }
+      case CellState.incorrect:
+        return LocaleKeys.cellTooltip_incorrect.tr(args: [s, s.vyanjan]);
+      case CellState.empty:
+        if (containsMatra) {
+          if (containsAdha) {
+            s += 'A';
+            return LocaleKeys.cellTooltip_emptyWithMatraAndAdha
+                .tr(args: [s.halfOnly, s.matraOnly]);
+          } else {
+            return LocaleKeys.cellTooltip_emptyWithMatra.tr(args: [s]);
+          }
+        } else {
+          if (containsAdha) {
+            return LocaleKeys.cellTooltip_emptyWithAdha.tr(args: [s]);
+          } else {
+            return LocaleKeys.cellTooltip_emptyWithoutMatraAndAdha.tr();
+          }
+        }
     }
   }
 }

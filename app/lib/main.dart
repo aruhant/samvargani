@@ -12,7 +12,7 @@ Future<void> main() async {
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('hi', 'IN')],
       path: 'assets/translations',
-      fallbackLocale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('hi', 'IN'),
       child: const MyApp()));
 }
 

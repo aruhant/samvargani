@@ -28,25 +28,31 @@
         "correctWithMatra": "This cell contains the letter '{}', with this correct matra.",
         "correctWithAdha": "This cell contains the letter '{}', with this correct half letter.",
         "correctWithMatraAndAdha": "This cell contains the letter '{}', with this correct matra and half letter.",
-        "correctWithoutMatraAndAdha": "This cell contains the letter '{}', without any matra or adha.",
-        "incorrect": "The entire word does not the letter '{}', nor any of its varaitions with a half letter or matra.",
-        "misplacedWithMatra": "'{}' is present in the word with this correct matra but not at this position.",
-        "misplacedWithAdha": "'{}' is present in the word with this corect half letter but not at this position.",
-        "misplacedWithMatraAndAdha": "'{}' is present in the word with this correct matra and half letter but not at this position.",
-        "misplacedWithoutMatraAndAdha": "'{}' is present in the word, without any matra or half letter, but not at this position.",
+        "correctWithoutMatraAndAdha": "This cell contains the letter '{}', without any matra or half letter.",
+    
         "correctVyanjanWithMatra": "This cell contains the letter '{}' but not with the '{}' matra.",
         "correctVyanjanWithAdha": "This cell contains the letter '{}' but not with the '{}' half letter.",
-        "correctVyanjanWithMatraAndAdha": "This cell contains the letter '{}' but not with the '{}' matra or the '{}' half letter.",
-        "correctVyanjanWithoutMatraAndAdha": "This cell contains the letter '{}' but not without any matra or half letter.",
-        "misplacedVyanjanWithMatra": "'{}' is present in the word, but not at this position, and not with this '{}' matra.'",
-        "misplacedVyanjanWithAdha": "'{}' is present in the word, but not at this position, and not with this '{}' half letter.'",
-        "misplacedVyanjanWithMatraAndAdha": "'{}' is present in the word, but not at this position, and not with this '{}' matra or this '{}' half letter.'",
-        "misplacedVyanjanWithoutMatraAndAdha": "'{}' is present in the word, but with a matra and/or half letter, and not at this position,'",
-        "emptyWithMatra" : "This cell contains a letter with the '{}' matra.",
-        "emptyWithAdha" : "This cell contains a letter with the '{}' half letter.",
-        "emptyWithMatraAndAdha" : "This cell contains a letter with the '{}' matra and the '{}' half letter.",
-        "emptyWithoutMatraAndAdha" : "This cell contains a letter without any matra or half letter."
+        "correctVyanjanWithMatraAndAdha": "This cell contains the letter '{}' but not with the '{}' half letter or the '{}' matra.",
+        "correctVyanjanWithoutMatraAndAdha": "This cell contains the letter '{}' but with a matra or half letter.",
+    
+        "misplacedWithMatra": "'{}' is present in the word with this correct matra but not at this position.",
+        "misplacedWithAdha": "'{}' is present in the word with this correct half letter but not at this position.",
+        "misplacedWithMatraAndAdha": "'{}' is present in the word with this correct matra and half letter but not at this position.",
+        "misplacedWithoutMatraAndAdha": "'{}' is present in the word, without any matra or half letter, but not at this position.",
+
+        "misplacedVyanjanWithMatra": "'{}' is present in the word, but not at this position, and not with this '{}' matra.",
+        "misplacedVyanjanWithAdha": "'{}' is present in the word, but not at this position, and not with this '{}' half letter.",
+        "misplacedVyanjanWithMatraAndAdha": "'{}' is present in the word, but not at this position, and not with this '{}' half letter or this '{}' matra.",
+        "misplacedVyanjanWithoutMatraAndAdha": "'{}' is present in the word, but with a matra and/or half letter, and not at this position.",
+    
+        "incorrect": "The entire word does not contain the letter '{}', nor any variation of '{}' with another half letter or matra.",
+    
+        "emptyWithMatra": "This cell contains a letter with the '{}' matra.",
+        "emptyWithAdha": "This cell contains a letter with the '{}' half letter.",
+        "emptyWithMatraAndAdha": "This cell contains a letter with the '{}' half letter and the '{}' matra.",
+        "emptyWithoutMatraAndAdha": "This cell contains a letter without any matra or half letter."
     },
+    
     "game":{
         "title": "Guess a {} letter word",
         "answerLabel": "Your answer:",

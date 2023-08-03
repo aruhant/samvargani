@@ -18,13 +18,18 @@ extension StringExtension on String {
         : replaceAll(vyanjan, '');
   }
 
+  String get halfOnly {
+    return matra.replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
+  }
+
+  String get matraOnly {
+    return matra.replaceAll(halfOnly, '');
+  }
+
   String get vyanjan {
     String vyanjan = replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
-    if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) {
-      return vyanjan;
-    }
+    if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) return vyanjan;
     if (vyanjan.isEmpty) return '';
-
     return vyanjan[vyanjan.length - 1];
   }
 }

@@ -27,7 +27,6 @@ class PracticeGameState extends State<PracticeGame> {
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
-    // game.reset();
   }
 
   @override
