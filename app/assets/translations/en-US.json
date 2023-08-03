@@ -21,8 +21,7 @@
             "title": "During the game, you can touch the letters to see this legend.",
             "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟧 The letter is present in the correct answer but not at the correct position."
         }    ,
-        "done": "Done",
-        "skip": "Skip"
+        "done": "Done"
     },
     "cellTooltip": {
         "correctWithMatra": "This cell contains the letter '{}', with this correct matra.",
@@ -45,7 +44,7 @@
         "misplacedVyanjanWithMatraAndAdha": "'{}' is present in the word, but not at this position, and not with this '{}' half letter or this '{}' matra.",
         "misplacedVyanjanWithoutMatraAndAdha": "'{}' is present in the word, but with a matra and/or half letter, and not at this position.",
     
-        "incorrect": "The entire word does not contain the letter '{}', nor any variation of '{}' with another half letter or matra.",
+        "incorrect": "{} is not present in the word in any form.",
     
         "emptyWithMatra": "This cell contains a letter with the '{}' matra.",
         "emptyWithAdha": "This cell contains a letter with the '{}' half letter.",
@@ -59,7 +58,8 @@
  "gameMessages":{ 
     "wrongWordLength": "The answer is not a {} letter word!",
     "notInDictonary":"Your answer {} is not in the Hindi dictionary!"
-}
+},
+"level": "Level {}"
     },
 "gameResult":{
     "victoryMessage":"You win!",

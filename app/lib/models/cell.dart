@@ -102,7 +102,7 @@ enum CellState {
           }
         }
       case CellState.incorrect:
-        return LocaleKeys.cellTooltip_incorrect.tr(args: [s, s.vyanjan]);
+        return LocaleKeys.cellTooltip_incorrect.tr(args: [s.vyanjan]);
       case CellState.empty:
         if (containsMatra) {
           if (containsAdha) {

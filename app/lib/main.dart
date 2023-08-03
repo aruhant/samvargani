@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/widgets/game_help.dart';
+import 'package:paheli/widgets/language_picker.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,9 +17,14 @@ Future<void> main() async {
       child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,9 +36,17 @@ class MyApp extends StatelessWidget {
       theme: FlexThemeData.light(scheme: FlexScheme.money),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
       themeMode: ThemeMode.system,
-      home: true || (UserPrefs.instance.firstRun)
-          ? const GameHelpWidget()
-          : const PracticeGame(),
+      home: (UserPrefs.instance.shouldShowLocaleSettings)
+          ? LanguagePicker(
+              onLocaleSelected: () =>
+                  setState(() => UserPrefs.instance.localeSet()),
+            )
+          : (UserPrefs.instance.shouldShowHelp)
+              ? GameHelpWidget(
+                  onIntroEnd: () =>
+                      setState(() => UserPrefs.instance.firstRunDone()),
+                )
+              : const PracticeGame(),
     );
   }
 }

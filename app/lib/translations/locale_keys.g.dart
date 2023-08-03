@@ -17,7 +17,6 @@ abstract class  LocaleKeys {
   static const intro_page3_body = 'intro.page3.body';
   static const intro_page3 = 'intro.page3';
   static const intro_done = 'intro.done';
-  static const intro_skip = 'intro.skip';
   static const intro = 'intro';
   static const cellTooltip_correctWithMatra = 'cellTooltip.correctWithMatra';
   static const cellTooltip_correctWithAdha = 'cellTooltip.correctWithAdha';
@@ -46,6 +45,7 @@ abstract class  LocaleKeys {
   static const game_gameMessages_wrongWordLength = 'game.gameMessages.wrongWordLength';
   static const game_gameMessages_notInDictonary = 'game.gameMessages.notInDictonary';
   static const game_gameMessages = 'game.gameMessages';
+  static const game_level = 'game.level';
   static const game = 'game';
   static const gameResult_victoryMessage = 'gameResult.victoryMessage';
   static const gameResult_defeatMessage = 'gameResult.defeatMessage';

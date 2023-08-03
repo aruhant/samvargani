@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/keyboard.dart';
@@ -26,11 +27,13 @@ class _GameWidgetState extends State<GameWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(widget.game.answer.answer);
-    print(widget.game.answer.backgroundColor);
-    print(widget.game.answer.icons);
-
     return Scaffold(
+      /*  appBar: AppBar(
+        title: Text(LocaleKeys.game_level
+            .tr(args: [(UserPrefs.instance.practiceGameIndex + 1).toString()])),
+        backgroundColor: widget.game.answer.backgroundColor,
+        centerTitle: true,
+      ), */
       body: SafeArea(
         child: Stack(
           children: [
@@ -57,7 +60,17 @@ class _GameWidgetState extends State<GameWidget> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 10),
+                  Text(
+                      LocaleKeys.game_level.tr(args: [
+                        (UserPrefs.instance.practiceGameIndex + 1).toString()
+                      ]),
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                          fontSize: 25,
+                          color: Color.fromRGBO(146, 155, 231, 1),
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 15),
                   Text(LocaleKeys.app_title.tr(),
                       style: const TextStyle(
                           fontSize: 40,
@@ -73,8 +86,8 @@ class _GameWidgetState extends State<GameWidget> {
                       controller: controller,
                       decoration: InputDecoration(
                           fillColor: Colors.black12,
-                          labelStyle:
-                              TextStyle(color: Color.fromRGBO(61, 64, 91, 1)),
+                          labelStyle: const TextStyle(
+                              color: Color.fromRGBO(61, 64, 91, 1)),
                           filled: true,
                           enabledBorder: const OutlineInputBorder(
                               borderRadius:

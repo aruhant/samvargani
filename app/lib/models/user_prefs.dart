@@ -3,15 +3,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPrefs {
   final bool _darkMode;
-  bool _firstRun;
+  int _initState;
   int _practiceGameIndex;
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
-      required bool firstRun,
+      required int initState,
       required int practiceGameIndex,
       required SharedPreferences sharedPrefs})
-      : _firstRun = firstRun,
+      : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
         _sharedPrefs = sharedPrefs;
@@ -19,8 +19,11 @@ class UserPrefs {
   static UserPrefs? _instance;
   static UserPrefs get instance => _instance!;
   bool get darkMode => _darkMode;
-  bool get firstRun => _firstRun;
+  bool get shouldShowHelp => _initState < 2;
+  bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
+
+  get language => null;
 
   static Future<UserPrefs> init() async {
     if (_instance == null) {
@@ -29,14 +32,19 @@ class UserPrefs {
       _instance = UserPrefs(
           practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
-          firstRun: sharedPrefs.getBool('firstRun') ?? true,
+          initState: sharedPrefs.getInt('initState') ?? 0,
           sharedPrefs: sharedPrefs);
     }
     return _instance!;
   }
 
   firstRunDone() {
-    _instance!._firstRun = false;
+    _instance!._initState = 2;
+    _instance!.save();
+  }
+
+  localeSet() {
+    _instance!._initState = 1;
     _instance!.save();
   }
 
@@ -47,6 +55,7 @@ class UserPrefs {
 
   save() {
     _sharedPrefs.setBool('darkMode', _instance!._darkMode);
-    _sharedPrefs.setBool('firstRun', _instance!._firstRun);
+    _sharedPrefs.setInt('initState', _instance!._initState);
+    _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
   }
 }

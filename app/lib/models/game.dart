@@ -113,7 +113,6 @@ class Game {
       onSuceess(GameResult(win: true, answer: answer, tries: _lines.length));
       return '';
     }
-
     return '';
   }
 

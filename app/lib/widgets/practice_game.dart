@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:paheli/models/answer.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
@@ -20,32 +20,34 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   void initState() {
     super.initState();
-    game = Game.practice(onSuceess: onEnd);
+    game = Game.practice(onSuceess: displayResult);
   }
 
-  onEnd(GameResult result) async {
+  displayResult(GameResult result) async {
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
+    UserPrefs.instance.makeProgress();
+    setState(() {
+      game = Game.practice(onSuceess: displayResult);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return GameWidget(
       game: game,
-      footer: TextButton(
-        onPressed: () => setState(() {
-          onEnd(GameResult(
-              win: false, answer: game.answer, tries: game.lines.length - 1));
-          (reset());
-        }),
-        child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-      ),
+      footer: kDebugMode
+          ? TextButton(
+              onPressed: () {
+                displayResult(GameResult(
+                    win: false,
+                    answer: game.answer,
+                    tries: game.lines.length - 1));
+              },
+              child: Text(LocaleKeys.practiceGame_resetButton.tr()),
+            )
+          : null,
     );
-  }
-
-  void reset() {
-    UserPrefs.instance.makeProgress();
-    game = Game.practice(onSuceess: onEnd);
   }
 }

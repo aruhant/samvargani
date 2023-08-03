@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-// import package with class line icons
-import 'package:line_icons/line_icons.dart';
 
 class ResultWidget extends StatelessWidget {
   const ResultWidget({required this.gameResult, super.key});

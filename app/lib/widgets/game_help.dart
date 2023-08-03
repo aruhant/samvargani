@@ -2,13 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
-import 'package:paheli/widgets/practice_game.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class GameHelpWidget extends StatefulWidget {
-  const GameHelpWidget({Key? key}) : super(key: key);
+  const GameHelpWidget({Key? key, required this.onIntroEnd}) : super(key: key);
+  final VoidCallback onIntroEnd;
 
   @override
   GameHelpWidgetState createState() => GameHelpWidgetState();
@@ -18,10 +17,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
-    UserPrefs.instance.firstRunDone();
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const PracticeGame()),
-    );
+    widget.onIntroEnd();
   }
 
 /*   Widget _buildFullscreenImage() {
@@ -54,46 +50,93 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
 
     return IntroductionScreen(
       key: introKey,
-
+      // white bg
       globalBackgroundColor: Colors.white,
       allowImplicitScrolling: true,
       autoScrollDuration: null,
-      // globalHeader: Align(
-      //   alignment: Alignment.topRight,
-      //   child: SafeArea(
-      //     child: Padding(
-      //       padding: const EdgeInsets.only(top: 16, right: 16),
-      //       child: _buildImage('flutter.png', 100),
-      //     ),
-      //   ),
-      // ),
       pages: [
         PageViewModel(
-          title: LocaleKeys.intro_page1_title.tr(),
-          body: LocaleKeys.intro_page1_body.tr(),
-          image: _buildImage('icon.png'),
+          title: '',
+          bodyWidget: Column(
+            children: [
+              _buildImage('icon.png'),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page1_title.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 2,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page1_body.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 6,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: LocaleKeys.intro_page2_title.tr(),
-          body: LocaleKeys.intro_page2_body.tr(),
-          image: _buildImage('intro1.png'),
-          decoration: pageDecoration,
+          title: '',
+          bodyWidget: Column(
+            children: [
+              _buildImage('intro1.png'),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page2_title.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 2,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page2_body.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 6,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
         ),
         PageViewModel(
-          title: LocaleKeys.intro_page3_title.tr(),
-          bodyWidget: AutoSizeText(
-            LocaleKeys.intro_page3_body.tr(),
-            style: const TextStyle(fontSize: 60, color: Colors.black),
-            maxLines: 6,
-            maxFontSize: 60,
-            minFontSize: 14,
-            textAlign: TextAlign.left,
+          title: '',
+          bodyWidget: Column(
+            children: [
+              _buildImage('intro2.png'),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page3_title.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 2,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page3_body.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 5,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.left,
+              ),
+            ],
           ),
           // "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
-          image: _buildImage('intro2.png'),
           decoration: pageDecoration,
-        ), /*
+        ),
+        /*
         PageViewModel(
           title: "हमारा पहला उत्तर :-",
           body:
@@ -148,7 +191,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             imageFlex: 3,
             safeArea: 100,
           ),
-        ),
+        ), 
         PageViewModel(
           title: "Another title page",
           body: "Another beautiful body text for this example onboarding",
@@ -173,15 +216,15 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             imageFlex: 6,
             safeArea: 80,
           ),
-        ),
+        ), 
         PageViewModel(
           title: "Title of last page - reversed",
           bodyWidget: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Click on ", style: bodyStyle),
+              Text("Click on "),
               Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
+              Text(" to edit a post"),
             ],
           ),
           decoration: pageDecoration.copyWith(
@@ -192,18 +235,15 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           ),
           image: _buildImage('img1.jpg'),
           reverse: true,
-        ),*/
+        ), */
       ],
       onDone: () => _onIntroEnd(context),
-      onSkip: () => _onIntroEnd(context), // You can override onSkip callback
-      showSkipButton: true,
+      showSkipButton: false,
       skipOrBackFlex: 0,
       nextFlex: 0,
       showBackButton: false,
       //rtl: true, // Display as right-to-left
       back: const Icon(Icons.arrow_back),
-      skip: Text(LocaleKeys.intro_skip.tr(),
-          style: const TextStyle(fontWeight: FontWeight.w600)),
       next: const Icon(Icons.arrow_forward),
       done: Text(LocaleKeys.intro_done.tr(),
           style: const TextStyle(fontWeight: FontWeight.w600)),
