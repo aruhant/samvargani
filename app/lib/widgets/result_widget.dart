@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+// import package with class line icons
+import 'package:line_icons/line_icons.dart';
 
 class ResultWidget extends StatelessWidget {
   const ResultWidget({required this.gameResult, super.key});
@@ -15,11 +17,20 @@ class ResultWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
                 color: const Color.fromARGB(255, 246, 107, 0), width: 5),
-            gradient: const LinearGradient(colors: [
-              Color.fromRGBO(230, 154, 39, 1),
-              Color.fromRGBO(229, 130, 0, 1),
-              Color.fromRGBO(162, 79, 1, 1),
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+            gradient: LinearGradient(
+                colors: gameResult.win
+                    ? const [
+                        Color.fromRGBO(230, 154, 39, 1),
+                        Color.fromRGBO(229, 130, 0, 1),
+                        Color.fromRGBO(162, 79, 1, 1)
+                      ]
+                    : const [
+                        Color.fromRGBO(130, 154, 39, 1),
+                        Color.fromRGBO(129, 130, 0, 1),
+                        Color.fromRGBO(62, 179, 1, 1),
+                      ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight)),
         padding: const EdgeInsets.all(18),
         margin: const EdgeInsets.all(18),
         child: Column(
@@ -29,12 +40,19 @@ class ResultWidget extends StatelessWidget {
           children: [
             Column(
               children: [
-                const Icon(Icons.emoji_events_outlined,
-                    size: 240, color: Color.fromARGB(255, 6, 7, 10)),
-                Text(LocaleKeys.gameResult_victoryMessage.tr(),
+                Icon(
+                    (gameResult.win
+                        ? Icons.emoji_events_outlined
+                        : Icons.sentiment_dissatisfied_outlined),
+                    size: 140,
+                    color: const Color.fromARGB(255, 6, 7, 10)),
+                Text(
+                    gameResult.win
+                        ? LocaleKeys.gameResult_victoryMessage.tr()
+                        : LocaleKeys.gameResult_defeatMessage.tr(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontSize: 100,
+                        fontSize: 50,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 6, 7, 10))),
               ],
@@ -44,7 +62,7 @@ class ResultWidget extends StatelessWidget {
                 Text(
                   gameResult.answer.answer,
                   style: const TextStyle(
-                    fontSize: 80,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -53,7 +71,7 @@ class ResultWidget extends StatelessWidget {
                   LocaleKeys.gameResult_meaning
                       .tr(args: [gameResult.answer.meaning]),
                   style: const TextStyle(
-                    fontSize: 60,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -64,7 +82,7 @@ class ResultWidget extends StatelessWidget {
               LocaleKeys.gameResult_tries
                   .tr(args: [gameResult.tries.toString()]),
               style: const TextStyle(
-                fontSize: 50,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -75,7 +93,7 @@ class ResultWidget extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.close,
-                  size: 50,
+                  size: 30,
                   color: Color.fromARGB(255, 6, 7, 10),
                 ))
           ],

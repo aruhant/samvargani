@@ -65,8 +65,9 @@
     },
     "gameResult":{
         "victoryMessage":"सही उत्तर!",
+        "defeatMessage":"आप हार गए!",
         "meaning":"अर्थ: {}",
-        "tries": "जीतने में प्रयास: {}"
+        "tries": "प्रयास: {}"
     },
     "practiceGame":{
         "resetButton": "हार मानिये?"

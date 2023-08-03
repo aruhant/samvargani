@@ -20,10 +20,10 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   void initState() {
     super.initState();
-    game = Game.practice(onSuceess: onSuceess);
+    game = Game.practice(onSuceess: onEnd);
   }
 
-  onSuceess(GameResult result) async {
+  onEnd(GameResult result) async {
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
@@ -35,6 +35,8 @@ class PracticeGameState extends State<PracticeGame> {
       game: game,
       footer: TextButton(
         onPressed: () => setState(() {
+          onEnd(GameResult(
+              win: false, answer: game.answer, tries: game.lines.length - 1));
           (reset());
         }),
         child: Text(LocaleKeys.practiceGame_resetButton.tr()),
@@ -44,6 +46,6 @@ class PracticeGameState extends State<PracticeGame> {
 
   void reset() {
     UserPrefs.instance.makeProgress();
-    game = Game.practice(onSuceess: onSuceess);
+    game = Game.practice(onSuceess: onEnd);
   }
 }

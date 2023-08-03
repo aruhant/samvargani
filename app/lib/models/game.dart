@@ -65,7 +65,6 @@ const List<String> words = [
 
 class Game {
   GameAnswer answer;
-
   final List<Line> _lines = [];
   final Function(GameResult) onSuceess;
   List<Line> get lines => [
@@ -111,7 +110,7 @@ class Game {
     }
     _lines.add(Line(cells: cells));
     if (answer.answer == guess) {
-      onSuceess(GameResult(answer, _lines.length));
+      onSuceess(GameResult(win: true, answer: answer, tries: _lines.length));
       return '';
     }
 
@@ -137,6 +136,7 @@ class Game {
 
 class GameResult {
   final GameAnswer answer;
-  final int tries;
-  GameResult(this.answer, this.tries);
+  int tries;
+  bool win;
+  GameResult({required this.win, required this.answer, this.tries = 0});
 }

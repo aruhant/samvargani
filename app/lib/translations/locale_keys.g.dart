@@ -48,6 +48,7 @@ abstract class  LocaleKeys {
   static const game_gameMessages = 'game.gameMessages';
   static const game = 'game';
   static const gameResult_victoryMessage = 'gameResult.victoryMessage';
+  static const gameResult_defeatMessage = 'gameResult.defeatMessage';
   static const gameResult_meaning = 'gameResult.meaning';
   static const gameResult_tries = 'gameResult.tries';
   static const gameResult = 'gameResult';

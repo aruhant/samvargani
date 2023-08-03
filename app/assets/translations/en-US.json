@@ -63,8 +63,9 @@
     },
 "gameResult":{
     "victoryMessage":"You win!",
+    "defeatMessage":"You lose!",
     "meaning":"Meaning: {}",
-    "tries": "Tries to win: {}"
+    "tries": "Tries: {}"
 },
 "practiceGame":{
     "resetButton": "Give Up?"
