@@ -14,17 +14,20 @@ class ResultWidget extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
-                color: const Color.fromARGB(255, 246, 107, 0), width: 5),
+                color: gameResult.win
+                    ? const Color.fromRGBO(255, 181, 70, 1)
+                    : const Color.fromARGB(255, 231, 255, 229),
+                width: 5),
             gradient: LinearGradient(
                 colors: gameResult.win
                     ? const [
+                        Color.fromRGBO(162, 79, 1, 1),
                         Color.fromRGBO(230, 154, 39, 1),
                         Color.fromRGBO(229, 130, 0, 1),
-                        Color.fromRGBO(162, 79, 1, 1)
                       ]
                     : const [
                         Color.fromRGBO(130, 154, 39, 1),
-                        Color.fromRGBO(129, 130, 0, 1),
+                        Color.fromRGBO(198, 198, 107, 1),
                         Color.fromRGBO(62, 179, 1, 1),
                       ],
                 begin: Alignment.topLeft,
@@ -68,6 +71,7 @@ class ResultWidget extends StatelessWidget {
                 Text(
                   LocaleKeys.gameResult_meaning
                       .tr(args: [gameResult.answer.meaning]),
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,

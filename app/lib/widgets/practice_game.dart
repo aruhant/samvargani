@@ -36,18 +36,13 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   Widget build(BuildContext context) {
     return GameWidget(
-      game: game,
-      footer: kDebugMode
-          ? TextButton(
-              onPressed: () {
-                displayResult(GameResult(
-                    win: false,
-                    answer: game.answer,
-                    tries: game.lines.length - 1));
-              },
-              child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-            )
-          : null,
-    );
+        game: game,
+        footer: TextButton(
+          onPressed: () {
+            displayResult(GameResult(
+                win: false, answer: game.answer, tries: game.lines.length - 1));
+          },
+          child: Text(LocaleKeys.practiceGame_resetButton.tr()),
+        ));
   }
 }
