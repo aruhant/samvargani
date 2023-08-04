@@ -55,7 +55,7 @@ final List<GameAnswer> gameAnswers = [
       icons: [LineIcons.fish],
       moveHorizontal: false,
       moveVertical: true,
-      colors: [Colors.orange[100]!],
+      colors: [Colors.orange[200]!, Colors.redAccent],
       backgroundColor: Colors.blue[100]),
   GameAnswer(
       answer: 'स्पन्दन',
@@ -66,12 +66,12 @@ final List<GameAnswer> gameAnswers = [
       colors: const [Colors.red],
       backgroundColor: Colors.red[100]),
   GameAnswer(
-    answer: 'व्यसान',
+    answer: 'व्यसन',
     meaning: 'लत',
     icons: [LineIcons.smoking],
     moveHorizontal: false,
     moveVertical: true,
-    colors: [Colors.yellow[200]!],
+    colors: const [Color.fromARGB(192, 106, 45, 23)],
     backgroundColor: Colors.yellow[100],
   ),
   GameAnswer(
@@ -110,9 +110,8 @@ final List<GameAnswer> gameAnswers = [
       answer: 'झटका',
       meaning: 'ठेस का लाक्षणिक प्रयोग।',
       icons: [
-        LineIcons.exclamationTriangle,
         LineIcons.lightningBolt,
-        LineIcons.skullCrossbones
+        LineIcons.skullCrossbones,
       ],
       moveHorizontal: true,
       moveVertical: true,
@@ -140,13 +139,13 @@ final List<GameAnswer> gameAnswers = [
   GameAnswer(
       answer: 'अँगूठा',
       meaning: 'हाथ अथवा पैर की पहली और सबसे मोटी उँगली।',
-      icons: [LineIcons.hands],
-      moveHorizontal: false,
-      moveVertical: true,
+      icons: [LineIcons.fingerprint, LineIcons.thumbsUp],
+      moveHorizontal: true,
+      moveVertical: false,
       colors: const [Color.fromARGB(255, 229, 180, 179)],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
   GameAnswer(
-      answer: 'नक़द',
+      answer: 'नकद',
       meaning: 'वह धन जो रुपया-पैसा, सिक्का आदि के रूप में हो',
       icons: [LineIcons.moneyBill],
       moveHorizontal: false,
@@ -156,7 +155,7 @@ final List<GameAnswer> gameAnswers = [
   GameAnswer(
       answer: 'मुकुट',
       meaning: 'ताज',
-      icons: [LineIcons.chessKing],
+      icons: [LineIcons.crown, LineIcons.chessQueen],
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 255, 255)],
@@ -173,6 +172,7 @@ final List<GameAnswer> gameAnswers = [
       ],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
   GameAnswer(
+    itemsCount: 8,
     answer: 'औषधि',
     meaning: 'प्राकृतिक दवा',
     icons: [LineIcons.cannabis, LineIcons.mortarPestle, LineIcons.pills],
@@ -191,6 +191,7 @@ final List<GameAnswer> gameAnswers = [
     backgroundColor: Colors.pink[50],
   ),
   GameAnswer(
+    itemsCount: 8,
     answer: 'बलवान',
     meaning: 'शक्तिशाली',
     icons: [LineIcons.dumbbell, LineIcons.raisedFist],
@@ -207,13 +208,47 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: [Colors.pink[100]!],
       backgroundColor: Colors.pink[50]),
+  GameAnswer(
+      answer: 'घूस',
+      meaning: 'रिश्वत',
+      icons: [LineIcons.moneyBill, LineIcons.alternateWavyMoneyBill],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(255, 168, 229, 13)],
+      backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
+
+  GameAnswer(
+      answer: 'पालतू',
+      meaning: 'जो पकड़कर पाला गया हो',
+      icons: [LineIcons.dog],
+      moveHorizontal: true,
+      moveVertical: false,
+      colors: const [Color.fromARGB(255, 229, 139, 13)],
+      backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
+  // add इंसाफ
+  GameAnswer(
+      answer: 'इंसाफ',
+      meaning: 'न्याय',
+      icons: [LineIcons.gavel, LineIcons.balanceScale],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(255, 127, 57, 3)],
+      backgroundColor: const Color.fromARGB(255, 235, 161, 224)),
+  GameAnswer(
+      answer: 'मुस्कान',
+      meaning: 'हँसी',
+      icons: [Icons.sentiment_satisfied_alt],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(255, 253, 208, 5)],
+      backgroundColor: const Color.fromARGB(255, 235, 161, 224)),
+
   GameAnswer(answer: 'श्रृंगार', meaning: 'सजाने की क्रिया या भाव'),
   GameAnswer(answer: 'उत्सुकता', meaning: 'उत्साह'),
   GameAnswer(answer: 'साहसिक', meaning: 'बहादुर'),
   GameAnswer(answer: 'विचित्र', meaning: 'अनोखा'),
   GameAnswer(answer: 'उमंग', meaning: 'उत्साह'),
   GameAnswer(answer: 'प्रचंड', meaning: 'बहुत अधिक'),
-  GameAnswer(answer: 'मुस्कान', meaning: 'हँसी'),
   GameAnswer(answer: 'बेख़बर', meaning: 'अनजान'),
   GameAnswer(answer: 'धैर्य', meaning: 'साहस'),
   GameAnswer(answer: 'विश्वास', meaning: 'भरोसा'),
