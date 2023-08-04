@@ -60,21 +60,20 @@ class _GameWidgetState extends State<GameWidget> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 25),
+                  Text(LocaleKeys.app_title.tr(),
+                      style: const TextStyle(
+                          fontSize: 40,
+                          color: Color.fromRGBO(61, 64, 91, 1),
+                          fontWeight: FontWeight.bold)),
                   Text(
                       LocaleKeys.game_level.tr(args: [
                         (UserPrefs.instance.practiceGameIndex + 1).toString()
                       ]),
                       textAlign: TextAlign.left,
                       style: const TextStyle(
-                          fontSize: 25,
-                          color: Color.fromRGBO(146, 155, 231, 1),
-                          fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 15),
-                  Text(LocaleKeys.app_title.tr(),
-                      style: const TextStyle(
-                          fontSize: 40,
-                          color: Color.fromRGBO(61, 64, 91, 1),
+                          fontSize: 18,
+                          color: Color.fromRGBO(122, 122, 122, 1),
                           fontWeight: FontWeight.bold)),
                   LinesWidget(
                       lines: widget.game.lines, wordLength: widget.game.length),

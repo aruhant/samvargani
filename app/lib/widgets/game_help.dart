@@ -44,7 +44,6 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       // bodyPadding: EdgeInsets.all(20),
       // contentMargin: EdgeInsets.all(20),
       bodyAlignment: Alignment.center,
-      pageColor: Colors.white,
       imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
     );
 
@@ -67,7 +66,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                 maxLines: 2,
                 maxFontSize: 30,
                 minFontSize: 14,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
               AutoSizeText(
@@ -76,7 +75,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                 maxLines: 6,
                 maxFontSize: 30,
                 minFontSize: 14,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
             ],
           ),
@@ -85,6 +84,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
         PageViewModel(
           title: '',
           bodyWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
               _buildImage('intro1.png'),
               const SizedBox(height: 20),
@@ -107,6 +108,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               ),
             ],
           ),
+          decoration: pageDecoration,
         ),
         PageViewModel(
           title: '',
