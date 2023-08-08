@@ -44,6 +44,8 @@ dev_dependencies:
   easy_localization:
   introduction_screen:
   flex_color_scheme:
+  screenshot:
+  path_provider:
   line_icons:
   share_plus:
   flutter_test:
