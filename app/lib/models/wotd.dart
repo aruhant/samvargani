@@ -2,14 +2,20 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:paheli/models/answer.dart';
 
 class WotD {
-  static WotD _instance = WotD();
-  static WotD get instance => _instance;
-  late GameAnswer _answer;
+  String _location;
+  GameAnswer _answer;
   GameAnswer get answer => _answer;
-  WotD() {
-    _answer = GameAnswer(answer: 'शब्द', meaning: 'अर्थ');
-    FirebaseDatabase.instance.ref('wotd').onValue.listen((event) {
-      _answer = GameAnswer.fromJson(event.snapshot.value as Map);
-    });
+  static Future<WotD> load({location = 'wotd'}) async {
+    FirebaseDatabase.instance.ref(location).once();
+    Map val = (await FirebaseDatabase.instance.ref(location).once())
+        .snapshot
+        .value as Map;
+    GameAnswer answer = GameAnswer.fromJson(val);
+
+    return WotD._internal(location, answer);
   }
+
+  WotD._internal(String location, GameAnswer answer)
+      : _location = location,
+        _answer = answer;
 }

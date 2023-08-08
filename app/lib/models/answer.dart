@@ -42,9 +42,11 @@ class GameAnswer {
           .tr(args: [(gameAnswers.indexOf(this) + 1).toString()]);
 
   static GameAnswer fromJson(Map json) {
+    print(json);
     return GameAnswer(
         answer: json['answer'],
         meaning: json['meaning'],
+        title: json['title'] ?? 'Daily Challenge',
         colors: json['colors'] != null
             ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)
@@ -62,15 +64,15 @@ class GameAnswer {
         images: json['images'] != null
             ? (json['images'] as List).cast<String>()
             : null,
-        moveHorizontal: json['moveHorizontal'],
-        moveVertical: json['moveVertical'],
-        maxOpacity: json['maxOpacity'],
-        minOpacity: json['minOpacity'],
-        maxSize: json['maxSize'],
-        minSize: json['minSize'],
-        maxSpeed: json['maxSpeed'],
-        minSpeed: json['minSpeed'],
-        itemsCount: json['itemsCount']);
+        moveHorizontal: json['moveHorizontal'] ?? true,
+        moveVertical: json['moveVertical'] ?? true,
+        maxOpacity: json['maxOpacity'] ?? 0.4,
+        minOpacity: json['minOpacity'] ?? 0.15,
+        maxSize: json['maxSize'] ?? 30,
+        minSize: json['minSize'] ?? 150,
+        maxSpeed: json['maxSpeed'] ?? 0.4,
+        minSpeed: json['minSpeed'] ?? 0.25,
+        itemsCount: json['itemsCount'] ?? 6);
   }
 }
 
