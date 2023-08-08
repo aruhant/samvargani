@@ -37,6 +37,7 @@ dependencies:
   auto_size_text:
   shared_preferences:
   vitality:
+  firebase_database: ^10.2.4
 
 dev_dependencies:
   flutter_launcher_icons:

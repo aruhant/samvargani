@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1068250601822',
     projectId: 'samvargani',
     authDomain: 'samvargani.firebaseapp.com',
+    databaseURL: 'https://samvargani-default-rtdb.firebaseio.com',
     storageBucket: 'samvargani.appspot.com',
   );
 
@@ -57,6 +58,7 @@ class DefaultFirebaseOptions {
     appId: '1:1068250601822:android:c2772fbad5fad5efcdd7cf',
     messagingSenderId: '1068250601822',
     projectId: 'samvargani',
+    databaseURL: 'https://samvargani-default-rtdb.firebaseio.com',
     storageBucket: 'samvargani.appspot.com',
   );
 
@@ -65,6 +67,7 @@ class DefaultFirebaseOptions {
     appId: '1:1068250601822:ios:934d11720864dba7cdd7cf',
     messagingSenderId: '1068250601822',
     projectId: 'samvargani',
+    databaseURL: 'https://samvargani-default-rtdb.firebaseio.com',
     storageBucket: 'samvargani.appspot.com',
     iosClientId: '1068250601822-4n09gdhbvf46hrnnjlubi1pak8uet798.apps.googleusercontent.com',
     iosBundleId: 'com.aruhant.paheli',
@@ -75,6 +78,7 @@ class DefaultFirebaseOptions {
     appId: '1:1068250601822:ios:d99c40865eab6618cdd7cf',
     messagingSenderId: '1068250601822',
     projectId: 'samvargani',
+    databaseURL: 'https://samvargani-default-rtdb.firebaseio.com',
     storageBucket: 'samvargani.appspot.com',
     iosClientId: '1068250601822-1jt41ene7qmv3hnjtfjq7hjus1rt4ks3.apps.googleusercontent.com',
     iosBundleId: 'com.aruhant.paheli.RunnerTests',
