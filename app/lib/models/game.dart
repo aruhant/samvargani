@@ -24,8 +24,6 @@ class Game {
                     state: CellState.empty)))
       ];
   Game({required this.onSuceess, required this.answer});
-  Game.practice({required this.onSuceess})
-      : answer = gameAnswers[UserPrefs.instance.practiceGameIndex];
   int get length => answer.answer.allCharacters.length;
   get answerList => answer.answer.allCharacters;
 

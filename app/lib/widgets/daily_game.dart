@@ -27,32 +27,10 @@ class DailyGameState extends State<DailyGame> {
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
-    bool s = UserPrefs.instance.makeProgress(gameAnswers.length);
-    setState(() {
-      if (s) game = Game.practice(onSuceess: displayResult);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (gameAnswers.length - 1 == UserPrefs.instance.practiceGameIndex) {
-      return Material(
-        child: Center(
-          child: Text(
-            LocaleKeys.practiceGame_gameOver.tr(),
-            style: const TextStyle(fontSize: 30),
-          ),
-        ),
-      );
-    }
-    return GameWidget(
-        game: game,
-        footer: TextButton(
-          onPressed: () {
-            displayResult(
-                GameResult(win: false, answer: game.answer, lines: game.lines));
-          },
-          child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-        ));
+    return GameWidget(game: game);
   }
 }

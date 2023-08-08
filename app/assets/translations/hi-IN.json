@@ -69,7 +69,7 @@
         "tries": "प्रयास: {}",
         "share": "अपना स्कोर शेयर करें!",
         "completed": "आपने {} पूरा कर लिया है!",
-        "share": "मैंने {} को पूरा किया है। मेरा स्कोर {} है। \n https://aruhant.github.io/s/"
+        "shareMessage": "मैंने {} को पूरा किया है। मेरा स्कोर {} है। \n https://aruhant.github.io/s/"
     },
     "practiceGame":{
         "level": "चरण: {}",

@@ -19,7 +19,9 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   void initState() {
     super.initState();
-    game = Game.practice(onSuceess: displayResult);
+    game = Game(
+        answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
+        onSuceess: displayResult);
   }
 
   displayResult(GameResult result) async {
@@ -28,7 +30,12 @@ class PracticeGameState extends State<PracticeGame> {
         builder: (context) => ResultWidget(gameResult: result));
     bool s = UserPrefs.instance.makeProgress(gameAnswers.length);
     setState(() {
-      if (s) game = Game.practice(onSuceess: displayResult);
+      if (s) {
+        game = Game(
+          answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
+          onSuceess: displayResult,
+        );
+      }
     });
   }
 
