@@ -1,9 +1,10 @@
 import 'dart:io';
+import 'package:paheli/models/game.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:screenshot/screenshot.dart';
 
-shareScreenShot(ScreenshotController screenshotController) {
+shareScreenShot(ScreenshotController screenshotController, String message) {
   screenshotController
       .capture(delay: const Duration(milliseconds: 200))
       .then((image) async {
@@ -11,8 +12,7 @@ shareScreenShot(ScreenshotController screenshotController) {
       final directory = await getApplicationDocumentsDirectory();
       final imagePath = await File('${directory.path}/image.png').create();
       await imagePath.writeAsBytes(image);
-      await Share.shareXFiles([XFile(imagePath.path)],
-          text: 'Share With Friends!');
+      await Share.shareXFiles([XFile(imagePath.path)], text: message);
     }
   });
 }

@@ -88,10 +88,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                   fontWeight: FontWeight.bold,
                                   color: Color.fromARGB(255, 6, 7, 10))),
                           Text(
-                              LocaleKeys.gameResult_practiceMode.tr(args: [
-                                (UserPrefs.instance.practiceGameIndex + 1)
-                                    .toString()
-                              ]),
+                              LocaleKeys.gameResult_completed
+                                  .tr(args: [widget.gameResult.answer.title]),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 20,
@@ -102,7 +100,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                       pressedShare
                           ? LineWidget(
                               disableTooltip: true,
-                              line: widget.gameResult.lines.last,
+                              line: widget.gameResult.lines[1],
                               group: AutoSizeGroup(),
                             )
                           : (Column(
@@ -158,8 +156,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                       child: ElevatedButton(
                                         onPressed: () {
                                           setState(() => pressedShare = true);
-                                          shareScreenShot(
-                                              _screenShotController);
+                                          shareScreenShot(_screenShotController,
+                                              'shareMessage');
                                         },
                                         // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                                         style: ElevatedButton.styleFrom(

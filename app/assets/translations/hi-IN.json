@@ -60,8 +60,7 @@
         "gameMessages": {
             "wrongWordLength": "सही उत्तर {} अक्षर का शब्द नहीं है!",
             "notInDictonary":"आपका उत्तर {} शब्दकोष में नहीं है!"
-        },
-        "level": "चरण: {}"
+        }
     },
     "gameResult":{
         "victoryMessage":"सही उत्तर!",
@@ -69,10 +68,11 @@
         "meaning":"अर्थ: {}",
         "tries": "प्रयास: {}",
         "share": "अपना स्कोर शेयर करें!",
-        "dailyChallengeMode": "आपने आज का शब्द पूरा कर लिया!",
-        "practiceMode": "आपने चरण {} पूरा कर लिया है!"
+        "completed": "आपने {} पूरा कर लिया है!",
+        "share": "मैंने {} को पूरा किया है। मेरा स्कोर {} है। \n https://aruhant.github.io/s/"
     },
     "practiceGame":{
+        "level": "चरण: {}",
         "resetButton": "हार मानिये?",
         "gameOver": "आपने सभी शब्दों को पूरा कर लिया है। आप इस खेल को खत्म कर चुके हैं।"
     }

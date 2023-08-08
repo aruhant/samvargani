@@ -60,10 +60,7 @@ class _GameWidgetState extends State<GameWidget> {
                           fontSize: 40,
                           color: Color.fromRGBO(61, 64, 91, 1),
                           fontWeight: FontWeight.bold)),
-                  Text(
-                      LocaleKeys.game_level.tr(args: [
-                        (UserPrefs.instance.practiceGameIndex + 1).toString()
-                      ]),
+                  Text(widget.game.answer.title,
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                           fontSize: 18,

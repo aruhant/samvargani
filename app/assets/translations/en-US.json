@@ -58,23 +58,21 @@
  "gameMessages":{ 
     "wrongWordLength": "The answer is not a {} letter word!",
     "notInDictonary":"Your answer {} is not in the Hindi dictionary!"
-},
-"level": "Level {}"
-    },
+}    },
 "gameResult":{
     "victoryMessage":"You win!",
     "defeatMessage":"You lose!",
     "meaning":"Meaning: {}",
     "tries": "Tries: {}",
     "share": "Share your score!",
-    "dailyChallengeMode": "You have completed today's challenge!",
-    "practiceMode": "You have completed level {}!"
+    "completed": "You have completed {}!",
+    "shareMessage": "I completed {} in {} tries! Can you beat my score?  \n https://aruhant.github.io/s/"
 },
 "practiceGame":{
+    "level": "Level {}",
     "resetButton": "Give Up?",
     "gameOver": "You have completed all the words. You have finished this game."
     
 
-}
-
+} 
 }

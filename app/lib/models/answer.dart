@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:tinycolor2/tinycolor2.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class GameAnswer {
   final String answer;
+  final String? _title;
   final String meaning;
   final List<String?>? hints;
   final Color? backgroundColor;
@@ -15,6 +18,7 @@ class GameAnswer {
   final int itemsCount;
   GameAnswer({
     required this.answer,
+    String? title,
     required this.meaning,
     this.hints,
     this.colors = const [Color.fromARGB(255, 180, 207, 229)],
@@ -30,7 +34,12 @@ class GameAnswer {
     this.maxSpeed = 0.4,
     this.minSpeed = 0.25,
     this.itemsCount = 6,
-  });
+  }) : _title = title;
+
+  String get title =>
+      _title ??
+      LocaleKeys.practiceGame_level
+          .tr(args: [(gameAnswers.indexOf(this) + 1).toString()]);
 
   static GameAnswer fromJson(Map json) {
     return GameAnswer(

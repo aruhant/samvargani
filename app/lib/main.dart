@@ -1,12 +1,11 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
 import 'package:paheli/firebase_options.dart';
 import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_help.dart';
 import 'package:paheli/widgets/language_picker.dart';
-import 'package:paheli/widgets/practice_game.dart';
+//import 'package:paheli/widgets/practice_game.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -54,7 +53,7 @@ class _MyAppState extends State<MyApp> {
                   onIntroEnd: () =>
                       setState(() => UserPrefs.instance.firstRunDone()),
                 )
-              : const PracticeGame(),
+              : const DailyGame(),
     );
   }
 }

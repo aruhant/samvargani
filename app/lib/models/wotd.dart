@@ -2,8 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:paheli/models/answer.dart';
 
 class WotD {
-  final WotD _instance = WotD();
-  WotD get instance => _instance;
+  static WotD _instance = WotD();
+  static WotD get instance => _instance;
   late GameAnswer _answer;
   GameAnswer get answer => _answer;
   WotD() {

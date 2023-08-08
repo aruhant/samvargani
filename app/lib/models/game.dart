@@ -23,7 +23,7 @@ class Game {
                         .join(' '),
                     state: CellState.empty)))
       ];
-  // Game({required this.onSuceess, required this.answer});
+  Game({required this.onSuceess, required this.answer});
   Game.practice({required this.onSuceess})
       : answer = gameAnswers[UserPrefs.instance.practiceGameIndex];
   int get length => answer.answer.allCharacters.length;
@@ -88,5 +88,7 @@ class GameResult {
   int get tries => lines.length - 1;
   bool win;
   List<Line> lines;
+  String get shareMessage =>
+      LocaleKeys.gameResult_share.tr(args: [answer.answer, tries.toString()]);
   GameResult({required this.win, required this.answer, this.lines = const []});
 }
