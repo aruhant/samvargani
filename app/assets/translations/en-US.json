@@ -66,11 +66,13 @@
     "defeatMessage":"You lose!",
     "meaning":"Meaning: {}",
     "tries": "Tries: {}",
-    "share": "Click this button to share your score with your friends!"
+    "share": "Click this button to share your score with your friends!",
+    "dailyChallengeMode": "You have completed today's challenge!",
+    "practiceMode": "You have completed level {}!"
 },
 "practiceGame":{
     "resetButton": "Give Up?",
-    "GameOver": "You have completed all the words. You have finished this game."
+    "gameOver": "You have completed all the words. You have finished this game."
     
 
 }

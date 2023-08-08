@@ -39,7 +39,7 @@ class PracticeGameState extends State<PracticeGame> {
       return Material(
         child: Center(
           child: Text(
-            LocaleKeys.practiceGame_GameOver.tr(),
+            LocaleKeys.practiceGame_gameOver.tr(),
             style: const TextStyle(fontSize: 30),
           ),
         ),
@@ -49,8 +49,8 @@ class PracticeGameState extends State<PracticeGame> {
         game: game,
         footer: TextButton(
           onPressed: () {
-            displayResult(GameResult(
-                win: false, answer: game.answer, tries: game.lines.length - 1));
+            displayResult(
+                GameResult(win: false, answer: game.answer, lines: game.lines));
           },
           child: Text(LocaleKeys.practiceGame_resetButton.tr()),
         ));

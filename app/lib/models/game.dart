@@ -110,7 +110,7 @@ class Game {
     }
     _lines.add(Line(cells: cells));
     if (answer.answer == guess) {
-      onSuceess(GameResult(win: true, answer: answer, tries: _lines.length));
+      onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return '';
     }
     return '';
@@ -135,7 +135,8 @@ class Game {
 
 class GameResult {
   final GameAnswer answer;
-  int tries;
+  int get tries => lines.length - 1;
   bool win;
-  GameResult({required this.win, required this.answer, this.tries = 0});
+  List<Line> lines;
+  GameResult({required this.win, required this.answer, this.lines = const []});
 }
