@@ -45,6 +45,7 @@ dev_dependencies:
   introduction_screen:
   flex_color_scheme:
   line_icons:
+  share_plus:
   flutter_test:
     sdk: flutter
 

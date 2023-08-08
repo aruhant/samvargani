@@ -34,95 +34,99 @@ class ResultWidget extends StatelessWidget {
                   end: Alignment.bottomRight)),
           padding: const EdgeInsets.all(18),
           margin: const EdgeInsets.all(18),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      icon: const Icon(Icons.close),
-                      color: Colors.black,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    color: Colors.black,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ),
-                Column(
+              ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
-                        (gameResult.win
-                            ? Icons.emoji_events_outlined
-                            : Icons.sentiment_dissatisfied_outlined),
-                        size: 140,
-                        color: const Color.fromARGB(255, 6, 7, 10)),
-                    Text(
-                        gameResult.win
-                            ? LocaleKeys.gameResult_victoryMessage.tr()
-                            : LocaleKeys.gameResult_defeatMessage.tr(),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 50,
+                    Column(
+                      children: [
+                        Icon(
+                            (gameResult.win
+                                ? Icons.emoji_events_outlined
+                                : Icons.sentiment_dissatisfied_outlined),
+                            size: 140,
+                            color: const Color.fromARGB(255, 6, 7, 10)),
+                        Text(
+                            gameResult.win
+                                ? LocaleKeys.gameResult_victoryMessage.tr()
+                                : LocaleKeys.gameResult_defeatMessage.tr(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 6, 7, 10))),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          gameResult.answer.answer,
+                          style: const TextStyle(
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 6, 7, 10))),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      gameResult.answer.answer,
-                      style: const TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          LocaleKeys.gameResult_meaning
+                              .tr(args: [gameResult.answer.meaning]),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     Text(
-                      LocaleKeys.gameResult_meaning
-                          .tr(args: [gameResult.answer.meaning]),
-                      textAlign: TextAlign.center,
+                      LocaleKeys.gameResult_tries
+                          .tr(args: [gameResult.tries.toString()]),
                       style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                     ),
-                  ],
-                ),
-                Text(
-                  LocaleKeys.gameResult_tries
-                      .tr(args: [gameResult.tries.toString()]),
-                  style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                gameResult.win
-                    ? (Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                              icon: const Icon(Icons.share),
-                              color: Colors.black,
-                              onPressed: () {}),
-                          Text(
-                            LocaleKeys.gameResult_share.tr(),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ))
-                    : const SizedBox(),
-              ]),
+                    gameResult.win
+                        ? (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                  icon: const Icon(Icons.share),
+                                  color: Colors.black,
+                                  onPressed: () {}),
+                              Text(
+                                LocaleKeys.gameResult_share.tr(),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ))
+                        : const SizedBox(),
+                  ]),
+            ],
+          ),
         ));
   }
 }
