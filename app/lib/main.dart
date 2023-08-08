@@ -1,4 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
+import 'package:paheli/firebase_options.dart';
 import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/widgets/game_help.dart';
 import 'package:paheli/widgets/language_picker.dart';
@@ -8,6 +12,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
   await UserPrefs.init();
 

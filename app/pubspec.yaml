@@ -38,6 +38,7 @@ dependencies:
   shared_preferences:
   vitality:
   firebase_database: ^10.2.4
+  firebase_core: ^2.15.0
 
 dev_dependencies:
   flutter_launcher_icons:
@@ -49,6 +50,7 @@ dev_dependencies:
   path_provider:
   line_icons:
   share_plus:
+  tinycolor2:
   flutter_test:
     sdk: flutter
 

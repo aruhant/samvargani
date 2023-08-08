@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 class GameAnswer {
   final String answer;
@@ -16,7 +17,6 @@ class GameAnswer {
     required this.answer,
     required this.meaning,
     this.hints,
-    // make default color transparent
     this.colors = const [Color.fromARGB(255, 180, 207, 229)],
     this.backgroundColor = const Color.fromARGB(255, 180, 207, 229),
     this.icons = const [Icons.cloud],
@@ -31,6 +31,38 @@ class GameAnswer {
     this.minSpeed = 0.25,
     this.itemsCount = 6,
   });
+
+  static GameAnswer fromJson(Map json) {
+    return GameAnswer(
+        answer: json['answer'],
+        meaning: json['meaning'],
+        colors: json['colors'] != null
+            ? (json['colors'] as List)
+                .map((e) => TinyColor.fromString(e).color)
+                .toList()
+            : const [Color.fromARGB(255, 180, 207, 229)],
+        backgroundColor: json['backgroundColor'] != null
+            ? TinyColor.fromString(json['backgroundColor']).color
+            : null,
+        icons: json['icons'] != null
+            ? (json['icons'] as List)
+                .map((e) => LineIcons.byName(e))
+                .toList()
+                .cast()
+            : [LineIcons.cloud],
+        images: json['images'] != null
+            ? (json['images'] as List).cast<String>()
+            : null,
+        moveHorizontal: json['moveHorizontal'],
+        moveVertical: json['moveVertical'],
+        maxOpacity: json['maxOpacity'],
+        minOpacity: json['minOpacity'],
+        maxSize: json['maxSize'],
+        minSize: json['minSize'],
+        maxSpeed: json['maxSpeed'],
+        minSpeed: json['minSpeed'],
+        itemsCount: json['itemsCount']);
+  }
 }
 
 final List<GameAnswer> gameAnswers = [
