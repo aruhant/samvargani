@@ -9,60 +9,6 @@ import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-const List<String> words = [
-  "श्रृंगार",
-  "उत्सुकता",
-  "आकर्षक",
-  "साहसिक",
-  "विचित्र",
-  "उमंग",
-  "ख़ुशबूदार",
-  "प्रचंड",
-  "मुस्कान",
-  "आकर्षित",
-  "स्नेह",
-  "बेख़बर",
-  "प्रेरित",
-  "समझौता",
-  "धैर्य",
-  "उदार",
-  "विचारशील",
-  "आत्मीयता",
-  "विरक्त",
-  "संवेदनशील",
-  "विश्वास",
-  "अभिमान",
-  "परिवर्तनशील",
-  "स्वतंत्र",
-  "उत्साही",
-  "संयम",
-  "प्रगतिशील",
-  "शांत",
-  "सहज",
-  "आत्मनिर्भर",
-  "भव्य",
-  "विचारपूर्ण",
-  "विकसित",
-  "सुखी",
-  "प्रसन्न",
-  "जिज्ञासु",
-  "मित्रभाव",
-  "सफल",
-  "आक्रोशी",
-  "सजग",
-  "नम्र",
-  "समर्थ",
-  "सहानुभूति",
-  "प्रशांत",
-  "स्थिर",
-  "शक्तिशाली",
-  "संतुष्ट",
-  "अनुशासित",
-  "उन्मुक्त",
-  "प्रामाणिक",
-  "सहायक"
-];
-
 class Game {
   GameAnswer answer;
   final List<Line> _lines = [];
@@ -85,6 +31,10 @@ class Game {
 
   String addGuess(String guess) {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
+    if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
+      onSuceess(GameResult(win: true, answer: answer, lines: lines));
+      return answer.answer;
+    }
     List<String> guessList = guess.allCharacters;
     if (length != guessList.length) {
       return LocaleKeys.game_gameMessages_wrongWordLength
