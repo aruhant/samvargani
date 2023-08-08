@@ -28,12 +28,6 @@ class _GameWidgetState extends State<GameWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      /*  appBar: AppBar(
-        title: Text(LocaleKeys.game_level
-            .tr(args: [(UserPrefs.instance.practiceGameIndex + 1).toString()])),
-        backgroundColor: widget.game.answer.backgroundColor,
-        centerTitle: true,
-      ), */
       body: SafeArea(
         child: Stack(
           children: [
@@ -151,7 +145,8 @@ class _GameWidgetState extends State<GameWidget> {
                         .expand((element) => element)
                         .toList(),
                   ),
-                  if (widget.footer != null) widget.footer!
+                  if (widget.footer != null)
+                    if (widget.game.lines.length > 3) widget.footer!,
                 ],
               ),
             ),

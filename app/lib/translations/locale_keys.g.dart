@@ -51,8 +51,10 @@ abstract class  LocaleKeys {
   static const gameResult_defeatMessage = 'gameResult.defeatMessage';
   static const gameResult_meaning = 'gameResult.meaning';
   static const gameResult_tries = 'gameResult.tries';
+  static const gameResult_share = 'gameResult.share';
   static const gameResult = 'gameResult';
   static const practiceGame_resetButton = 'practiceGame.resetButton';
+  static const practiceGame_GameOver = 'practiceGame.GameOver';
   static const practiceGame = 'practiceGame';
 
 }

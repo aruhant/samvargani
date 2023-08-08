@@ -65,10 +65,13 @@
     "victoryMessage":"You win!",
     "defeatMessage":"You lose!",
     "meaning":"Meaning: {}",
-    "tries": "Tries: {}"
+    "tries": "Tries: {}",
+    "share": "Click this button to share your score with your friends!"
 },
 "practiceGame":{
-    "resetButton": "Give Up?"
+    "resetButton": "Give Up?",
+    "GameOver": "You have completed all the words. You have finished this game."
+    
 
 }
 

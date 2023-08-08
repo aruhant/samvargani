@@ -48,9 +48,13 @@ class UserPrefs {
     _instance!.save();
   }
 
-  makeProgress() {
+  bool makeProgress(int max) {
+    if (_instance!._practiceGameIndex == max - 1) {
+      return false;
+    }
     _instance!._practiceGameIndex++;
     _instance!.save();
+    return true;
   }
 
   save() {
