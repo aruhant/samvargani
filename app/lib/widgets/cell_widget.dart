@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
 
 class CellWidget extends StatelessWidget {
-  const CellWidget({required this.cell, super.key, required this.group});
+  const CellWidget(
+      {required this.cell,
+      super.key,
+      required this.group,
+      this.disableTooltip = false});
   final AutoSizeGroup group;
   final Cell cell;
+  final bool disableTooltip;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: AspectRatio(
         aspectRatio: 1,
         child: Tooltip(
+          waitDuration: disableTooltip ? const Duration(hours: 1) : null,
           showDuration: const Duration(seconds: 10),
           margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -23,7 +29,9 @@ class CellWidget extends StatelessWidget {
                     blurRadius: 10,
                     offset: const Offset(0, 5))
               ]),
-          triggerMode: TooltipTriggerMode.tap,
+          triggerMode: disableTooltip
+              ? TooltipTriggerMode.manual
+              : TooltipTriggerMode.tap,
           textStyle: const TextStyle(color: Colors.white),
           message: cell.state.tooltip(cell.myLetter.value),
           child: Container(

@@ -5,7 +5,7 @@ import 'package:screenshot/screenshot.dart';
 
 shareScreenShot(ScreenshotController screenshotController) {
   screenshotController
-      .capture(delay: const Duration(milliseconds: 10))
+      .capture(delay: const Duration(milliseconds: 200))
       .then((image) async {
     if (image != null) {
       final directory = await getApplicationDocumentsDirectory();

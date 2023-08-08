@@ -4,8 +4,13 @@ import 'package:paheli/models/line.dart';
 import 'package:paheli/widgets/cell_widget.dart';
 
 class LineWidget extends StatelessWidget {
-  const LineWidget({required this.line, super.key, required this.group});
+  const LineWidget(
+      {required this.line,
+      super.key,
+      required this.group,
+      this.disableTooltip = false});
   final Line line;
+  final bool disableTooltip;
   final AutoSizeGroup group;
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,11 @@ class LineWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: line.cells
-          .map<Widget>((e) => CellWidget(cell: e, group: group))
+          .map<Widget>((e) => CellWidget(
+                cell: e,
+                group: group,
+                disableTooltip: disableTooltip,
+              ))
           .toList(),
     );
   }
