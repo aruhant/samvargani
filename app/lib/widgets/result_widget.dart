@@ -102,7 +102,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                       pressedShare
                           ? LineWidget(
                               disableTooltip: true,
-                              line: widget.gameResult.lines[1],
+                              line: widget.gameResult.lines.last,
                               group: AutoSizeGroup(),
                             )
                           : (Column(
