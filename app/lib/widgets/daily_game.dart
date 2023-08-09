@@ -15,8 +15,10 @@ class DailyGameState extends State<DailyGame> {
   @override
   void initState() {
     super.initState();
-    WotD.load().then((value) => setState(
-        () => game = Game(answer: value.answer, onSuceess: displayResult)));
+    WotD.listen().listen((value) {
+      setState(
+          () => game = Game(answer: value.answer, onSuceess: displayResult));
+    });
   }
 
   displayResult(GameResult result) async {
