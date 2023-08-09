@@ -44,8 +44,8 @@ class GameAnswer {
   static GameAnswer fromJson(Map json) {
     print(json);
     return GameAnswer(
-        answer: json['answer'],
-        meaning: json['meaning'],
+        answer: json['answer'] ?? '',
+        meaning: json['meaning'] ?? '',
         title: json['title'] ?? 'Daily Challenge',
         colors: json['colors'] != null
             ? (json['colors'] as List)
@@ -54,7 +54,7 @@ class GameAnswer {
             : const [Color.fromARGB(255, 180, 207, 229)],
         backgroundColor: json['backgroundColor'] != null
             ? TinyColor.fromString(json['backgroundColor']).color
-            : null,
+            : const Color.fromARGB(255, 180, 207, 229),
         icons: json['icons'] != null
             ? (json['icons'] as List)
                 .map((e) => LineIcons.byName(e))
@@ -63,7 +63,7 @@ class GameAnswer {
             : [LineIcons.cloud],
         images: json['images'] != null
             ? (json['images'] as List).cast<String>()
-            : null,
+            : [],
         moveHorizontal: json['moveHorizontal'] ?? true,
         moveVertical: json['moveVertical'] ?? true,
         maxOpacity: json['maxOpacity'] ?? 0.4,
