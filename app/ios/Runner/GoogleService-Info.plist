@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:1068250601822:ios:934d11720864dba7cdd7cf</string>
+	<key>DATABASE_URL</key>
+	<string>https://samvargani-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
