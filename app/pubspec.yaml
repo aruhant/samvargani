@@ -49,6 +49,7 @@ dev_dependencies:
   line_icons:
   share_plus:
   tinycolor2:
+  custom_sliding_segmented_control:
   firebase_core:
   firebase_database:
   flutter_test:
