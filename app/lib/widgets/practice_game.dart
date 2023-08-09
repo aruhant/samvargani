@@ -25,10 +25,10 @@ class PracticeGameState extends State<PracticeGame> {
   }
 
   displayResult(GameResult result) async {
+    bool s = UserPrefs.instance.makeProgress(gameAnswers.length);
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
-    bool s = UserPrefs.instance.makeProgress(gameAnswers.length);
     setState(() {
       if (s) {
         game = Game(

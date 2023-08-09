@@ -173,7 +173,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                 )),
                               ],
                             )
-                          : const SizedBox(),
+                          : const Row(),
                     ]),
               ],
             ),
