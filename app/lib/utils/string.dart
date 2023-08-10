@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 extension StringExtension on String {
@@ -35,12 +33,10 @@ extension StringExtension on String {
 
   String get vyanjan {
     String v = replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
-    if (v.contains("त्र") ||
-        v.contains("ज्ञ") ||
-        v.contains("श्र") ||
-        v.contains("क्ष")) {
-      return v.substring(max(max(v.indexOf("त्र"), v.indexOf("ज्ञ")),
-          max(v.indexOf("श्र"), v.indexOf("क्ष"))));
+    var match = RegExp(r'(त्र|ज्ञ|श्र|क्ष)([^्]|$)').firstMatch(v);
+
+    if (match != null) {
+      return match.group(0)!;
     }
     if (v.isEmpty) return '';
     return v[v.length - 1];

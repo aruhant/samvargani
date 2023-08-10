@@ -6,7 +6,6 @@ import 'package:paheli/utils/string.dart';
 void main() {
   testWidgets('String functions test', (WidgetTester tester) async {
     // do the same for सामर्थ्य
-
     for (String character in 'सामर्थ्य'.allCharacters) {
       print(
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
@@ -25,7 +24,6 @@ void main() {
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
           '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra}');
     }
-    print('अर्थशास्त्र'.allCharacters.toList());
 
     print('------------------');
     for (String character in 'त्रिशूल'.allCharacters) {
@@ -40,13 +38,76 @@ void main() {
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
           '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra}');
     }
-    print('स्त्री'.contains('त्र'));
     print('------------------');
     // परिप्रेक्ष्य
-    for (String character in 'परिप्रेक्ष्य'.allCharacters) {
+
+    for (String character in 'परिप्रेक्ष्क'.allCharacters) {
       print(
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
           '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra}');
+    }
+    // do the same for श्रेष्ठतम, सर्वश्रेष्ठ, उत्कृष्ट
+    print('------------------');
+    for (String character in 'श्रेष्ठतम'.allCharacters) {
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra}');
+    }
+    print('------------------');
+    for (String character in 'सर्वश्रेष्ठ'.allCharacters) {
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra}');
+    }
+    print('------------------');
+    for (String character in 'उत्कृष्ट'.allCharacters) {
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra}');
+    }
+    // do the same for शृंगार
+
+    print('------------------');
+    for (String character in 'शृंगार'.allCharacters) {
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
+    }
+    // श्रृंगार
+    print('------------------');
+    for (String character in 'श्रृंगार'.allCharacters) {
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
+    }
+    //चिह्न
+    print('------------------');
+    for (String character in 'चिह्न'.allCharacters) {
+      //print(character.runes.map((e) => String.fromCharCode(e)).toList());
+
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
+    }
+    // मुद्रित
+    print('------------------');
+    for (String character in 'मुद्रित'.allCharacters) {
+      //print(character.runes.map((e) => String.fromCharCode(e)).toList());
+
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
+    }
+    // पञ्चमाक्षर
+    print('------------------');
+    for (String character in 'पञ्चमाक्षर'.allCharacters) {
+      print(
+          // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
+
+          '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
     }
   });
 }
