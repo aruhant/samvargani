@@ -30,7 +30,7 @@ class UserPrefs {
       WidgetsFlutterBinding.ensureInitialized();
       var sharedPrefs = await SharedPreferences.getInstance();
       _instance = UserPrefs(
-          practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
+          practiceGameIndex: 44,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
           initState: sharedPrefs.getInt('initState') ?? 0,
           sharedPrefs: sharedPrefs);

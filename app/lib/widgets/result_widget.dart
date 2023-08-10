@@ -159,13 +159,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                           shareScreenShot(_screenShotController,
                                               'shareMessage');
                                         },
-                                        // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                                         style: ElevatedButton.styleFrom(
                                           elevation: 12.0,
                                           backgroundColor:
                                               Colors.deepOrangeAccent,
                                         ),
-
                                         child: const Icon(Icons.share),
                                       ),
                                     ),

@@ -38,14 +38,6 @@ class Game {
       return LocaleKeys.game_gameMessages_wrongWordLength
           .tr(args: [guessList.length.toString()]);
     }
-//  /*    if (guess.contains(RegExp(r'[a-z,A-Z]'))) {
-//       // give me a hindi full stop character
-//       return 'यह एक हिंदी शब्द है। कोई अंग्रेजी अक्षर मौजूद नहीं हैं।';
-//     }
-//     // check if guess has any non-hindi character by using not contains
-//     if (!guess.contains(RegExp(r'[^ऀ-ॿ]'))) {
-//       return 'यह एक हिंदी शब्द है। कोई अंग्रेजी अक्षर मौजूद नहीं हैं।';
-//     } */
 
     if (!kDebugMode && !wordList.contains(guess)) {
       return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);

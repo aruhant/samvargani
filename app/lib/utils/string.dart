@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 extension StringExtension on String {
@@ -5,7 +7,12 @@ extension StringExtension on String {
     List<String> stringList = characters.toList();
     for (int i = 0; i < stringList.length; i++) {
       if (stringList[i].contains('्')) {
-        stringList[i] += stringList[i + 1];
+        if (stringList[i + 1].contains('्')) {
+          stringList[i] += stringList[i + 1] + stringList[i + 2];
+          stringList.removeAt(i + 2);
+        } else {
+          stringList[i] += stringList[i + 1];
+        }
         stringList.removeAt(i + 1);
       }
     }
@@ -27,9 +34,15 @@ extension StringExtension on String {
   }
 
   String get vyanjan {
-    String vyanjan = replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
-    if (["त्र", "ज्ञ", "श्र", "क्ष"].contains(vyanjan)) return vyanjan;
-    if (vyanjan.isEmpty) return '';
-    return vyanjan[vyanjan.length - 1];
+    String v = replaceAll(RegExp(r'[ा-ौ,ँ,ः,ं,़]'), '');
+    if (v.contains("त्र") ||
+        v.contains("ज्ञ") ||
+        v.contains("श्र") ||
+        v.contains("क्ष")) {
+      return v.substring(max(max(v.indexOf("त्र"), v.indexOf("ज्ञ")),
+          max(v.indexOf("श्र"), v.indexOf("क्ष"))));
+    }
+    if (v.isEmpty) return '';
+    return v[v.length - 1];
   }
 }
