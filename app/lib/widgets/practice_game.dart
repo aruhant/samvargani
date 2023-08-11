@@ -53,12 +53,15 @@ class PracticeGameState extends State<PracticeGame> {
     }
     return GameWidget(
         game: game,
-        footer: TextButton(
-          onPressed: () {
-            displayResult(
-                GameResult(win: false, answer: game.answer, lines: game.lines));
-          },
-          child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-        ));
+        footer: (game) =>
+            (game.lines.length > 3) || UserPrefs.instance.practiceGameIndex < 5
+                ? TextButton(
+                    onPressed: () {
+                      displayResult(GameResult(
+                          win: false, answer: game.answer, lines: game.lines));
+                    },
+                    child: Text(LocaleKeys.practiceGame_resetButton.tr()),
+                  )
+                : null);
   }
 }

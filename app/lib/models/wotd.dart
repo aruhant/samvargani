@@ -2,8 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:paheli/models/answer.dart';
 
 class WotD {
-  String _location;
-  GameAnswer _answer;
+  final String _location;
+  final GameAnswer _answer;
   GameAnswer get answer => _answer;
   static Future<WotD> load({location = 'wotd'}) async {
     try {

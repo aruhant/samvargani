@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_help.dart';
@@ -60,9 +59,9 @@ class _MainScreenState extends State<MainScreen> {
               onValueChanged: onValueChanged,
             )),
         body: _currentSelection == 1
-            ? PracticeGame()
+            ? const PracticeGame()
             : _currentSelection == 2
-                ? DailyGame()
+                ? const DailyGame()
                 : GameHelpWidget(onIntroEnd: () {}),
       ),
     );
