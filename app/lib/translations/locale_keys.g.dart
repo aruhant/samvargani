@@ -57,6 +57,13 @@ abstract class  LocaleKeys {
   static const practiceGame_level = 'practiceGame.level';
   static const practiceGame_resetButton = 'practiceGame.resetButton';
   static const practiceGame_gameOver = 'practiceGame.gameOver';
+  static const practiceGame_dailyGameButton = 'practiceGame.dailyGameButton';
   static const practiceGame = 'practiceGame';
+  static const dailyGame_loading = 'dailyGame.loading';
+  static const dailyGame_line1 = 'dailyGame.line1';
+  static const dailyGame_line2 = 'dailyGame.line2';
+  static const dailyGame_line3 = 'dailyGame.line3';
+  static const dailyGame_button = 'dailyGame.button';
+  static const dailyGame = 'dailyGame';
 
 }

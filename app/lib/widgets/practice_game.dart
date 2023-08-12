@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/result_widget.dart';
@@ -62,6 +63,25 @@ class PracticeGameState extends State<PracticeGame> {
                     },
                     child: Text(LocaleKeys.practiceGame_resetButton.tr()),
                   )
-                : null);
+                : null,
+        header: (game) => ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const DailyGame()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_back,
+                      size: 20,
+                    ),
+                    // const SizedBox(width: 14),
+                    // Text(LocaleKeys.practiceGame_dailyGameButton.tr()),
+                  ],
+                ),
+              ),
+            ));
   }
 }

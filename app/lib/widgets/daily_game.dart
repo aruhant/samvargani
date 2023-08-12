@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/wotd.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/result_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../models/user_prefs.dart';
 
 class DailyGame extends StatefulWidget {
   const DailyGame({Key? key}) : super(key: key);
@@ -32,17 +35,17 @@ class DailyGameState extends State<DailyGame> {
   @override
   Widget build(BuildContext context) {
     if (game == null) {
-      return const Material(
-          color: Color.fromARGB(255, 226, 149, 174),
+      return Material(
+          color: const Color.fromARGB(255, 226, 149, 174),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Loading...'),
+                padding: const EdgeInsets.all(8.0),
+                child: Text(LocaleKeys.dailyGame_loading.tr()),
               ),
-              CircularProgressIndicator(),
+              const CircularProgressIndicator(),
             ],
           ));
     } else {
@@ -57,26 +60,25 @@ class DailyGameState extends State<DailyGame> {
       children: [
         // text - you have completed the daily game with text style
         Text(
-          'You have completed the daily game',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
+          LocaleKeys.dailyGame_line1.tr(),
+          style: const TextStyle(
+            fontSize: 25,
+            color: Color.fromARGB(255, 43, 81, 100),
           ),
         ),
         // text come back tmr for more
         Text(
-          'Come back tomorrow for more',
-          style: TextStyle(
+          LocaleKeys.dailyGame_line2.tr(),
+          style: const TextStyle(
             fontSize: 20,
-            color: Colors.black,
+            color: Color.fromARGB(255, 43, 81, 100),
           ),
         ),
-        // text -  in the meantime...
         Text(
-          'In the meantime...',
-          style: TextStyle(
+          LocaleKeys.dailyGame_line3.tr(),
+          style: const TextStyle(
             fontSize: 20,
-            color: Colors.black,
+            color: Color.fromARGB(255, 43, 81, 100),
           ),
         ),
         // elevated button - play practice game
@@ -88,10 +90,20 @@ class DailyGameState extends State<DailyGame> {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const PracticeGame()));
             },
-            child: Text('Play Practice Game'),
             style: ElevatedButton.styleFrom(
               elevation: 12.0,
               backgroundColor: Colors.deepOrangeAccent,
+            ),
+            child: Text(
+              LocaleKeys.dailyGame_button.tr(args: [
+                (UserPrefs.instance.practiceGameIndex + 1).toString()
+              ]),
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+              // set style
             ),
           ),
         ),
@@ -99,8 +111,3 @@ class DailyGameState extends State<DailyGame> {
     );
   }
 }
-
-/*
-Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PracticeGame())
-                  */

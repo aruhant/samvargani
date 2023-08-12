@@ -71,8 +71,15 @@
 "practiceGame":{
     "level": "Level {}",
     "resetButton": "Give Up?",
-    "gameOver": "You have completed all the words. You have finished this game."
-    
+    "gameOver": "You have completed all the words. You have finished this game." ,
+    "dailyGameButton": "Daily Challenge"
+} ,
+"dailyGame":{
+    "loading": "Loading...",
+    "line1": "You have completed today's Daily Word Challenge!",
+    "line2": "Come back tomorrow for a new challenge!",
+    "line3": "In the meantime, try practice mode!",
+    "button": "Practice Level {}"
 
-} 
+}
 }

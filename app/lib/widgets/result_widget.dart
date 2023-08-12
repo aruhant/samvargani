@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
-import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/utils/share.dart';
@@ -100,7 +99,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                       pressedShare
                           ? LineWidget(
                               disableTooltip: true,
-                              line: widget.gameResult.lines[1],
+                              line: widget.gameResult.lines.last,
                               group: AutoSizeGroup(),
                             )
                           : (Column(
@@ -157,7 +156,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                         onPressed: () {
                                           setState(() => pressedShare = true);
                                           shareScreenShot(_screenShotController,
-                                              'shareMessage');
+                                              LocaleKeys.gameResult_share.tr());
                                         },
                                         style: ElevatedButton.styleFrom(
                                           elevation: 12.0,

@@ -12,9 +12,10 @@ import 'package:vitality/models/WhenOutOfScreenMode.dart';
 import 'package:vitality/vitality.dart';
 
 class GameWidget extends StatefulWidget {
-  const GameWidget({required this.game, this.footer, super.key});
+  const GameWidget({required this.game, this.footer, super.key, this.header});
   final Game game;
   final Widget? Function(Game)? footer;
+  final Widget? Function(Game)? header;
 
   @override
   State<GameWidget> createState() => _GameWidgetState();
@@ -53,6 +54,13 @@ class _GameWidgetState extends State<GameWidget> {
             SingleChildScrollView(
               child: Column(
                 children: [
+                  // a bit of space from the top
+                  const SizedBox(height: 10),
+                  Row(children: [
+                    const SizedBox(width: 10),
+                    if (widget.header != null)
+                      widget.header!(widget.game) ?? Container()
+                  ]),
                   const SizedBox(height: 25),
                   Text(LocaleKeys.app_title.tr(),
                       style: const TextStyle(
