@@ -56,58 +56,73 @@ class DailyGameState extends State<DailyGame> {
   }
 
   successFooter(BuildContext context) {
-    return Column(
-      children: [
-        // text - you have completed the daily game with text style
-        Text(
-          LocaleKeys.dailyGame_line1.tr(),
-          style: const TextStyle(
-            fontSize: 25,
-            color: Color.fromARGB(255, 43, 81, 100),
-          ),
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(12.0),
+      decoration: BoxDecoration(
+        color: Colors.white30,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(20),
         ),
-        // text come back tmr for more
-        Text(
-          LocaleKeys.dailyGame_line2.tr(),
-          style: const TextStyle(
-            fontSize: 20,
-            color: Color.fromARGB(255, 43, 81, 100),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // text - you have completed the daily game with text style
+          Text(
+            LocaleKeys.dailyGame_line1.tr(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 25,
+              color: Color.fromARGB(255, 43, 81, 100),
+            ),
           ),
-        ),
-        Text(
-          LocaleKeys.dailyGame_line3.tr(),
-          style: const TextStyle(
-            fontSize: 20,
-            color: Color.fromARGB(255, 43, 81, 100),
+          // text come back tmr for more
+          Text(
+            LocaleKeys.dailyGame_line2.tr(),
+            style: const TextStyle(
+              fontSize: 20,
+              color: Color.fromARGB(255, 43, 81, 100),
+            ),
           ),
-        ),
-        // elevated button - play practice game
+          Text(
+            LocaleKeys.dailyGame_line3.tr(),
+            style: const TextStyle(
+              fontSize: 20,
+              color: Color.fromARGB(255, 43, 81, 100),
+            ),
+          ),
+          // elevated button - play practice game
 
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PracticeGame()));
-            },
-            style: ElevatedButton.styleFrom(
-              elevation: 12.0,
-              backgroundColor: Colors.deepOrangeAccent,
-            ),
-            child: Text(
-              LocaleKeys.dailyGame_button.tr(args: [
-                (UserPrefs.instance.practiceGameIndex + 1).toString()
-              ]),
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const PracticeGame()));
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                backgroundColor: Colors.orangeAccent,
+                padding: const EdgeInsets.all(12),
               ),
-              // set style
+              child: Text(
+                LocaleKeys.dailyGame_button.tr(args: [
+                  (UserPrefs.instance.practiceGameIndex + 1).toString()
+                ]),
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+                // set style
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

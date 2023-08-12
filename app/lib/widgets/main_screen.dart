@@ -15,55 +15,53 @@ class _MainScreenState extends State<MainScreen> {
   int? _currentSelection = 1;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            title: CustomSlidingSegmentedControl<int>(
-              fromMax: true,
-              children: const {
-                1: Text(
-                  'Practice',
-                  textAlign: TextAlign.center,
-                ),
-                2: Text(
-                  'Daily Challange',
-                  textAlign: TextAlign.center,
-                ),
-                3: Text(
-                  'Help',
-                  textAlign: TextAlign.center,
-                ),
-              },
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(12),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: CustomSlidingSegmentedControl<int>(
+            fromMax: true,
+            children: const {
+              1: Text(
+                'Practice',
+                textAlign: TextAlign.center,
               ),
-              thumbDecoration: BoxDecoration(
-                color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.3),
-                    blurRadius: 4.0,
-                    spreadRadius: 1.0,
-                    offset: const Offset(
-                      0.0,
-                      2.0,
-                    ),
+              2: Text(
+                'Daily Challange',
+                textAlign: TextAlign.center,
+              ),
+              3: Text(
+                'Help',
+                textAlign: TextAlign.center,
+              ),
+            },
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            thumbDecoration: BoxDecoration(
+              color: Colors.greenAccent,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.3),
+                  blurRadius: 4.0,
+                  spreadRadius: 1.0,
+                  offset: const Offset(
+                    0.0,
+                    2.0,
                   ),
-                ],
-              ),
-              onValueChanged: onValueChanged,
-            )),
-        body: _currentSelection == 1
-            ? const PracticeGame()
-            : _currentSelection == 2
-                ? const DailyGame()
-                : GameHelpWidget(onIntroEnd: () {}),
-      ),
+                ),
+              ],
+            ),
+            onValueChanged: onValueChanged,
+          )),
+      body: _currentSelection == 1
+          ? const PracticeGame()
+          : _currentSelection == 2
+              ? const DailyGame()
+              : GameHelpWidget(onIntroEnd: () {}),
     );
   }
 

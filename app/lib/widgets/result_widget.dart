@@ -155,15 +155,25 @@ class _ResultWidgetState extends State<ResultWidget> {
                                       child: ElevatedButton(
                                         onPressed: () {
                                           setState(() => pressedShare = true);
-                                          shareScreenShot(_screenShotController,
-                                              LocaleKeys.gameResult_share.tr());
+                                          shareScreenShot(
+                                              _screenShotController,
+                                              LocaleKeys.gameResult_shareMessage
+                                                  .tr(args: [
+                                                widget.gameResult.answer.title,
+                                                widget.gameResult.tries
+                                                    .toString()
+                                              ]));
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          elevation: 12.0,
-                                          backgroundColor:
-                                              Colors.deepOrangeAccent,
+                                          padding: EdgeInsets.all(10),
+                                          shape: const CircleBorder(),
+                                          elevation: 0,
+                                          backgroundColor: Colors.white,
                                         ),
-                                        child: const Icon(Icons.share),
+                                        child: const Icon(
+                                          Icons.share,
+                                          color: Colors.deepOrangeAccent,
+                                        ),
                                       ),
                                     ),
                                   ],

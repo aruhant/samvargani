@@ -28,30 +28,30 @@ class _GameWidgetState extends State<GameWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Vitality.randomly(
-              key: ValueKey(widget.game),
-              height: size.height,
-              width: size.width,
-              background: widget.game.answer.backgroundColor,
-              maxOpacity: widget.game.answer.maxOpacity, // 0,4
-              minOpacity: widget.game.answer.minOpacity, // 0,15
-              itemsCount: widget.game.answer.itemsCount, // 6
-              enableXMovements: widget.game.answer.moveHorizontal,
-              enableYMovements: widget.game.answer.moveVertical,
-              whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
-              maxSpeed: widget.game.answer.maxSpeed, // 0,4
-              maxSize: widget.game.answer.maxSize, // 30
-              minSpeed: widget.game.answer.minSpeed, // 0,25
-              minSize: widget.game.answer.minSize, // 150
-              randomItemsColors: widget.game.answer.colors,
-              randomItemsBehaviours: widget.game.answer.icons
-                  .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
-                  .toList(),
-            ),
-            SingleChildScrollView(
+      body: Stack(
+        children: [
+          Vitality.randomly(
+            key: ValueKey(widget.game),
+            height: size.height,
+            width: size.width,
+            background: widget.game.answer.backgroundColor,
+            maxOpacity: widget.game.answer.maxOpacity, // 0,4
+            minOpacity: widget.game.answer.minOpacity, // 0,15
+            itemsCount: widget.game.answer.itemsCount, // 6
+            enableXMovements: widget.game.answer.moveHorizontal,
+            enableYMovements: widget.game.answer.moveVertical,
+            whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
+            maxSpeed: widget.game.answer.maxSpeed, // 0,4
+            maxSize: widget.game.answer.maxSize, // 30
+            minSpeed: widget.game.answer.minSpeed, // 0,25
+            minSize: widget.game.answer.minSize, // 150
+            randomItemsColors: widget.game.answer.colors,
+            randomItemsBehaviours: widget.game.answer.icons
+                .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
+                .toList(),
+          ),
+          SingleChildScrollView(
+            child: SafeArea(
               child: Column(
                 children: [
                   // a bit of space from the top
@@ -65,13 +65,13 @@ class _GameWidgetState extends State<GameWidget> {
                   Text(LocaleKeys.app_title.tr(),
                       style: const TextStyle(
                           fontSize: 40,
-                          color: Color.fromRGBO(61, 64, 91, 1),
+                          color: Colors.black54,
                           fontWeight: FontWeight.bold)),
                   Text(widget.game.answer.title,
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                           fontSize: 18,
-                          color: Color.fromRGBO(122, 122, 122, 1),
+                          color: Colors.black54,
                           fontWeight: FontWeight.bold)),
                   LinesWidget(
                       lines: widget.game.lines, wordLength: widget.game.length),
@@ -80,28 +80,24 @@ class _GameWidgetState extends State<GameWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 18),
                       child: TextField(
                         style: const TextStyle(
-                            fontSize: 20, color: Color.fromRGBO(61, 64, 91, 1)),
+                            fontSize: 20, color: Colors.black87),
                         controller: controller,
                         decoration: InputDecoration(
                             fillColor: Colors.black12,
-                            labelStyle: const TextStyle(
-                                color: Color.fromRGBO(61, 64, 91, 1)),
+                            labelStyle: const TextStyle(color: Colors.black87),
                             filled: true,
                             enabledBorder: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(11, 29, 190, 1))),
+                                borderSide: BorderSide(color: Colors.black38)),
                             border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(11, 29, 190, 1))),
+                                borderSide: BorderSide(color: Colors.black38)),
                             focusedBorder: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(61, 64, 91, 1))),
+                                borderSide: BorderSide(color: Colors.black38)),
                             labelText: LocaleKeys.game_answerLabel.tr()),
                         onSubmitted: (value) {
                           setState(() {
@@ -156,8 +152,8 @@ class _GameWidgetState extends State<GameWidget> {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

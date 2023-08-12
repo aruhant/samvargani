@@ -64,22 +64,32 @@ class PracticeGameState extends State<PracticeGame> {
                     child: Text(LocaleKeys.practiceGame_resetButton.tr()),
                   )
                 : null,
-        header: (game) => ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const DailyGame()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_back,
-                      size: 20,
-                    ),
-                    // const SizedBox(width: 14),
-                    // Text(LocaleKeys.practiceGame_dailyGameButton.tr()),
-                  ],
+        header: (game) => Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 10),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: Colors.orangeAccent,
+                  padding: const EdgeInsets.all(6),
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DailyGame()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_back,
+                        size: 14,
+                      ),
+                      const SizedBox(width: 14),
+                      Text(LocaleKeys.practiceGame_dailyGameButton.tr()),
+                    ],
+                  ),
                 ),
               ),
             ));
