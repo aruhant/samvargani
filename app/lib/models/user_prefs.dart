@@ -1,19 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:paheli/models/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPrefs {
   final bool _darkMode;
   int _initState;
   int _practiceGameIndex;
-  Map _currentPracticeGame;
-  Map _currentDailyGame;
+  String _currentPracticeGame;
+  String _currentDailyGame;
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
       required int initState,
       required int practiceGameIndex,
-      required Map currentPracticeGame,
-      required Map currentDailyGame,
+      required String currentPracticeGame,
+      required String currentDailyGame,
       required SharedPreferences sharedPrefs})
       : _initState = initState,
         _darkMode = darkMode,
@@ -28,8 +31,9 @@ class UserPrefs {
   bool get shouldShowHelp => _initState < 2;
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
-  Map get currentPracticeGame => _currentPracticeGame;
-  Map get currentDailyGame => _currentDailyGame;
+  Game get currentPracticeGame =>
+      Game.fromJson(jsonDecode(_currentPracticeGame));
+  Game get currentDailyGame => Game.fromJson(jsonDecode(_currentDailyGame));
 
   get language => null;
 
@@ -41,8 +45,8 @@ class UserPrefs {
           practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
           initState: sharedPrefs.getInt('initState') ?? 0,
-          currentPracticeGame: {},
-          currentDailyGame: {},
+          currentPracticeGame: sharedPrefs.getString('practiceGame') ?? '{}',
+          currentDailyGame: sharedPrefs.getString('dailyGame') ?? '{}',
           sharedPrefs: sharedPrefs);
     }
     return _instance!;
@@ -67,13 +71,13 @@ class UserPrefs {
     return true;
   }
 
-  savePracticeGame(Map game) {
-    _instance!._currentPracticeGame = game;
+  savePracticeGame(Game game) {
+    _instance!._currentPracticeGame = jsonEncode(game.toJson());
     _instance!.save();
   }
 
-  saveDailyGame(Map game) {
-    _instance!._currentDailyGame = game;
+  saveDailyGame(Game game) {
+    _instance!._currentDailyGame = jsonEncode(game.toJson());
     _instance!.save();
   }
 
@@ -81,5 +85,7 @@ class UserPrefs {
     _sharedPrefs.setBool('darkMode', _instance!._darkMode);
     _sharedPrefs.setInt('initState', _instance!._initState);
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
+    _sharedPrefs.setString('practiceGame', (_instance!._currentPracticeGame));
+    _sharedPrefs.setString('dailyGame', (_instance!._currentDailyGame));
   }
 }
