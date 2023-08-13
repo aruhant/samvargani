@@ -8,7 +8,6 @@ class UserPrefs {
   final bool _darkMode;
   int _initState;
   int _practiceGameIndex;
-  String _game;
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
@@ -20,7 +19,6 @@ class UserPrefs {
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
-        _game = currentDailyGame,
         _sharedPrefs = sharedPrefs;
 
   static UserPrefs? _instance;
@@ -29,7 +27,6 @@ class UserPrefs {
   bool get shouldShowHelp => _initState < 2;
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
-  Game get currentDailyGame => Game.fromJson(jsonDecode(_game));
 
   get language => null;
 
@@ -68,8 +65,10 @@ class UserPrefs {
   }
 
   saveGame(Game game) {
-    _instance!._game = jsonEncode(game.toJson());
-    _sharedPrefs.setString('game_${game.name}', (_instance!._game));
+    String s = jsonEncode(game.toJson());
+    print('------LOAD--------');
+    print(s);
+    _sharedPrefs.setString('game_${game.name}', s);
   }
 
   save() {
@@ -79,6 +78,8 @@ class UserPrefs {
 
   Game? loadGame(String name) {
     var game = _sharedPrefs.getString('game_$name');
+    print('------LOAD--------');
+    print(game);
     if (game != null) return Game.fromJson(jsonDecode(game));
     return null;
   }

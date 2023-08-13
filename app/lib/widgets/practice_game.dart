@@ -20,7 +20,7 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   void initState() {
     super.initState();
-    game = Game(
+    game = Game.load(
         answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
         onSuceess: displayResult);
   }
@@ -32,7 +32,7 @@ class PracticeGameState extends State<PracticeGame> {
         builder: (context) => ResultWidget(gameResult: result));
     setState(() {
       if (s) {
-        game = Game(
+        game = Game.load(
           answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
           onSuceess: displayResult,
         );

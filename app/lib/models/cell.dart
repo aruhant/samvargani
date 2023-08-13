@@ -4,7 +4,7 @@ import 'package:paheli/utils/string.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 enum CellState {
-  correct(),
+  correct,
   incorrect,
   empty,
   misplaced,
@@ -145,11 +145,11 @@ class HindiCharacter {
 
 class Cell {
   String value;
+  late HindiCharacter myLetter;
+  CellState state;
   Cell(this.value, {this.state = CellState.empty}) {
     myLetter = HindiCharacter(value);
   }
-  late HindiCharacter myLetter;
-  CellState state = CellState.empty;
 
   static Cell fromJson(Map<String, dynamic> json) {
     return Cell(

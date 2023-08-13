@@ -27,8 +27,14 @@ class Game {
       {required this.onSuceess,
       required this.answer,
       List<Line> loadLines = const []})
-      : _loadLines =
-            UserPrefs.instance.loadGame(answer.answer)?.lines ?? loadLines;
+      : _loadLines = loadLines;
+  Game.load(
+      {required this.onSuceess,
+      required this.answer,
+      List<Line> loadLines = const []})
+      : _loadLines = [
+          ...(UserPrefs.instance.loadGame(answer.answer)?.lines ?? loadLines)
+        ];
   int get length => answer.answer.allCharacters.length;
   List<String> get answerList => answer.answer.allCharacters;
   bool get complete =>
@@ -98,7 +104,7 @@ class Game {
   Map toJson() {
     return {
       'answer': answer.toJson(),
-      'lines': _loadLines.map((e) => e.toJson()).toList()
+      'lines': _loadLines.map((Line e) => e.toJson()).toList()
     };
   }
 }
