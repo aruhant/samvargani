@@ -150,4 +150,16 @@ class Cell {
   }
   late HindiCharacter myLetter;
   CellState state = CellState.empty;
+
+  static Cell fromJson(Map<String, dynamic> json) {
+    return Cell(
+      json['value'] as String,
+      state: CellState.values[json['state'] as int],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        'state': state.index,
+      };
 }

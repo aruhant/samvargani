@@ -5,15 +5,21 @@ class UserPrefs {
   final bool _darkMode;
   int _initState;
   int _practiceGameIndex;
+  Map _currentPracticeGame;
+  Map _currentDailyGame;
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
       required int initState,
       required int practiceGameIndex,
+      required Map currentPracticeGame,
+      required Map currentDailyGame,
       required SharedPreferences sharedPrefs})
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
+        _currentPracticeGame = currentPracticeGame,
+        _currentDailyGame = currentDailyGame,
         _sharedPrefs = sharedPrefs;
 
   static UserPrefs? _instance;
@@ -22,6 +28,8 @@ class UserPrefs {
   bool get shouldShowHelp => _initState < 2;
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
+  Map get currentPracticeGame => _currentPracticeGame;
+  Map get currentDailyGame => _currentDailyGame;
 
   get language => null;
 
@@ -33,6 +41,8 @@ class UserPrefs {
           practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
           initState: sharedPrefs.getInt('initState') ?? 0,
+          currentPracticeGame: {},
+          currentDailyGame: {},
           sharedPrefs: sharedPrefs);
     }
     return _instance!;
@@ -55,6 +65,16 @@ class UserPrefs {
     _instance!._practiceGameIndex++;
     _instance!.save();
     return true;
+  }
+
+  savePracticeGame(Map game) {
+    _instance!._currentPracticeGame = game;
+    _instance!.save();
+  }
+
+  saveDailyGame(Map game) {
+    _instance!._currentDailyGame = game;
+    _instance!.save();
   }
 
   save() {

@@ -10,10 +10,10 @@ import 'package:easy_localization/easy_localization.dart';
 
 class Game {
   GameAnswer answer;
-  final List<Line> _lines = [];
+  final List<Line> _loadLines;
   final Function(GameResult) onSuceess;
   List<Line> get lines => [
-        ..._lines,
+        ..._loadLines,
         Line(
             cells: List<Cell>.generate(
                 answer.answer.allCharacters.length,
@@ -22,12 +22,16 @@ class Game {
                         .join(' '),
                     state: CellState.empty)))
       ];
-  Game({required this.onSuceess, required this.answer});
+  Game(
+      {required this.onSuceess,
+      required this.answer,
+      List<Line> loadLines = const []})
+      : _loadLines = loadLines;
   int get length => answer.answer.allCharacters.length;
   List<String> get answerList => answer.answer.allCharacters;
   bool get complete =>
-      _lines.isNotEmpty &&
-      answer.answer == _lines.last.cells.map((e) => e.value).join();
+      _loadLines.isNotEmpty &&
+      answer.answer == _loadLines.last.cells.map((e) => e.value).join();
 
   String addGuess(String guess) {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
@@ -46,11 +50,12 @@ class Game {
     }
 
     List<Cell> cells = [];
+    _loadLines.add(Line(cells: cells));
+
     for (int i = 0; i < guessList.length; i++) {
       cells.add(Cell(guessList[i],
           state: getStateForCell(answer.answer, guessList[i], i)));
     }
-    _lines.add(Line(cells: cells));
     if (answer.answer == guess) {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return '';
@@ -72,6 +77,24 @@ class Game {
     } else {
       return CellState.incorrect;
     }
+  }
+
+  static Game fromJson(Map json) {
+    return Game(
+        answer: GameAnswer.fromJson(json['answer']),
+        onSuceess: (GameResult result) {},
+        loadLines: json['lines']
+            .map<Line>((e) => Line.fromJson(e))
+            .toList()
+            .cast<Line>()
+            .toList());
+  }
+
+  Map toJson() {
+    return {
+      'answer': answer.toJson(),
+      'lines': _loadLines.map((e) => e.toJson()).toList()
+    };
   }
 }
 

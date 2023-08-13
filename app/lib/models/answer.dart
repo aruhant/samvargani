@@ -44,14 +44,14 @@ class GameAnswer {
   static GameAnswer fromJson(Map json) {
     print(json);
     return GameAnswer(
-        answer: json['answer'] ?? '',
-        meaning: json['meaning'] ?? '',
+        answer: json['answer'] ?? 'समाधान',
+        meaning: json['meaning'] ?? 'संशय दूर करना',
         title: json['title'] ?? 'Daily Challenge',
         colors: json['colors'] != null
             ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)
                 .toList()
-            : const [Color.fromARGB(255, 180, 207, 229)],
+            : const [Color.fromARGB(255, 210, 161, 183)],
         backgroundColor: json['backgroundColor'] != null
             ? TinyColor.fromString(json['backgroundColor']).color
             : const Color.fromARGB(255, 180, 207, 229),
@@ -60,7 +60,7 @@ class GameAnswer {
                 .map((e) => LineIcons.byName(e))
                 .toList()
                 .cast()
-            : [LineIcons.cloud],
+            : [LineIcons.handshake],
         images: json['images'] != null
             ? (json['images'] as List).cast<String>()
             : [],
@@ -73,6 +73,32 @@ class GameAnswer {
         maxSpeed: json['maxSpeed'] ?? 0.4,
         minSpeed: json['minSpeed'] ?? 0.25,
         itemsCount: json['itemsCount'] ?? 6);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'answer': answer,
+      'meaning': meaning,
+      'title': title,
+      'colors':
+          colors.map((e) => TinyColor.fromColor(e).toString()).toList().cast(),
+      'backgroundColor': TinyColor.fromColor(backgroundColor!).toString(),
+      'icons': icons.map((e) => e.toString()).toList().cast(),
+      'images': images,
+      'moveHorizontal': moveHorizontal,
+      'moveVertical': moveVertical,
+      'maxOpacity': maxOpacity,
+      'minOpacity': minOpacity,
+      'maxSize': maxSize,
+      'minSize': minSize,
+      'maxSpeed': maxSpeed,
+      'minSpeed': minSpeed,
+      'itemsCount': itemsCount,
+    };
+  }
+
+  static List<GameAnswer> fromJsonList(List json) {
+    return json.map((e) => GameAnswer.fromJson(e)).toList();
   }
 }
 

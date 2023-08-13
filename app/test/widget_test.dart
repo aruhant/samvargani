@@ -1,8 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:paheli/models/answer.dart';
 import 'package:paheli/utils/string.dart';
 
 void main() {
   testWidgets('String functions test', (WidgetTester tester) async {
+    /*
     // do the same for सामर्थ्य
     for (String character in 'सामर्थ्य'.allCharacters) {
       print(
@@ -106,6 +111,17 @@ void main() {
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
 
           '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
-    }
+    }*/
+    // test toJson of answer
+    final anAnswer = GameAnswer(
+        answer: 'a',
+        meaning: 'a',
+        backgroundColor: Color.fromARGB(2, 2, 2, 2),
+        colors: [Colors.black12],
+        icons: [LineIcons.handshake]);
+    final json = anAnswer.toJson();
+    final fromJson = GameAnswer.fromJson(json);
+
+    //end (add curly braces and parenthesis where required )
   });
 }
