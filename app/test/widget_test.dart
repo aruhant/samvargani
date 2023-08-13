@@ -116,11 +116,18 @@ void main() {
     final anAnswer = GameAnswer(
         answer: 'a',
         meaning: 'a',
+        images: [],
         backgroundColor: Color.fromARGB(2, 2, 2, 2),
         colors: [Colors.black12],
         icons: [LineIcons.handshake]);
     final json = anAnswer.toJson();
+
+    print(json);
+
+    print('----------------------');
     final fromJson = GameAnswer.fromJson(json);
+    print('----------------------');
+    print(fromJson.toJson());
 
     //end (add curly braces and parenthesis where required )
   });

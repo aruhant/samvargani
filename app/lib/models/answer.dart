@@ -57,7 +57,11 @@ class GameAnswer {
             : const Color.fromARGB(255, 180, 207, 229),
         icons: json['icons'] != null
             ? (json['icons'] as List)
-                .map((e) => LineIcons.byName(e))
+                .map((e) => e is String
+                    ? LineIcons.byName(e)
+                    : IconData(e,
+                        fontFamily: 'Awesome Line Icons 1.3.0',
+                        fontPackage: 'line_icons'))
                 .toList()
                 .cast()
             : [LineIcons.handshake],
@@ -80,10 +84,9 @@ class GameAnswer {
       'answer': answer,
       'meaning': meaning,
       'title': title,
-      'colors':
-          colors.map((e) => TinyColor.fromColor(e).toString()).toList().cast(),
-      'backgroundColor': TinyColor.fromColor(backgroundColor!).toString(),
-      'icons': icons.map((e) => e.toString()).toList().cast(),
+      'icons': icons.map((e) => e.codePoint).toList().cast(),
+      'colors': colors.map((e) => e.toHex8()).toList().cast(),
+      'backgroundColor': backgroundColor?.toHex8(),
       'images': images,
       'moveHorizontal': moveHorizontal,
       'moveVertical': moveVertical,
