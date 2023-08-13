@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:paheli/models/answer.dart';
+import 'package:paheli/models/cell.dart';
+import 'package:paheli/models/game.dart';
+import 'package:paheli/models/line.dart';
 
 void main() {
   testWidgets('String functions test', (WidgetTester tester) async {
@@ -111,7 +116,7 @@ void main() {
           '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
     }*/
     // test toJson of answer
-    final anAnswer = GameAnswer(
+    /*final anAnswer = GameAnswer(
         answer: 'a',
         meaning: 'a',
         images: [],
@@ -125,8 +130,31 @@ void main() {
     print('----------------------');
     final fromJson = GameAnswer.fromJson(json);
     print('----------------------');
-    print(fromJson.toJson());
+    print(fromJson.toJson());*/
 
-    //end (add curly braces and parenthesis where required )
+    Line line = Line(cells: [
+      Cell('a', state: CellState.misplaced),
+      Cell('b', state: CellState.misplaced),
+      Cell('c', state: CellState.misplacedVyanjan),
+      Cell('d', state: CellState.correctVyanjan),
+    ]);
+    Game game = Game(
+        onSuceess: (p0) {},
+        answer: GameAnswer(
+            answer: 'a',
+            meaning: 'a',
+            images: [],
+            backgroundColor: const Color.fromARGB(2, 2, 2, 2),
+            colors: [Colors.black12],
+            icons: [LineIcons.handshake]),
+        loadLines: [line]);
+    Map s = line.toJson();
+    print(s);
+    Line l = Line.fromJson(jsonDecode(jsonEncode(s)));
+    print(l.toJson());
+    print('----------------------');
+    print(game.toJson());
+    print('----------------------');
+    print(Game.fromJson(jsonDecode(jsonEncode(game.toJson()))).toJson());
   });
 }

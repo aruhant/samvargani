@@ -45,6 +45,7 @@ class Game {
 
   String addGuess(String guess) {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
+    if (guess.toLowerCase() == 'clear') return UserPrefs.instance.clear();
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return answer.answer;
@@ -60,13 +61,12 @@ class Game {
     }
 
     List<Cell> cells = [];
-    _loadLines.add(Line(cells: cells));
-    UserPrefs.instance.saveGame(this);
-
     for (int i = 0; i < guessList.length; i++) {
       cells.add(Cell(guessList[i],
           state: getStateForCell(answer.answer, guessList[i], i)));
     }
+    _loadLines.add(Line(cells: cells));
+    UserPrefs.instance.saveGame(this);
     if (answer.answer == guess) {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return '';
