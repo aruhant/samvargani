@@ -8,8 +8,7 @@ class UserPrefs {
   final bool _darkMode;
   int _initState;
   int _practiceGameIndex;
-  String _currentPracticeGame;
-  String _currentDailyGame;
+  String _game;
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
@@ -21,8 +20,7 @@ class UserPrefs {
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
-        _currentPracticeGame = currentPracticeGame,
-        _currentDailyGame = currentDailyGame,
+        _game = currentDailyGame,
         _sharedPrefs = sharedPrefs;
 
   static UserPrefs? _instance;
@@ -31,9 +29,7 @@ class UserPrefs {
   bool get shouldShowHelp => _initState < 2;
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
-  Game get currentPracticeGame =>
-      Game.fromJson(jsonDecode(_currentPracticeGame));
-  Game get currentDailyGame => Game.fromJson(jsonDecode(_currentDailyGame));
+  Game get currentDailyGame => Game.fromJson(jsonDecode(_game));
 
   get language => null;
 
@@ -54,12 +50,12 @@ class UserPrefs {
 
   firstRunDone() {
     _instance!._initState = 2;
-    _instance!.save();
+    _sharedPrefs.setInt('initState', _instance!._initState);
   }
 
   localeSet() {
     _instance!._initState = 1;
-    _instance!.save();
+    _sharedPrefs.setInt('initState', _instance!._initState);
   }
 
   bool makeProgress(int max) {
@@ -67,25 +63,23 @@ class UserPrefs {
       return false;
     }
     _instance!._practiceGameIndex++;
-    _instance!.save();
+    _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
     return true;
   }
 
-  savePracticeGame(Game game) {
-    _instance!._currentPracticeGame = jsonEncode(game.toJson());
-    _instance!.save();
-  }
-
-  saveDailyGame(Game game) {
-    _instance!._currentDailyGame = jsonEncode(game.toJson());
-    _instance!.save();
+  saveGame(Game game) {
+    _instance!._game = jsonEncode(game.toJson());
+    _sharedPrefs.setString('game_${game.name}', (_instance!._game));
   }
 
   save() {
     _sharedPrefs.setBool('darkMode', _instance!._darkMode);
-    _sharedPrefs.setInt('initState', _instance!._initState);
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
-    _sharedPrefs.setString('practiceGame', (_instance!._currentPracticeGame));
-    _sharedPrefs.setString('dailyGame', (_instance!._currentDailyGame));
+  }
+
+  Game? loadGame(String name) {
+    var game = _sharedPrefs.getString('game_$name');
+    if (game != null) return Game.fromJson(jsonDecode(game));
+    return null;
   }
 }

@@ -59,9 +59,9 @@ class DailyGameState extends State<DailyGame> {
     return Container(
       padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white30,
-        borderRadius: const BorderRadius.all(
+        borderRadius: BorderRadius.all(
           Radius.circular(20),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/models/wordlist.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
@@ -26,12 +27,15 @@ class Game {
       {required this.onSuceess,
       required this.answer,
       List<Line> loadLines = const []})
-      : _loadLines = loadLines;
+      : _loadLines =
+            UserPrefs.instance.loadGame(answer.answer)?.lines ?? loadLines;
   int get length => answer.answer.allCharacters.length;
   List<String> get answerList => answer.answer.allCharacters;
   bool get complete =>
       _loadLines.isNotEmpty &&
       answer.answer == _loadLines.last.cells.map((e) => e.value).join();
+
+  String get name => answer.answer;
 
   String addGuess(String guess) {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
@@ -51,6 +55,7 @@ class Game {
 
     List<Cell> cells = [];
     _loadLines.add(Line(cells: cells));
+    UserPrefs.instance.saveGame(this);
 
     for (int i = 0; i < guessList.length; i++) {
       cells.add(Cell(guessList[i],

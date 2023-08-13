@@ -165,7 +165,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                               ]));
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10),
                                           shape: const CircleBorder(),
                                           elevation: 0,
                                           backgroundColor: Colors.white,

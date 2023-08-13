@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:paheli/models/answer.dart';
-import 'package:paheli/utils/string.dart';
 
 void main() {
   testWidgets('String functions test', (WidgetTester tester) async {
@@ -117,7 +115,7 @@ void main() {
         answer: 'a',
         meaning: 'a',
         images: [],
-        backgroundColor: Color.fromARGB(2, 2, 2, 2),
+        backgroundColor: const Color.fromARGB(2, 2, 2, 2),
         colors: [Colors.black12],
         icons: [LineIcons.handshake]);
     final json = anAnswer.toJson();
