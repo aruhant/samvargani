@@ -28,13 +28,8 @@ class Game {
       required this.answer,
       List<Line> loadLines = const []})
       : _loadLines = loadLines;
-  Game.load(
-      {required this.onSuceess,
-      required this.answer,
-      List<Line> loadLines = const []})
-      : _loadLines = [
-          ...(UserPrefs.instance.loadGame(answer.answer)?.lines ?? loadLines)
-        ];
+  Game.load({required this.onSuceess, required this.answer})
+      : _loadLines = UserPrefs.instance.loadGame(answer.answer)?.lines ?? [];
   int get length => answer.answer.allCharacters.length;
   List<String> get answerList => answer.answer.allCharacters;
   bool get complete =>
@@ -91,7 +86,9 @@ class Game {
   }
 
   static Game fromJson(Map json) {
-    return Game(
+    print('Loading liunes' + json['lines'].toString());
+    print(json['lines']);
+    Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
         onSuceess: (GameResult result) {},
         loadLines: json['lines']
@@ -99,6 +96,8 @@ class Game {
             .toList()
             .cast<Line>()
             .toList());
+    print('Loaded lines' + game._loadLines.toString());
+    return game;
   }
 
   Map toJson() {

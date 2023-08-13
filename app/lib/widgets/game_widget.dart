@@ -26,6 +26,7 @@ class _GameWidgetState extends State<GameWidget> {
   String message = '';
   @override
   Widget build(BuildContext context) {
+    print('Game Widget build' + widget.game.lines.toList().toString());
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(

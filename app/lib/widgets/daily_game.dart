@@ -22,6 +22,7 @@ class DailyGameState extends State<DailyGame> {
     WotD.listen().listen((value) {
       setState(() =>
           game = Game.load(answer: value.answer, onSuceess: displayResult));
+      print(game!.lines.toList());
     });
   }
 
