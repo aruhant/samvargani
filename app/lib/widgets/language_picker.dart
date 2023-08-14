@@ -8,20 +8,13 @@ class LanguagePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // set backgroundColor to pink
       backgroundColor: const Color.fromARGB(255, 241, 216, 236),
-      // appBar: AppBar(
-      //   title: const Text('Select Language/भाषा चुनें'),
-      //   backgroundColor: const Color.fromARGB(255, 245, 194, 235),
-      //   // allign
-      //   centerTitle: true,)
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Select Language/भाषा चुनें',
+              'Select Language / भाषा चुनें',
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.black,
@@ -30,19 +23,38 @@ class LanguagePicker extends StatelessWidget {
             ),
             // add some space in between
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                context.setLocale(const Locale('en', 'US'));
-                onLocaleSelected();
-              },
-              child: const Text('English'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.setLocale(const Locale('hi', 'IN'));
-                onLocaleSelected();
-              },
-              child: const Text('हिंदी'),
+            Column(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(110, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.all(16),
+                  ),
+                  onPressed: () {
+                    context.setLocale(const Locale('en', 'US'));
+                    onLocaleSelected();
+                  },
+                  child: const Text('English', style: TextStyle(fontSize: 20)),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(110, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.all(16),
+                  ),
+                  onPressed: () {
+                    context.setLocale(const Locale('hi', 'IN'));
+                    onLocaleSelected();
+                  },
+                  child: const Text('हिंदी', style: TextStyle(fontSize: 20)),
+                ),
+              ],
             ),
           ],
         ),
