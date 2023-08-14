@@ -29,7 +29,8 @@ class Game {
       List<Line> loadLines = const []})
       : _loadLines = loadLines;
   Game.load({required this.onSuceess, required this.answer})
-      : _loadLines = UserPrefs.instance.loadGame(answer.answer)?.lines ?? [];
+      : _loadLines =
+            UserPrefs.instance.loadGame(answer.answer)?._loadLines ?? [];
   int get length => answer.answer.allCharacters.length;
   List<String> get answerList => answer.answer.allCharacters;
   bool get complete =>
@@ -38,9 +39,12 @@ class Game {
 
   String get name => answer.answer;
 
-  String addGuess(String guess) {
+  Future<String> addGuess(String guess) async {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
-    if (guess.toLowerCase() == 'clear') return UserPrefs.instance.clear();
+    if (guess.toLowerCase() == 'clear') {
+      await UserPrefs.instance.clear();
+      return 'Cleared';
+    }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return answer.answer;

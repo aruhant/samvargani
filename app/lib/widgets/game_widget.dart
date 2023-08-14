@@ -100,10 +100,11 @@ class _GameWidgetState extends State<GameWidget> {
                                     BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(color: Colors.black38)),
                             labelText: LocaleKeys.game_answerLabel.tr()),
-                        onSubmitted: (value) {
+                        onSubmitted: (value) async {
+                          String msg = await widget.game.addGuess(value.trim());
                           setState(() {
                             controller.clear();
-                            message = widget.game.addGuess(value.trim());
+                            message = msg;
                           });
                         },
                       ),
@@ -112,10 +113,14 @@ class _GameWidgetState extends State<GameWidget> {
                   if (!widget.game.complete)
                     HindiKeyboard(
                       onTap: (t) => controller.text += t,
-                      onReturn: () => setState(() {
-                        message = widget.game.addGuess(controller.text.trim());
-                        controller.clear();
-                      }),
+                      onReturn: () async {
+                        String msg =
+                            await widget.game.addGuess(controller.text.trim());
+                        setState(() {
+                          message = msg;
+                          controller.clear();
+                        });
+                      },
                       onBackspace: () => setState(() => controller.text =
                           controller.text.substring(
                               0, max(0, controller.text.length - 1))),

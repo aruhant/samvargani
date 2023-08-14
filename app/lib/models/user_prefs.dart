@@ -84,7 +84,7 @@ class UserPrefs {
     return null;
   }
 
-  clear() {
-    _sharedPrefs.clear();
+  clear() async {
+    await _sharedPrefs.clear();
   }
 }
