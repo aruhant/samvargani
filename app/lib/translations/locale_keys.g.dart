@@ -44,6 +44,9 @@ abstract class  LocaleKeys {
   static const game_answerLabel = 'game.answerLabel';
   static const game_gameMessages_wrongWordLength = 'game.gameMessages.wrongWordLength';
   static const game_gameMessages_notInDictonary = 'game.gameMessages.notInDictonary';
+  static const game_gameMessages_matraError = 'game.gameMessages.matraError';
+  static const game_gameMessages_aoError = 'game.gameMessages.aoError';
+  static const game_gameMessages_auError = 'game.gameMessages.auError';
   static const game_gameMessages = 'game.gameMessages';
   static const game = 'game';
   static const gameResult_victoryMessage = 'gameResult.victoryMessage';

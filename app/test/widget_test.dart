@@ -7,11 +7,19 @@ import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/models/line.dart';
+import 'package:paheli/utils/string.dart';
 
 void main() {
   testWidgets('String functions test', (WidgetTester tester) async {
+    print('ृ'.contains(RegExp(r'[ा-ौ,ँ,ः,ं,़]')));
+    List guessList = 'ैमर्थ्य'.allCharacters;
+    if ('ा	िी	ु	ू	ृ	ॄ	ॅ	ॆ	े	ै	ॉ	ॊ	ो	ौ'.contains(guessList[0])) {
+      print('yes');
+    } else {
+      print('no');
+    }
     /*
-    // do the same for सामर्थ्य
+    // do the same for 
     for (String character in 'सामर्थ्य'.allCharacters) {
       print(
           // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
@@ -131,7 +139,7 @@ void main() {
     final fromJson = GameAnswer.fromJson(json);
     print('----------------------');
     print(fromJson.toJson());*/
-
+/*
     Line line = Line(cells: [
       Cell('a', state: CellState.misplaced),
       Cell('b', state: CellState.misplaced),
@@ -155,6 +163,6 @@ void main() {
     print('----------------------');
     print(game.toJson());
     print('----------------------');
-    print(Game.fromJson(jsonDecode(jsonEncode(game.toJson()))).toJson());
+    print(Game.fromJson(jsonDecode(jsonEncode(game.toJson()))).toJson());*/
   });
 }

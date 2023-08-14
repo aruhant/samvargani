@@ -50,6 +50,17 @@ class Game {
       return answer.answer;
     }
     List<String> guessList = guess.allCharacters;
+
+    if ('ा	िी	ु	ू	ृ	ॄ	ॅ	ॆ	े	ै	ॉ	ॊ	ो	ौ'.contains(guessList[0])) {
+      return LocaleKeys.game_gameMessages_matraError.tr(args: [guessList[0]]);
+    }
+    if (guessList.contains('अो')) {
+      return LocaleKeys.game_gameMessages_aoError.tr();
+    }
+    if (guessList.contains('अौ')) {
+      return LocaleKeys.game_gameMessages_auError.tr();
+    }
+
     if (length != guessList.length) {
       return LocaleKeys.game_gameMessages_wrongWordLength
           .tr(args: [guessList.length.toString()]);
@@ -90,8 +101,6 @@ class Game {
   }
 
   static Game fromJson(Map json) {
-    print('Loading liunes${json['lines']}');
-    print(json['lines']);
     Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
         onSuceess: (GameResult result) {},
@@ -100,7 +109,6 @@ class Game {
             .toList()
             .cast<Line>()
             .toList());
-    print('Loaded lines${game._loadLines}');
     return game;
   }
 

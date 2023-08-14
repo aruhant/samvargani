@@ -33,7 +33,7 @@ class CellWidget extends StatelessWidget {
               ? TooltipTriggerMode.manual
               : TooltipTriggerMode.tap,
           textStyle: const TextStyle(color: Colors.white),
-          message: cell.state.tooltip(cell.myLetter.value),
+          message: cell.state.tooltip(cell.value),
           child: Container(
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.all(10),
@@ -41,7 +41,7 @@ class CellWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: cell.state.color),
               child: Center(
-                  child: AutoSizeText(cell.myLetter.value,
+                  child: AutoSizeText(cell.value,
                       group: group,
                       maxLines: 1,
                       maxFontSize: 10000,
