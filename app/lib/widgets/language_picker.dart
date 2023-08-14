@@ -27,7 +27,7 @@ class LanguagePicker extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(110, 50),
+                    fixedSize: const Size(110, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -39,10 +39,10 @@ class LanguagePicker extends StatelessWidget {
                   },
                   child: const Text('English', style: TextStyle(fontSize: 20)),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(110, 50),
+                    fixedSize: const Size(110, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

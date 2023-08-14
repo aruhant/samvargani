@@ -90,7 +90,7 @@ class Game {
   }
 
   static Game fromJson(Map json) {
-    print('Loading liunes' + json['lines'].toString());
+    print('Loading liunes${json['lines']}');
     print(json['lines']);
     Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
@@ -100,7 +100,7 @@ class Game {
             .toList()
             .cast<Line>()
             .toList());
-    print('Loaded lines' + game._loadLines.toString());
+    print('Loaded lines${game._loadLines}');
     return game;
   }
 
