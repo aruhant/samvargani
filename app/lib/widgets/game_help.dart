@@ -44,12 +44,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       // bodyPadding: EdgeInsets.all(20),
       // contentMargin: EdgeInsets.all(20),
       bodyAlignment: Alignment.center,
+      safeArea: 0,
       imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
     );
 
     return IntroductionScreen(
       key: introKey,
-      // white bg
+
       globalBackgroundColor: Colors.white,
       allowImplicitScrolling: true,
       autoScrollDuration: null,
