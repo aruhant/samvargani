@@ -1,0 +1,3 @@
+app_identifier("com.aruhant.paheli") # The bundle identifier of your app
+apple_id("mystheticinc@gmail.com") # Your Apple email address
+ 
