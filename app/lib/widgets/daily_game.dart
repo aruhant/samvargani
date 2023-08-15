@@ -3,6 +3,7 @@ import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/widgets/help_share.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -52,6 +53,36 @@ class DailyGameState extends State<DailyGame> {
     } else {
       return GameWidget(
           game: game!,
+          header: (game) => Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 10),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Colors.orangeAccent,
+                    padding: const EdgeInsets.all(6),
+                  ),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => HelpShareWidget(game));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.arrow_back,
+                          size: 14,
+                        ),
+                        const SizedBox(width: 14),
+                        Text(LocaleKeys.practiceGame_dailyGameButton.tr()),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
           footer: game!.complete ? (game) => successFooter(context) : null);
     }
   }
