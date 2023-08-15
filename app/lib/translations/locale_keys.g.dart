@@ -67,6 +67,11 @@ abstract class  LocaleKeys {
   static const dailyGame_line2 = 'dailyGame.line2';
   static const dailyGame_line3 = 'dailyGame.line3';
   static const dailyGame_button = 'dailyGame.button';
+  static const dailyGame_header = 'dailyGame.header';
+  static const dailyGame_headerAlt = 'dailyGame.headerAlt';
   static const dailyGame = 'dailyGame';
+  static const shareHelp_title = 'shareHelp.title';
+  static const shareHelp_message = 'shareHelp.message';
+  static const shareHelp = 'shareHelp';
 
 }

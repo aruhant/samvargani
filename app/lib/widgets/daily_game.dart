@@ -23,7 +23,6 @@ class DailyGameState extends State<DailyGame> {
     WotD.listen().listen((value) {
       setState(() =>
           game = Game.load(answer: value.answer, onSuceess: displayResult));
-      print(game!.lines.toList());
     });
   }
 
@@ -64,20 +63,32 @@ class DailyGameState extends State<DailyGame> {
                     padding: const EdgeInsets.all(6),
                   ),
                   onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => HelpShareWidget(game));
+                    // if game is won:
+                    print(game.complete);
+                    if (game.complete) {
+                      displayResult(GameResult(
+                          win: true, answer: game.answer, lines: game.lines));
+                    } else {
+                      {
+                        showDialog(
+                            context: context,
+                            builder: (context) => HelpShareWidget(game));
+                      }
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: Row(
                       children: [
                         const Icon(
-                          Icons.arrow_back,
+                          Icons.share,
                           size: 14,
                         ),
                         const SizedBox(width: 14),
-                        Text(LocaleKeys.practiceGame_dailyGameButton.tr()),
+                        if (game.complete)
+                          Text(LocaleKeys.dailyGame_headerAlt.tr())
+                        else
+                          Text(LocaleKeys.dailyGame_header.tr()),
                       ],
                     ),
                   ),

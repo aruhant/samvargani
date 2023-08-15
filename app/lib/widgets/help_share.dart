@@ -30,7 +30,7 @@ class _HelpShareWidgetState extends State<HelpShareWidget> {
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
                     color: const Color.fromARGB(255, 231, 255, 229), width: 5),
-                gradient: LinearGradient(colors: const [
+                gradient: const LinearGradient(colors: [
                   Color.fromRGBO(255, 239, 224, 1),
                   Color.fromRGBO(245, 221, 187, 1),
                   Color.fromRGBO(252, 242, 229, 1),
@@ -39,19 +39,6 @@ class _HelpShareWidgetState extends State<HelpShareWidget> {
             margin: const EdgeInsets.all(18),
             child: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.close),
-                      color: Colors.black,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                ),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     mainAxisSize: MainAxisSize.max,
@@ -59,18 +46,10 @@ class _HelpShareWidgetState extends State<HelpShareWidget> {
                     children: [
                       Column(
                         children: [
-                          Text(LocaleKeys.gameResult_defeatMessage.tr(),
+                          Text(LocaleKeys.shareHelp_title.tr(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 50,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 6, 7, 10))),
-                          Text(
-                              LocaleKeys.gameResult_completed
-                                  .tr(args: [widget.game.answer.title]),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Color.fromARGB(255, 6, 7, 10))),
                         ],
@@ -80,56 +59,6 @@ class _HelpShareWidgetState extends State<HelpShareWidget> {
                             line: line,
                             group: AutoSizeGroup(),
                           )),
-                      Text(
-                        LocaleKeys.gameResult_tries.tr(),
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          (Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                LocaleKeys.gameResult_share.tr(),
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(() => pressedShare = true);
-                                    shareScreenShot(
-                                        _screenShotController,
-                                        LocaleKeys.gameResult_shareMessage
-                                            .tr(args: []));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.all(10),
-                                    shape: const CircleBorder(),
-                                    elevation: 0,
-                                    backgroundColor: Colors.white,
-                                  ),
-                                  child: const Icon(
-                                    Icons.share,
-                                    color: Colors.deepOrangeAccent,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                        ],
-                      )
                     ]),
               ],
             ),

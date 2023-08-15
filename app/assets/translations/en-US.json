@@ -82,7 +82,12 @@
     "line1": "You have completed today's Daily Word Challenge!",
     "line2": "Come back tomorrow for a new challenge!",
     "line3": "In the meantime, try practice mode!",
-    "button": "Practice Level {}"
-
+    "button": "Practice Level {}",
+    "header": "Ask friend for help?",
+    "headerAlt": "Share your score?"
+},
+"shareHelp":{
+    "title": "Can you help me guess this Hindi word:",
+    "message": "Can you help me guess this {} letter Hindi word. I am playing today's Samvargani's daily word challenge!\nhttps://aruhant.github.io/s/"
 }
 }

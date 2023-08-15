@@ -66,8 +66,6 @@ class UserPrefs {
 
   saveGame(Game game) {
     String s = jsonEncode(game.toJson());
-    print('------SAVE--------');
-    print(s);
     _sharedPrefs.setString('game_${game.name}', s);
   }
 
@@ -78,8 +76,6 @@ class UserPrefs {
 
   Game? loadGame(String name) {
     var game = _sharedPrefs.getString('game_$name');
-    print('------LOAD--------');
-    print(game);
     if (game != null) return Game.fromJson(jsonDecode(game));
     return null;
   }

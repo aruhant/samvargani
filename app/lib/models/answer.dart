@@ -42,7 +42,6 @@ class GameAnswer {
           .tr(args: [(gameAnswers.indexOf(this) + 1).toString()]);
 
   static GameAnswer fromJson(Map json) {
-    print(json);
     return GameAnswer(
         answer: json['answer'] ?? 'समाधान',
         meaning: json['meaning'] ?? 'संशय दूर करना',
