@@ -7,6 +7,7 @@ import 'package:paheli/widgets/help_share.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:screenshot/screenshot.dart';
 import '../models/user_prefs.dart';
 
 class DailyGame extends StatefulWidget {
@@ -32,6 +33,8 @@ class DailyGameState extends State<DailyGame> {
         builder: (context) => ResultWidget(gameResult: result));
     setState(() {});
   }
+
+  final _screenShotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +73,23 @@ class DailyGameState extends State<DailyGame> {
                           win: true, answer: game.answer, lines: game.lines));
                     } else {
                       {
-                        showDialog(
-                            context: context,
-                            builder: (context) => HelpShareWidget(game));
+                        _screenShotController
+                            .captureFromLongWidget(
+                                InheritedTheme.captureAll(
+                                  context,
+                                  Material(
+                                    child: HelpShareWidget(game),
+                                  ),
+                                ),
+                                delay: Duration(milliseconds: 300),
+                                context: context,
+                                constraints: BoxConstraints(
+                                  maxWidth: MediaQuery.of(context).size.width,
+                                ))
+                            .then((capturedImage) {});
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context) => HelpShareWidget(game));
                       }
                     }
                   },
