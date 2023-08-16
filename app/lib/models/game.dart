@@ -49,6 +49,16 @@ class Game {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return answer.answer;
     }
+    guess
+        .replaceAll('क़', 'क़')
+        .replaceAll('ख़', 'ख़')
+        .replaceAll('ग़', 'ग़')
+        .replaceAll('ज़', 'ज़')
+        .replaceAll('ड़', 'ड़')
+        .replaceAll('ढ़', 'ढ़')
+        .replaceAll('फ़', 'फ़')
+        .replaceAll('य़', 'य़');
+
     List<String> guessList = guess.allCharacters;
 
     if ('ा	िी	ु	ू	ृ	ॄ	ॅ	ॆ	े	ै	ॉ	ॊ	ो	ौ'.contains(guessList[0])) {
