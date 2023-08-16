@@ -41,4 +41,49 @@ extension StringExtension on String {
     if (v.isEmpty) return '';
     return v[v.length - 1];
   }
+/*
+  List<String> getAllVaraitions(String word) {
+    const List<List<String>> reference = [
+      ['क़', 'क', 'क़'],
+      ['ख़', 'ख', 'ख़'],
+      ['ग़', 'ग', 'ग़'],
+      ['ज़', 'ज', 'ज़'],
+      ['ड़', 'ड', 'ड़'],
+      ['ढ़', 'ढ', 'ढ़'],
+      ['फ़', 'फ', 'फ़'],
+      ['य़', 'य', 'य़']
+    ];
+    
+    List<List<int>> criticalPoints = []; // first element is index which needs to be changed and second is the referenceIndex of its all change values
+    for (int i = 0; i < reference.length; i++) {
+      for (int j = 0; j < word.allCharacters.length; j++)
+          {if (reference[i].contains(word.allCharacters[j].vyanjan)) {
+            criticalPoints.add([j,i]);
+          }}}
+    List<String> variations = [word];
+    for (int i = 0; i<criticalPoints.length; i ++)
+    {
+      for (int j = 0; )
+
+
+
+    }
+
+
+
+
+
+
+    for (int k = 0; k < variations.length;k++) {
+      for (int i = 0; i < word.allCharacters.length; i++) {
+        
+            variations.addAll(reference[j].map((e) => word.allCharacters[i]
+                .replaceRange(i, i + 1,
+                    word.replaceAll(word.allCharacters[i].vyanjan, e))));
+            break;
+          }
+        }
+      }
+    
+*/
 }

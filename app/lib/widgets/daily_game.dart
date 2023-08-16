@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:paheli/utils/share.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
@@ -66,8 +67,6 @@ class DailyGameState extends State<DailyGame> {
                     padding: const EdgeInsets.all(6),
                   ),
                   onPressed: () {
-                    // if game is won:
-                    print(game.complete);
                     if (game.complete) {
                       displayResult(GameResult(
                           win: true, answer: game.answer, lines: game.lines));
@@ -86,7 +85,12 @@ class DailyGameState extends State<DailyGame> {
                                 constraints: BoxConstraints(
                                   maxWidth: MediaQuery.of(context).size.width,
                                 ))
-                            .then((capturedImage) {});
+                            .then((capturedImage) {
+                          shareImage(
+                              // tries
+                              capturedImage,
+                              LocaleKeys.shareHelp_message.tr(args: []));
+                        });
                         // showDialog(
                         //     context: context,
                         //     builder: (context) => HelpShareWidget(game));
