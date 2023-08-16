@@ -87,7 +87,10 @@ class PracticeGameState extends State<PracticeGame> {
                         size: 14,
                       ),
                       const SizedBox(width: 14),
-                      Text(LocaleKeys.practiceGame_dailyGameButton.tr()),
+                      Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
                     ],
                   ),
                 ),

@@ -108,7 +108,17 @@ class _GameWidgetState extends State<GameWidget> {
                         },
                       ),
                     ),
-                  Text(message),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: (message.isNotEmpty)
+                        ? Text(message,
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black))
+                        : Container(),
+                  ),
                   if (!widget.game.complete)
                     HindiKeyboard(
                       onTap: (t) => controller.text += t,

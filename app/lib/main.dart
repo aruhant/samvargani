@@ -44,8 +44,8 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      theme: FlexThemeData.light(scheme: FlexScheme.money),
-      darkTheme: FlexThemeData.light(scheme: FlexScheme.money),
+      theme: FlexThemeData.light(scheme: FlexScheme.gold),
+      darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
       themeMode: ThemeMode.light,
       home: (UserPrefs.instance.shouldShowLocaleSettings)
           ? LanguagePicker(

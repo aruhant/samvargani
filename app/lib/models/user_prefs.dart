@@ -8,18 +8,19 @@ class UserPrefs {
   final bool _darkMode;
   int _initState;
   int _practiceGameIndex;
+  int _tooltipsPressed;
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
       required int initState,
       required int practiceGameIndex,
-      required String currentPracticeGame,
-      required String currentDailyGame,
-      required SharedPreferences sharedPrefs})
+      required SharedPreferences sharedPrefs,
+      required int tooltipsPressed})
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
-        _sharedPrefs = sharedPrefs;
+        _sharedPrefs = sharedPrefs,
+        _tooltipsPressed = tooltipsPressed;
 
   static UserPrefs? _instance;
   static UserPrefs get instance => _instance!;
@@ -27,6 +28,7 @@ class UserPrefs {
   bool get shouldShowHelp => _initState < 2;
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
+  int get tooltipsPressed => _tooltipsPressed;
 
   get language => null;
 
@@ -38,8 +40,7 @@ class UserPrefs {
           practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
           initState: sharedPrefs.getInt('initState') ?? 0,
-          currentPracticeGame: sharedPrefs.getString('practiceGame') ?? '{}',
-          currentDailyGame: sharedPrefs.getString('dailyGame') ?? '{}',
+          tooltipsPressed: sharedPrefs.getInt('tooltipsPressed') ?? 0,
           sharedPrefs: sharedPrefs);
     }
     return _instance!;
@@ -67,6 +68,11 @@ class UserPrefs {
   saveGame(Game game) {
     String s = jsonEncode(game.toJson());
     _sharedPrefs.setString('game_${game.name}', s);
+  }
+
+  onTooltipPressed() {
+    _instance!._tooltipsPressed++;
+    _sharedPrefs.setInt('tooltipsPressed', _instance!._tooltipsPressed);
   }
 
   save() {

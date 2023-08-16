@@ -179,7 +179,7 @@ class DailyGameState extends State<DailyGame> {
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
                 // set style
               ),

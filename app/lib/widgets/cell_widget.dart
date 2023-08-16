@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/cell.dart';
+import 'package:paheli/models/user_prefs.dart';
 
 class CellWidget extends StatelessWidget {
   const CellWidget(
@@ -20,7 +21,7 @@ class CellWidget extends StatelessWidget {
             ? makeCellContents()
             : Tooltip(
                 waitDuration: disableTooltip ? const Duration(hours: 1) : null,
-                showDuration: const Duration(seconds: 10),
+                showDuration: const Duration(seconds: 12),
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     color: Colors.black87,
@@ -37,6 +38,7 @@ class CellWidget extends StatelessWidget {
                 textStyle: const TextStyle(color: Colors.white),
                 message: cell.state.tooltip(cell.value),
                 child: makeCellContents(),
+                onTriggered: UserPrefs.instance.onTooltipPressed,
               ),
       ),
     );

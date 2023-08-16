@@ -91,7 +91,9 @@ class Game {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return '';
     }
-    return '';
+    return UserPrefs.instance.tooltipsPressed > 6
+        ? ''
+        : LocaleKeys.game_gameMessages_incorrect.tr();
   }
 
   CellState getStateForCell(String answer, String guessCharacter, int index) {

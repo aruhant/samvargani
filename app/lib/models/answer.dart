@@ -356,6 +356,7 @@ final List<GameAnswer> gameAnswers = [
       answer: 'अपवाद',
       meaning: 'सामान्य नियम से भिन्न या विरुद्ध कोई नियम या बात'),
   GameAnswer(answer: 'चिंतन', meaning: 'विचार'),
+  GameAnswer(answer: 'विस्तार', meaning: 'फैलाव'),
   GameAnswer(answer: 'परिप्रेक्ष्य', meaning: 'सम्बन्धित'),
   GameAnswer(answer: 'प्रतिज्ञा', meaning: 'दृढ़ संकल्प, वचन'),
   GameAnswer(answer: 'मान्यता', meaning: 'स्वीकृति'),
