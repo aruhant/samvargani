@@ -80,7 +80,7 @@ class DailyGameState extends State<DailyGame> {
                                     child: HelpShareWidget(game),
                                   ),
                                 ),
-                                delay: Duration(milliseconds: 300),
+                                delay: const Duration(milliseconds: 300),
                                 context: context,
                                 constraints: BoxConstraints(
                                   maxWidth: MediaQuery.of(context).size.width,
@@ -98,14 +98,14 @@ class DailyGameState extends State<DailyGame> {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.all(1.0),
                     child: Row(
                       children: [
                         const Icon(
                           Icons.share,
                           size: 14,
                         ),
-                        const SizedBox(width: 14),
+                        const SizedBox(width: 12),
                         if (game.complete)
                           Text(LocaleKeys.dailyGame_headerAlt.tr())
                         else
@@ -144,6 +144,7 @@ class DailyGameState extends State<DailyGame> {
           // text come back tmr for more
           Text(
             LocaleKeys.dailyGame_line2.tr(),
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
               color: Color.fromARGB(255, 43, 81, 100),
@@ -151,12 +152,12 @@ class DailyGameState extends State<DailyGame> {
           ),
           Text(
             LocaleKeys.dailyGame_line3.tr(),
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
               color: Color.fromARGB(255, 43, 81, 100),
             ),
           ),
-          // elevated button - play practice game
 
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -177,11 +178,10 @@ class DailyGameState extends State<DailyGame> {
                   (UserPrefs.instance.practiceGameIndex + 1).toString()
                 ]),
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
-                // set style
               ),
             ),
           ),

@@ -110,11 +110,11 @@ class _GameWidgetState extends State<GameWidget> {
                     ),
 
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(3.0),
                     child: (message.isNotEmpty)
                         ? Text(message,
                             style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black))
                         : Container(),

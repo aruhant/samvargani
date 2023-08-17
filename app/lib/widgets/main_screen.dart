@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 import 'package:paheli/widgets/daily_game.dart';
-import 'package:paheli/widgets/game_help.dart';
+import 'package:paheli/widgets/game_intro.dart';
 import 'package:paheli/widgets/practice_game.dart';
 
 class MainScreen extends StatefulWidget {

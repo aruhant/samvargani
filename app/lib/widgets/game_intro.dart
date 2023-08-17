@@ -139,6 +139,25 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           // "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
           decoration: pageDecoration,
         ),
+        PageViewModel(
+          title: '',
+          bodyWidget: Column(
+            children: [
+              _buildImage('intro2.png'),
+              const SizedBox(height: 20),
+              AutoSizeText(
+                LocaleKeys.intro_page4_title.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 2,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          // "अब हमें 4 अक्षरों वाले एक वैध शब्द का अनुमान लगाना है। ध्यान दें कि हमारे उत्तर में मात्रा और आधा अक्षर होना आवश्यक है, लेकिन ध्यान रखें कि अंतिम शब्द में मात्रा और आधा अक्षर होगा। अभी, यह समझना आसान है कि अंतिम शब्द में एक अक्षर होगा, लेकिन अब हमें अन्य तीन अक्षरों का अनुमान लगाना होगा।",
+          decoration: pageDecoration,
+        ),
         /*
         PageViewModel(
           title: "हमारा पहला उत्तर :-",

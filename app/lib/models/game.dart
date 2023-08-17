@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/user_prefs.dart';
-import 'package:paheli/models/wordlist.dart';
+import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
