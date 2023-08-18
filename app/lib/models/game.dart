@@ -49,7 +49,7 @@ class Game {
       onSuceess(GameResult(win: true, answer: answer, lines: lines));
       return answer.answer;
     }
-    guess
+    guess = guess
         .replaceAll('क़', 'क़')
         .replaceAll('ख़', 'ख़')
         .replaceAll('ग़', 'ग़')
