@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paheli/utils/dictionary.dart';
 
 extension StringExtension on String {
   List<String> get allCharacters {
@@ -41,49 +42,110 @@ extension StringExtension on String {
     if (v.isEmpty) return '';
     return v[v.length - 1];
   }
-/*
-  List<String> getAllVaraitions(String word) {
+
+  List<String> get getAllVaraitions {
     const List<List<String>> reference = [
-      ['क़', 'क', 'क़'],
-      ['ख़', 'ख', 'ख़'],
-      ['ग़', 'ग', 'ग़'],
-      ['ज़', 'ज', 'ज़'],
-      ['ड़', 'ड', 'ड़'],
-      ['ढ़', 'ढ', 'ढ़'],
-      ['फ़', 'फ', 'फ़'],
-      ['य़', 'य', 'य़']
+      ['क़', 'क'],
+      ['ख़', 'ख'],
+      ['ग़', 'ग'],
+      ['ज़', 'ज'],
+      ['ड़', 'ड'],
+      ['ढ़', 'ढ'],
+      ['फ़', 'फ'],
+      ['य़', 'य']
     ];
-    
-    List<List<int>> criticalPoints = []; // first element is index which needs to be changed and second is the referenceIndex of its all change values
-    for (int i = 0; i < reference.length; i++) {
-      for (int j = 0; j < word.allCharacters.length; j++)
-          {if (reference[i].contains(word.allCharacters[j].vyanjan)) {
-            criticalPoints.add([j,i]);
-          }}}
-    List<String> variations = [word];
-    for (int i = 0; i<criticalPoints.length; i ++)
-    {
-      for (int j = 0; )
+    List<List<String>> variations = [allCharacters];
+    Map<int, List<String>> criticalPoints = {};
+
+    for (int i = 0; i < allCharacters.length; i++) {
+      for (final letterList in reference) {
+        if (letterList.contains(allCharacters[i].vyanjan)) {
+          List<String> newLetterList = letterList.toList();
+          newLetterList.remove(allCharacters[i].contains('़')
+              ? '${allCharacters[i].vyanjan}़'
+              : allCharacters[i].vyanjan);
+          criticalPoints[i] = newLetterList;
+          break;
+        }
+      }
+    }
+
+    for (final criticalPoint in criticalPoints.keys) {
+      for (int i = 0; i < variations.length; i += 3) {
+        for (final letter in criticalPoints[criticalPoint]!) {
+          List<String> wordToAdd = variations[i].toList();
+          wordToAdd[criticalPoint] = wordToAdd[criticalPoint].replaceAll(
+              wordToAdd[criticalPoint].contains('़')
+                  ? '${wordToAdd[criticalPoint].vyanjan}़'
+                  : wordToAdd[criticalPoint].vyanjan,
+              letter);
+
+          variations.insert(i + 1, wordToAdd);
+        }
+      }
+    }
+
+    return variations.map((e) => e.join()).toList();
+  }
+}
+
+
+
+
+
+/*
+
+
+
+
+  
+
+    for (final letterList in reference) {
+      for (int j = 0; j < word.allCharacters.length; j++) {
+        if (letterList.contains(word.allCharacters[j].vyanjan)) {
+          for (final letter in letterList) {
+            if (letter != word.allCharacters[j].vyanjan) {
+              word.allCharacters.replaceRange(j, j + 1, [letter]);
+              variations.add(word.allCharacters.join());
+            }
+          }
+        }
+      }
+    }
+
+    for (int i = 0; i < variations.length; i++) {
+      final currentWord = variations[i];
+            for (int j = 0; j < currentWord.allCharacters.length; j++) {
+              final referenceIndex;
+              for (var element in reference) {
+                if( element.contains(currentWord.allCharacters[j].vyanjan)){
+                  referenceIndex = element.indexOf(currentWord.allCharacters[j].vyanjan);
+                  break;
+                }
+              
+              
+              
+              });
+
+
 
 
 
     }
 
-
-
-
-
-
-    for (int k = 0; k < variations.length;k++) {
+/* 
+    for (int k = 0; k < variations.length; k++) {
       for (int i = 0; i < word.allCharacters.length; i++) {
-        
-            variations.addAll(reference[j].map((e) => word.allCharacters[i]
-                .replaceRange(i, i + 1,
-                    word.replaceAll(word.allCharacters[i].vyanjan, e))));
-            break;
-          }
-        }
+        variations.addAll(reference[j].map((e) => word.allCharacters[i]
+            .replaceRange(
+                i, i + 1, word.replaceAll(word.allCharacters[i].vyanjan, e))));
+        break;
       }
-    
-*/
+    }
+  }
 }
+ */
+    return variations;
+  }
+}
+*/

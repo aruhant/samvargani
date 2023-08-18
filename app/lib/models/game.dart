@@ -50,14 +50,14 @@ class Game {
       return answer.answer;
     }
     guess
-        .replaceAll('क़', 'क़')
-        .replaceAll('ख़', 'ख़')
-        .replaceAll('ग़', 'ग़')
-        .replaceAll('ज़', 'ज़')
-        .replaceAll('ड़', 'ड़')
-        .replaceAll('ढ़', 'ढ़')
-        .replaceAll('फ़', 'फ़')
-        .replaceAll('य़', 'य़');
+        .replaceAll('क़', 'क़')
+        .replaceAll('ख़', 'ख़')
+        .replaceAll('ग़', 'ग़')
+        .replaceAll('ज़', 'ज़')
+        .replaceAll('ड़', 'ड़')
+        .replaceAll('ढ़', 'ढ़')
+        .replaceAll('फ़', 'फ़')
+        .replaceAll('य़', 'य़');
 
     List<String> guessList = guess.allCharacters;
 
@@ -76,8 +76,18 @@ class Game {
           .tr(args: [guessList.length.toString()]);
     }
 
-    if (!kDebugMode && !wordList.contains(guess)) {
-      return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
+    if (/* !kDebugMode &&  */ guess != answer.answer &&
+        !wordList.contains(guess)) {
+      print("searching for variations of $guess");
+      final allVariations = guess.getAllVaraitions;
+      print("allVariations $allVariations");
+      if (!allVariations.any((element) => wordList.contains(element))) {
+        return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
+      }
+      print("nooooooo");
+      guess = allVariations.firstWhere((element) => wordList.contains(element));
+      guessList = guess.allCharacters;
+      print("guess $guess");
     }
 
     List<Cell> cells = [];

@@ -10,6 +10,10 @@ import 'package:paheli/models/line.dart';
 import 'package:paheli/utils/string.dart';
 
 void main() {
+  print('ढ़'.contains('़'));
+  print('टढ़ड़ा'.getAllVaraitions);
+
+  /*
   for (String character in 'क़'.allCharacters) {
     print(
         // '${character.runes.map((e) => Char(e))} ---> ${character.matra} + ${character.vyanjan}');
@@ -127,6 +131,7 @@ void main() {
 
         '$character ---> ${character.matraOnly} + ${character.vyanjan} + ${character.halfOnly} + ${character.matra} ');
   }
+  */
   // test toJson of answer
   /*final anAnswer = GameAnswer(
         answer: 'a',
