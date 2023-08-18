@@ -99,8 +99,8 @@ class _GameWidgetState extends State<GameWidget> {
                                     BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(color: Colors.black38)),
                             labelText: LocaleKeys.game_answerLabel.tr()),
-                        onSubmitted: (value) async {
-                          String msg = await widget.game.addGuess(value.trim());
+                        onSubmitted: (value) {
+                          String msg = widget.game.addGuess(value.trim());
                           setState(() {
                             controller.clear();
                             message = msg;

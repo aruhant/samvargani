@@ -39,10 +39,10 @@ class Game {
 
   String get name => answer.answer;
 
-  Future<String> addGuess(String guess) async {
+  String addGuess(String guess) {
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
     if (guess.toLowerCase() == 'clear') {
-      await UserPrefs.instance.clear();
+      UserPrefs.instance.clear();
       return 'Cleared';
     }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
