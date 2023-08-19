@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/share.dart';
+import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
@@ -89,7 +90,9 @@ class DailyGameState extends State<DailyGame> {
                           shareImage(
                               // tries
                               capturedImage,
-                              LocaleKeys.shareHelp_message.tr(args: []));
+                              LocaleKeys.shareHelp_message.tr(args: [
+                                game.answer.answer.allCharacters.toString()
+                              ]));
                         });
                         // showDialog(
                         //     context: context,

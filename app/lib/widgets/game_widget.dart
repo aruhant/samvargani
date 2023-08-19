@@ -25,6 +25,27 @@ class _GameWidgetState extends State<GameWidget> {
   TextEditingController controller = TextEditingController();
   String message = '';
   @override
+  void initState() {
+    super.initState();
+    message = '';
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(GameWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.game != widget.game) {
+      controller.clear();
+      message = '';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -80,7 +101,9 @@ class _GameWidgetState extends State<GameWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 18),
                       child: TextField(
                         style: const TextStyle(
-                            fontSize: 20, color: Colors.black87),
+                          fontSize: 20,
+                          color: Colors.black87,
+                        ),
                         controller: controller,
                         decoration: InputDecoration(
                             fillColor: Colors.black12,
@@ -112,11 +135,15 @@ class _GameWidgetState extends State<GameWidget> {
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: (message.isNotEmpty)
-                        ? Text(message,
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black))
+                        ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(message,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                          )
                         : Container(),
                   ),
                   if (!widget.game.complete)
@@ -124,7 +151,7 @@ class _GameWidgetState extends State<GameWidget> {
                       onTap: (t) => controller.text += t,
                       onReturn: () async {
                         String msg =
-                            await widget.game.addGuess(controller.text.trim());
+                            widget.game.addGuess(controller.text.trim());
                         setState(() {
                           message = msg;
                           controller.clear();

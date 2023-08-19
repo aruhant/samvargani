@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:paheli/utils/dictionary.dart';
 
 extension StringExtension on String {
   List<String> get allCharacters {

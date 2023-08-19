@@ -60,7 +60,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
     return IntroductionScreen(
       key: introKey,
 
-      globalBackgroundColor: const Color.fromRGBO(244, 240, 221, 1),
+      globalBackgroundColor: const Color.fromRGBO(213, 204, 158, 1),
       allowImplicitScrolling: true,
       autoScrollDuration: null,
       pages: [
@@ -106,7 +106,10 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              _buildImage('intro1.png'),
+              LineWidget(
+                  disableTooltip: true,
+                  line: Line(cells: [Cell('ा'), Cell(''), Cell('')]),
+                  group: autoSizeGroup),
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page2_body.tr(),
@@ -133,14 +136,21 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              _buildImage('intro2.png'),
+              LineWidget(
+                  disableTooltip: true,
+                  line: Line(cells: [
+                    Cell('बा', state: CellState.correct),
+                    Cell('ल', state: CellState.misplaced),
+                    Cell('क', state: CellState.incorrect)
+                  ]),
+                  group: autoSizeGroup),
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page3_body.tr(),
                 style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 5,
+                maxLines: 6,
                 maxFontSize: 30,
-                minFontSize: 14,
+                minFontSize: 18,
                 textAlign: TextAlign.left,
               ),
             ],

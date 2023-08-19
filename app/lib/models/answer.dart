@@ -21,8 +21,8 @@ class GameAnswer {
     String? title,
     required this.meaning,
     this.hints,
-    this.colors = const [Color.fromRGBO(244, 240, 221, 1)],
-    this.backgroundColor = const Color.fromRGBO(244, 240, 221, 1),
+    this.colors = const [Color.fromRGBO(213, 204, 158, 1)],
+    this.backgroundColor = const Color.fromRGBO(213, 204, 158, 1),
     this.icons = const [Icons.cloud],
     this.images,
     this.moveHorizontal = true,
@@ -106,12 +106,13 @@ class GameAnswer {
 
 final List<GameAnswer> gameAnswers = [
   GameAnswer(
+      title: '',
       answer: 'बादल',
       meaning: 'वायुमंडल में संचित घनीभूत वाष्पकण',
       moveHorizontal: true,
       moveVertical: false,
       backgroundColor: Colors.blue[100],
-      colors: [Color.fromARGB(255, 47, 46, 59)]),
+      colors: [const Color.fromARGB(255, 47, 46, 59)]),
   GameAnswer(
       answer: 'मेघ',
       meaning: 'बादल',

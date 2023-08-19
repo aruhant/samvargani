@@ -53,9 +53,7 @@ class PracticeGameState extends State<PracticeGame> {
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(LocaleKeys.intro_tutorial_next.tr(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                        )),
+                        style: const TextStyle(fontSize: 18)),
                   )
                 ],
               )),
@@ -120,7 +118,7 @@ class PracticeGameState extends State<PracticeGame> {
                   ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PracticeGame()));
+                        builder: (context) => const DailyGame()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(3.0),

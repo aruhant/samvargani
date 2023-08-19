@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/user_prefs.dart';
@@ -43,8 +42,9 @@ class Game {
       return 'Cleared';
     }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
-      if (onSuceess != null)
+      if (onSuceess != null) {
         onSuceess!(GameResult(win: true, answer: answer, lines: lines));
+      }
       return answer.answer;
     }
     guess = guess

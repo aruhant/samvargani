@@ -9,13 +9,13 @@
     },
     "intro": {
              "page1": {
-            "title": "Welcome to Samvargani - the daily Hindi word guessing game!",
+            "title": "Welcome to Samvargani - the daily Hindi word game!",
             "body": "Guess an interesting new word everyday and improve your Hindi vocabulary!"
         },
         "page2":{
             
             "title": "You will be shown the length and structure of the word.",
-            "body": "You will be shown the half letters and matras of the target word. Guess a word present in the dictionary and of that same length."
+            "body": "You will also be shown the half letters and matras of the target word."
         },
         "page3":{
             "title": "The colours of the cell together indicate the correctness of the your word.",
@@ -27,6 +27,7 @@
         }, 
         "done": "START",
         "tutorial": {
+            "tutorial": "Tutorial",
             "mainMessage": "Great Job!\nNow let's try today's Daily Challenge!",
             "next": "Daily Challenge"
         }

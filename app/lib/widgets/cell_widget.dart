@@ -37,8 +37,8 @@ class CellWidget extends StatelessWidget {
                     : TooltipTriggerMode.tap,
                 textStyle: const TextStyle(color: Colors.white),
                 message: cell.state.tooltip(cell.value),
-                child: makeCellContents(),
                 onTriggered: UserPrefs.instance.onTooltipPressed,
+                child: makeCellContents(),
               ),
       ),
     );
