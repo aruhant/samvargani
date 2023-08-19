@@ -12,7 +12,7 @@ import 'package:easy_localization/easy_localization.dart';
 class Game {
   GameAnswer answer;
   final List<Line> _loadLines;
-  final Function(GameResult) onSuceess;
+  final Function(GameResult)? onSuceess;
   List<Line> get lines => [
         ..._loadLines,
         Line(
@@ -23,12 +23,9 @@ class Game {
                         .join(' '),
                     state: CellState.empty)))
       ];
-  Game(
-      {required this.onSuceess,
-      required this.answer,
-      List<Line> loadLines = const []})
+  Game({this.onSuceess, required this.answer, List<Line> loadLines = const []})
       : _loadLines = loadLines;
-  Game.load({required this.onSuceess, required this.answer})
+  Game.load({this.onSuceess, required this.answer})
       : _loadLines =
             UserPrefs.instance.loadGame(answer.answer)?._loadLines ?? [];
   int get length => answer.answer.allCharacters.length;
@@ -46,7 +43,8 @@ class Game {
       return 'Cleared';
     }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
-      onSuceess(GameResult(win: true, answer: answer, lines: lines));
+      if (onSuceess != null)
+        onSuceess!(GameResult(win: true, answer: answer, lines: lines));
       return answer.answer;
     }
     guess = guess
@@ -97,8 +95,8 @@ class Game {
     }
     _loadLines.add(Line(cells: cells));
     UserPrefs.instance.saveGame(this);
-    if (answer.answer == guess) {
-      onSuceess(GameResult(win: true, answer: answer, lines: lines));
+    if (answer.answer == guess && onSuceess != null) {
+      onSuceess!(GameResult(win: true, answer: answer, lines: lines));
       return '';
     }
     return UserPrefs.instance.tooltipsPressed > 6

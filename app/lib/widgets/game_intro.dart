@@ -2,16 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/cell.dart';
+import 'package:paheli/models/game.dart';
 import 'package:paheli/models/line.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/widgets/line_widget.dart';
-
-import '../models/answer.dart';
-import '../models/game.dart';
-import '../models/user_prefs.dart';
-import 'game_widget.dart';
 
 class GameHelpWidget extends StatefulWidget {
   const GameHelpWidget({Key? key, required this.onIntroEnd}) : super(key: key);
@@ -26,6 +24,10 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
 
   void _onIntroEnd(context) {
     widget.onIntroEnd();
+    Game t = Game.load(answer: gameAnswers[0]);
+    t.addGuess('दावत');
+    t.addGuess('बालक');
+    UserPrefs.instance.saveGame(t);
   }
 
 /*   Widget _buildFullscreenImage() {
@@ -49,8 +51,6 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           fontSize: 24.0, fontWeight: FontWeight.w700, color: Colors.black),
       bodyTextStyle: TextStyle(
           fontSize: 18.0, fontWeight: FontWeight.w400, color: Colors.black),
-      // bodyPadding: EdgeInsets.all(20),
-      // contentMargin: EdgeInsets.all(20),
       bodyAlignment: Alignment.center,
       safeArea: 0,
       imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
