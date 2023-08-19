@@ -155,7 +155,6 @@
 				E1349AB92A425E060570B08B /* Pods-RunnerTests.release.xcconfig */,
 				CCBDFCB282F797BFBF6ABE0A /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -475,7 +474,7 @@
 				DEVELOPMENT_TEAM = TLMPF2J9QG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "संवर्गनी";
+				INFOPLIST_KEY_CFBundleDisplayName = Samvargani;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -656,7 +655,7 @@
 				DEVELOPMENT_TEAM = TLMPF2J9QG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "संवर्गनी";
+				INFOPLIST_KEY_CFBundleDisplayName = Samvargani;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -681,7 +680,7 @@
 				DEVELOPMENT_TEAM = TLMPF2J9QG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "संवर्गनी";
+				INFOPLIST_KEY_CFBundleDisplayName = Samvargani;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

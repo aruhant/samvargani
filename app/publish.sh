@@ -31,7 +31,8 @@ option_picked(){
     printf "${msgcolor}${message}${normal}\n"
 }
 
-web(){ 
+web(){
+cd web && flutter build web && cd ..    
 }
 
 ios(){

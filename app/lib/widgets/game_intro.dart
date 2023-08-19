@@ -303,7 +303,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
     );
   }
 }
-
+/*
 class Tutorial extends StatefulWidget {
   const Tutorial({Key? key}) : super(key: key);
   @override
@@ -339,3 +339,4 @@ class TutorialState extends State<Tutorial> {
     );
   }
 }
+*/
