@@ -85,8 +85,10 @@ class PracticeGameState extends State<PracticeGame> {
     }
     return GameWidget(
         game: game,
-        footer: (game) =>
-            (game.lines.length > 3) || UserPrefs.instance.practiceGameIndex < 5
+        footer: (game) => (UserPrefs.instance.practiceGameIndex == 1)
+            ? Container()
+            : (game.lines.length > 3) ||
+                    UserPrefs.instance.practiceGameIndex < 5
                 ? TextButton(
                     onPressed: () {
                       displayResult(GameResult(
@@ -95,37 +97,39 @@ class PracticeGameState extends State<PracticeGame> {
                     child: Text(LocaleKeys.practiceGame_resetButton.tr()),
                   )
                 : null,
-        header: (game) => Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 10),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+        header: (game) => (UserPrefs.instance.practiceGameIndex == 1)
+            ? Container()
+            : Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 10),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Colors.orangeAccent,
+                    padding: const EdgeInsets.all(6),
                   ),
-                  backgroundColor: Colors.orangeAccent,
-                  padding: const EdgeInsets.all(6),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PracticeGame()));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.arrow_back,
-                        size: 14,
-                      ),
-                      const SizedBox(width: 14),
-                      Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                    ],
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PracticeGame()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.arrow_back,
+                          size: 14,
+                        ),
+                        const SizedBox(width: 14),
+                        Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ));
+              ));
   }
 }
