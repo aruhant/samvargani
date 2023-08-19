@@ -52,6 +52,7 @@ dev_dependencies:
   custom_sliding_segmented_control:
   firebase_core:
   firebase_database:
+  firebase_analytics:
   flutter_test:
     sdk: flutter
 
