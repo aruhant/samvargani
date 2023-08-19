@@ -20,6 +20,9 @@ abstract class  LocaleKeys {
   static const intro_page4_body = 'intro.page4.body';
   static const intro_page4 = 'intro.page4';
   static const intro_done = 'intro.done';
+  static const intro_tutorial_mainMessage = 'intro.tutorial.mainMessage';
+  static const intro_tutorial_next = 'intro.tutorial.next';
+  static const intro_tutorial = 'intro.tutorial';
   static const intro = 'intro';
   static const cellTooltip_correctWithMatra = 'cellTooltip.correctWithMatra';
   static const cellTooltip_correctWithAdha = 'cellTooltip.correctWithAdha';

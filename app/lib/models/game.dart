@@ -78,16 +78,16 @@ class Game {
 
     if (/* !kDebugMode &&  */ guess != answer.answer &&
         !wordList.contains(guess)) {
-      print("searching for variations of $guess");
+//      print("searching for variations of $guess");
       final allVariations = guess.getAllVaraitions;
-      print("allVariations $allVariations");
+      //print("allVariations $allVariations");
       if (!allVariations.any((element) => wordList.contains(element))) {
         return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
       }
-      print("nooooooo");
+      //print("nooooooo");
       guess = allVariations.firstWhere((element) => wordList.contains(element));
       guessList = guess.allCharacters;
-      print("guess $guess");
+      //print("guess $guess");
     }
 
     List<Cell> cells = [];

@@ -31,25 +31,32 @@ class PracticeGameState extends State<PracticeGame> {
       await showDialog(
           context: context,
           builder: (context) => Material(
-                  child: Column(
+              color: const Color.fromRGBO(244, 240, 221, 1),
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    " LocaleKeys.practiceGame_tutorialOver.tr()",
+                    LocaleKeys.intro_tutorial_mainMessage.tr(),
+                    textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 30),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        backgroundColor: Colors.orangeAccent,
-                        padding: const EdgeInsets.all(6),
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(240, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text("Next"))
+                      backgroundColor: Colors.orangeAccent,
+                      padding: const EdgeInsets.all(15),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(LocaleKeys.intro_tutorial_next.tr(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                        )),
+                  )
                 ],
               )),
           barrierDismissible: false);
@@ -75,9 +82,11 @@ class PracticeGameState extends State<PracticeGame> {
   Widget build(BuildContext context) {
     if (gameAnswers.length - 1 == UserPrefs.instance.practiceGameIndex) {
       return Material(
+        color: const Color.fromRGBO(244, 240, 221, 1),
         child: Center(
           child: Text(
             LocaleKeys.practiceGame_gameOver.tr(),
+            textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 30),
           ),
         ),
@@ -85,7 +94,7 @@ class PracticeGameState extends State<PracticeGame> {
     }
     return GameWidget(
         game: game,
-        footer: (game) => (UserPrefs.instance.practiceGameIndex == 1)
+        footer: (game) => (UserPrefs.instance.practiceGameIndex == 0)
             ? Container()
             : (game.lines.length > 3) ||
                     UserPrefs.instance.practiceGameIndex < 5
@@ -97,7 +106,7 @@ class PracticeGameState extends State<PracticeGame> {
                     child: Text(LocaleKeys.practiceGame_resetButton.tr()),
                   )
                 : null,
-        header: (game) => (UserPrefs.instance.practiceGameIndex == 1)
+        header: (game) => (UserPrefs.instance.practiceGameIndex == 0)
             ? Container()
             : Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 10),

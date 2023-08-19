@@ -2,8 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:paheli/models/cell.dart';
+import 'package:paheli/models/line.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:paheli/widgets/line_widget.dart';
 
 import '../models/answer.dart';
 import '../models/game.dart';
@@ -52,11 +55,12 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       safeArea: 0,
       imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
     );
+    final autoSizeGroup = AutoSizeGroup();
 
     return IntroductionScreen(
       key: introKey,
 
-      globalBackgroundColor: Colors.white,
+      globalBackgroundColor: const Color.fromRGBO(244, 240, 221, 1),
       allowImplicitScrolling: true,
       autoScrollDuration: null,
       pages: [
@@ -69,7 +73,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page1_title.tr(),
                 style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 2,
+                maxLines: 4,
                 maxFontSize: 30,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
@@ -93,16 +97,16 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              _buildImage('intro1.png'),
-              const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page2_title.tr(),
                 style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 2,
+                maxLines: 4,
                 maxFontSize: 30,
                 minFontSize: 14,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 20),
+              _buildImage('intro1.png'),
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page2_body.tr(),
@@ -110,7 +114,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                 maxLines: 6,
                 maxFontSize: 30,
                 minFontSize: 14,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
             ],
           ),
@@ -120,16 +124,16 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           title: '',
           bodyWidget: Column(
             children: [
-              _buildImage('intro2.png'),
-              const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page3_title.tr(),
                 style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 2,
+                maxLines: 4,
                 maxFontSize: 30,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 20),
+              _buildImage('intro2.png'),
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page3_body.tr(),
@@ -145,22 +149,41 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          titleWidget: AutoSizeText(
-            LocaleKeys.intro_page4_title.tr(),
-            style: const TextStyle(fontSize: 60, color: Colors.black),
-            maxLines: 2,
-            maxFontSize: 30,
-            minFontSize: 14,
-            textAlign: TextAlign.center,
-          ),
+          title: "",
           bodyWidget: Column(
             children: [
-              _buildImage('intro2.png'),
+              AutoSizeText(
+                LocaleKeys.intro_page4_title.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+                maxLines: 4,
+                maxFontSize: 30,
+                minFontSize: 14,
+                textAlign: TextAlign.center,
+              ),
+              //_buildImage('intro3.png'),
+              // add three lineWidgets दावत,बालक, ा
+              LineWidget(
+                  line: Line(cells: [
+                    Cell('दा', state: CellState.misplacedVyanjan),
+                    Cell('व', state: CellState.incorrect),
+                    Cell('त', state: CellState.incorrect)
+                  ]),
+                  group: autoSizeGroup),
+              LineWidget(
+                  line: Line(cells: [
+                    Cell('बा', state: CellState.correct),
+                    Cell('ल', state: CellState.misplaced),
+                    Cell('क', state: CellState.incorrect)
+                  ]),
+                  group: autoSizeGroup),
+              LineWidget(
+                  line: Line(cells: [Cell('ा'), Cell(''), Cell('')]),
+                  group: autoSizeGroup),
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page4_body.tr(),
                 style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 2,
+                maxLines: 4,
                 maxFontSize: 30,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
@@ -302,8 +325,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       ),
     );
   }
-}
-/*
+} /* 
+
 class Tutorial extends StatefulWidget {
   const Tutorial({Key? key}) : super(key: key);
   @override
@@ -339,4 +362,4 @@ class TutorialState extends State<Tutorial> {
     );
   }
 }
-*/
+ */

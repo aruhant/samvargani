@@ -22,10 +22,14 @@
             "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟧 The letter is present in the correct answer but not at the correct position."
         }    ,
         "page4":{
-            "title": "Can you guess the word using above guesses?",
+            "title": "Can you guess the word using the following guesses?",
             "body":"Tap on a cell if you have any confusion with its colour and meaning."
         }, 
-        "done": "START"
+        "done": "START",
+        "tutorial": {
+            "mainMessage": "Great Job!\nNow let's try today's Daily Challenge!",
+            "next": "Daily Challenge"
+        }
     },
     "cellTooltip": {
         "correctWithMatra": "This cell contains the letter '{}', with this correct matra.",
