@@ -27,6 +27,37 @@ class PracticeGameState extends State<PracticeGame> {
 
   displayResult(GameResult result) async {
     bool s = UserPrefs.instance.makeProgress(gameAnswers.length);
+    if (UserPrefs.instance.practiceGameIndex == 1) {
+      await showDialog(
+          context: context,
+          builder: (context) => Material(
+                  child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    " LocaleKeys.practiceGame_tutorialOver.tr()",
+                    style: const TextStyle(fontSize: 30),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        backgroundColor: Colors.orangeAccent,
+                        padding: const EdgeInsets.all(6),
+                      ),
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Next"))
+                ],
+              )),
+          barrierDismissible: false);
+
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const DailyGame()));
+      return;
+    }
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
@@ -76,7 +107,7 @@ class PracticeGameState extends State<PracticeGame> {
                 ),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const DailyGame()));
+                      builder: (context) => const PracticeGame()));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(3.0),
