@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/firebase_options.dart';
 import 'package:paheli/models/user_prefs.dart';
