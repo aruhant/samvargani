@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:line_icons/line_icons.dart';
@@ -7,11 +6,45 @@ import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/models/line.dart';
+import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/utils/string.dart';
 
 void main() {
-  print('ढ़'.contains('़'));
-  print('टढ़ड़ा'.getAllVaraitions);
+  for (final word in wordList) {
+    if (word.characters.length == 3 &&
+        word.characters.toList()[1].matra.isEmpty &&
+        word.characters.toList()[2].matra.isEmpty &&
+        ((word.characters.toList()[0] == 'दा' &&
+                (word.characters.contains('ब') ||
+                    word.characters.contains('ल'))) ||
+            (word.characters.toList()[0] == 'बा' &&
+                (word.characters.contains('द') ||
+                    word.characters.contains('ल'))) ||
+            (word.characters.toList()[0] == 'ला' &&
+                (word.characters.contains('द') ||
+                    word.characters.contains('ब'))))) {
+      print(word);
+    }
+  }
+  print("__________________");
+
+  for (final word in wordList) {
+    if (word.characters.length == 3 &&
+        word.characters.toList()[0] == ('बा') &&
+        word.characters.toList()[1].matra.isEmpty &&
+        word.characters.toList()[2].matra.isEmpty &&
+        (word.characters.toList()[2].vyanjan == 'द' ||
+            word.characters.toList()[1].vyanjan == 'द' ||
+            word.characters.toList()[2].vyanjan == 'ल' ||
+            word.characters.toList()[1].vyanjan == 'ल')) {
+      print(word);
+    }
+  }
+  print("a");
+}
+
+  // print('ढ़'.contains('़'));
+  // print('टढ़ड़ा'.getAllVaraitions);
 
   /*
   for (String character in 'क़'.allCharacters) {
@@ -173,4 +206,4 @@ void main() {
     print(game.toJson());
     print('----------------------');
     print(Game.fromJson(jsonDecode(jsonEncode(game.toJson()))).toJson());*/
-}
+

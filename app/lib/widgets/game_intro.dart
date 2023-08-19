@@ -5,6 +5,11 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../models/answer.dart';
+import '../models/game.dart';
+import '../models/user_prefs.dart';
+import 'game_widget.dart';
+
 class GameHelpWidget extends StatefulWidget {
   const GameHelpWidget({Key? key, required this.onIntroEnd}) : super(key: key);
   final VoidCallback onIntroEnd;
@@ -140,13 +145,20 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: '',
+          titleWidget: AutoSizeText(
+            LocaleKeys.intro_page4_title.tr(),
+            style: const TextStyle(fontSize: 60, color: Colors.black),
+            maxLines: 2,
+            maxFontSize: 30,
+            minFontSize: 14,
+            textAlign: TextAlign.center,
+          ),
           bodyWidget: Column(
             children: [
               _buildImage('intro2.png'),
               const SizedBox(height: 20),
               AutoSizeText(
-                LocaleKeys.intro_page4_title.tr(),
+                LocaleKeys.intro_page4_body.tr(),
                 style: const TextStyle(fontSize: 60, color: Colors.black),
                 maxLines: 2,
                 maxFontSize: 30,
@@ -288,6 +300,42 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
+    );
+  }
+}
+
+class Tutorial extends StatefulWidget {
+  const Tutorial({Key? key}) : super(key: key);
+  @override
+  TutorialState createState() => TutorialState();
+}
+
+class TutorialState extends State<Tutorial> {
+  late Game game;
+  @override
+  void initState() {
+    super.initState();
+    game = Game.load(
+        answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
+        onSuceess: displayResult);
+  }
+
+  displayResult(GameResult result) async {
+    await showDialog(
+        context: context,
+        builder: (context) => ResultWidget(gameResult: result));
+    setState(() {
+      game = Game.load(
+        answer: gameAnswers[0],
+        onSuceess: displayResult,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GameWidget(
+      game: game,
     );
   }
 }
