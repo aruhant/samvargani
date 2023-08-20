@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
@@ -84,14 +85,14 @@ class _GameWidgetState extends State<GameWidget> {
                   ]),
                   const SizedBox(height: 25),
                   Text(LocaleKeys.app_title.tr(),
-                      style: const TextStyle(
-                          fontSize: 40,
+                      style: TextStyle(
+                          fontSize: 45.sp,
                           color: Colors.black54,
                           fontWeight: FontWeight.bold)),
                   Text(widget.game.answer.title,
                       textAlign: TextAlign.left,
-                      style: const TextStyle(
-                          fontSize: 18,
+                      style: TextStyle(
+                          fontSize: 18.sp,
                           color: Colors.black54,
                           fontWeight: FontWeight.bold)),
                   LinesWidget(
@@ -131,7 +132,6 @@ class _GameWidgetState extends State<GameWidget> {
                         },
                       ),
                     ),
-
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: (message.isNotEmpty)

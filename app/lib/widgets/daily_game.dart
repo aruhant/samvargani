@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/share.dart';
@@ -105,15 +106,17 @@ class DailyGameState extends State<DailyGame> {
                     padding: const EdgeInsets.all(1.0),
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.share,
-                          size: 14,
+                          size: 14.sp,
                         ),
                         const SizedBox(width: 12),
                         if (game.complete)
-                          Text(LocaleKeys.dailyGame_headerAlt.tr())
+                          Text(LocaleKeys.dailyGame_headerAlt.tr(),
+                              style: TextStyle(fontSize: 24.sp))
                         else
-                          Text(LocaleKeys.dailyGame_header.tr()),
+                          Text(LocaleKeys.dailyGame_header.tr(),
+                              style: TextStyle(fontSize: 14.sp)),
                       ],
                     ),
                   ),
@@ -125,8 +128,8 @@ class DailyGameState extends State<DailyGame> {
 
   successFooter(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(8.0).w,
+      margin: const EdgeInsets.all(12.0).w,
       decoration: const BoxDecoration(
         color: Colors.white30,
         borderRadius: BorderRadius.all(
@@ -140,8 +143,8 @@ class DailyGameState extends State<DailyGame> {
           Text(
             LocaleKeys.dailyGame_line1.tr(),
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 25,
+            style: TextStyle(
+              fontSize: 25.sp,
               color: Color.fromARGB(255, 43, 81, 100),
             ),
           ),
@@ -149,22 +152,22 @@ class DailyGameState extends State<DailyGame> {
           Text(
             LocaleKeys.dailyGame_line2.tr(),
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 20,
+            style: TextStyle(
+              fontSize: 20.sp,
               color: Color.fromARGB(255, 43, 81, 100),
             ),
           ),
           Text(
             LocaleKeys.dailyGame_line3.tr(),
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 20,
+            style: TextStyle(
+              fontSize: 20.sp,
               color: Color.fromARGB(255, 43, 81, 100),
             ),
           ),
 
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8).w,
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
