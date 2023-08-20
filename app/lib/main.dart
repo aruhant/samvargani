@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/firebase_options.dart';
@@ -43,28 +43,35 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      color: const Color.fromRGBO(244, 241, 222, 1),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      theme: FlexThemeData.light(scheme: FlexScheme.gold),
-      darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
-      themeMode: ThemeMode.light,
-      home: (UserPrefs.instance.shouldShowLocaleSettings)
-          ? LanguagePicker(
-              onLocaleSelected: () =>
-                  setState(() => UserPrefs.instance.localeSet()),
-            )
-          : (UserPrefs.instance.shouldShowHelp)
-              ? GameHelpWidget(
-                  onIntroEnd: () =>
-                      setState(() => UserPrefs.instance.firstRunDone()),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          color: const Color.fromRGBO(244, 241, 222, 1),
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          debugShowCheckedModeBanner: false,
+          theme: FlexThemeData.light(scheme: FlexScheme.gold),
+          darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
+          themeMode: ThemeMode.light,
+          home: (UserPrefs.instance.shouldShowLocaleSettings)
+              ? LanguagePicker(
+                  onLocaleSelected: () =>
+                      setState(() => UserPrefs.instance.localeSet()),
                 )
-              : UserPrefs.instance.practiceGameIndex > 0
-                  ? const DailyGame()
-                  : const PracticeGame(),
+              : (UserPrefs.instance.shouldShowHelp)
+                  ? GameHelpWidget(
+                      onIntroEnd: () =>
+                          setState(() => UserPrefs.instance.firstRunDone()),
+                    )
+                  : UserPrefs.instance.practiceGameIndex > 0
+                      ? const DailyGame()
+                      : const PracticeGame(),
+        );
+      },
     );
   }
 }

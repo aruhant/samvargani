@@ -327,7 +327,6 @@ final List<GameAnswer> gameAnswers = [
   GameAnswer(answer: 'उमंग', meaning: 'उत्साह'),
   GameAnswer(answer: 'प्रचंड', meaning: 'बहुत अधिक'),
   GameAnswer(answer: 'बेख़बर', meaning: 'अनजान'),
-  GameAnswer(answer: 'धैर्य', meaning: 'साहस'),
   GameAnswer(answer: 'विश्वास', meaning: 'भरोसा'),
   GameAnswer(answer: 'कंकाल', meaning: 'अस्थि-पंजर'),
   GameAnswer(answer: 'आकर्षण', meaning: 'आकर्षित करने की शक्ति'),

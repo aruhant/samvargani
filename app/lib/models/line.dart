@@ -4,6 +4,7 @@ class Line {
   Line({required this.cells});
   List<Cell> cells = [];
   get length => cells.length;
+  
 
   static Line fromJson(Map<String, dynamic> json) {
     return Line(
