@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class UserPrefs {
   final bool _darkMode;
@@ -60,7 +61,12 @@ class UserPrefs {
     if (_instance!._practiceGameIndex == max - 1) {
       return false;
     }
+    FirebaseAnalytics.instance
+        .logLevelEnd(levelName: '${_instance!._practiceGameIndex}');
+
     _instance!._practiceGameIndex++;
+    FirebaseAnalytics.instance
+        .logLevelStart(levelName: '${_instance!._practiceGameIndex}');
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
     return true;
   }

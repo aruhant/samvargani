@@ -23,7 +23,6 @@ class PracticeGameState extends State<PracticeGame> {
     game = Game.load(
         answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
         onSuceess: displayResult);
-    FirebaseAnalytics.instance.logLevelStart(levelName: game.name);
   }
 
   displayResult(GameResult result) async {
@@ -32,7 +31,7 @@ class PracticeGameState extends State<PracticeGame> {
       await showDialog(
           context: context,
           builder: (context) => Material(
-              color: const Color.fromRGBO(244, 240, 221, 1),
+              color: const Color.fromRGBO(213, 204, 158, 1),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +80,7 @@ class PracticeGameState extends State<PracticeGame> {
   Widget build(BuildContext context) {
     if (gameAnswers.length - 1 == UserPrefs.instance.practiceGameIndex) {
       return Material(
-        color: const Color.fromRGBO(244, 240, 221, 1),
+        color: const Color.fromRGBO(213, 204, 158, 1),
         child: Center(
           child: Text(
             LocaleKeys.practiceGame_gameOver.tr(),

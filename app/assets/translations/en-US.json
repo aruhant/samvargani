@@ -19,7 +19,7 @@
         },
         "page3":{
             "title": "The colours of the cell together indicate the correctness of the your word.",
-            "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟧 The letter is present in the correct answer but not at the correct position."
+            "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟨 The letter is present in the correct answer but not at the correct position."
         }    ,
         "page4":{
             "title": "Can you guess the word using the following guesses?",
@@ -27,7 +27,7 @@
         }, 
         "done": "START",
         "tutorial": {
-            "tutorial": "Tutorial",
+            "title": "Tutorial",
             "mainMessage": "Great Job!\nNow let's try today's Daily Challenge!",
             "next": "Daily Challenge"
         }
@@ -55,9 +55,9 @@
     
         "incorrect": "{} is not present in the word in any form.",
     
-        "emptyWithMatra": "This cell contains a letter with the '{}' matra.",
-        "emptyWithAdha": "This cell contains a letter with the '{}' half letter.",
-        "emptyWithMatraAndAdha": "This cell contains a letter with the '{}' half letter and the '{}' matra.",
+        "emptyWithMatra": "This cell contains a letter along with the '{}' matra.",
+        "emptyWithAdha": "This cell contains a letter along with the '{}' half letter.",
+        "emptyWithMatraAndAdha": "This cell contains a letter along with the '{}' half letter and the '{}' matra.",
         "emptyWithoutMatraAndAdha": "This cell contains a letter without any matra or half letter."
     },
     
@@ -66,8 +66,8 @@
         "answerLabel": "Your answer:",
  "gameMessages":{ 
     "wrongWordLength": "The answer is not a {} letter word!",
-    "notInDictonary":"Your answer {} is not in the Hindi dictionary!",
-    "matraError": "Please type the matra ({}) after the vyanjan and not vice-versa!",
+    "notInDictonary":"Your answer '{}' is not in the Hindi dictionary!",
+    "matraError": "Please type the matra ('{}') after the vyanjan and not vice-versa!",
     "aoError": "Pehaps you meant to type 'ओ', not 'अो'.",
     "auError": "Pehaps you meant to type 'औ', not 'अौ'.",
     "incorrect": "For assistance, you can tap on the cells, and see what they mean."

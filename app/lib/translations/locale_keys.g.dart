@@ -20,6 +20,7 @@ abstract class  LocaleKeys {
   static const intro_page4_body = 'intro.page4.body';
   static const intro_page4 = 'intro.page4';
   static const intro_done = 'intro.done';
+  static const intro_tutorial_title = 'intro.tutorial.title';
   static const intro_tutorial_mainMessage = 'intro.tutorial.mainMessage';
   static const intro_tutorial_next = 'intro.tutorial.next';
   static const intro_tutorial = 'intro.tutorial';

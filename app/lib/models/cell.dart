@@ -22,9 +22,9 @@ enum CellState {
       case CellState.misplaced:
         return const Color.fromRGBO(242, 204, 143, 1);
       case CellState.correctVyanjan:
-        return const Color.fromRGBO(129, 178, 154, 0.4);
+        return const Color.fromARGB(255, 177, 213, 171);
       case CellState.misplacedVyanjan:
-        return const Color.fromARGB(255, 242, 183, 143);
+        return const Color.fromARGB(255, 229, 166, 6);
     }
   }
 
