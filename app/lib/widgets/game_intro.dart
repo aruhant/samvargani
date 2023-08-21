@@ -67,8 +67,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               SizedBox(height: 20.w),
               AutoSizeText(
                 LocaleKeys.intro_page1_title.tr(),
-                style: TextStyle(
-                    fontSize: 100.sp,
+                style: const TextStyle(
+                    fontSize: 100,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
                 maxLines: 2,
@@ -79,10 +79,9 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               SizedBox(height: 10.w),
               AutoSizeText(
                 LocaleKeys.intro_page1_body.tr(),
-                style: TextStyle(
-                  fontSize: 60.sp,
+                style: const TextStyle(
+                  fontSize: 60,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
                 ),
                 maxLines: 3,
                 maxFontSize: 60,
@@ -102,12 +101,12 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page2_title.tr(),
                 style: const TextStyle(
-                  fontSize: 60,
+                  fontSize: 30,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
                 maxLines: 2,
-                maxFontSize: 60,
+                maxFontSize: 120,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -120,12 +119,11 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page2_body.tr(),
                 style: const TextStyle(
-                  fontSize: 60,
+                  fontSize: 40,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
                 ),
-                maxLines: 3,
-                maxFontSize: 60,
+                maxLines: 2,
+                maxFontSize: 95,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -145,7 +143,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                   fontWeight: FontWeight.bold,
                 ),
                 maxLines: 3,
-                maxFontSize: 80,
+                maxFontSize: 120,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -162,18 +160,16 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page3_body.tr(),
                 style: const TextStyle(
-                  fontSize: 60,
+                  fontSize: 25,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
                 ),
                 maxLines: 6,
-                maxFontSize: 55,
+                maxFontSize: 35,
                 minFontSize: 18,
                 textAlign: TextAlign.left,
               ),
             ],
           ),
-          // "जैसा कि हम देख सकते हैं कि जिस शब्द का हमें अनुमान है उसमें 2 अक्षर हैं; दूसरे स्थान पर एक मंत्र के साथ एक अक्षर भी है; तीसरे स्थान पर कुछ पूर्ण अक्षर के साथ आधा अक्षर - 's' है।",
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -183,17 +179,16 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page4_title.tr(),
                 style: const TextStyle(
-                  fontSize: 60,
+                  fontSize: 30,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
-                maxLines: 2,
-                maxFontSize: 60,
+                maxLines: 3,
+                maxFontSize: 120,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
-              //_buildImage('intro3.png'),
-              // add three lineWidgets दावत,बालक, ा
+              const SizedBox(height: 20),
               LineWidget(
                   line: Line(cells: [
                     Cell('दा', state: CellState.misplacedVyanjan),
@@ -215,12 +210,11 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page4_body.tr(),
                 style: const TextStyle(
-                  fontSize: 55,
+                  fontSize: 70,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
                 ),
-                maxLines: 3,
-                maxFontSize: 55,
+                maxLines: 2,
+                maxFontSize: 30,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
