@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/user_prefs.dart';
 
@@ -35,7 +36,7 @@ class CellWidget extends StatelessWidget {
                 triggerMode: disableTooltip
                     ? TooltipTriggerMode.manual
                     : TooltipTriggerMode.tap,
-                textStyle: const TextStyle(color: Colors.white),
+                textStyle: TextStyle(color: Colors.white, fontSize: 15.sp),
                 message: cell.state.tooltip(cell.value),
                 onTriggered: UserPrefs.instance.onTooltipPressed,
                 child: makeCellContents(),

@@ -64,7 +64,7 @@ class DailyGameState extends State<DailyGame> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(6.r),
                     ),
                     backgroundColor: Colors.orangeAccent,
                     padding: const EdgeInsets.all(6),
@@ -103,20 +103,20 @@ class DailyGameState extends State<DailyGame> {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(1.0),
+                    padding: EdgeInsets.all(6).w,
                     child: Row(
                       children: [
                         Icon(
                           Icons.share,
-                          size: 14.sp,
+                          size: 11.sp,
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: 12.w),
                         if (game.complete)
                           Text(LocaleKeys.dailyGame_headerAlt.tr(),
-                              style: TextStyle(fontSize: 24.sp))
+                              style: TextStyle(fontSize: 13.sp))
                         else
                           Text(LocaleKeys.dailyGame_header.tr(),
-                              style: TextStyle(fontSize: 14.sp)),
+                              style: TextStyle(fontSize: 13.sp)),
                       ],
                     ),
                   ),
@@ -140,21 +140,23 @@ class DailyGameState extends State<DailyGame> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // text - you have completed the daily game with text style
-          Text(
-            LocaleKeys.dailyGame_line1.tr(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 25.sp,
-              color: Color.fromARGB(255, 43, 81, 100),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4.0),
+            child: Text(
+              LocaleKeys.dailyGame_line1.tr(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 23.sp,
+                color: const Color.fromARGB(255, 43, 81, 100),
+              ),
             ),
           ),
-          // text come back tmr for more
           Text(
             LocaleKeys.dailyGame_line2.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.sp,
-              color: Color.fromARGB(255, 43, 81, 100),
+              color: const Color.fromARGB(255, 43, 81, 100),
             ),
           ),
           Text(
@@ -162,12 +164,12 @@ class DailyGameState extends State<DailyGame> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.sp,
-              color: Color.fromARGB(255, 43, 81, 100),
+              color: const Color.fromARGB(255, 43, 81, 100),
             ),
           ),
 
           Padding(
-            padding: EdgeInsets.all(8).w,
+            padding: EdgeInsets.all(8.w),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -175,17 +177,17 @@ class DailyGameState extends State<DailyGame> {
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(6.r),
                 ),
                 backgroundColor: Colors.orangeAccent,
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(14).w,
               ),
               child: Text(
                 LocaleKeys.dailyGame_button.tr(args: [
                   (UserPrefs.instance.practiceGameIndex + 1).toString()
                 ]),
-                style: const TextStyle(
-                  fontSize: 18,
+                style: TextStyle(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

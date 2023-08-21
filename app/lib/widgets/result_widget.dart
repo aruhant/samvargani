@@ -5,6 +5,7 @@ import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/utils/share.dart';
 import 'line_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:screenshot/screenshot.dart';
 
 class ResultWidget extends StatefulWidget {
@@ -47,16 +48,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                           ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight)),
-            padding: const EdgeInsets.all(18),
-            margin: const EdgeInsets.all(18),
+            padding: const EdgeInsets.all(18).w,
+            margin: const EdgeInsets.all(18).w,
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(12.0).w,
                   child: Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      icon: const Icon(Icons.close),
+                      icon: Icon(Icons.close, size: 24.sp),
                       color: Colors.black,
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -75,23 +76,23 @@ class _ResultWidgetState extends State<ResultWidget> {
                               (widget.gameResult.win
                                   ? Icons.emoji_events_outlined
                                   : Icons.sentiment_dissatisfied_outlined),
-                              size: 140,
+                              size: 140.sp,
                               color: const Color.fromARGB(255, 6, 7, 10)),
                           Text(
                               widget.gameResult.win
                                   ? LocaleKeys.gameResult_victoryMessage.tr()
                                   : LocaleKeys.gameResult_defeatMessage.tr(),
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontSize: 50,
+                              style: TextStyle(
+                                  fontSize: 50.sp,
                                   fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 6, 7, 10))),
+                                  color: const Color.fromARGB(255, 6, 7, 10))),
                           Text(
                               LocaleKeys.gameResult_completed
                                   .tr(args: [widget.gameResult.answer.title]),
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontSize: 20,
+                              style: TextStyle(
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Color.fromARGB(255, 6, 7, 10))),
                         ],
@@ -106,8 +107,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                               children: [
                                 Text(
                                   widget.gameResult.answer.answer,
-                                  style: const TextStyle(
-                                    fontSize: 40,
+                                  style: TextStyle(
+                                    fontSize: 40.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -116,8 +117,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                   LocaleKeys.gameResult_meaning.tr(
                                       args: [widget.gameResult.answer.meaning]),
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 30,
+                                  style: TextStyle(
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -127,8 +128,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                       Text(
                         LocaleKeys.gameResult_tries
                             .tr(args: [widget.gameResult.tries.toString()]),
-                        style: const TextStyle(
-                          fontSize: 30,
+                        style: TextStyle(
+                          fontSize: 30.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -144,14 +145,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                     Text(
                                       LocaleKeys.gameResult_share.tr(),
                                       textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 20,
+                                      style: TextStyle(
+                                        fontSize: 20.sp,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0).w,
                                       child: ElevatedButton(
                                         onPressed: () {
                                           setState(() => pressedShare = true);
@@ -165,13 +166,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                               ]));
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          padding: const EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10).w,
                                           shape: const CircleBorder(),
                                           elevation: 0,
                                           backgroundColor: Colors.white,
                                         ),
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.share,
+                                          size: 30.sp,
                                           color: Colors.deepOrangeAccent,
                                         ),
                                       ),
