@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({Key? key, required this.onLocaleSelected})
@@ -27,11 +28,11 @@ class LanguagePicker extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(110, 60),
+                    fixedSize: Size(110.w, 60.w),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10).r,
                     ),
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16).w,
                   ),
                   onPressed: () {
                     context.setLocale(const Locale('en', 'US'));
