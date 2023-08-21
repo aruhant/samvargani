@@ -94,7 +94,8 @@ class DailyGameState extends State<DailyGame> {
                               LocaleKeys.shareHelp_message.tr(args: [
                                 game.answer.answer.allCharacters.length
                                     .toString()
-                              ]));
+                              ]),
+                              context);
                         });
                       }
                     }

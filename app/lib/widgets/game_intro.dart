@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/cell.dart';
@@ -62,11 +63,14 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           title: '',
           bodyWidget: Column(
             children: [
-              _buildImage('icon.png'),
+              _buildImage('icon.png', 200.w),
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page1_title.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
+                style: TextStyle(
+                    fontSize: 100.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
                 maxLines: 4,
                 maxFontSize: 30,
                 minFontSize: 14,
@@ -75,7 +79,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page1_body.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
+                style: TextStyle(fontSize: 60.sp, color: Colors.black),
                 maxLines: 6,
                 maxFontSize: 30,
                 minFontSize: 14,

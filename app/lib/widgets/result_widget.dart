@@ -163,7 +163,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 widget.gameResult.answer.title,
                                                 widget.gameResult.tries
                                                     .toString()
-                                              ]));
+                                              ]),
+                                              context);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           padding: const EdgeInsets.all(10).w,
