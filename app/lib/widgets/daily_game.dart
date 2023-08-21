@@ -64,7 +64,7 @@ class DailyGameState extends State<DailyGame> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6.r),
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
                     backgroundColor: Colors.orangeAccent,
                     padding: const EdgeInsets.all(6),
@@ -96,27 +96,28 @@ class DailyGameState extends State<DailyGame> {
                                     .toString()
                               ]));
                         });
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (context) => HelpShareWidget(game));
                       }
                     }
                   },
                   child: Padding(
-                    padding: EdgeInsets.all(6).w,
+                    padding: EdgeInsets.all(6.w),
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.share,
-                          size: 11.sp,
+                          size: 14.sp,
                         ),
-                        SizedBox(width: 12.w),
+                        SizedBox(width: 10.w),
                         if (game.complete)
                           Text(LocaleKeys.dailyGame_headerAlt.tr(),
-                              style: TextStyle(fontSize: 13.sp))
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Colors.white))
                         else
                           Text(LocaleKeys.dailyGame_header.tr(),
-                              style: TextStyle(fontSize: 13.sp)),
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Colors.white)),
                       ],
                     ),
                   ),
@@ -177,19 +178,21 @@ class DailyGameState extends State<DailyGame> {
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6.r),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 backgroundColor: Colors.orangeAccent,
-                padding: const EdgeInsets.all(14).w,
+                padding: const EdgeInsets.all(6),
               ),
-              child: Text(
-                LocaleKeys.dailyGame_button.tr(args: [
-                  (UserPrefs.instance.practiceGameIndex + 1).toString()
-                ]),
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Text(
+                  LocaleKeys.dailyGame_button.tr(args: [
+                    (UserPrefs.instance.practiceGameIndex + 1).toString()
+                  ]),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

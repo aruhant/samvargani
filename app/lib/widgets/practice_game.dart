@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/widgets/daily_game.dart';
@@ -111,7 +112,7 @@ class PracticeGameState extends State<PracticeGame> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
                     backgroundColor: Colors.orangeAccent,
                     padding: const EdgeInsets.all(6),
@@ -121,18 +122,18 @@ class PracticeGameState extends State<PracticeGame> {
                         builder: (context) => const DailyGame()));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: EdgeInsets.all(6.0.w),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.arrow_back,
-                          size: 14,
+                          size: 16.sp,
                         ),
-                        const SizedBox(width: 14),
+                        SizedBox(width: 8.w),
                         Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
+                            style: TextStyle(
+                                fontSize: 14.sp, color: Colors.white)),
                       ],
                     ),
                   ),
