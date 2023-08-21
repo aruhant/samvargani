@@ -215,12 +215,12 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               AutoSizeText(
                 LocaleKeys.intro_page4_body.tr(),
                 style: const TextStyle(
-                  fontSize: 60,
+                  fontSize: 55,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
                 maxLines: 3,
-                maxFontSize: 60,
+                maxFontSize: 55,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
