@@ -86,7 +86,7 @@ class _GameWidgetState extends State<GameWidget> {
                   const SizedBox(height: 25),
                   Text(LocaleKeys.app_title.tr(),
                       style: TextStyle(
-                          fontSize: 45.sp,
+                          fontSize: 40.sp,
                           color: Colors.black54,
                           fontWeight: FontWeight.bold)),
                   Text(widget.game.answer.title,

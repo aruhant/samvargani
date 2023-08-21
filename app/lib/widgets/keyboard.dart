@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const _keys = [
   ["अ", "आ", "इ", "ई", "उ", "ऊ", "ए", "ऐ", "ओ", "औ"],
@@ -85,7 +86,8 @@ class _Key extends StatelessWidget {
                   : lowlight
                       ? const Color.fromRGBO(224, 122, 95, 1)
                       : ['⌫', '⏎'].contains(text)
-                          ? Colors.black38
+                          ? const Color.fromARGB(255, 42, 110, 145)
+                              .withOpacity(0.8)
                           : Colors.black12),
           child: TextButton(
             clipBehavior: Clip.antiAlias,
@@ -93,11 +95,13 @@ class _Key extends StatelessWidget {
             style: ButtonStyle(
                 padding: MaterialStateProperty.all(EdgeInsets.zero)),
             onPressed: () => onTap(text),
-            child: AutoSizeText(text,
-                group: _group,
-                maxLines: 1,
-                style: const TextStyle(
-                    color: Color.fromRGBO(61, 64, 91, 1), fontSize: 10000)),
+            child: ['⌫', '⏎'].contains(text)
+                ? Icon(text == '⌫' ? Icons.backspace : Icons.keyboard_return,
+                    color: Colors.white, size: 28.sp)
+                : AutoSizeText(text,
+                    group: _group,
+                    maxLines: 1,
+                    style: TextStyle(color: Colors.black, fontSize: 10000)),
           ),
         ),
       ),

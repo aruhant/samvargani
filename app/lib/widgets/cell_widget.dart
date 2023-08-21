@@ -15,40 +15,39 @@ class CellWidget extends StatelessWidget {
   final bool disableTooltip;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: disableTooltip
-            ? makeCellContents()
-            : Tooltip(
-                waitDuration: disableTooltip ? const Duration(hours: 1) : null,
-                showDuration: const Duration(seconds: 12),
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10,
-                          offset: const Offset(0, 5))
-                    ]),
-                triggerMode: disableTooltip
-                    ? TooltipTriggerMode.manual
-                    : TooltipTriggerMode.tap,
-                textStyle: TextStyle(color: Colors.white, fontSize: 15.sp),
-                message: cell.state.tooltip(cell.value),
-                onTriggered: UserPrefs.instance.onTooltipPressed,
-                child: makeCellContents(),
-              ),
-      ),
+    return Container(
+      child: disableTooltip
+          ? makeCellContents()
+          : Tooltip(
+              waitDuration: disableTooltip ? const Duration(hours: 1) : null,
+              showDuration: const Duration(seconds: 12),
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 10,
+                        offset: const Offset(0, 5))
+                  ]),
+              triggerMode: disableTooltip
+                  ? TooltipTriggerMode.manual
+                  : TooltipTriggerMode.tap,
+              textStyle: TextStyle(color: Colors.white, fontSize: 15.sp),
+              message: cell.state.tooltip(cell.value),
+              onTriggered: UserPrefs.instance.onTooltipPressed,
+              child: makeCellContents(),
+            ),
     );
   }
 
   Container makeCellContents() {
     return Container(
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(2.w),
+        margin: EdgeInsets.all(1.w),
+        height: 50.w,
+        width: 50.w,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: cell.state.color),
         child: Center(
