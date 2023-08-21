@@ -64,24 +64,28 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           bodyWidget: Column(
             children: [
               _buildImage('icon.png', 200.w),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.w),
               AutoSizeText(
                 LocaleKeys.intro_page1_title.tr(),
                 style: TextStyle(
                     fontSize: 100.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
-                maxLines: 4,
-                maxFontSize: 30,
+                maxLines: 2,
+                maxFontSize: 60,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 10.w),
               AutoSizeText(
                 LocaleKeys.intro_page1_body.tr(),
-                style: TextStyle(fontSize: 60.sp, color: Colors.black),
-                maxLines: 6,
-                maxFontSize: 30,
+                style: TextStyle(
+                  fontSize: 60.sp,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 3,
+                maxFontSize: 60,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -97,9 +101,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             children: [
               AutoSizeText(
                 LocaleKeys.intro_page2_title.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 4,
-                maxFontSize: 30,
+                style: const TextStyle(
+                  fontSize: 60,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 2,
+                maxFontSize: 60,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -111,9 +119,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page2_body.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 6,
-                maxFontSize: 30,
+                style: const TextStyle(
+                  fontSize: 60,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 3,
+                maxFontSize: 60,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -127,9 +139,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             children: [
               AutoSizeText(
                 LocaleKeys.intro_page3_title.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 4,
-                maxFontSize: 30,
+                style: const TextStyle(
+                  fontSize: 70,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 3,
+                maxFontSize: 80,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -145,9 +161,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page3_body.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
+                style: const TextStyle(
+                  fontSize: 60,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
                 maxLines: 6,
-                maxFontSize: 30,
+                maxFontSize: 55,
                 minFontSize: 18,
                 textAlign: TextAlign.left,
               ),
@@ -162,9 +182,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             children: [
               AutoSizeText(
                 LocaleKeys.intro_page4_title.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 4,
-                maxFontSize: 30,
+                style: const TextStyle(
+                  fontSize: 60,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 2,
+                maxFontSize: 60,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),
@@ -190,9 +214,13 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               AutoSizeText(
                 LocaleKeys.intro_page4_body.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
-                maxLines: 4,
-                maxFontSize: 30,
+                style: const TextStyle(
+                  fontSize: 60,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 3,
+                maxFontSize: 60,
                 minFontSize: 14,
                 textAlign: TextAlign.center,
               ),

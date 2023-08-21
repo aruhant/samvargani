@@ -70,7 +70,7 @@
     "matraError": "Please type the matra ('{}') after the vyanjan and not vice-versa!",
     "aoError": "Pehaps you meant to type 'ओ', not 'अो'.",
     "auError": "Pehaps you meant to type 'औ', not 'अौ'.",
-    "incorrect": "For assistance, you can tap on the cells, and see what they mean."
+    "incorrect": "For assistance, you may tap on the cells, and see what they mean."
 }    },
 "gameResult":{
     "victoryMessage":"You win!",

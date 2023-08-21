@@ -5,22 +5,14 @@ import 'package:paheli/utils/string.dart';
 void main() {
   for (final word in wordList) {
     if (word.characters.length == 3 &&
-        word.characters.toList()[1].matra.isEmpty &&
-        word.characters.toList()[2].matra.isEmpty &&
-        ((word.characters.toList()[0] == 'दा' &&
-                (word.characters.contains('ब') ||
-                    word.characters.contains('ल'))) ||
-            (word.characters.toList()[0] == 'बा' &&
-                (word.characters.contains('द') ||
-                    word.characters.contains('ल'))) ||
-            (word.characters.toList()[0] == 'ला' &&
-                (word.characters.contains('द') ||
-                    word.characters.contains('ब'))))) {
+        word.characters.toList()[0].matra == 'ं' &&
+        word.characters.toList()[1].matra == 'ा' &&
+        word.characters.toList()[2].matra.isEmpty) {
       print(word);
     }
   }
   print("__________________");
-
+/* 
   for (final word in wordList) {
     if (word.characters.length == 3 &&
         word.characters.toList()[0] == ('बा') &&
@@ -34,7 +26,7 @@ void main() {
     }
   }
   print("a");
-}
+} */
 
   // print('ढ़'.contains('़'));
   // print('टढ़ड़ा'.getAllVaraitions);
@@ -199,4 +191,4 @@ void main() {
     print(game.toJson());
     print('----------------------');
     print(Game.fromJson(jsonDecode(jsonEncode(game.toJson()))).toJson());*/
-
+}

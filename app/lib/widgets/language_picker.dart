@@ -28,11 +28,11 @@ class LanguagePicker extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(110.w, 60.w),
+                    fixedSize: const Size(110, 60),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10).r,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    padding: const EdgeInsets.all(16).w,
+                    padding: const EdgeInsets.all(16),
                   ),
                   onPressed: () {
                     context.setLocale(const Locale('en', 'US'));
