@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/answer.dart';
@@ -98,7 +99,8 @@ class PracticeGameState extends State<PracticeGame> {
             : (UserPrefs.instance.practiceGameIndex < 4 &&
                         game.lines.length > 3) ||
                     (UserPrefs.instance.practiceGameIndex < 30 &&
-                        game.lines.length > 8)
+                        game.lines.length > 8) ||
+                    kDebugMode
                 ? TextButton(
                     onPressed: () {
                       displayResult(GameResult(

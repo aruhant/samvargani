@@ -18,7 +18,7 @@
             "body": "You will also be shown the half letters and matras of the target word."
         },
         "page3":{
-            "title": "The colours of the cell together indicate the correctness of the your word.",
+            "title": "The colours of each cell indicate the correctness of the your guess.",
             "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟨 The letter is present in the correct answer but not at the correct position."
         }    ,
         "page4":{

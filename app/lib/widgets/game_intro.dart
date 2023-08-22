@@ -189,7 +189,7 @@ makeTitle(String text) => AutoSizeText(
 makeBody(String text, {textAlign = TextAlign.center}) => AutoSizeText(
       text,
       style: TextStyle(fontSize: 24.sp, color: Colors.black),
-      maxLines: 4,
+      maxLines: 6,
       maxFontSize: (24.sp.truncateToDouble()),
       minFontSize: 8.sp.truncateToDouble(),
       textAlign: textAlign,
