@@ -51,13 +51,15 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       safeArea: 0,
       imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
     );
-    final autoSizeGroup = AutoSizeGroup();
+    final autoSizeGroupCells = AutoSizeGroup();
+    final autoSizeGroupBody = AutoSizeGroup();
 
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: const Color.fromRGBO(213, 204, 158, 1),
       allowImplicitScrolling: true,
       autoScrollDuration: null,
+      bodyPadding: EdgeInsets.only(left: 24.w, right: 24.w),
       pages: [
         PageViewModel(
           title: '',
@@ -65,29 +67,9 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             children: [
               _buildImage('icon.png', 200.w),
               SizedBox(height: 20.w),
-              AutoSizeText(
-                LocaleKeys.intro_page1_title.tr(),
-                style: const TextStyle(
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-                maxLines: 2,
-                maxFontSize: 60,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
-              ),
+              makeTitle(LocaleKeys.intro_page1_title.tr()),
               SizedBox(height: 10.w),
-              AutoSizeText(
-                LocaleKeys.intro_page1_body.tr(),
-                style: const TextStyle(
-                  fontSize: 60,
-                  color: Colors.black,
-                ),
-                maxLines: 3,
-                maxFontSize: 60,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
-              ),
+              makeBody(LocaleKeys.intro_page1_body.tr()),
             ],
           ),
           decoration: pageDecoration,
@@ -98,35 +80,14 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              AutoSizeText(
-                LocaleKeys.intro_page2_title.tr(),
-                style: const TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: 2,
-                maxFontSize: 120,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
-              ),
+              makeTitle(LocaleKeys.intro_page2_title.tr()),
               const SizedBox(height: 20),
               LineWidget(
                   disableTooltip: true,
                   line: Line(cells: [Cell('ा'), Cell(''), Cell('')]),
-                  group: autoSizeGroup),
+                  group: autoSizeGroupCells),
               const SizedBox(height: 20),
-              AutoSizeText(
-                LocaleKeys.intro_page2_body.tr(),
-                style: const TextStyle(
-                  fontSize: 40,
-                  color: Colors.black,
-                ),
-                maxLines: 2,
-                maxFontSize: 95,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
-              ),
+              makeBody(LocaleKeys.intro_page2_body.tr()),
             ],
           ),
           decoration: pageDecoration,
@@ -135,18 +96,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           title: '',
           bodyWidget: Column(
             children: [
-              AutoSizeText(
-                LocaleKeys.intro_page3_title.tr(),
-                style: const TextStyle(
-                  fontSize: 70,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: 3,
-                maxFontSize: 120,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
-              ),
+              makeTitle(LocaleKeys.intro_page3_title.tr()),
               const SizedBox(height: 20),
               LineWidget(
                   disableTooltip: true,
@@ -155,19 +105,10 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                     Cell('ल', state: CellState.misplaced),
                     Cell('क', state: CellState.incorrect)
                   ]),
-                  group: autoSizeGroup),
+                  group: autoSizeGroupCells),
               const SizedBox(height: 20),
-              AutoSizeText(
-                LocaleKeys.intro_page3_body.tr(),
-                style: const TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
-                maxLines: 6,
-                maxFontSize: 35,
-                minFontSize: 18,
-                textAlign: TextAlign.left,
-              ),
+              makeBody(LocaleKeys.intro_page3_body.tr(),
+                  textAlign: TextAlign.left),
             ],
           ),
           decoration: pageDecoration,
@@ -176,18 +117,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
           title: "",
           bodyWidget: Column(
             children: [
-              AutoSizeText(
-                LocaleKeys.intro_page4_title.tr(),
-                style: const TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: 3,
-                maxFontSize: 120,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
-              ),
+              makeTitle(LocaleKeys.intro_page4_title.tr()),
               const SizedBox(height: 20),
               LineWidget(
                   line: Line(cells: [
@@ -195,28 +125,20 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                     Cell('व', state: CellState.incorrect),
                     Cell('त', state: CellState.incorrect)
                   ]),
-                  group: autoSizeGroup),
+                  group: autoSizeGroupCells),
               LineWidget(
                   line: Line(cells: [
                     Cell('बा', state: CellState.correct),
                     Cell('ल', state: CellState.misplaced),
                     Cell('क', state: CellState.incorrect)
                   ]),
-                  group: autoSizeGroup),
+                  group: autoSizeGroupCells),
               LineWidget(
                   line: Line(cells: [Cell('ा'), Cell(''), Cell('')]),
-                  group: autoSizeGroup),
+                  group: autoSizeGroupCells),
               const SizedBox(height: 20),
-              AutoSizeText(
+              makeBody(
                 LocaleKeys.intro_page4_body.tr(),
-                style: const TextStyle(
-                  fontSize: 70,
-                  color: Colors.black,
-                ),
-                maxLines: 2,
-                maxFontSize: 30,
-                minFontSize: 14,
-                textAlign: TextAlign.center,
               ),
             ],
           ),
@@ -254,3 +176,21 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
     );
   }
 }
+
+makeTitle(String text) => AutoSizeText(
+      text,
+      style: TextStyle(
+          fontSize: 30.sp, fontWeight: FontWeight.bold, color: Colors.black),
+      maxLines: 3,
+      maxFontSize: (30.sp.truncateToDouble()),
+      minFontSize: 8.sp.truncateToDouble(),
+      textAlign: TextAlign.center,
+    );
+makeBody(String text, {textAlign = TextAlign.center}) => AutoSizeText(
+      text,
+      style: TextStyle(fontSize: 24.sp, color: Colors.black),
+      maxLines: 4,
+      maxFontSize: (24.sp.truncateToDouble()),
+      minFontSize: 8.sp.truncateToDouble(),
+      textAlign: textAlign,
+    );

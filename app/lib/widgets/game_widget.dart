@@ -54,8 +54,6 @@ class _GameWidgetState extends State<GameWidget> {
         children: [
           Vitality.randomly(
             key: ValueKey(widget.game),
-            height: size.height,
-            width: size.width,
             background: widget.game.answer.backgroundColor,
             maxOpacity: widget.game.answer.maxOpacity, // 0,4
             minOpacity: widget.game.answer.minOpacity, // 0,15
