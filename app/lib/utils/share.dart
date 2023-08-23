@@ -17,7 +17,7 @@ shareScreenShot(ScreenshotController screenshotController, String message,
       await imagePath.writeAsBytes(image);
       await Share.shareXFiles([XFile(imagePath.path)],
           sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-          text: message);
+          text: Platform.isAndroid ? message : null);
     }
   });
 }
@@ -29,5 +29,5 @@ shareImage(Uint8List image, String message, BuildContext context) async {
   await imagePath.writeAsBytes(image);
   await Share.shareXFiles([XFile(imagePath.path)],
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-      text: message);
+      text: Platform.isAndroid ? message : null);
 }
