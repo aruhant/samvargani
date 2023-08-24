@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
-      splitScreenMode: true,
+      splitScreenMode: false,
       builder: (context, child) {
         return MaterialApp(
           color: const Color.fromRGBO(244, 241, 222, 1),

@@ -51,6 +51,7 @@ class _ResultWidgetState extends State<ResultWidget> {
             padding: const EdgeInsets.all(18).w,
             margin: const EdgeInsets.all(18).w,
             child: Stack(
+              alignment: Alignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0).w,
@@ -65,126 +66,165 @@ class _ResultWidgetState extends State<ResultWidget> {
                     ),
                   ),
                 ),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          Icon(
-                              (widget.gameResult.win
-                                  ? Icons.emoji_events_outlined
-                                  : Icons.sentiment_dissatisfied_outlined),
-                              size: 140.sp,
-                              color: const Color.fromARGB(255, 6, 7, 10)),
-                          Text(
-                              widget.gameResult.win
-                                  ? LocaleKeys.gameResult_victoryMessage.tr()
-                                  : LocaleKeys.gameResult_defeatMessage.tr(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 50.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color.fromARGB(255, 6, 7, 10))),
-                          Text(
-                              LocaleKeys.gameResult_completed
-                                  .tr(args: [widget.gameResult.answer.title]),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color.fromARGB(255, 6, 7, 10))),
-                        ],
-                      ),
-                      pressedShare
-                          ? LineWidget(
-                              disableTooltip: true,
-                              line: widget.gameResult.lines.last,
-                              group: AutoSizeGroup(),
-                            )
-                          : (Column(
-                              children: [
-                                Text(
-                                  widget.gameResult.answer.answer,
-                                  style: TextStyle(
-                                    fontSize: 40.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                Text(
-                                  LocaleKeys.gameResult_meaning.tr(
-                                      args: [widget.gameResult.answer.meaning]),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      Text(
-                        LocaleKeys.gameResult_tries
-                            .tr(args: [widget.gameResult.tries.toString()]),
-                        style: TextStyle(
-                          fontSize: 30.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      widget.gameResult.win
-                          ? Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                (Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      LocaleKeys.gameResult_share.tr(),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
+                FittedBox(
+                  fit: BoxFit.fill,
+                  alignment: Alignment.center,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                            (widget.gameResult.win
+                                ? Icons.emoji_events_outlined
+                                : Icons.sentiment_dissatisfied_outlined),
+                            size: 120.sp,
+                            color: const Color.fromARGB(255, 6, 7, 10)),
+                        SizedBox(height: 10.h),
+                        Text(
+                            widget.gameResult.win
+                                ? LocaleKeys.gameResult_victoryMessage.tr()
+                                : LocaleKeys.gameResult_defeatMessage.tr(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 44.sp,
+                                fontWeight: FontWeight.bold,
+                                color: const Color.fromARGB(255, 6, 7, 10))),
+                        SizedBox(height: 10.h),
+                        Text(
+                            LocaleKeys.gameResult_completed
+                                .tr(args: [widget.gameResult.answer.title]),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                                color: const Color.fromARGB(255, 6, 7, 10))),
+                        SizedBox(height: 50.h),
+                        pressedShare
+                            ? LineWidget(
+                                disableTooltip: true,
+                                line: widget.gameResult.lines.last,
+                                group: AutoSizeGroup(),
+                              )
+                            : (Column(
+                                children: [
+                                  Text(
+                                    widget.gameResult.answer.answer,
+                                    style: TextStyle(
+                                      fontSize: 40.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0).w,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          setState(() => pressedShare = true);
-                                          shareScreenShot(
-                                              _screenShotController,
-                                              LocaleKeys.gameResult_shareMessage
-                                                  .tr(args: [
-                                                widget.gameResult.answer.title,
-                                                widget.gameResult.tries
-                                                    .toString()
-                                              ]),
-                                              context);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          padding: const EdgeInsets.all(10).w,
-                                          shape: const CircleBorder(),
-                                          elevation: 0,
-                                          backgroundColor: Colors.white,
-                                        ),
-                                        child: Icon(
-                                          Icons.share,
-                                          size: 30.sp,
-                                          color: Colors.deepOrangeAccent,
-                                        ),
-                                      ),
+                                  ),
+                                  Text(
+                                    LocaleKeys.gameResult_meaning.tr(args: [
+                                      widget.gameResult.answer.meaning
+                                    ]),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 30.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                     ),
-                                  ],
+                                  ),
+                                ],
+                              )),
+                        SizedBox(height: 50.h),
+                        if (!pressedShare)
+                          Text(
+                            LocaleKeys.gameResult_tries
+                                .tr(args: [widget.gameResult.tries.toString()]),
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        pressedShare
+                            ? AutoSizeText(
+                                LocaleKeys.gameResult_shareMessage.tr(args: [
+                                  widget.gameResult.answer.title,
+                                  widget.gameResult.tries.toString()
+                                ]),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ))
+                            : widget.gameResult.win
+                                ? Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      (Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            LocaleKeys.gameResult_share.tr(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.all(5.0).w,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(
+                                                    () => pressedShare = true);
+                                                shareScreenShot(
+                                                    _screenShotController,
+                                                    LocaleKeys
+                                                            .gameResult_shareMessage
+                                                            .tr(args: [
+                                                          widget.gameResult
+                                                              .answer.title,
+                                                          widget
+                                                              .gameResult.tries
+                                                              .toString()
+                                                        ]) +
+                                                        '\n\n' +
+                                                        LocaleKeys.app_url.tr(),
+                                                    context);
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                padding:
+                                                    const EdgeInsets.all(10).w,
+                                                shape: const CircleBorder(),
+                                                elevation: 0,
+                                                backgroundColor: Colors.white,
+                                              ),
+                                              child: Icon(
+                                                Icons.share,
+                                                size: 30.sp,
+                                                color: Colors.deepOrangeAccent,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                    ],
+                                  )
+                                : const Row(),
+                        if (pressedShare)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12).w,
+                            child: AutoSizeText(
+                                LocaleKeys.app_downloadInstructions.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 )),
-                              ],
-                            )
-                          : const Row(),
-                    ]),
+                          )
+                      ]),
+                ),
               ],
             ),
           ),

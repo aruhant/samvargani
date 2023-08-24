@@ -3,6 +3,8 @@
 abstract class  LocaleKeys {
   static const app_title = 'app.title';
   static const app_description = 'app.description';
+  static const app_url = 'app.url';
+  static const app_downloadInstructions = 'app.downloadInstructions';
   static const app = 'app';
   static const author_name = 'author.name';
   static const author_bio = 'author.bio';
