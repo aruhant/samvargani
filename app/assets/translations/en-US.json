@@ -94,6 +94,6 @@
     },
     "shareHelp": {
         "title": "Can you help me guess this Hindi word:",
-        "message": "Can you help me guess this {} letter Hindi word. I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"
+        "message": "{}\nCan you help me guess this {} letter Hindi word.I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"
     }
 }

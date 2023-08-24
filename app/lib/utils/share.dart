@@ -27,7 +27,9 @@ shareImage(Uint8List image, String message, BuildContext context) async {
   final directory = await getApplicationDocumentsDirectory();
   final imagePath = await File('${directory.path}/image.png').create();
   await imagePath.writeAsBytes(image);
-  await Share.shareXFiles([XFile(imagePath.path)],
-      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-      text: Platform.isAndroid ? message : null);
+  Platform.isIOS
+      ? await Share.share(message)
+      : await Share.shareXFiles([XFile(imagePath.path)],
+          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+          text: message);
 }

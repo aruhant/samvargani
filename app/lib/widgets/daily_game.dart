@@ -91,6 +91,9 @@ class DailyGameState extends State<DailyGame> {
                           shareImage(
                               capturedImage,
                               LocaleKeys.shareHelp_message.tr(args: [
+                                game.answer.answer.allCharacters
+                                    .map((e) => e.matra)
+                                    .join('_'),
                                 game.answer.answer.allCharacters.length
                                     .toString()
                               ]),
