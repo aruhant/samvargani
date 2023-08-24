@@ -74,7 +74,7 @@
         "meaning": "Meaning: {}",
         "tries": "Tries: {}",
         "share": "Share your score!",
-        "completed": "You have completed {}!",
+        "completed": "You have completed\n{}!",
         "shareMessage": "I completed {}\nin {} tries!\nCan you beat my score?"
     },
     "practiceGame": {

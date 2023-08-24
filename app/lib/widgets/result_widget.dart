@@ -180,17 +180,13 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                     () => pressedShare = true);
                                                 shareScreenShot(
                                                     _screenShotController,
-                                                    LocaleKeys
-                                                            .gameResult_shareMessage
-                                                            .tr(args: [
+                                                    '${LocaleKeys.gameResult_shareMessage.tr(args: [
                                                           widget.gameResult
                                                               .answer.title,
                                                           widget
                                                               .gameResult.tries
                                                               .toString()
-                                                        ]) +
-                                                        '\n\n' +
-                                                        LocaleKeys.app_url.tr(),
+                                                        ])}\n\n${LocaleKeys.app_url.tr()}',
                                                     context);
                                               },
                                               style: ElevatedButton.styleFrom(
