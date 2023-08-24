@@ -13,6 +13,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:upgrader/upgrader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,28 +54,35 @@ class _MyAppState extends State<MyApp> {
       splitScreenMode: false,
       builder: (context, child) {
         return MaterialApp(
-          color: const Color.fromRGBO(244, 241, 222, 1),
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          debugShowCheckedModeBanner: false,
-          theme: FlexThemeData.light(scheme: FlexScheme.gold),
-          darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
-          themeMode: ThemeMode.light,
-          home: (UserPrefs.instance.shouldShowLocaleSettings)
-              ? LanguagePicker(
-                  onLocaleSelected: () =>
-                      setState(() => UserPrefs.instance.localeSet()),
-                )
-              : (UserPrefs.instance.shouldShowHelp)
-                  ? GameHelpWidget(
-                      onIntroEnd: () =>
-                          setState(() => UserPrefs.instance.firstRunDone()),
+            color: const Color.fromRGBO(244, 241, 222, 1),
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            theme: FlexThemeData.light(scheme: FlexScheme.gold),
+            darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
+            themeMode: ThemeMode.light,
+            home: UpgradeAlert(
+              upgrader: Upgrader(
+                  showIgnore: false,
+                  showLater: false,
+                  dialogStyle: Platform.isIOS
+                      ? UpgradeDialogStyle.cupertino
+                      : UpgradeDialogStyle.material),
+              child: (UserPrefs.instance.shouldShowLocaleSettings)
+                  ? LanguagePicker(
+                      onLocaleSelected: () =>
+                          setState(() => UserPrefs.instance.localeSet()),
                     )
-                  : UserPrefs.instance.practiceGameIndex > 0
-                      ? const DailyGame()
-                      : const PracticeGame(),
-        );
+                  : (UserPrefs.instance.shouldShowHelp)
+                      ? GameHelpWidget(
+                          onIntroEnd: () =>
+                              setState(() => UserPrefs.instance.firstRunDone()),
+                        )
+                      : UserPrefs.instance.practiceGameIndex > 0
+                          ? const DailyGame()
+                          : const PracticeGame(),
+            ));
       },
     );
   }
