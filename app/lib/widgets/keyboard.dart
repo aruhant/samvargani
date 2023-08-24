@@ -101,7 +101,7 @@ class _Key extends StatelessWidget {
                 : AutoSizeText(text,
                     group: _group,
                     maxLines: 1,
-                    style: TextStyle(color: Colors.black, fontSize: 10000)),
+                    style: const TextStyle(color: Colors.black, fontSize: 10000)),
           ),
         ),
       ),

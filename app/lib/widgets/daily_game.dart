@@ -11,7 +11,6 @@ import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import '../models/user_prefs.dart';
 
 class DailyGame extends StatefulWidget {

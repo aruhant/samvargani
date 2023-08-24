@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/firebase_options.dart';
 import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/wotd.dart';
 import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_intro.dart';
 import 'package:paheli/widgets/language_picker.dart';
@@ -11,12 +12,15 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/widgets/practice_game.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
+    FirebaseDatabase.instance.setPersistenceEnabled(true);
+    WotD.load();
     await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
     FirebaseAnalytics.instance
         .setUserProperty(name: 'os', value: Platform.operatingSystem);

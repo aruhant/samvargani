@@ -8,7 +8,6 @@ import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import '../models/user_prefs.dart';
 
 class PracticeGame extends StatefulWidget {

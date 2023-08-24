@@ -94,7 +94,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                               style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 6, 7, 10))),
+                                  color: const Color.fromARGB(255, 6, 7, 10))),
                         ],
                       ),
                       pressedShare
@@ -152,7 +152,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.all(5.0).w,
+                                      padding: const EdgeInsets.all(5.0).w,
                                       child: ElevatedButton(
                                         onPressed: () {
                                           setState(() => pressedShare = true);
