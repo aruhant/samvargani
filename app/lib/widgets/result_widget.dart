@@ -96,7 +96,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                 .tr(args: [widget.gameResult.answer.title]),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 24.sp,
                                 fontWeight: FontWeight.bold,
                                 color: const Color.fromARGB(255, 6, 7, 10))),
                         SizedBox(height: 50.h),
@@ -129,17 +129,18 @@ class _ResultWidgetState extends State<ResultWidget> {
                                   ),
                                 ],
                               )),
-                        SizedBox(height: 50.h),
+                        SizedBox(height: 40.h),
                         if (!pressedShare)
                           Text(
                             LocaleKeys.gameResult_tries
                                 .tr(args: [widget.gameResult.tries.toString()]),
                             style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 30.sp,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
                           ),
+                        SizedBox(height: 20.h),
                         pressedShare
                             ? AutoSizeText(
                                 LocaleKeys.gameResult_shareMessage.tr(args: [
@@ -211,7 +212,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                     ],
                                   )
                                 : const Row(),
-                        if (pressedShare)
+                        /*                 if (false && pressedShare)
                           Padding(
                             padding: const EdgeInsets.only(top: 12).w,
                             child: AutoSizeText(
@@ -222,7 +223,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 )),
-                          )
+                          )*/
                       ]),
                 ),
               ],
