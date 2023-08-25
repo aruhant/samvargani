@@ -69,13 +69,13 @@
         }
     },
     "gameResult": {
-        "victoryMessage": "You win!",
+        "victoryMessage": "Winner!",
         "defeatMessage": "You lose!",
         "meaning": "Meaning: {}",
         "tries": "Tries: {}",
         "share": "Share your score!",
         "completed": "You have completed\n{}!",
-        "shareMessage": "I completed {}\nin {} tries!\nCan you beat my score?"
+        "shareMessage": "I completed\n{}\nin {} tries!\nCan you beat my score?"
     },
     "practiceGame": {
         "level": "Level {}",
