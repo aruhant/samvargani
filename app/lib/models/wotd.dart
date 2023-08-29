@@ -5,6 +5,7 @@ class WotD {
   final String _location;
   final GameAnswer _answer;
   GameAnswer get answer => _answer;
+  int get day => DateTime.now().millisecondsSinceEpoch ~/ 86400000;
   static Future<WotD> load({location = 'wotd'}) async {
     try {
       Map val = (await FirebaseDatabase.instance.ref(location).once())

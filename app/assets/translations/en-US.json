@@ -86,7 +86,7 @@
     "dailyGame": {
         "loading": "Loading...",
         "line1": "You have completed today's Daily Word Challenge!",
-        "line2": "Come back tomorrow for a new challenge!",
+        "line2": "New word in:",
         "line3": "In the meantime, try practice mode!",
         "button": "Practice Level {}",
         "header": "Share this challenge!",
