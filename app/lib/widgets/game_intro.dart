@@ -52,7 +52,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
       imagePadding: EdgeInsets.only(left: 24, right: 24, top: 60),
     );
     final autoSizeGroupCells = AutoSizeGroup();
-    final autoSizeGroupBody = AutoSizeGroup();
+    //final autoSizeGroupBody = AutoSizeGroup();
 
     return IntroductionScreen(
       key: introKey,

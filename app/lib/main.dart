@@ -21,7 +21,6 @@ Future<void> main() async {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
     FirebaseDatabase.instance.setPersistenceEnabled(true);
-    WotD.load();
     await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
     FirebaseAnalytics.instance
         .setUserProperty(name: 'os', value: Platform.operatingSystem);

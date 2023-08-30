@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/share.dart';
@@ -25,10 +26,13 @@ class DailyGameState extends State<DailyGame> {
   @override
   void initState() {
     super.initState();
-    WotD.listen().listen((value) {
-      setState(() =>
-          game = Game.load(answer: value.answer, onSuceess: displayResult));
-    });
+    WotD.load().then((g) => setState(() {
+          game = Game.load(answer: g.answer, onSuceess: displayResult);
+        }));
+    // WotD.listen().listen((value) {
+    //   setState(() =>
+    //       game = Game.load(answer: value.answer, onSuceess: displayResult));
+    // });
   }
 
   displayResult(GameResult result) async {
@@ -138,7 +142,13 @@ class DailyGameState extends State<DailyGame> {
 
   successFooter(BuildContext context) {
     DateTime now = DateTime.now();
-    DateTime nextMidnight = DateTime(now.year, now.month, now.day + 1);
+    DateTime nextMidnight =
+        DateTime(now.year, now.month, now.day, WotD.hour, WotD.minute, 1);
+    Duration countdown = nextMidnight.difference(now);
+    if (countdown.inSeconds < 0) {
+      countdown = countdown + const Duration(days: 1);
+    }
+    print(countdown);
     return Container(
       padding: const EdgeInsets.all(8.0).w,
       margin: const EdgeInsets.all(12.0).w,
@@ -171,12 +181,22 @@ class DailyGameState extends State<DailyGame> {
             ),
           ),
           SlideCountdown(
-            duration: nextMidnight.difference(now),
+            duration: countdown,
+            shouldShowHours: (_) => true,
+            shouldShowMinutes: (_) => true,
+            onDone: () {
+              print('done');
+              WotD.load().then((g) => setState(() {
+                    game =
+                        Game.load(answer: g.answer, onSuceess: displayResult);
+                  }));
+            },
             decoration: BoxDecoration(
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(8.r),
             ),
-            textStyle: TextStyle(fontSize: 20.sp),
+            textStyle: TextStyle(
+                fontSize: 20.sp, color: const Color.fromARGB(255, 43, 81, 100)),
           ),
           Text(
             LocaleKeys.dailyGame_line3.tr(),
