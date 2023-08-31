@@ -1,12 +1,9 @@
-import 'dart:collection';
-import 'dart:math';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:paheli/models/answer.dart';
 
 class WotD {
-  static int hour = 00;
-  static int minute = 50;
+  static int hour = 6;
+  static int minute = 00;
   Map<int, GameAnswer> _answers = {};
   GameAnswer get answer => _answers[day]!;
   static int get day {

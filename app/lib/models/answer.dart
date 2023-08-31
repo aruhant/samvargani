@@ -238,8 +238,8 @@ final List<GameAnswer> gameAnswers = [
       icons: [LineIcons.heartbeat],
       moveHorizontal: true,
       moveVertical: false,
-      colors: const [Colors.red],
-      backgroundColor: Colors.red[100]),
+      colors: const [Color.fromARGB(255, 244, 67, 54)],
+      backgroundColor: const Color.fromARGB(255, 255, 205, 210)),
   GameAnswer(
       answer: 'विस्फोट',
       meaning: 'धमाका',
