@@ -63,10 +63,11 @@ class UserPrefs {
     }
     FirebaseAnalytics.instance
         .logLevelEnd(levelName: '${_instance!._practiceGameIndex}');
-
     _instance!._practiceGameIndex++;
+    FirebaseAnalytics.instance.setUserProperty(
+        name: 'level', value: '${_instance!._practiceGameIndex + 1}');
     FirebaseAnalytics.instance
-        .logLevelStart(levelName: '${_instance!._practiceGameIndex}');
+        .logLevelStart(levelName: '${_instance!._practiceGameIndex + 1}');
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
     return true;
   }

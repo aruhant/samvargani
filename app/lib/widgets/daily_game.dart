@@ -13,6 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:screenshot/screenshot.dart';
 import '../models/user_prefs.dart';
 import 'package:slide_countdown/slide_countdown.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class DailyGame extends StatefulWidget {
   const DailyGame({Key? key}) : super(key: key);
@@ -28,16 +29,14 @@ class DailyGameState extends State<DailyGame> {
     WotD.load().then((g) => setState(() {
           game = Game.load(answer: g.answer, onSuceess: displayResult);
         }));
-    // WotD.listen().listen((value) {
-    //   setState(() =>
-    //       game = Game.load(answer: value.answer, onSuceess: displayResult));
-    // });
   }
 
   displayResult(GameResult result) async {
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
+    FirebaseAnalytics.instance.logEvent(
+        name: 'completed_${DateTime.now().day} ${DateTime.now().month}');
     setState(() {});
   }
 
@@ -89,10 +88,8 @@ class DailyGameState extends State<DailyGame> {
                 shareImage(
                     capturedImage,
                     LocaleKeys.shareHelp_message.tr(args: [
-                      game.answer.answer.allCharacters
-                          .map((e) => e.matra)
-                          .join('_'),
-                      game.answer.answer.allCharacters.length.toString()
+                      game.name.allCharacters.map((e) => e.matra).join('_'),
+                      game.length.toString()
                     ]),
                     context);
               });
@@ -147,7 +144,7 @@ class DailyGameState extends State<DailyGame> {
     if (countdown.inSeconds < 0) {
       countdown = countdown + const Duration(days: 1);
     }
-    print(countdown);
+//    print(countdown);
     return Container(
       padding: const EdgeInsets.all(8.0).w,
       margin: const EdgeInsets.all(12.0).w,
@@ -184,7 +181,7 @@ class DailyGameState extends State<DailyGame> {
             shouldShowHours: (_) => true,
             shouldShowMinutes: (_) => true,
             onDone: () {
-              print('done');
+              // print('done');
               WotD.load().then((g) => setState(() {
                     game =
                         Game.load(answer: g.answer, onSuceess: displayResult);

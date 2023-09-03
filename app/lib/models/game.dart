@@ -7,11 +7,13 @@ import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class Game {
   GameAnswer answer;
   final List<Line> _loadLines;
   final Function(GameResult)? onSuceess;
+  int get tries => lines.length;
   List<Line> get lines => [
         ..._loadLines,
         Line(
@@ -36,6 +38,7 @@ class Game {
   String get name => answer.answer;
 
   String addGuess(String guess) {
+    FirebaseAnalytics.instance.logEvent(name: 'guess_${tries}_$name');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
     if (guess.toLowerCase() == 'clear') {
       UserPrefs.instance.clear();
@@ -73,19 +76,24 @@ class Game {
       return LocaleKeys.game_gameMessages_wrongWordLength
           .tr(args: [guessList.length.toString()]);
     }
+    print(_loadLines
+        .map((e) => e.cells.map((e) => e.value).toList().toString())
+        .toList());
+    if ((_loadLines
+            .map((e) => e.cells.map((e) => e.value).toList().toString())
+            .toList())
+        .contains(guess)) {
+      return LocaleKeys.game_gameMessages_alreadyGuessed.tr();
+    }
 
     if (/* !kDebugMode &&  */ guess != answer.answer &&
         !wordList.contains(guess)) {
-//      print("searching for variations of $guess");
       final allVariations = guess.getAllVaraitions;
-      //print("allVariations $allVariations");
       if (!allVariations.any((element) => wordList.contains(element))) {
         return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
       }
-      //print("nooooooo");
       guess = allVariations.firstWhere((element) => wordList.contains(element));
       guessList = guess.allCharacters;
-      //print("guess $guess");
     }
 
     List<Cell> cells = [];

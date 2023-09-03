@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({Key? key, required this.onLocaleSelected})
@@ -21,7 +22,6 @@ class LanguagePicker extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            // add some space in between
             const SizedBox(height: 10),
             Column(
               children: [
@@ -36,6 +36,11 @@ class LanguagePicker extends StatelessWidget {
                   onPressed: () {
                     context.setLocale(const Locale('en', 'US'));
                     onLocaleSelected();
+
+                    FirebaseAnalytics.instance
+                        .logEvent(name: 'language_selected_English');
+                    FirebaseAnalytics.instance
+                        .setUserProperty(name: 'language', value: 'English');
                   },
                   child: const Text('English', style: TextStyle(fontSize: 20)),
                 ),
@@ -51,6 +56,10 @@ class LanguagePicker extends StatelessWidget {
                   onPressed: () {
                     context.setLocale(const Locale('hi', 'IN'));
                     onLocaleSelected();
+                    FirebaseAnalytics.instance
+                        .logEvent(name: 'language_selected_Hindi');
+                    FirebaseAnalytics.instance
+                        .setUserProperty(name: 'language', value: 'Hindi');
                   },
                   child: const Text('हिंदी', style: TextStyle(fontSize: 20)),
                 ),

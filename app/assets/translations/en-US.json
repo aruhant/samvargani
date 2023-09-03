@@ -3,7 +3,7 @@
         "title": "Samvargani",
         "description": "Samvargani is an interesting game that helps you learn Hindi. It is a great way to improve your Hindi vocabulary and is a must-have app for people interested in learning Hindi.",
         "url": "https://aruhant.github.io/s/",
-        "downloadInstructions": "To download the app, search for \n'Samvargani' on the App Store  "
+        "downloadInstructions": "To download the app, search for 'Samvargani' on the App Store"
     },
     "author": {
         "name": "Aruhant Mehta",
@@ -12,19 +12,19 @@
     "intro": {
         "page1": {
             "title": "Welcome to Samvargani - the daily Hindi word game!",
-            "body": "Guess an interesting new word everyday and improve your Hindi vocabulary!"
+            "body": "Guess an interesting new word everyday, and improve your Hindi vocabulary!"
         },
         "page2": {
-            "title": "You will be shown the length and structure of the word.",
-            "body": "You will also be shown the half letters and matras of the target word."
+            "title": "You will be shown the length and structure of the target word.",
+            "body": "You will also be shown the half letters and matras of that word."
         },
         "page3": {
-            "title": "The colours of each cell indicate the correctness of the your guess.",
-            "body": "🟥 The letter is not present in the correct answer.\n🟩 The letter is present in the correct answer at the correct position.\n🟨 The letter is present in the correct answer but not at the correct position."
+            "title": "The colours of each cell/letter in your guess indicate its correctness.",
+            "body": "🟥 The letter is not present in the target word.\n🟩 The letter is present in the correct answer at the correct position.\n🟨 The letter is present in the correct answer but not at the correct position."
         },
         "page4": {
-            "title": "Can you guess the word using the following guesses?",
-            "body": "Tap on a cell if you have any confusion with its colour and meaning."
+            "title": "Can you guess this word using the following pre-filled guesses?",
+            "body": "Simply, tap on a cell anytime if you have any confusion with its colour and meaning."
         },
         "done": "START",
         "tutorial": {
@@ -34,9 +34,9 @@
         }
     },
     "cellTooltip": {
-        "correctWithMatra": "This cell contains the letter '{}', with this correct matra.",
-        "correctWithAdha": "This cell contains the letter '{}', with this correct half letter.",
-        "correctWithMatraAndAdha": "This cell contains the letter '{}', with this correct matra and half letter.",
+        "correctWithMatra": "This cell contains the letter '{}', with this same matra.",
+        "correctWithAdha": "This cell contains the letter '{}', with this same half letter.",
+        "correctWithMatraAndAdha": "This cell contains the letter '{}', with this same matra and half letter.",
         "correctWithoutMatraAndAdha": "This cell contains the letter '{}', without any matra or half letter.",
         "correctVyanjanWithMatra": "This cell contains the letter '{}' but not with the '{}' matra.",
         "correctVyanjanWithAdha": "This cell contains the letter '{}' but not with the '{}' half letter.",
@@ -50,7 +50,7 @@
         "misplacedVyanjanWithAdha": "'{}' is present in the word, but not at this position, and not with this '{}' half letter.",
         "misplacedVyanjanWithMatraAndAdha": "'{}' is present in the word, but not at this position, and not with this '{}' half letter or this '{}' matra.",
         "misplacedVyanjanWithoutMatraAndAdha": "'{}' is present in the word, but with a matra and/or half letter, and not at this position.",
-        "incorrect": "{} is not present in the word in any form.",
+        "incorrect": "'{}' is not present in the word in any form.",
         "emptyWithMatra": "This cell contains a letter along with the '{}' matra.",
         "emptyWithAdha": "This cell contains a letter along with the '{}' half letter.",
         "emptyWithMatraAndAdha": "This cell contains a letter along with the '{}' half letter and the '{}' matra.",
@@ -60,12 +60,13 @@
         "title": "Guess a {} letter word",
         "answerLabel": "Your answer:",
         "gameMessages": {
-            "wrongWordLength": "The answer is not a {} letter word!",
-            "notInDictonary": "Your answer '{}' is not in the Hindi dictionary!",
-            "matraError": "Please type the matra ('{}') after the vyanjan and not vice-versa!",
+            "wrongWordLength": "The answer is not a {} letter word.",
+            "notInDictonary": "Your answer '{}' is not in the Hindi dictionary.",
+            "matraError": "Please type the matra ('{}') after the vyanjan and not vice-versa.",
             "aoError": "Pehaps you meant to type 'ओ', not 'अो'.",
             "auError": "Pehaps you meant to type 'औ', not 'अौ'.",
-            "incorrect": "For assistance, you may tap on the cells, and see what they mean."
+            "incorrect": "For assistance, you may tap on the cells, and see what they mean.",
+            "alreadyGuessed": "You have already tried this word."
         }
     },
     "gameResult": {

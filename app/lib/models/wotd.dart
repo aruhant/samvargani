@@ -5,7 +5,7 @@ class WotD {
   static int hour = 6;
   static int minute = 00;
   Map<int, GameAnswer> _answers = {};
-  GameAnswer get answer => _answers[day]!;
+  GameAnswer get answer => _answers[day] ?? gameAnswers[0];
   static int get day {
     print(DateTime.now().day);
     return DateTime.now().subtract(Duration(hours: hour, minutes: minute)).day;
@@ -30,10 +30,13 @@ class WotD {
     return FirebaseDatabase.instance.ref('wotd').once().then((event) {
       Map<int, GameAnswer> answers = {};
       Map val = event.snapshot.value as Map;
+      print(val);
       for (String key
           in val.keys.where((element) => RegExp(r'^\d+$').hasMatch(element))) {
+        print(key);
         GameAnswer answer = GameAnswer.fromJson(val[key]);
         answers[int.parse(key)] = answer;
+        print(answer.answer);
       }
       return WotD._internal(answers);
     }).catchError((e) {

@@ -16,6 +16,7 @@ class GameAnswer {
   final bool moveHorizontal, moveVertical;
   final double maxOpacity, minOpacity, maxSize, minSize, maxSpeed, minSpeed;
   final int itemsCount;
+  final int whenToShowIcons;
   GameAnswer({
     required this.answer,
     String? title,
@@ -34,6 +35,7 @@ class GameAnswer {
     this.maxSpeed = 0.4,
     this.minSpeed = 0.25,
     this.itemsCount = 6,
+    this.whenToShowIcons = 3,
   }) : _title = title;
 
   String get title =>
@@ -75,7 +77,8 @@ class GameAnswer {
         minSize: json['minSize'] ?? 150,
         maxSpeed: json['maxSpeed'] ?? 0.4,
         minSpeed: json['minSpeed'] ?? 0.25,
-        itemsCount: json['itemsCount'] ?? 6);
+        itemsCount: json['itemsCount'] ?? 6,
+        whenToShowIcons: json['whenToShowIcons'] ?? 3);
   }
 
   Map<String, dynamic> toJson() {
@@ -96,6 +99,7 @@ class GameAnswer {
       'maxSpeed': maxSpeed,
       'minSpeed': minSpeed,
       'itemsCount': itemsCount,
+      'whenToShowIcons': whenToShowIcons,
     };
   }
 
@@ -112,7 +116,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       backgroundColor: Colors.blue[100],
-      colors: [const Color.fromARGB(255, 47, 46, 59)]),
+      colors: [const Color.fromARGB(255, 47, 46, 59)],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'मेघ',
       meaning: 'बादल',
@@ -120,7 +125,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       colors: [Colors.blue, Colors.cyan],
-      backgroundColor: Colors.blue[100]),
+      backgroundColor: Colors.blue[100],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'नकद',
       meaning: 'रुपया-पैसा\nके रूप में धन',
@@ -128,7 +134,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 119, 208, 147)],
-      backgroundColor: const Color.fromARGB(255, 215, 255, 229)),
+      backgroundColor: const Color.fromARGB(255, 215, 255, 229),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'दरिया',
       meaning: 'समुद्र या नदी',
@@ -136,7 +143,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: [Colors.redAccent],
-      backgroundColor: Colors.blue[100]),
+      backgroundColor: Colors.blue[100],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'सेहत',
       meaning: 'स्वास्थ्य',
@@ -147,7 +155,8 @@ final List<GameAnswer> gameAnswers = [
         const Color.fromARGB(155, 226, 63, 51),
         const Color.fromARGB(155, 137, 195, 71)
       ],
-      backgroundColor: Colors.pink[50]),
+      backgroundColor: Colors.pink[50],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'दृष्टि',
       meaning: 'देखने की शक्ति',
@@ -155,7 +164,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       colors: [const Color.fromARGB(155, 101, 122, 102)],
-      backgroundColor: Colors.green[100]),
+      backgroundColor: Colors.green[100],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'माणिक',
       meaning: 'एक अनमोल रत्न',
@@ -163,7 +173,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 232, 112, 97)],
-      backgroundColor: Colors.pink[50]),
+      backgroundColor: Colors.pink[50],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'अँगूठा',
       meaning: 'हाथ की पहली उँगली।',
@@ -171,16 +182,17 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       colors: const [Color.fromARGB(255, 229, 180, 179)],
-      backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
+      backgroundColor: const Color.fromARGB(255, 241, 228, 252),
+      whenToShowIcons: 0),
   GameAnswer(
-    answer: 'व्यसन',
-    meaning: 'लत',
-    icons: [LineIcons.smoking],
-    moveHorizontal: false,
-    moveVertical: true,
-    colors: const [Color.fromARGB(192, 216, 149, 124)],
-    backgroundColor: const Color.fromARGB(255, 255, 239, 208),
-  ),
+      answer: 'व्यसन',
+      meaning: 'लत',
+      icons: [LineIcons.smoking],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(192, 216, 149, 124)],
+      backgroundColor: const Color.fromARGB(255, 255, 239, 208),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'सियासत',
       meaning: 'राज्य या\nनीति व्यवहार',
@@ -188,7 +200,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 255, 255)],
-      backgroundColor: const Color.fromARGB(255, 240, 207, 255)),
+      backgroundColor: const Color.fromARGB(255, 240, 207, 255),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'चंचला',
       meaning: 'बिजली',
@@ -196,7 +209,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: [Colors.pink[200]!],
-      backgroundColor: Colors.pink[50]),
+      backgroundColor: Colors.pink[50],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'वृष्टि',
       meaning: 'बारिश',
@@ -204,7 +218,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: [Colors.green],
-      backgroundColor: Colors.green[100]),
+      backgroundColor: Colors.green[100],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'झोंका',
       meaning: 'वेगपूर्वक हवा',
@@ -212,7 +227,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       colors: [Colors.grey, Colors.blueGrey, Colors.black12],
-      backgroundColor: Colors.blue[200]),
+      backgroundColor: Colors.blue[200],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'जोखिम',
       meaning: 'संकट या विपत्ति',
@@ -220,7 +236,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 211, 121, 94)],
-      backgroundColor: const Color.fromARGB(255, 178, 178, 212)),
+      backgroundColor: const Color.fromARGB(255, 178, 178, 212),
+      whenToShowIcons: 0),
   GameAnswer(
     answer: 'तीव्र',
     meaning: 'तेज़, अत्यंत',
@@ -239,7 +256,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       colors: const [Color.fromARGB(255, 244, 67, 54)],
-      backgroundColor: const Color.fromARGB(255, 255, 205, 210)),
+      backgroundColor: const Color.fromARGB(255, 255, 205, 210),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'विस्फोट',
       meaning: 'धमाका',
@@ -250,36 +268,37 @@ final List<GameAnswer> gameAnswers = [
         const Color.fromARGB(255, 233, 96, 96),
         const Color.fromARGB(255, 74, 53, 51)
       ],
-      backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
+      backgroundColor: const Color.fromARGB(255, 241, 228, 252),
+      whenToShowIcons: 0),
   GameAnswer(
-    itemsCount: 8,
-    answer: 'औषधि',
-    meaning: 'दवा',
-    icons: [LineIcons.cannabis, LineIcons.mortarPestle, LineIcons.pills],
-    moveHorizontal: false,
-    moveVertical: true,
-    colors: const [Color.fromARGB(255, 185, 185, 185)],
-    backgroundColor: const Color.fromARGB(255, 195, 228, 189),
-  ),
+      itemsCount: 8,
+      answer: 'औषधि',
+      meaning: 'दवा',
+      icons: [LineIcons.cannabis, LineIcons.mortarPestle, LineIcons.pills],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(255, 185, 185, 185)],
+      backgroundColor: const Color.fromARGB(255, 195, 228, 189),
+      whenToShowIcons: 0),
   GameAnswer(
-    answer: 'विद्या',
-    meaning: 'ज्ञान',
-    icons: [LineIcons.book, LineIcons.school],
-    moveHorizontal: false,
-    moveVertical: true,
-    colors: [Colors.pink[100]!],
-    backgroundColor: Colors.pink[50],
-  ),
+      answer: 'विद्या',
+      meaning: 'ज्ञान',
+      icons: [LineIcons.book, LineIcons.school],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: [Colors.pink[100]!],
+      backgroundColor: Colors.pink[50],
+      whenToShowIcons: 0),
   GameAnswer(
-    itemsCount: 8,
-    answer: 'बलवान',
-    meaning: 'शक्तिशाली',
-    icons: [LineIcons.dumbbell, LineIcons.raisedFist],
-    moveHorizontal: false,
-    moveVertical: true,
-    colors: const [Color.fromARGB(255, 229, 180, 179)],
-    backgroundColor: const Color.fromARGB(255, 241, 228, 252),
-  ),
+      itemsCount: 8,
+      answer: 'बलवान',
+      meaning: 'शक्तिशाली',
+      icons: [LineIcons.dumbbell, LineIcons.raisedFist],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(255, 229, 180, 179)],
+      backgroundColor: const Color.fromARGB(255, 241, 228, 252),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'स्नेह',
       meaning: 'प्रेम',
@@ -287,7 +306,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: [Colors.pink[100]!],
-      backgroundColor: Colors.pink[50]),
+      backgroundColor: Colors.pink[50],
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'घूस',
       meaning: 'रिश्वत',
@@ -295,7 +315,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 246, 255, 223)],
-      backgroundColor: const Color.fromARGB(255, 183, 160, 160)),
+      backgroundColor: const Color.fromARGB(255, 183, 160, 160),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'पालतू',
       meaning: 'जो पाला गया हो',
@@ -303,7 +324,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: true,
       moveVertical: false,
       colors: const [Color.fromARGB(255, 229, 139, 13)],
-      backgroundColor: const Color.fromARGB(255, 241, 228, 252)),
+      backgroundColor: const Color.fromARGB(255, 241, 228, 252),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'इंसाफ',
       meaning: 'न्याय',
@@ -311,7 +333,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 255, 255)],
-      backgroundColor: const Color.fromARGB(255, 218, 190, 190)),
+      backgroundColor: const Color.fromARGB(255, 218, 190, 190),
+      whenToShowIcons: 0),
   GameAnswer(
       answer: 'मुस्कान',
       meaning: 'हँसी',
@@ -319,7 +342,8 @@ final List<GameAnswer> gameAnswers = [
       moveHorizontal: false,
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 220, 184)],
-      backgroundColor: const Color.fromARGB(255, 255, 253, 228)),
+      backgroundColor: const Color.fromARGB(255, 255, 253, 228),
+      whenToShowIcons: 0),
   GameAnswer(answer: 'उत्सुकता', meaning: 'अधीरता'),
   GameAnswer(answer: 'साहसिक', meaning: 'बहादुर'),
   GameAnswer(answer: 'विचित्र', meaning: 'अनोखा'),

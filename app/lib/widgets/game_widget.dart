@@ -48,7 +48,6 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -65,7 +64,10 @@ class _GameWidgetState extends State<GameWidget> {
             maxSize: widget.game.answer.maxSize, // 30
             minSpeed: widget.game.answer.minSpeed, // 0,25
             minSize: widget.game.answer.minSize, // 150
-            randomItemsColors: widget.game.answer.colors,
+            randomItemsColors:
+                widget.game.tries > widget.game.answer.whenToShowIcons
+                    ? widget.game.answer.colors
+                    : [widget.game.answer.backgroundColor!],
             randomItemsBehaviours: widget.game.answer.icons
                 .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
                 .toList(),
@@ -169,11 +171,11 @@ class _GameWidgetState extends State<GameWidget> {
                               .map((e) => e.value.vyanjan))
                           .expand((element) => element)
                           .toList()
-                        ..addAll(widget.game.answer.answer.allCharacters
+                        ..addAll(widget.game.name.allCharacters
                             .map((e) => e.matra.runes
                                 .map((e) => String.fromCharCode(e).matra))
                             .expand((element) => element))
-                        ..add(widget.game.answer.answer.allCharacters
+                        ..add(widget.game.name.allCharacters
                                 .map((e) => e.matra)
                                 .join()
                                 .contains('्')

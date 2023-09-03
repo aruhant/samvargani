@@ -95,10 +95,9 @@ class PracticeGameState extends State<PracticeGame> {
         game: game,
         footer: (game) => (UserPrefs.instance.practiceGameIndex == 0)
             ? Container()
-            : (UserPrefs.instance.practiceGameIndex < 4 &&
-                        game.lines.length > 3) ||
+            : (UserPrefs.instance.practiceGameIndex < 4 && game.tries > 3) ||
                     (UserPrefs.instance.practiceGameIndex < 30 &&
-                        game.lines.length > 8) ||
+                        game.tries > 8) ||
                     kDebugMode
                 ? TextButton(
                     onPressed: () {
