@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/utils/share.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/game_widget.dart';
@@ -194,6 +195,12 @@ class DailyGameState extends State<DailyGame> {
             textStyle: TextStyle(
                 fontSize: 20.sp, color: const Color.fromARGB(255, 43, 81, 100)),
           ),
+          MaterialButton(
+              onPressed: () async {
+                await requestPermissions();
+                testNotification();
+              },
+              child: Text('Notify me')),
           Text(
             LocaleKeys.dailyGame_line3.tr(),
             textAlign: TextAlign.center,

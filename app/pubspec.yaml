@@ -48,6 +48,7 @@ dev_dependencies:
   flex_color_scheme:
   screenshot:
   upgrader:
+  awesome_notifications: ^0.7.4
   path_provider:
   line_icons:
   share_plus:

@@ -1,4 +1,6 @@
 PODS:
+  - awesome_notifications (0.0.3):
+    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Firebase/Analytics (10.12.0):
@@ -117,6 +119,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -144,6 +147,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  awesome_notifications:
+    :path: ".symlinks/plugins/awesome_notifications/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   firebase_analytics:
@@ -168,6 +173,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  awesome_notifications: 04530aafec8dac4635244ed4b4072f4aea6cc938
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
   firebase_analytics: 3bdcd8b68b7b8ccf28bbcdcfb994309f6232f873
