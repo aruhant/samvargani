@@ -76,7 +76,8 @@
         "tries": "Tries: {}",
         "share": "Share your score!",
         "completed": "You have completed\n{}!",
-        "shareMessage": "I completed\n{}\nin {} tries!\nCan you beat my score?"
+        "shareMessage": "I completed\n{}\nin {} tries!\nCan you beat my score?",
+        "shareMessageFor1Tries": "I completed\n{}\nin 1 tries!\nCan you match my score?"
     },
     "practiceGame": {
         "level": "Level {}",

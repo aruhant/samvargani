@@ -99,10 +99,17 @@ class _ResultWidgetState extends State<ResultWidget> {
                         SizedBox(height: 10.h),
                         pressedShare
                             ? AutoSizeText(
-                                LocaleKeys.gameResult_shareMessage.tr(args: [
-                                  widget.gameResult.answer.title,
-                                  widget.gameResult.tries.toString()
-                                ]),
+                                widget.gameResult.tries == 1
+                                    ? LocaleKeys
+                                        .gameResult_shareMessageFor1Tries
+                                        .tr(args: [
+                                        widget.gameResult.answer.title,
+                                      ])
+                                    : LocaleKeys.gameResult_shareMessage.tr(
+                                        args: [
+                                            widget.gameResult.answer.title,
+                                            widget.gameResult.tries.toString()
+                                          ]),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 24.sp,
@@ -184,12 +191,21 @@ class _ResultWidgetState extends State<ResultWidget> {
                                             setState(() => pressedShare = true);
                                             shareScreenShot(
                                                 _screenShotController,
-                                                '${LocaleKeys.gameResult_shareMessage.tr(args: [
-                                                      widget.gameResult.answer
-                                                          .title,
-                                                      widget.gameResult.tries
-                                                          .toString()
-                                                    ])}\n\n${LocaleKeys.app_url.tr()}',
+                                                widget.gameResult.tries == 1
+                                                    ? '${LocaleKeys.gameResult_shareMessageFor1Tries.tr(args: [
+                                                            widget.gameResult
+                                                                .answer.title,
+                                                            widget.gameResult
+                                                                .tries
+                                                                .toString()
+                                                          ])}\n\n${LocaleKeys.app_url.tr()}'
+                                                    : '${LocaleKeys.gameResult_shareMessage.tr(args: [
+                                                            widget.gameResult
+                                                                .answer.title,
+                                                            widget.gameResult
+                                                                .tries
+                                                                .toString()
+                                                          ])}\n\n${LocaleKeys.app_url.tr()}',
                                                 context);
                                           },
                                           style: ElevatedButton.styleFrom(

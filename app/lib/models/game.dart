@@ -13,7 +13,7 @@ class Game {
   GameAnswer answer;
   final List<Line> _loadLines;
   final Function(GameResult)? onSuceess;
-  int get tries => lines.length;
+  int get tries => lines.length - 1;
   List<Line> get lines => [
         ..._loadLines,
         Line(
@@ -76,11 +76,8 @@ class Game {
       return LocaleKeys.game_gameMessages_wrongWordLength
           .tr(args: [guessList.length.toString()]);
     }
-    print(_loadLines
-        .map((e) => e.cells.map((e) => e.value).toList().toString())
-        .toList());
     if ((_loadLines
-            .map((e) => e.cells.map((e) => e.value).toList().toString())
+            .map((e) => e.cells.map((e) => e.value).toList().join())
             .toList())
         .contains(guess)) {
       return LocaleKeys.game_gameMessages_alreadyGuessed.tr();

@@ -52,7 +52,9 @@ class _GameWidgetState extends State<GameWidget> {
       body: Stack(
         children: [
           Vitality.randomly(
-            key: ValueKey(widget.game),
+            key: ValueKey(widget.game.answer.toString() +
+                (widget.game.tries > widget.game.answer.whenToShowIcons)
+                    .toString()),
             background: widget.game.answer.backgroundColor,
             maxOpacity: widget.game.answer.maxOpacity, // 0,4
             minOpacity: widget.game.answer.minOpacity, // 0,15
