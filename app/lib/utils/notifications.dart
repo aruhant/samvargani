@@ -1,20 +1,22 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:paheli/models/wotd.dart';
+import 'package:paheli/utils/string.dart';
 
 initializeNotifications() {
   print('Initializing notifications');
   AwesomeNotifications().initialize(
-      // set the icon to null if you want to use the default app icon
-      'resource://drawable/res_app_icon',
+      'resource://drawable/ic_stat_no',
       [
         NotificationChannel(
             channelGroupKey: 'samvargani',
             channelKey: 'samvargani',
             channelName: 'Daily game notifications',
             channelDescription: 'One notification per day',
-            defaultColor: Color(0xFF9D50DD),
-            ledColor: Colors.white)
+            icon: 'resource://drawable/ic_stat_foreground',
+            defaultColor: Color.fromARGB(255, 255, 123, 0),
+            ledColor: Color.fromARGB(255, 255, 132, 0))
       ],
       // Channel groups are only visual and are not required
       // channelGroups: [
@@ -33,10 +35,11 @@ requestPermissions() async {
 }
 
 testNotification() {
-  AwesomeNotifications().createNotification(
+  WotD.load().then((g) => AwesomeNotifications().createNotification(
       content: NotificationContent(
-          id: 10,
+          id: 1,
           channelKey: 'samvargani',
-          title: 'Simple Notification',
-          body: 'Simple body'));
+          title: g.answer.title,
+          body: g.answer.answer.allCharacters.map((e) => e.matra).join('_'))));
+  ;
 }
