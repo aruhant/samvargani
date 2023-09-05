@@ -3,6 +3,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GameAnswer {
   final String answer;
@@ -11,7 +12,7 @@ class GameAnswer {
   final List<String?>? hints;
   final Color? backgroundColor;
   final List<Color> colors;
-  final List<IconData> icons;
+  final List<IconData>? icons;
   final List<String>? images;
   final bool moveHorizontal, moveVertical;
   final double maxOpacity, minOpacity, maxSize, minSize, maxSpeed, minSpeed;
@@ -42,6 +43,13 @@ class GameAnswer {
       _title ??
       LocaleKeys.practiceGame_level
           .tr(args: [(gameAnswers.indexOf(this) + 1).toString()]);
+
+  get hintIcons {
+    if (icons != null && icons!.isNotEmpty) return icons;
+    if (images != null && images!.isNotEmpty)
+      return images!.map((e) => SvgPicture.string(e));
+    return [Icons.cloud];
+  }
 
   static GameAnswer fromJson(Map json) {
     return GameAnswer(
@@ -86,7 +94,7 @@ class GameAnswer {
       'answer': answer,
       'meaning': meaning,
       'title': title,
-      'icons': icons.map((e) => e.codePoint).toList().cast(),
+      'icons': (icons ?? []).map((e) => e.codePoint).toList().cast(),
       'colors': colors.map((e) => e.toHex8()).toList().cast(),
       'backgroundColor': backgroundColor?.toHex8(),
       'images': images,

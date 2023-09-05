@@ -66,13 +66,13 @@ class _GameWidgetState extends State<GameWidget> {
             maxSize: widget.game.answer.maxSize, // 30
             minSpeed: widget.game.answer.minSpeed, // 0,25
             minSize: widget.game.answer.minSize, // 150
-            randomItemsColors:
-                widget.game.tries > widget.game.answer.whenToShowIcons
-                    ? widget.game.answer.colors
-                    : [widget.game.answer.backgroundColor!],
-            randomItemsBehaviours: widget.game.answer.icons
-                .map((e) => ItemBehaviour(shape: ShapeType.Icon, icon: e))
-                .toList(),
+            randomItemsColors: widget.game.answer.colors,
+            randomItemsBehaviours: widget.game.answer.hintIcons
+                .map((e) => e is IconData
+                    ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
+                    : ItemBehaviour(shape: ShapeType.FilledTriangle))
+                .toList()
+                .cast<ItemBehaviour>(),
           ),
           SingleChildScrollView(
             child: SafeArea(
