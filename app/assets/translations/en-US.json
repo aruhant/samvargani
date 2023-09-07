@@ -19,7 +19,7 @@
             "body": "You will also be shown the half letters and matras of that word."
         },
         "page3": {
-            "title": "After each of your guess, observe the colours of its different letters.",
+            "title": "After every guess, observe the color of each cell.",
             "body": "🟥 The letter is not present in the target word.\n🟩 The letter is present in the correct answer at the correct position.\n🟨 The letter is present in the correct answer but not at the correct position."
         },
         "page4": {
@@ -96,6 +96,6 @@
     },
     "shareHelp": {
         "title": "Can you help me guess this Hindi word:",
-        "message": "{}\nCan you help me guess this {} letter Hindi word.I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"
+        "message": "{}\nCan you help me guess this {} letter Hindi word. I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"
     }
 }

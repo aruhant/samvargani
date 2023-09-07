@@ -87,7 +87,7 @@ class GameAnswer {
         maxSpeed: json['maxSpeed'] ?? 0.4,
         minSpeed: json['minSpeed'] ?? 0.25,
         itemsCount: json['itemsCount'] ?? 6,
-        whenToShowIcons: json['whenToShowIcons'] ?? 3);
+        whenToShowIcons: json['whenToShowIcons'] ?? 2);
   }
 
   Map<String, dynamic> toJson() {
