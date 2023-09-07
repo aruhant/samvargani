@@ -32,6 +32,7 @@ Future<void> main() async {
   }
   await EasyLocalization.ensureInitialized();
   await UserPrefs.init();
+  UserPrefs.instance.increaseRunCount();
 
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('hi', 'IN')],

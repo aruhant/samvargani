@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/keyboard.dart';
@@ -73,8 +74,9 @@ class _GameWidgetState extends State<GameWidget> {
             minSpeed: widget.game.answer.minSpeed, // 0,25
             minSize: widget.game.answer.minSize, // 150
             randomItemsColors:
-                widget.game.tries > widget.game.answer.whenToShowIcons ||
-                        widget.game.complete
+                (widget.game.tries > widget.game.answer.whenToShowIcons ||
+                        widget.game.complete ||
+                        UserPrefs.instance.runCount < 3)
                     ? widget.game.answer.colors
                     : [widget.game.answer.backgroundColor!],
             randomItemsBehaviours: widget.game.answer.hintIcons

@@ -8,6 +8,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 class UserPrefs {
   final bool _darkMode;
   int _initState;
+  int _runCount;
   int _practiceGameIndex;
   int _tooltipsPressed;
   final SharedPreferences _sharedPrefs;
@@ -15,12 +16,14 @@ class UserPrefs {
       {required bool darkMode,
       required int initState,
       required int practiceGameIndex,
+      required int runCount,
       required SharedPreferences sharedPrefs,
       required int tooltipsPressed})
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
         _sharedPrefs = sharedPrefs,
+        _runCount = runCount,
         _tooltipsPressed = tooltipsPressed;
 
   static UserPrefs? _instance;
@@ -30,6 +33,7 @@ class UserPrefs {
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
   int get tooltipsPressed => _tooltipsPressed;
+  int get runCount => _runCount;
 
   get language => null;
 
@@ -41,6 +45,7 @@ class UserPrefs {
           practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
           initState: sharedPrefs.getInt('initState') ?? 0,
+          runCount: sharedPrefs.getInt('runCount') ?? 0,
           tooltipsPressed: sharedPrefs.getInt('tooltipsPressed') ?? 0,
           sharedPrefs: sharedPrefs);
     }
@@ -50,6 +55,11 @@ class UserPrefs {
   firstRunDone() {
     _instance!._initState = 2;
     _sharedPrefs.setInt('initState', _instance!._initState);
+  }
+
+  increaseRunCount() {
+    _instance!._runCount++;
+    _sharedPrefs.setInt('runCount', _instance!._runCount);
   }
 
   localeSet() {
