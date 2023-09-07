@@ -941,10 +941,11 @@ packages:
   vitality:
     dependency: "direct main"
     description:
-      name: vitality
-      sha256: "8ccc9aee337bbab64cd344052d099029728ee486c6d2359860b257ddf2d41fc5"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: becb48ccd43bd7d7ed877c70f51266ca9a97a5e8
+      url: "https://github.com/aruhant/vitality.git"
+    source: git
     version: "2.0.0"
   web:
     dependency: transitive

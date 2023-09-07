@@ -6,24 +6,17 @@ import 'package:paheli/utils/string.dart';
 
 initializeNotifications() {
   print('Initializing notifications');
-  AwesomeNotifications().initialize(
-      'resource://drawable/ic_stat_no',
-      [
-        NotificationChannel(
-            channelGroupKey: 'samvargani',
-            channelKey: 'samvargani',
-            channelName: 'Daily game notifications',
-            channelDescription: 'One notification per day',
-            icon: 'resource://drawable/ic_stat_foreground',
-            defaultColor: Color.fromARGB(255, 255, 123, 0),
-            ledColor: Color.fromARGB(255, 255, 132, 0))
-      ],
-      // Channel groups are only visual and are not required
-      // channelGroups: [
-      //   NotificationChannelGroup(
-      //       channelGroupkey: 'samvargani', channelGroupName: 'Samvargani')
-      // ],
-      debug: true);
+  AwesomeNotifications().initialize('resource://drawable/ic_stat_no', [
+    NotificationChannel(
+        channelGroupKey: 'samvargani',
+        channelKey: 'samvargani',
+        channelName: 'Daily game notifications',
+        channelDescription: 'One notification per day',
+        icon: 'resource://drawable/ic_stat_no',
+        defaultColor: const Color.fromARGB(255, 255, 123, 0),
+        enableVibration: false,
+        ledColor: const Color.fromARGB(255, 255, 132, 0)),
+  ]);
 }
 
 requestPermissions() async {
@@ -36,10 +29,16 @@ requestPermissions() async {
 
 testNotification() {
   WotD.load().then((g) => AwesomeNotifications().createNotification(
+      schedule: NotificationCalendar(
+          timeZone: AwesomeNotifications.localTimeZoneIdentifier,
+          hour: 9,
+          minute: 0,
+          second: 0,
+          millisecond: 0,
+          repeats: true),
       content: NotificationContent(
           id: 1,
           channelKey: 'samvargani',
-          title: g.answer.title,
-          body: g.answer.answer.allCharacters.map((e) => e.matra).join('_'))));
-  ;
+          title: 'A new challange awaits you',
+          body: 'Can you solve today\'s word of the day?')));
 }

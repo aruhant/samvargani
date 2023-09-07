@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/firebase_options.dart';
 import 'package:paheli/models/user_prefs.dart';
-import 'package:paheli/models/wotd.dart';
 import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_intro.dart';

@@ -195,12 +195,12 @@ class DailyGameState extends State<DailyGame> {
             textStyle: TextStyle(
                 fontSize: 20.sp, color: const Color.fromARGB(255, 43, 81, 100)),
           ),
-          MaterialButton(
-              onPressed: () async {
-                await requestPermissions();
-                testNotification();
-              },
-              child: Text('Notify me')),
+          // MaterialButton(
+          //     onPressed: () async {
+          //       await requestPermissions();
+          //       testNotification();
+          //     },
+          //     child: const Text('Notify me')),
           Text(
             LocaleKeys.dailyGame_line3.tr(),
             textAlign: TextAlign.center,

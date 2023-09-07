@@ -46,8 +46,9 @@ class GameAnswer {
 
   get hintIcons {
     if (icons != null && icons!.isNotEmpty) return icons;
-    if (images != null && images!.isNotEmpty)
+    if (images != null && images!.isNotEmpty) {
       return images!.map((e) => SvgPicture.string(e));
+    }
     return [Icons.cloud];
   }
 
