@@ -36,7 +36,7 @@ class GameAnswer {
     this.maxSpeed = 0.4,
     this.minSpeed = 0.25,
     this.itemsCount = 6,
-    this.whenToShowIcons = 3,
+    this.whenToShowIcons = 2,
   }) : _title = title;
 
   String get title =>

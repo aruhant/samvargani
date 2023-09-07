@@ -48,12 +48,18 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print("Tries:");
+    print(widget.game.tries);
+    print("When to show icons:");
+    print(widget.game.answer.whenToShowIcons);
+
     return Scaffold(
       body: Stack(
         children: [
           Vitality.randomly(
             key: ValueKey(widget.game.answer.toString() +
-                (widget.game.tries > widget.game.answer.whenToShowIcons)
+                (widget.game.tries > widget.game.answer.whenToShowIcons ||
+                        widget.game.complete)
                     .toString()),
             background: widget.game.answer.backgroundColor,
             maxOpacity: widget.game.answer.maxOpacity, // 0,4
@@ -66,7 +72,11 @@ class _GameWidgetState extends State<GameWidget> {
             maxSize: widget.game.answer.maxSize, // 30
             minSpeed: widget.game.answer.minSpeed, // 0,25
             minSize: widget.game.answer.minSize, // 150
-            randomItemsColors: widget.game.answer.colors,
+            randomItemsColors:
+                widget.game.tries > widget.game.answer.whenToShowIcons ||
+                        widget.game.complete
+                    ? widget.game.answer.colors
+                    : [widget.game.answer.backgroundColor!],
             randomItemsBehaviours: widget.game.answer.hintIcons
                 .map((e) => e is IconData
                     ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
