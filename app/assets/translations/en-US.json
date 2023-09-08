@@ -66,7 +66,13 @@
             "aoError": "Pehaps you meant to type 'ओ', not 'अो'.",
             "auError": "Pehaps you meant to type 'औ', not 'अौ'.",
             "incorrect": "For assistance, you may tap on the cells, and see what they mean.",
-            "alreadyGuessed": "You have already tried this word."
+            "alreadyGuessed": "You have already tried this word.",
+            "startingMessages":{
+                "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' are each considered as a single letter.",
+                "containsAdha":"Remember that half letters in a cell are present along with a full letter."
+
+
+            }
         }
     },
     "gameResult": {

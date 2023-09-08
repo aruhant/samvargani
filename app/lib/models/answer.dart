@@ -126,7 +126,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       backgroundColor: Colors.blue[100],
       colors: [const Color.fromARGB(255, 47, 46, 59)],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'मेघ',
       meaning: 'बादल',
@@ -135,7 +135,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       colors: [Colors.blue, Colors.cyan],
       backgroundColor: Colors.blue[100],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'नकद',
       meaning: 'रुपया-पैसा\nके रूप में धन',
@@ -144,7 +144,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 119, 208, 147)],
       backgroundColor: const Color.fromARGB(255, 215, 255, 229),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'दरिया',
       meaning: 'समुद्र या नदी',
@@ -153,7 +153,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: [Colors.redAccent],
       backgroundColor: Colors.blue[100],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'सेहत',
       meaning: 'स्वास्थ्य',
@@ -165,7 +165,7 @@ final List<GameAnswer> gameAnswers = [
         const Color.fromARGB(155, 137, 195, 71)
       ],
       backgroundColor: Colors.pink[50],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'दृष्टि',
       meaning: 'देखने की शक्ति',
@@ -174,7 +174,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       colors: [const Color.fromARGB(155, 101, 122, 102)],
       backgroundColor: Colors.green[100],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'माणिक',
       meaning: 'एक अनमोल रत्न',
@@ -183,7 +183,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 232, 112, 97)],
       backgroundColor: Colors.pink[50],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'अँगूठा',
       meaning: 'हाथ की पहली उँगली।',
@@ -192,7 +192,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       colors: const [Color.fromARGB(255, 229, 180, 179)],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'व्यसन',
       meaning: 'लत',
@@ -201,7 +201,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(192, 216, 149, 124)],
       backgroundColor: const Color.fromARGB(255, 255, 239, 208),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'सियासत',
       meaning: 'राज्य या\nनीति व्यवहार',
@@ -210,7 +210,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 255, 255)],
       backgroundColor: const Color.fromARGB(255, 240, 207, 255),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'चंचला',
       meaning: 'बिजली',
@@ -219,7 +219,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: [Colors.pink[200]!],
       backgroundColor: Colors.pink[50],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'वृष्टि',
       meaning: 'बारिश',
@@ -228,7 +228,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: [Colors.green],
       backgroundColor: Colors.green[100],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'झोंका',
       meaning: 'वेगपूर्वक हवा',
@@ -237,7 +237,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       colors: [Colors.grey, Colors.blueGrey, Colors.black12],
       backgroundColor: Colors.blue[200],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'जोखिम',
       meaning: 'संकट या विपत्ति',
@@ -246,18 +246,18 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 211, 121, 94)],
       backgroundColor: const Color.fromARGB(255, 178, 178, 212),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
-    answer: 'तीव्र',
-    meaning: 'तेज़, अत्यंत',
-    icons: [LineIcons.horse],
-    moveHorizontal: true,
-    moveVertical: false,
-    colors: [Colors.pink[100]!],
-    backgroundColor: Colors.pink[50],
-    maxSpeed: 5,
-    minSpeed: 0.4,
-  ),
+      answer: 'तीव्र',
+      meaning: 'तेज़, अत्यंत',
+      icons: [LineIcons.horse],
+      moveHorizontal: true,
+      moveVertical: false,
+      colors: [Colors.pink[100]!],
+      backgroundColor: Colors.pink[50],
+      maxSpeed: 5,
+      minSpeed: 0.4,
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'स्पन्दन',
       meaning: 'कंपन',
@@ -266,7 +266,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       colors: const [Color.fromARGB(255, 244, 67, 54)],
       backgroundColor: const Color.fromARGB(255, 255, 205, 210),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'विस्फोट',
       meaning: 'धमाका',
@@ -278,7 +278,7 @@ final List<GameAnswer> gameAnswers = [
         const Color.fromARGB(255, 74, 53, 51)
       ],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       itemsCount: 8,
       answer: 'औषधि',
@@ -288,7 +288,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 185, 185, 185)],
       backgroundColor: const Color.fromARGB(255, 195, 228, 189),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'विद्या',
       meaning: 'ज्ञान',
@@ -297,7 +297,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: [Colors.pink[100]!],
       backgroundColor: Colors.pink[50],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       itemsCount: 8,
       answer: 'बलवान',
@@ -307,7 +307,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 229, 180, 179)],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'स्नेह',
       meaning: 'प्रेम',
@@ -316,7 +316,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: [Colors.pink[100]!],
       backgroundColor: Colors.pink[50],
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'घूस',
       meaning: 'रिश्वत',
@@ -325,7 +325,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 246, 255, 223)],
       backgroundColor: const Color.fromARGB(255, 183, 160, 160),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'पालतू',
       meaning: 'जो पाला गया हो',
@@ -334,7 +334,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: false,
       colors: const [Color.fromARGB(255, 229, 139, 13)],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'इंसाफ',
       meaning: 'न्याय',
@@ -343,7 +343,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 255, 255)],
       backgroundColor: const Color.fromARGB(255, 218, 190, 190),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(
       answer: 'मुस्कान',
       meaning: 'हँसी',
@@ -352,7 +352,7 @@ final List<GameAnswer> gameAnswers = [
       moveVertical: true,
       colors: const [Color.fromARGB(255, 255, 220, 184)],
       backgroundColor: const Color.fromARGB(255, 255, 253, 228),
-      whenToShowIcons: 0),
+      whenToShowIcons: -1),
   GameAnswer(answer: 'उत्सुकता', meaning: 'अधीरता'),
   GameAnswer(answer: 'साहसिक', meaning: 'बहादुर'),
   GameAnswer(answer: 'विचित्र', meaning: 'अनोखा'),

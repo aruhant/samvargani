@@ -38,7 +38,7 @@ class Game {
   String get name => answer.answer;
 
   String addGuess(String guess) {
-    FirebaseAnalytics.instance.logEvent(name: 'guess_${tries}_$name');
+    FirebaseAnalytics.instance.logEvent(name: 'guess_${tries + 1}_$name');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
     if (guess.toLowerCase() == 'clear') {
       UserPrefs.instance.clear();

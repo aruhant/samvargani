@@ -44,16 +44,25 @@ class _GameWidgetState extends State<GameWidget> {
     if (oldWidget.game != widget.game) {
       controller.clear();
       message = '';
+      if (widget.game.answer.answer.contains('त्र') ||
+          widget.game.answer.answer.contains('ज्ञ') ||
+          widget.game.answer.answer.contains('श्र') ||
+          widget.game.answer.answer.contains('क्ष')) {
+        if (UserPrefs.instance.runCount < 25) {
+          message =
+              LocaleKeys.game_gameMessages_startingMessages_containsTra.tr();
+        }
+      } else {
+        if (widget.game.answer.answer.contains('्')) {
+          message =
+              LocaleKeys.game_gameMessages_startingMessages_containsAdha.tr();
+        }
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Tries:");
-    print(widget.game.tries);
-    print("When to show icons:");
-    print(widget.game.answer.whenToShowIcons);
-
     return Scaffold(
       body: Stack(
         children: [
@@ -90,7 +99,6 @@ class _GameWidgetState extends State<GameWidget> {
             child: SafeArea(
               child: Column(
                 children: [
-                  // a bit of space from the top
                   const SizedBox(height: 10),
                   Row(children: [
                     const SizedBox(width: 10),
@@ -171,8 +179,15 @@ class _GameWidgetState extends State<GameWidget> {
                           controller.clear();
                         });
                       },
-                      onBackspace: () => setState(() => controller.text =
-                          controller.text.substring(
+                      onBackspace: () => setState(() => controller
+                          .text = controller.text != '' &&
+                              (controller.text.allCharacters.last == 'क्ष' ||
+                                  controller.text.allCharacters.last == 'त्र' ||
+                                  controller.text.allCharacters.last == 'ज्ञ' ||
+                                  controller.text.allCharacters.last == 'श्र')
+                          ? controller.text
+                              .substring(0, max(0, controller.text.length - 3))
+                          : controller.text.substring(
                               0, max(0, controller.text.length - 1))),
                       highlights: widget.game.lines
                           .map((line) => line.cells

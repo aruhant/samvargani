@@ -91,7 +91,6 @@ class _Key extends StatelessWidget {
                           : Colors.black12),
           child: TextButton(
             clipBehavior: Clip.antiAlias,
-            // style with no padding
             style: ButtonStyle(
                 padding: MaterialStateProperty.all(EdgeInsets.zero)),
             onPressed: () => onTap(text),
