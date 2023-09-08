@@ -72,7 +72,7 @@ class UserPrefs {
       return false;
     }
     FirebaseAnalytics.instance
-        .logLevelEnd(levelName: '${_instance!._practiceGameIndex}');
+        .logLevelEnd(levelName: '${_instance!._practiceGameIndex + 1}');
     _instance!._practiceGameIndex++;
     FirebaseAnalytics.instance.setUserProperty(
         name: 'level', value: '${_instance!._practiceGameIndex + 1}');
