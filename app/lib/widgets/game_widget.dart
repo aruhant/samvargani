@@ -67,7 +67,7 @@ class _GameWidgetState extends State<GameWidget> {
       body: Stack(
         children: [
           Vitality.randomly(
-            key: ValueKey(widget.game.answer.toString() +
+            key: ValueKey(widget.game.answer.answer +
                 (widget.game.tries > widget.game.answer.whenToShowIcons ||
                         widget.game.complete)
                     .toString()),
