@@ -68,7 +68,7 @@
             "incorrect": "For assistance, you may tap on the cells, and see what they mean.",
             "alreadyGuessed": "You have already tried this word.",
             "startingMessages":{
-                "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' are each considered as a single letter.",
+                "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' is each considered a single letter.",
                 "containsAdha":"Remember that half letters in a cell are present along with a full letter."
 
 
