@@ -15,6 +15,9 @@ import 'package:screenshot/screenshot.dart';
 import '../models/user_prefs.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:in_app_review/in_app_review.dart';
+
+final InAppReview inAppReview = InAppReview.instance;
 
 class DailyGame extends StatefulWidget {
   const DailyGame({Key? key}) : super(key: key);
@@ -201,6 +204,11 @@ class DailyGameState extends State<DailyGame> {
           //       testNotification();
           //     },
           //     child: const Text('Notify me')),
+          // MaterialButton(
+          //     onPressed: () async {
+          // inAppReview.openStoreListing(appStoreId: '6455461367');
+          //     },
+          //     child: const Text('Write a review')),
           Text(
             LocaleKeys.dailyGame_line3.tr(),
             textAlign: TextAlign.center,

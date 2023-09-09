@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/utils/share.dart';
 import 'line_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class ResultWidget extends StatefulWidget {
   const ResultWidget({required this.gameResult, super.key});
@@ -19,6 +21,7 @@ class ResultWidget extends StatefulWidget {
 class _ResultWidgetState extends State<ResultWidget> {
   bool pressedShare = false;
   final _screenShotController = ScreenshotController();
+  final InAppReview inAppReview = InAppReview.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +63,13 @@ class _ResultWidgetState extends State<ResultWidget> {
                     child: IconButton(
                       icon: Icon(Icons.close, size: 24.sp),
                       color: Colors.black,
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.of(context).pop();
+                        if (await inAppReview.isAvailable() &&
+                            UserPrefs.instance.runCount > 1 &&
+                            UserPrefs.instance.runCount % 3 == 0) {
+                          inAppReview.requestReview();
+                        }
                       },
                     ),
                   ),

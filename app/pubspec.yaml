@@ -52,6 +52,7 @@ dev_dependencies:
   flutter_svg:
   awesome_notifications: ^0.7.4
   path_provider:
+  in_app_review:
   line_icons:
   share_plus:
   tinycolor2:
