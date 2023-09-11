@@ -31,10 +31,10 @@ class DailyGameState extends State<DailyGame> {
   void initState() {
     super.initState();
     print('loading');
-    WotD.load().then((g) => setState(() {
-          print(game?.answer.answer);
-          game = Game.load(answer: g.answer, onSuceess: displayResult);
-        }));
+    // WotD.load().then((g) => setState(() {
+    //       print(game?.answer.answer);
+    //       game = Game.load(answer: g.answer, onSuceess: displayResult);
+    //     }));
     WotD.listen().listen((g) => setState(() {
           print(game?.answer.answer);
           game = Game.load(answer: g.answer, onSuceess: displayResult);
