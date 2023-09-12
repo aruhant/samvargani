@@ -18,6 +18,20 @@ initializeNotifications() {
   ]);
 }
 
+Future<bool> hasPermissions() async {
+  List<NotificationPermission> permissionsAllowed = await AwesomeNotifications()
+      .checkPermissionList(
+          channelKey: 'samvargani',
+          permissions: [NotificationPermission.Alert]);
+  print(permissionsAllowed);
+  if (permissionsAllowed.contains(NotificationPermission.Alert)) {
+    print('Permission granted');
+  } else {
+    print('Permission not granted');
+  }
+  return permissionsAllowed.contains(NotificationPermission.Alert);
+}
+
 requestPermissions() async {
   AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
     if (!isAllowed) {
