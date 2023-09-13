@@ -20,6 +20,8 @@ initializeNotifications() {
 }
 
 Future<bool> hasPermissions() async {
+  return await AwesomeNotifications().isNotificationAllowed();
+
   List<NotificationPermission> permissionsAllowed = await AwesomeNotifications()
       .checkPermissionList(
           channelKey: 'samvargani',
@@ -39,7 +41,8 @@ Future<bool> requestPermissions() async {
     bool pressedYes =
         await AwesomeNotifications().requestPermissionToSendNotifications();
     return pressedYes;
-  }
+  } else
+    print('Permissions already granted');
   return true;
 }
 
