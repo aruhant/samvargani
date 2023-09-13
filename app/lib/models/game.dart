@@ -38,6 +38,7 @@ class Game {
   String get name => answer.answer;
 
   String addGuess(String guess) {
+    if (guess.isEmpty) return '';
     FirebaseAnalytics.instance.logEvent(
         name: 'guess_${tries + 1}_$name', parameters: {'guess': guess});
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
@@ -51,6 +52,9 @@ class Game {
       }
       return answer.answer;
     }
+    if (guess.endsWith('्')) {
+      return LocaleKeys.game_gameMessages_halantError.tr();
+    }
     guess = guess
         .replaceAll('क़', 'क़')
         .replaceAll('ख़', 'ख़')
@@ -60,8 +64,12 @@ class Game {
         .replaceAll('ढ़', 'ढ़')
         .replaceAll('फ़', 'फ़')
         .replaceAll('य़', 'य़');
-
-    List<String> guessList = guess.allCharacters;
+    List<String> guessList = [];
+    try {
+      guessList = guess.allCharacters;
+    } catch (e) {
+      return LocaleKeys.game_gameMessages_halantError.tr();
+    }
 
     if ('ा	िी	ु	ू	ृ	ॄ	ॅ	ॆ	े	ै	ॉ	ॊ	ो	ौ'.contains(guessList[0])) {
       return LocaleKeys.game_gameMessages_matraError.tr(args: [guessList[0]]);

@@ -100,11 +100,8 @@ class _GameWidgetState extends State<GameWidget> {
               child: Column(
                 children: [
                   const SizedBox(height: 10),
-                  Row(children: [
-                    const SizedBox(width: 10),
-                    if (widget.header != null)
-                      widget.header!(widget.game) ?? Container()
-                  ]),
+                  if (widget.header != null)
+                    widget.header!(widget.game) ?? Container(),
                   const SizedBox(height: 25),
                   Text(LocaleKeys.app_title.tr(),
                       style: TextStyle(
@@ -172,8 +169,13 @@ class _GameWidgetState extends State<GameWidget> {
                     HindiKeyboard(
                       onTap: (t) => controller.text += t,
                       onReturn: () async {
+                        print("________________________");
+                        print(controller.text);
+
+                        print(controller.text.trim());
                         String msg =
                             widget.game.addGuess(controller.text.trim());
+
                         setState(() {
                           message = msg;
                           controller.clear();

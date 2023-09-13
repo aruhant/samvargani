@@ -9,6 +9,7 @@ import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
 import 'package:paheli/widgets/practice_game.dart';
+import 'package:paheli/widgets/yesterday.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:screenshot/screenshot.dart';
@@ -27,26 +28,29 @@ class DailyGame extends StatefulWidget {
 
 class DailyGameState extends State<DailyGame> {
   Game? game;
+  bool needPermissions = false;
   @override
   void initState() {
     super.initState();
     print('loading');
-    // WotD.load().then((g) => setState(() {
-    //       print(game?.answer.answer);
-    //       game = Game.load(answer: g.answer, onSuceess: displayResult);
-    //     }));
     WotD.listen().listen((g) => setState(() {
           print(game?.answer.answer);
           game = Game.load(answer: g.answer, onSuceess: displayResult);
         }));
+    hasPermissions().then((value) => setState(() {
+          needPermissions = !value;
+        }));
   }
 
   displayResult(GameResult result) async {
+    FirebaseAnalytics.instance.logEvent(
+        name: 'completed_${DateTime.now().day}_${DateTime.now().month}',
+        parameters: {'tries': result.tries});
+
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
-    FirebaseAnalytics.instance.logEvent(
-        name: 'completed_${DateTime.now().day} ${DateTime.now().month}');
+
     setState(() {});
   }
 
@@ -64,68 +68,98 @@ class DailyGameState extends State<DailyGame> {
     }
   }
 
-  Padding makeHeader(Game game, BuildContext context) {
+  Widget makeHeader(Game game, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0, top: 10),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              backgroundColor: Colors.orangeAccent,
+              padding: const EdgeInsets.all(6),
+            ),
+            onPressed: () {
+              if (game.complete) {
+                displayResult(GameResult(
+                    win: true, answer: game.answer, lines: game.lines));
+              } else {
+                {
+                  _screenShotController
+                      .captureFromLongWidget(
+                          InheritedTheme.captureAll(
+                            context,
+                            Material(
+                              child: HelpShareWidget(game),
+                            ),
+                          ),
+                          delay: const Duration(milliseconds: 300),
+                          context: context,
+                          constraints: BoxConstraints(
+                            maxWidth: MediaQuery.of(context).size.width,
+                          ))
+                      .then((capturedImage) {
+                    shareImage(
+                        capturedImage,
+                        LocaleKeys.shareHelp_message.tr(args: [
+                          game.name.allCharacters.map((e) => e.matra).join('_'),
+                          game.length.toString()
+                        ]),
+                        context);
+                  });
+                }
+              }
+            },
+            child: Padding(
+              padding: EdgeInsets.all(6.w),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.share,
+                    size: 14.sp,
+                  ),
+                  SizedBox(width: 10.w),
+                  if (game.complete)
+                    Text(LocaleKeys.dailyGame_headerAlt.tr(),
+                        style: TextStyle(fontSize: 14.sp, color: Colors.white))
+                  else
+                    Text(LocaleKeys.dailyGame_header.tr(),
+                        style: TextStyle(fontSize: 14.sp, color: Colors.white)),
+                ],
+              ),
+            ),
           ),
-          backgroundColor: Colors.orangeAccent,
-          padding: const EdgeInsets.all(6),
-        ),
-        onPressed: () {
-          if (game.complete) {
-            displayResult(
-                GameResult(win: true, answer: game.answer, lines: game.lines));
-          } else {
-            {
-              _screenShotController
-                  .captureFromLongWidget(
-                      InheritedTheme.captureAll(
-                        context,
-                        Material(
-                          child: HelpShareWidget(game),
+          MaterialButton(
+            onPressed: () async {
+              WotD w = (await WotD.load());
+              // ignore: use_build_context_synchronously
+              await showDialog(
+                  context: context,
+                  builder: (context) => Container(
+                      padding: EdgeInsets.all(8.w),
+                      margin: EdgeInsets.all(12.w),
+                      decoration: BoxDecoration(
+                        color: w.yesterdayAnswer.backgroundColor,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
                         ),
                       ),
-                      delay: const Duration(milliseconds: 300),
-                      context: context,
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width,
-                      ))
-                  .then((capturedImage) {
-                shareImage(
-                    capturedImage,
-                    LocaleKeys.shareHelp_message.tr(args: [
-                      game.name.allCharacters.map((e) => e.matra).join('_'),
-                      game.length.toString()
-                    ]),
-                    context);
-              });
-            }
-          }
-        },
-        child: Padding(
-          padding: EdgeInsets.all(6.w),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.share,
-                size: 14.sp,
-              ),
-              SizedBox(width: 10.w),
-              if (game.complete)
-                Text(LocaleKeys.dailyGame_headerAlt.tr(),
-                    style: TextStyle(fontSize: 14.sp, color: Colors.white))
-              else
-                Text(LocaleKeys.dailyGame_header.tr(),
-                    style: TextStyle(fontSize: 14.sp, color: Colors.white)),
-            ],
+                      child: YesterdayWord(answer: w.yesterdayAnswer)));
+            },
+            child: Padding(
+                padding: EdgeInsets.all(6.w),
+                child: Icon(
+                  Icons.calendar_month,
+                  size: 18.sp,
+                )),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -186,35 +220,66 @@ class DailyGameState extends State<DailyGame> {
               color: const Color.fromARGB(255, 43, 81, 100),
             ),
           ),
-          SlideCountdown(
-            duration: countdown,
-            shouldShowHours: (_) => true,
-            shouldShowMinutes: (_) => true,
-            onDone: () {
-              // print('done');
-              WotD.load().then((g) => setState(() {
-                    game =
-                        Game.load(answer: g.answer, onSuceess: displayResult);
-                  }));
+          MaterialButton(
+              minWidth: 0,
+              onPressed: () async {
+                bool result = await requestPermissions();
+                if (result) setupNotification();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SlideCountdown(
+                    duration: countdown,
+                    shouldShowHours: (_) => true,
+                    shouldShowMinutes: (_) => true,
+                    separatorStyle: TextStyle(
+                      fontSize: 20.sp,
+                      color: const Color.fromARGB(255, 43, 81, 100),
+                    ),
+                    onDone: () {
+                      WotD.load().then((g) => setState(() {
+                            game = Game.load(
+                                answer: g.answer, onSuceess: displayResult);
+                          }));
+                    },
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    textStyle: TextStyle(
+                        fontSize: 20.sp,
+                        color: const Color.fromARGB(255, 43, 81, 100)),
+                  ),
+                  if (needPermissions)
+                    Icon(
+                      Icons.notifications,
+                      size: 22.sp,
+                      color: const Color.fromARGB(255, 43, 81, 100),
+                    ),
+                ],
+              )),
+          /*  MaterialButton(
+            onPressed: () async {
+              await requestPermissions();
+              testNotification();
             },
-            decoration: BoxDecoration(
-              color: Colors.transparent,
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.r),
+              side: const BorderSide(
+                color: Color.fromARGB(255, 43, 81, 100),
+                width: 2,
+              ),
             ),
-            textStyle: TextStyle(
-                fontSize: 20.sp, color: const Color.fromARGB(255, 43, 81, 100)),
-          ),
-          // MaterialButton(
-          //     onPressed: () async {
-          //       await requestPermissions();
-          //       testNotification();
-          //     },
-          //     child: const Text('Notify me')),
-          // MaterialButton(
-          //     onPressed: () async {
-          // inAppReview.openStoreListing(appStoreId: '6455461367');
-          //     },
-          //     child: const Text('Write a review')),
+            child: Text(LocaleKeys.dailyGame_notification.tr(),
+                style: const TextStyle(
+                    fontSize: 18, color: Color.fromARGB(255, 43, 81, 100))),
+          ), */
+          /*  MaterialButton(
+               onPressed: () async {
+           inAppReview.openStoreListing(appStoreId: '6455461367');
+               },
+               child: const Text('Write a review')), */
           Text(
             LocaleKeys.dailyGame_line3.tr(),
             textAlign: TextAlign.center,

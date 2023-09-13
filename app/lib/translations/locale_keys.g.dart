@@ -58,6 +58,7 @@ abstract class  LocaleKeys {
   static const game_gameMessages_auError = 'game.gameMessages.auError';
   static const game_gameMessages_incorrect = 'game.gameMessages.incorrect';
   static const game_gameMessages_alreadyGuessed = 'game.gameMessages.alreadyGuessed';
+  static const game_gameMessages_halantError = 'game.gameMessages.halantError';
   static const game_gameMessages_startingMessages_containsTra = 'game.gameMessages.startingMessages.containsTra';
   static const game_gameMessages_startingMessages_containsAdha = 'game.gameMessages.startingMessages.containsAdha';
   static const game_gameMessages_startingMessages = 'game.gameMessages.startingMessages';
@@ -84,7 +85,12 @@ abstract class  LocaleKeys {
   static const dailyGame_button = 'dailyGame.button';
   static const dailyGame_header = 'dailyGame.header';
   static const dailyGame_headerAlt = 'dailyGame.headerAlt';
+  static const dailyGame_yesterdayWord = 'dailyGame.yesterdayWord';
+  static const dailyGame_notification = 'dailyGame.notification';
   static const dailyGame = 'dailyGame';
+  static const yesterday_title = 'yesterday.title';
+  static const yesterday_meaning = 'yesterday.meaning';
+  static const yesterday = 'yesterday';
   static const shareHelp_title = 'shareHelp.title';
   static const shareHelp_message = 'shareHelp.message';
   static const shareHelp = 'shareHelp';

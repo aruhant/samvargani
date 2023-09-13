@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/user_prefs.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class CellWidget extends StatelessWidget {
   const CellWidget(
@@ -36,7 +37,12 @@ class CellWidget extends StatelessWidget {
                   : TooltipTriggerMode.tap,
               textStyle: TextStyle(color: Colors.white, fontSize: 15.sp),
               message: cell.state.tooltip(cell.value),
-              onTriggered: UserPrefs.instance.onTooltipPressed,
+              onTriggered: () {
+                UserPrefs.instance.onTooltipPressed;
+                FirebaseAnalytics.instance.setUserProperty(
+                    name: 'tooltipsPressed',
+                    value: UserPrefs.instance.tooltipsPressed.toString());
+              },
               child: makeCellContents(),
             ),
     );

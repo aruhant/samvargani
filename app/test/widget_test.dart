@@ -3,15 +3,9 @@ import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/utils/string.dart';
 
 void main() {
-  for (final word in wordList) {
-    if (word.characters.length == 3 &&
-        word.characters.toList()[0].matra == 'ं' &&
-        word.characters.toList()[1].matra == 'ा' &&
-        word.characters.toList()[2].matra.isEmpty) {
-      print(word);
-    }
-  }
-  print("__________________");
+  print("वध्".endsWith('्'));
+  print("ज्ञ".endsWith('्'));
+  print('विद्य'.endsWith('्'));
 /* 
   for (final word in wordList) {
     if (word.characters.length == 3 &&

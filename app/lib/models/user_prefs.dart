@@ -71,13 +71,17 @@ class UserPrefs {
     if (_instance!._practiceGameIndex == max - 1) {
       return false;
     }
-    FirebaseAnalytics.instance
-        .logLevelEnd(levelName: '${_instance!._practiceGameIndex + 1}');
+    if (practiceGameIndex != 0) {
+      FirebaseAnalytics.instance
+          .logLevelEnd(levelName: '${_instance!._practiceGameIndex + 1}');
+    }
     _instance!._practiceGameIndex++;
     FirebaseAnalytics.instance.setUserProperty(
         name: 'level', value: '${_instance!._practiceGameIndex + 1}');
-    FirebaseAnalytics.instance
-        .logLevelStart(levelName: '${_instance!._practiceGameIndex + 1}');
+    if (practiceGameIndex != 0) {
+      FirebaseAnalytics.instance
+          .logLevelStart(levelName: '${_instance!._practiceGameIndex + 1}');
+    }
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
     return true;
   }

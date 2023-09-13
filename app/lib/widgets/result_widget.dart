@@ -9,6 +9,7 @@ import 'line_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class ResultWidget extends StatefulWidget {
   const ResultWidget({required this.gameResult, super.key});
@@ -197,6 +198,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                         child: ElevatedButton(
                                           onPressed: () {
                                             setState(() => pressedShare = true);
+                                            FirebaseAnalytics.instance.logEvent(
+                                                name: 'share_pressed');
                                             shareScreenShot(
                                                 _screenShotController,
                                                 widget.gameResult.tries == 1

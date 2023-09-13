@@ -67,11 +67,10 @@
             "auError": "Pehaps you meant to type 'औ', not 'अौ'.",
             "incorrect": "For assistance, you may tap on the cells, and see what they mean.",
             "alreadyGuessed": "You have already tried this word.",
+            "halantError": "'्' must be followed by a vyanjan.",
             "startingMessages":{
                 "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' is each considered a single letter.",
                 "containsAdha":"Remember that half letters in a cell are present along with a full letter."
-
-
             }
         }
     },
@@ -98,8 +97,15 @@
         "line3": "In the meantime, try practice mode!",
         "button": "Practice Level {}",
         "header": "Share this challenge!",
-        "headerAlt": "Share your score?"
+        "headerAlt": "Share your score?",
+        "yesterdayWord": "Yesterday's word",
+        "notification": "Notify me!"
     },
+    "yesterday":{
+        "title": "Yesterday's word:",
+        "meaning": "Meaning: {}"
+    },
+    
     "shareHelp": {
         "title": "Can you help me guess this Hindi word:",
         "message": "{}\nCan you help me guess this {} letter Hindi word. I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 extension StringExtension on String {
   List<String> get allCharacters {
     List<String> stringList = characters.toList();
-    for (int i = 0; i < stringList.length; i++) {
+    for (int i = 0; i < stringList.length - 1; i++) {
       if (stringList[i].contains('्')) {
-        if (stringList[i + 1].contains('्')) {
+        if (stringList[i + 1].contains('्') && i < stringList.length - 2) {
           stringList[i] += stringList[i + 1] + stringList[i + 2];
           stringList.removeAt(i + 2);
         } else {

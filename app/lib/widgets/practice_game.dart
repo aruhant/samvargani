@@ -112,37 +112,44 @@ class PracticeGameState extends State<PracticeGame> {
                 : null,
         header: (game) => (UserPrefs.instance.practiceGameIndex == 0)
             ? Container()
-            : Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    backgroundColor: Colors.orangeAccent,
-                    padding: const EdgeInsets.all(6),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const DailyGame()));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(6.0.w),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.arrow_back,
-                          size: 16.sp,
+            : Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0.w, top: 10.h),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
-                        SizedBox(width: 8.w),
-                        Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
-                            style: TextStyle(
-                                fontSize: 14.sp, color: Colors.white)),
-                      ],
+                        backgroundColor: Colors.orangeAccent,
+                        padding: const EdgeInsets.all(6),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const DailyGame()));
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(6.0.w),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              size: 16.sp,
+                            ),
+                            SizedBox(width: 8.w),
+                            Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
+                                style: TextStyle(
+                                    fontSize: 14.sp, color: Colors.white)),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ));
   }
 }
