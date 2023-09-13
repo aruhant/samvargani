@@ -40,6 +40,23 @@ class DailyGameState extends State<DailyGame> {
     hasPermissions().then((value) => setState(() {
           needPermissions = !value;
         }));
+    Duration nextUpdateIn = getCountdownDuration(1);
+    Future.delayed(nextUpdateIn).then((value) => setState(() {
+          WotD.load().then((g) => setState(() {
+                game = Game.load(answer: g.answer, onSuceess: displayResult);
+              }));
+        }));
+  }
+
+  Duration getCountdownDuration([int seconds = 0]) {
+    DateTime now = DateTime.now();
+    DateTime nextMidnight =
+        DateTime(now.year, now.month, now.day, WotD.hour, WotD.minute, 1);
+    Duration countdown = nextMidnight.difference(now);
+    if (countdown.inSeconds < 0) {
+      countdown = countdown + Duration(days: 1, seconds: seconds);
+    }
+    return countdown;
   }
 
   displayResult(GameResult result) async {
@@ -182,13 +199,7 @@ class DailyGameState extends State<DailyGame> {
   }
 
   successFooter(BuildContext context) {
-    DateTime now = DateTime.now();
-    DateTime nextMidnight =
-        DateTime(now.year, now.month, now.day, WotD.hour, WotD.minute, 1);
-    Duration countdown = nextMidnight.difference(now);
-    if (countdown.inSeconds < 0) {
-      countdown = countdown + const Duration(days: 1);
-    }
+    Duration countdown = getCountdownDuration();
 //    print(countdown);
     return Container(
       padding: const EdgeInsets.all(8.0).w,
