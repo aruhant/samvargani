@@ -224,6 +224,9 @@ class DailyGameState extends State<DailyGame> {
               minWidth: 0,
               onPressed: () async {
                 bool result = await requestPermissions();
+                setState(() {
+                  needPermissions = !result;
+                });
                 if (result) setupNotification();
               },
               child: Row(
