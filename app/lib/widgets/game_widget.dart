@@ -6,6 +6,7 @@ import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/keyboard.dart';
 import 'package:paheli/widgets/lines_widget.dart';
@@ -142,13 +143,7 @@ class _GameWidgetState extends State<GameWidget> {
                                     BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(color: Colors.black38)),
                             labelText: LocaleKeys.game_answerLabel.tr()),
-                        onSubmitted: (value) {
-                          String msg = widget.game.addGuess(value.trim());
-                          setState(() {
-                            controller.clear();
-                            message = msg;
-                          });
-                        },
+                        onSubmitted: submit,
                       ),
                     ),
                   Padding(
@@ -168,29 +163,8 @@ class _GameWidgetState extends State<GameWidget> {
                   if (!widget.game.complete)
                     HindiKeyboard(
                       onTap: (t) => controller.text += t,
-                      onReturn: () async {
-                        print("________________________");
-                        print(controller.text);
-
-                        print(controller.text.trim());
-                        String msg =
-                            widget.game.addGuess(controller.text.trim());
-
-                        setState(() {
-                          message = msg;
-                          controller.clear();
-                        });
-                      },
-                      onBackspace: () => setState(() => controller
-                          .text = controller.text != '' &&
-                              (controller.text.allCharacters.last == 'क्ष' ||
-                                  controller.text.allCharacters.last == 'त्र' ||
-                                  controller.text.allCharacters.last == 'ज्ञ' ||
-                                  controller.text.allCharacters.last == 'श्र')
-                          ? controller.text
-                              .substring(0, max(0, controller.text.length - 3))
-                          : controller.text.substring(
-                              0, max(0, controller.text.length - 1))),
+                      onReturn: () => submit(controller.text.trim()),
+                      onBackspace: onBackspace,
                       highlights: widget.game.lines
                           .map((line) => line.cells
                               .where((element) => [
@@ -229,5 +203,28 @@ class _GameWidgetState extends State<GameWidget> {
         ],
       ),
     );
+  }
+
+  void onBackspace() {
+    return setState(() => controller.text = controller.text != '' &&
+            (controller.text.allCharacters.last == 'क्ष' ||
+                controller.text.allCharacters.last == 'त्र' ||
+                controller.text.allCharacters.last == 'ज्ञ' ||
+                controller.text.allCharacters.last == 'श्र')
+        ? controller.text.substring(0, max(0, controller.text.length - 3))
+        : controller.text.substring(0, max(0, controller.text.length - 1)));
+  }
+
+  void submit(value) {
+    if (value.trim().toLowerCase() == 'notify')
+      testnotification().then((value) => setState(() {
+            message = value;
+            controller.clear();
+          }));
+    String msg = widget.game.addGuess(value.trim());
+    setState(() {
+      controller.clear();
+      message = msg;
+    });
   }
 }

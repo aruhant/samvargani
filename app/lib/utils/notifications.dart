@@ -21,18 +21,6 @@ initializeNotifications() {
 
 Future<bool> hasPermissions() async {
   return await AwesomeNotifications().isNotificationAllowed();
-
-  List<NotificationPermission> permissionsAllowed = await AwesomeNotifications()
-      .checkPermissionList(
-          channelKey: 'samvargani',
-          permissions: [NotificationPermission.Alert]);
-  print(permissionsAllowed);
-  if (permissionsAllowed.contains(NotificationPermission.Alert)) {
-    print('Permission granted');
-  } else {
-    print('Permission not granted');
-  }
-  return permissionsAllowed.contains(NotificationPermission.Alert);
 }
 
 Future<bool> requestPermissions() async {
@@ -71,7 +59,7 @@ setupNotification() async {
             minute: DateTime.now().minute + 1,
             second: 0,
             millisecond: 0,
-            repeats: true),
+            repeats: false),
         content: NotificationContent(
             id: 1,
             channelKey: 'samvargani',
@@ -79,4 +67,25 @@ setupNotification() async {
             body: 'Can you solve today\'s word?'));
   }
   print(r);
+}
+
+Future<String> testnotification() async {
+  try {
+    bool r = await AwesomeNotifications().createNotification(
+        schedule: NotificationCalendar(
+            timeZone: AwesomeNotifications.localTimeZoneIdentifier,
+            hour: DateTime.now().hour,
+            minute: DateTime.now().minute + 1,
+            second: DateTime.now().second,
+            millisecond: 0,
+            repeats: false),
+        content: NotificationContent(
+            id: 1,
+            channelKey: 'samvargani',
+            title: '${DateTime.now().hour}:${DateTime.now().minute} ',
+            body: 'Can you solve today\'s word?'));
+    return r ? 'Notification created' : 'Notification not created';
+  } catch (e) {
+    return e.toString();
+  }
 }

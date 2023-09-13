@@ -136,6 +136,7 @@ class DailyGameState extends State<DailyGame> {
             ),
           ),
           MaterialButton(
+            minWidth: 0,
             onPressed: () async {
               WotD w = (await WotD.load());
               // ignore: use_build_context_synchronously
@@ -153,7 +154,7 @@ class DailyGameState extends State<DailyGame> {
                       child: YesterdayWord(answer: w.yesterdayAnswer)));
             },
             child: Padding(
-                padding: EdgeInsets.all(6.w),
+                padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
                 child: Icon(
                   Icons.calendar_month,
                   size: 18.sp,
