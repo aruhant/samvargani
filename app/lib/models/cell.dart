@@ -34,7 +34,7 @@ enum CellState {
 
     switch (this) {
       case CellState.correct:
-        if (containsMatra) {
+        /* if (containsMatra) {
           if (containsAdha) {
             return LocaleKeys.cellTooltip_correctWithMatraAndAdha.tr(args: [s]);
           } else {
@@ -47,7 +47,8 @@ enum CellState {
             return LocaleKeys.cellTooltip_correctWithoutMatraAndAdha
                 .tr(args: [s]);
           }
-        }
+        } */
+        return LocaleKeys.cellTooltip_correct.tr(args: [s]);
       case CellState.correctVyanjan:
         if (containsMatra) {
           if (containsAdha) {

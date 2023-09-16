@@ -32,6 +32,7 @@ abstract class  LocaleKeys {
   static const cellTooltip_correctWithMatraAndAdha = 'cellTooltip.correctWithMatraAndAdha';
   static const cellTooltip_correctWithoutMatraAndAdha = 'cellTooltip.correctWithoutMatraAndAdha';
   static const cellTooltip_correctVyanjanWithMatra = 'cellTooltip.correctVyanjanWithMatra';
+  static const cellTooltip_correct = 'cellTooltip.correct';
   static const cellTooltip_correctVyanjanWithAdha = 'cellTooltip.correctVyanjanWithAdha';
   static const cellTooltip_correctVyanjanWithMatraAndAdha = 'cellTooltip.correctVyanjanWithMatraAndAdha';
   static const cellTooltip_correctVyanjanWithoutMatraAndAdha = 'cellTooltip.correctVyanjanWithoutMatraAndAdha';
@@ -61,6 +62,7 @@ abstract class  LocaleKeys {
   static const game_gameMessages_halantError = 'game.gameMessages.halantError';
   static const game_gameMessages_startingMessages_containsTra = 'game.gameMessages.startingMessages.containsTra';
   static const game_gameMessages_startingMessages_containsAdha = 'game.gameMessages.startingMessages.containsAdha';
+  static const game_gameMessages_startingMessages_basicMessage = 'game.gameMessages.startingMessages.basicMessage';
   static const game_gameMessages_startingMessages = 'game.gameMessages.startingMessages';
   static const game_gameMessages = 'game.gameMessages';
   static const game = 'game';

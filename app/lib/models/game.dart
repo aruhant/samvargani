@@ -3,7 +3,6 @@ import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
-import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
@@ -14,6 +13,8 @@ class Game {
   GameAnswer answer;
   final List<Line> _loadLines;
   final Function(GameResult)? onSuceess;
+
+  final void Function(String)? onGuess;
   int get tries => lines.length - 1;
   List<Line> get lines => [
         ..._loadLines,
@@ -25,9 +26,13 @@ class Game {
                         .join(' '),
                     state: CellState.empty)))
       ];
-  Game({this.onSuceess, required this.answer, List<Line> loadLines = const []})
+  Game(
+      {this.onSuceess,
+      required this.answer,
+      List<Line> loadLines = const [],
+      this.onGuess})
       : _loadLines = loadLines;
-  Game.load({this.onSuceess, required this.answer})
+  Game.load({this.onSuceess, required this.answer, this.onGuess})
       : _loadLines =
             UserPrefs.instance.loadGame(answer.answer)?._loadLines ?? [];
   int get length => answer.answer.allCharacters.length;
@@ -40,8 +45,11 @@ class Game {
 
   String addGuess(String guess) {
     if (guess.isEmpty) return '';
-    FirebaseAnalytics.instance.logEvent(
-        name: 'guess_${tries + 1}_$name', parameters: {'guess': guess});
+    if (onGuess != null) onGuess!(guess);
+    FirebaseAnalytics.instance
+        .logEvent(name: 'g${tries + 1}_$name', parameters: {'guess': guess});
+    print('guess_${tries + 1}_$name');
+    print('guess: $guess');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
     if (guess.toLowerCase() == 'clear') {
       UserPrefs.instance.clear();

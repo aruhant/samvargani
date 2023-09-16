@@ -55,9 +55,15 @@ class _GameWidgetState extends State<GameWidget> {
         }
       } else {
         if (widget.game.answer.answer.contains('्')) {
-          message =
-              LocaleKeys.game_gameMessages_startingMessages_containsAdha.tr();
+          if (UserPrefs.instance.runCount < 20) {
+            message =
+                LocaleKeys.game_gameMessages_startingMessages_containsAdha.tr();
+          }
         }
+      }
+      if (UserPrefs.instance.runCount < 10) {
+        message =
+            LocaleKeys.game_gameMessages_startingMessages_basicMessage.tr();
       }
     }
   }

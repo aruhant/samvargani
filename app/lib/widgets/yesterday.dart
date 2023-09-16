@@ -7,6 +7,7 @@ import 'package:vitality/models/ItemBehaviour.dart';
 import 'package:vitality/models/WhenOutOfScreenMode.dart';
 import 'package:vitality/vitality.dart';
 
+// ignore: must_be_immutable
 class YesterdayWord extends StatelessWidget {
   GameAnswer answer;
   YesterdayWord({super.key, required this.answer});

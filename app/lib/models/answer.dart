@@ -42,7 +42,7 @@ class GameAnswer {
   String get title =>
       _title ??
       LocaleKeys.practiceGame_level
-          .tr(args: [(gameAnswers.indexOf(this) + 1).toString()]);
+          .tr(args: [(practiceAnswers.indexOf(this) + 1).toString()]);
 
   get hintIcons {
     if (icons != null && icons!.isNotEmpty) return icons;
@@ -117,7 +117,7 @@ class GameAnswer {
   }
 }
 
-final List<GameAnswer> gameAnswers = [
+final List<GameAnswer> practiceAnswers = [
   GameAnswer(
       title: LocaleKeys.intro_tutorial_title.tr(),
       answer: 'बादल',

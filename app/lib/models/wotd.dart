@@ -5,8 +5,8 @@ class WotD {
   static int hour = 6;
   static int minute = 00;
   Map<int, GameAnswer> _answers = {};
-  GameAnswer get answer => _answers[day] ?? gameAnswers[20];
-  GameAnswer get yesterdayAnswer => _answers[day - 1] ?? gameAnswers[34];
+  GameAnswer get answer => _answers[day] ?? practiceAnswers[20];
+  GameAnswer get yesterdayAnswer => _answers[day - 1] ?? practiceAnswers[34];
   static int get day {
     print(DateTime.now().day);
     return DateTime.now().subtract(Duration(hours: hour, minutes: minute)).day;

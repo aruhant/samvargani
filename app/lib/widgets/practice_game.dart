@@ -9,6 +9,7 @@ import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../models/user_prefs.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class PracticeGame extends StatefulWidget {
   const PracticeGame({Key? key}) : super(key: key);
@@ -22,13 +23,23 @@ class PracticeGameState extends State<PracticeGame> {
   void initState() {
     super.initState();
     game = Game.load(
-        answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
-        onSuceess: displayResult);
+      answer: practiceAnswers[UserPrefs.instance.practiceGameIndex],
+      onSuceess: displayResult,
+      onGuess: onGuess,
+    );
+  }
+
+  void onGuess(String guess) {
+    if (UserPrefs.instance.practiceGameIndex == 0 && game.tries == 2) {
+      FirebaseAnalytics.instance
+          .logEvent(name: 'tutorial_begin', parameters: {'guess': guess});
+    }
   }
 
   displayResult(GameResult result) async {
-    bool s = UserPrefs.instance.makeProgress(gameAnswers.length);
+    bool s = UserPrefs.instance.makeProgress(practiceAnswers.length);
     if (UserPrefs.instance.practiceGameIndex == 1) {
+      FirebaseAnalytics.instance.logTutorialComplete();
       await showDialog(
           context: context,
           builder: (context) => Material(
@@ -70,8 +81,9 @@ class PracticeGameState extends State<PracticeGame> {
     setState(() {
       if (s) {
         game = Game.load(
-          answer: gameAnswers[UserPrefs.instance.practiceGameIndex],
+          answer: practiceAnswers[UserPrefs.instance.practiceGameIndex],
           onSuceess: displayResult,
+          onGuess: onGuess,
         );
       }
     });
@@ -79,7 +91,7 @@ class PracticeGameState extends State<PracticeGame> {
 
   @override
   Widget build(BuildContext context) {
-    if (gameAnswers.length - 1 == UserPrefs.instance.practiceGameIndex) {
+    if (practiceAnswers.length - 1 == UserPrefs.instance.practiceGameIndex) {
       return Material(
         color: const Color.fromRGBO(213, 204, 158, 1),
         child: Center(

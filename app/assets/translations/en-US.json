@@ -15,8 +15,8 @@
             "body": "Guess an interesting new word everyday, and improve your Hindi vocabulary!"
         },
         "page2": {
-            "title": "You will be shown the length and structure of the target word.",
-            "body": "You will also be shown the half letters and matras of that word."
+            "title": "You will be shown the length and structure of the target word divided in cells.",
+            "body": "You will also be shown the half letters and matras in that word."
         },
         "page3": {
             "title": "After every guess, observe the color of each cell.",
@@ -39,6 +39,7 @@
         "correctWithMatraAndAdha": "This cell contains the letter '{}' with this same matra and half letter.",
         "correctWithoutMatraAndAdha": "This cell contains the '{}' like this without any matra or half letter.",
         "correctVyanjanWithMatra": "This cell contains the letter '{}', but not with the '{}' matra, or it contains an additional half letter.",
+        "correct" : "This cell exactly contains '{}' in this position.",
         "correctVyanjanWithAdha": "This cell contains the letter '{}', but not with the '{}' half letter, or it contains an additional half letter.",
         "correctVyanjanWithMatraAndAdha": "This cell contains the letter '{}', but not with the '{}' half letter and/or not with the '{}' matra.",
         "correctVyanjanWithoutMatraAndAdha": "This cell contains the letter '{}', but with a matra or half letter.",
@@ -70,7 +71,8 @@
             "halantError": "'्' must be followed by a vyanjan.",
             "startingMessages":{
                 "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' is each considered a single letter.",
-                "containsAdha":"Remember that half letters in a cell are present along with a full letter."
+                "containsAdha":"Remember that half letters in a cell are present along with a full letter.",
+                "basicMessage":"Remember, to find out which letters are in the answer, you can also make gusses that do not follow the above matra structure."
             }
         }
     },

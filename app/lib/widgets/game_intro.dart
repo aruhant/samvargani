@@ -23,14 +23,13 @@ class GameHelpWidget extends StatefulWidget {
 
 class GameHelpWidgetState extends State<GameHelpWidget> {
   GameHelpWidgetState() {
-    FirebaseAnalytics.instance.logTutorialBegin();
+    FirebaseAnalytics.instance.logEvent(name: 'intro_begin');
   }
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
-    FirebaseAnalytics.instance.logTutorialComplete();
     widget.onIntroEnd();
-    Game t = Game.load(answer: gameAnswers[0]);
+    Game t = Game.load(answer: practiceAnswers[0]);
     t.addGuess('दावत');
     t.addGuess('बालक');
     UserPrefs.instance.saveGame(t);

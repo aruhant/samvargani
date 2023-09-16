@@ -34,8 +34,8 @@ class DailyGameState extends State<DailyGame> {
     super.initState();
     print('loading');
     WotD.listen().listen((g) => setState(() {
-          print(game?.answer.answer);
-          game = Game.load(answer: g.answer, onSuceess: displayResult);
+          game = Game.load(
+              answer: g.answer, onSuceess: displayResult, onGuess: onGuess);
         }));
     hasPermissions().then((value) => setState(() {
           needPermissions = !value;
@@ -43,7 +43,10 @@ class DailyGameState extends State<DailyGame> {
     Duration nextUpdateIn = getCountdownDuration(1);
     Future.delayed(nextUpdateIn).then((value) => setState(() {
           WotD.load().then((g) => setState(() {
-                game = Game.load(answer: g.answer, onSuceess: displayResult);
+                game = Game.load(
+                    answer: g.answer,
+                    onSuceess: displayResult,
+                    onGuess: onGuess);
               }));
         }));
   }
@@ -57,6 +60,12 @@ class DailyGameState extends State<DailyGame> {
       countdown = countdown + Duration(days: 1, seconds: seconds);
     }
     return countdown;
+  }
+
+  void onGuess(String guess) {
+    FirebaseAnalytics.instance.logEvent(
+        name: 'started_${DateTime.now().day}_${DateTime.now().month}',
+        parameters: {'guess': guess});
   }
 
   displayResult(GameResult result) async {
@@ -256,7 +265,9 @@ class DailyGameState extends State<DailyGame> {
                     onDone: () {
                       WotD.load().then((g) => setState(() {
                             game = Game.load(
-                                answer: g.answer, onSuceess: displayResult);
+                                answer: g.answer,
+                                onSuceess: displayResult,
+                                onGuess: onGuess);
                           }));
                     },
                     decoration: BoxDecoration(
