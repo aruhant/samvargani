@@ -46,8 +46,8 @@ class Game {
   String addGuess(String guess) {
     if (guess.isEmpty) return '';
     if (onGuess != null) onGuess!(guess);
-    FirebaseAnalytics.instance
-        .logEvent(name: 'g${tries + 1}_$name', parameters: {'guess': guess});
+    FirebaseAnalytics.instance.logEvent(
+        name: 'g${tries + 1}', parameters: {'answer': name, 'guess': guess});
     print('guess_${tries + 1}_$name');
     print('guess: $guess');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
