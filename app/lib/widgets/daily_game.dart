@@ -64,8 +64,14 @@ class DailyGameState extends State<DailyGame> {
 
   void onGuess(String guess) {
     FirebaseAnalytics.instance.logEvent(
-        name: 'started_${DateTime.now().day}_${DateTime.now().month}',
-        parameters: {'guess': guess});
+        name: 'dg${game!.tries + 1}',
+        parameters: {'answer': game!.name, 'guess': guess});
+    if (game?.tries == 0) {
+      FirebaseAnalytics.instance.logEvent(
+          name: 'started_${DateTime.now().day}_${DateTime.now().month}',
+          parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+      print(UserPrefs.instance.tooltipsPressed);
+    }
   }
 
   displayResult(GameResult result) async {

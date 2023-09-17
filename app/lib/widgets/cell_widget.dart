@@ -38,7 +38,7 @@ class CellWidget extends StatelessWidget {
               textStyle: TextStyle(color: Colors.white, fontSize: 15.sp),
               message: cell.state.tooltip(cell.value),
               onTriggered: () {
-                UserPrefs.instance.onTooltipPressed;
+                UserPrefs.instance.onTooltipPressed();
                 FirebaseAnalytics.instance.setUserProperty(
                     name: 'tooltipsPressed',
                     value: UserPrefs.instance.tooltipsPressed.toString());

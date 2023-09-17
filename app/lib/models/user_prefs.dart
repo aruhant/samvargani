@@ -78,7 +78,7 @@ class UserPrefs {
     _instance!._practiceGameIndex++;
     FirebaseAnalytics.instance.setUserProperty(
         name: 'level', value: '${_instance!._practiceGameIndex + 1}');
-    if (practiceGameIndex != 0) {
+    if (practiceGameIndex != 1) {
       FirebaseAnalytics.instance
           .logLevelStart(levelName: '${_instance!._practiceGameIndex + 1}');
     }
@@ -92,6 +92,7 @@ class UserPrefs {
   }
 
   onTooltipPressed() {
+    print('ttp ${_instance!._tooltipsPressed}');
     _instance!._tooltipsPressed++;
     _sharedPrefs.setInt('tooltipsPressed', _instance!._tooltipsPressed);
   }

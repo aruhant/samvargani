@@ -7,7 +7,6 @@ import 'package:paheli/utils/string.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 
 class Game {
   GameAnswer answer;
@@ -44,10 +43,11 @@ class Game {
   String get name => answer.answer;
 
   String addGuess(String guess) {
+    print("ttp");
+    print(UserPrefs.instance.tooltipsPressed);
     if (guess.isEmpty) return '';
     if (onGuess != null) onGuess!(guess);
-    FirebaseAnalytics.instance.logEvent(
-        name: 'g${tries + 1}', parameters: {'answer': name, 'guess': guess});
+
     print('guess_${tries + 1}_$name');
     print('guess: $guess');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
@@ -122,7 +122,7 @@ class Game {
       onSuceess!(GameResult(win: true, answer: answer, lines: lines));
       return '';
     }
-    return UserPrefs.instance.tooltipsPressed > 6
+    return UserPrefs.instance.tooltipsPressed > 20
         ? ''
         : LocaleKeys.game_gameMessages_incorrect.tr();
   }

@@ -30,16 +30,29 @@ class PracticeGameState extends State<PracticeGame> {
   }
 
   void onGuess(String guess) {
-    if (UserPrefs.instance.practiceGameIndex == 0 && game.tries == 2) {
+    if (UserPrefs.instance.practiceGameIndex == 0 &&
+        guess != 'दावत' &&
+        guess != 'बालक') {
       FirebaseAnalytics.instance
-          .logEvent(name: 'tutorial_begin', parameters: {'guess': guess});
+          .logEvent(name: 'tg${game.tries - 1}', parameters: {'guess': guess});
+    }
+    if (UserPrefs.instance.practiceGameIndex == 0 &&
+        game.tries == 2 &&
+        guess != 'दावत' &&
+        guess != 'बालक') {
+      FirebaseAnalytics.instance.logEvent(
+          name: 'tutorial_begin',
+          parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+      print("TTP");
+      print(UserPrefs.instance.tooltipsPressed);
     }
   }
 
   displayResult(GameResult result) async {
     bool s = UserPrefs.instance.makeProgress(practiceAnswers.length);
     if (UserPrefs.instance.practiceGameIndex == 1) {
-      FirebaseAnalytics.instance.logTutorialComplete();
+      FirebaseAnalytics.instance.logEvent(
+          name: 'tutorial_complete', parameters: {'tries': game.tries - 2});
       await showDialog(
           context: context,
           builder: (context) => Material(
