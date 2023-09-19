@@ -51,6 +51,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    UserPrefs.instance.setContext(context);
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -56,7 +58,10 @@ class GameAnswer {
     return GameAnswer(
         answer: json['answer'] ?? 'समाधान',
         meaning: json['meaning'] ?? 'संशय दूर करना',
-        title: json['title'] ?? 'Daily Challenge',
+        title: (UserPrefs.instance.locale.contains('hi')
+                ? json['title_hi']
+                : json['title_en']) ??
+            json['title'],
         colors: json['colors'] != null
             ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)

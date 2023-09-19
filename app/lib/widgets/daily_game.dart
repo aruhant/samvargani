@@ -63,14 +63,15 @@ class DailyGameState extends State<DailyGame> {
   }
 
   void onGuess(String guess) {
-    FirebaseAnalytics.instance.logEvent(
-        name: 'dg${game!.tries + 1}',
-        parameters: {'answer': game!.name, 'guess': guess});
-    if (game?.tries == 0) {
+    if (UserPrefs.instance.runCount < 5) {
       FirebaseAnalytics.instance.logEvent(
-          name: 'started_${DateTime.now().day}_${DateTime.now().month}',
-          parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
-      print(UserPrefs.instance.tooltipsPressed);
+          name: 'dg${game!.tries + 1}',
+          parameters: {'answer': game!.name, 'guess': guess});
+      if (game?.tries == 0) {
+        FirebaseAnalytics.instance.logEvent(
+            name: 'started_${DateTime.now().day}_${DateTime.now().month}',
+            parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+      }
     }
   }
 

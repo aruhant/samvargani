@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class UserPrefs {
   final bool _darkMode;
@@ -11,6 +12,7 @@ class UserPrefs {
   int _runCount;
   int _practiceGameIndex;
   int _tooltipsPressed;
+  String _locale = 'en';
   final SharedPreferences _sharedPrefs;
   UserPrefs(
       {required bool darkMode,
@@ -34,8 +36,7 @@ class UserPrefs {
   int get practiceGameIndex => _practiceGameIndex;
   int get tooltipsPressed => _tooltipsPressed;
   int get runCount => _runCount;
-
-  get language => null;
+  String get locale => _locale;
 
   static Future<UserPrefs> init() async {
     if (_instance == null) {
@@ -109,4 +110,8 @@ class UserPrefs {
   }
 
   clear() => _sharedPrefs.clear();
+
+  void setContext(BuildContext context) {
+    _instance!._locale = context.locale.toString();
+  }
 }

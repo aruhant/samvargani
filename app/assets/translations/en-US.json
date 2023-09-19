@@ -101,7 +101,23 @@
         "header": "Share this challenge!",
         "headerAlt": "Share your score?",
         "yesterdayWord": "Yesterday's word",
-        "notification": "Notify me!"
+        "notification": "Notify me!",
+        "noDailyWord": "Connect to the internet to load a new word.",
+        "months":{
+            "1": "January",
+            "2": "February",
+            "3": "March",
+            "4": "April",
+            "5": "May",
+            "6": "June",
+            "7": "July",
+            "8": "August",
+            "9": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December" 
+        },
+        "title":"{} {}'s daily word"
     },
     "yesterday":{
         "title": "Yesterday's word:",
@@ -111,5 +127,9 @@
     "shareHelp": {
         "title": "Can you help me guess this Hindi word:",
         "message": "{}\nCan you help me guess this {} letter Hindi word. I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"
-    }
+    },
+    "notification": {
+        "title": "A new challange awaits you!",
+        "message": "Can you solve today's word of the day?"
+}
 }

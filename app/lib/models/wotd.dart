@@ -1,18 +1,74 @@
+import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 
 class WotD {
+  static final List<String> monthsInString = [
+    LocaleKeys.dailyGame_months_1.tr(),
+    LocaleKeys.dailyGame_months_2.tr(),
+    LocaleKeys.dailyGame_months_3.tr(),
+    LocaleKeys.dailyGame_months_4.tr(),
+    LocaleKeys.dailyGame_months_5.tr(),
+    LocaleKeys.dailyGame_months_6.tr(),
+    LocaleKeys.dailyGame_months_7.tr(),
+    LocaleKeys.dailyGame_months_8.tr(),
+    LocaleKeys.dailyGame_months_9.tr(),
+    LocaleKeys.dailyGame_months_10.tr(),
+    LocaleKeys.dailyGame_months_11.tr(),
+    LocaleKeys.dailyGame_months_12.tr(),
+  ];
   static int hour = 6;
   static int minute = 00;
   Map<int, GameAnswer> _answers = {};
-  GameAnswer get answer => _answers[day] ?? practiceAnswers[20];
-  GameAnswer get yesterdayAnswer => _answers[day - 1] ?? practiceAnswers[34];
+
+  GameAnswer get answer =>
+      _answers[day] ??
+      GameAnswer(
+          answer: 'दावत',
+          meaning: 'निमंत्रण',
+          icons: [LineIcons.envelope],
+          title: LocaleKeys.dailyGame_noDailyWord.tr(),
+          colors: const [Color.fromARGB(255, 255, 255, 255)],
+          backgroundColor: const Color.fromARGB(255, 240, 207, 255));
+
+  GameAnswer get yesterdayAnswer =>
+      _answers[yesterday] ??
+      GameAnswer(
+          answer: 'विद्या',
+          meaning: 'ज्ञान',
+          icons: [LineIcons.book, LineIcons.school],
+          moveHorizontal: false,
+          moveVertical: true,
+          colors: [Colors.pink[100]!],
+          backgroundColor: Colors.pink[50],
+          whenToShowIcons: -1,
+          title: LocaleKeys.dailyGame_title
+              .tr(args: [yesterday.toString(), yesterdayMonth]));
   static int get day {
-    print(DateTime.now().day);
     return DateTime.now().subtract(Duration(hours: hour, minutes: minute)).day;
-    // print(DateTime.now().millisecondsSince Epoch ~/ 86400000);
-    // return DateTime.now().millisecondsSinceEpoch ~/ 86400000;
   }
+
+  static int get yesterday {
+    return DateTime.now()
+        .subtract(Duration(hours: hour, minutes: minute, days: 1))
+        .day;
+  }
+
+  static String get month => monthsInString[
+      (DateTime.now().subtract(Duration(hours: hour, minutes: minute)).month) -
+          1];
+
+  static String get yesterdayMonth => monthsInString[(DateTime.now()
+          .subtract(Duration(hours: hour, minutes: minute, days: 1))
+          .month) -
+      1];
+  static makeTitle(int day) =>
+      LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
 
   static Stream<WotD> listen() {
     return FirebaseDatabase.instance.ref('wotd').onValue.map((event) {
