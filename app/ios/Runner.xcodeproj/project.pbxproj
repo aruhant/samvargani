@@ -478,7 +478,7 @@
 				DEVELOPMENT_TEAM = TLMPF2J9QG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Samvargani;
+				INFOPLIST_KEY_CFBundleDisplayName = Paheli;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -662,7 +662,7 @@
 				DEVELOPMENT_TEAM = TLMPF2J9QG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Samvargani;
+				INFOPLIST_KEY_CFBundleDisplayName = Paheli;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -690,7 +690,7 @@
 				DEVELOPMENT_TEAM = TLMPF2J9QG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Samvargani;
+				INFOPLIST_KEY_CFBundleDisplayName = Paheli;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
