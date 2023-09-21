@@ -46,10 +46,19 @@ class GameAnswer {
       LocaleKeys.practiceGame_level
           .tr(args: [(practiceAnswers.indexOf(this) + 1).toString()]);
 
-  get hintIcons {
+  get hintIcons async {
+    // return await Future.wait([
+    //   '''<svg height="210" width="500">  <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"/></svg>'''
+    // ].map((e) async => (await vg.loadPicture(SvgStringLoader(e), null))
+    //     .picture
+    //     .toImage(210, 500)));
+
     if (icons != null && icons!.isNotEmpty) return icons;
     if (images != null && images!.isNotEmpty) {
-      return images!.map((e) => SvgPicture.string(e));
+      await Future.wait(images!.map((e) async =>
+          (await vg.loadPicture(SvgStringLoader(e), null))
+              .picture
+              .toImage(210, 500)));
     }
     return [Icons.cloud];
   }

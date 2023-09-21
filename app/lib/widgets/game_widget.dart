@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui' as ui;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,10 +28,13 @@ class GameWidget extends StatefulWidget {
 class _GameWidgetState extends State<GameWidget> {
   TextEditingController controller = TextEditingController();
   String message = '';
+  List hintIcons = [];
   @override
   void initState() {
     super.initState();
     message = '';
+    widget.game.answer.hintIcons
+        .then((value) => setState(() => hintIcons = value));
   }
 
   @override
@@ -45,6 +49,8 @@ class _GameWidgetState extends State<GameWidget> {
     if (oldWidget.game != widget.game) {
       controller.clear();
       message = '';
+      widget.game.answer.hintIcons
+          .then((value) => setState(() => hintIcons = value));
       if (widget.game.answer.answer.contains('त्र') ||
           widget.game.answer.answer.contains('ज्ञ') ||
           widget.game.answer.answer.contains('श्र') ||
@@ -75,6 +81,7 @@ class _GameWidgetState extends State<GameWidget> {
         children: [
           Vitality.randomly(
             key: ValueKey(widget.game.answer.answer +
+                hintIcons.length.toString() +
                 (widget.game.tries > widget.game.answer.whenToShowIcons ||
                         widget.game.complete)
                     .toString()),
@@ -95,12 +102,16 @@ class _GameWidgetState extends State<GameWidget> {
                         UserPrefs.instance.runCount < 3)
                     ? widget.game.answer.colors
                     : [widget.game.answer.backgroundColor!],
-            randomItemsBehaviours: widget.game.answer.hintIcons
-                .map((e) => e is IconData
-                    ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
-                    : ItemBehaviour(shape: ShapeType.FilledTriangle))
-                .toList()
-                .cast<ItemBehaviour>(),
+            randomItemsBehaviours: hintIcons.isEmpty
+                ? [ItemBehaviour(shape: ShapeType.FilledCircle)]
+                : hintIcons
+                    .map((e) => e is IconData
+                        ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
+                        : (e is ui.Image)
+                            ? ItemBehaviour(shape: ShapeType.Image, image: e)
+                            : ItemBehaviour(shape: ShapeType.FilledCircle))
+                    .toList()
+                    .cast<ItemBehaviour>(),
           ),
           SingleChildScrollView(
             child: SafeArea(
