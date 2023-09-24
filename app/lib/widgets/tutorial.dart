@@ -10,19 +10,19 @@ import 'package:paheli/widgets/game_widget.dart';
 
 class TransitionPage extends StatelessWidget {
   TransitionPage({super.key});
-  final mainMessages = [
-    LocaleKeys.intro_tutorial_tutorial1_mainMessage.tr(),
-    LocaleKeys.intro_tutorial_tutorial2_mainMessage.tr(),
-    LocaleKeys.intro_tutorial_tutorial3_mainMessage.tr(),
-  ];
-  final nextMessages = [
-    LocaleKeys.intro_tutorial_tutorial1_next.tr(),
-    LocaleKeys.intro_tutorial_tutorial2_next.tr(),
-    LocaleKeys.intro_tutorial_tutorial3_next.tr(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final mainMessages = [
+      LocaleKeys.intro_tutorial_tutorial1_mainMessage.tr(),
+      LocaleKeys.intro_tutorial_tutorial2_mainMessage.tr(),
+      LocaleKeys.intro_tutorial_tutorial3_mainMessage.tr(),
+    ];
+    final nextMessages = [
+      LocaleKeys.intro_tutorial_tutorial1_next.tr(),
+      LocaleKeys.intro_tutorial_tutorial2_next.tr(),
+      LocaleKeys.intro_tutorial_tutorial3_next.tr(),
+    ];
     return Material(
         color: const Color.fromRGBO(213, 204, 158, 1),
         child: Column(

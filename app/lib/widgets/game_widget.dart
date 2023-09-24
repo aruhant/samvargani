@@ -130,7 +130,7 @@ class _GameWidgetState extends State<GameWidget> {
                           fontSize: 40.sp,
                           color: Colors.black54,
                           fontWeight: FontWeight.bold)),
-                  Text(widget.game.answer.title,
+                  Text(widget.game.answer.title.tr(),
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontSize: 18.sp,

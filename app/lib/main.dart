@@ -12,7 +12,6 @@ import 'package:paheli/widgets/language_picker.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:paheli/widgets/practice_game.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:paheli/widgets/tutorial.dart';
 import 'package:upgrader/upgrader.dart';

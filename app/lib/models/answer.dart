@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:paheli/models/user_prefs.dart';
-import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -423,7 +422,7 @@ final List<GameAnswer> practiceWords = [
 ];
 final List<GameAnswer> tutorialWords = [
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
+      title: LocaleKeys.intro_tutorial_tutorial1_title,
       answer: 'बादल',
       meaning: 'पृथ्वी के जल से बुनी हुई वह भाप, जिससे पानी बरसता है',
       moveHorizontal: true,
@@ -432,7 +431,7 @@ final List<GameAnswer> tutorialWords = [
       colors: [const Color.fromARGB(255, 47, 46, 59)],
       whenToShowIcons: -1),
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+      title: LocaleKeys.intro_tutorial_tutorial2_title,
       answer: 'मघ',
       meaning: 'बादल',
       icons: [LineIcons.cloud],
@@ -442,10 +441,9 @@ final List<GameAnswer> tutorialWords = [
       backgroundColor: Colors.blue[100],
       whenToShowIcons: -1),
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
+      title: LocaleKeys.intro_tutorial_tutorial3_title,
       answer: 'नकद',
       meaning: 'रुपया-पैसा\nके रूप में धन',
-      // icons: [LineIcons.moneyBill],
       images: [
         '''
 <svg height="210" width="500">
