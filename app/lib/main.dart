@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/firebase_options.dart';
+import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/user_prefs.dart';
-import 'package:paheli/models/wotd.dart';
 import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_intro.dart';
@@ -14,7 +14,9 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:paheli/widgets/tutorial.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:paheli/models/wotd.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -85,9 +87,9 @@ class _MyAppState extends State<MyApp> {
                           onIntroEnd: () =>
                               setState(() => UserPrefs.instance.firstRunDone()),
                         )
-                      : UserPrefs.instance.practiceGameIndex > 0
+                      : UserPrefs.instance.tutorialIndex > tutorialWords.length
                           ? const DailyGame()
-                          : const PracticeGame(),
+                          : const Tutorial(),
             ));
       },
     );

@@ -2,6 +2,8 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
 
 initializeNotifications() {
   print('Initializing notifications');
@@ -46,25 +48,8 @@ setupNotification() async {
       content: NotificationContent(
           id: 1,
           channelKey: 'samvargani',
-          title: 'A new challange awaits you',
-          body: 'Can you solve today\'s word of the day?'));
-  print(r);
-
-  if (kDebugMode) {
-    r = await AwesomeNotifications().createNotification(
-        schedule: NotificationCalendar(
-            timeZone: AwesomeNotifications.localTimeZoneIdentifier,
-            hour: DateTime.now().hour,
-            minute: DateTime.now().minute + 1,
-            second: 0,
-            millisecond: 0,
-            repeats: false),
-        content: NotificationContent(
-            id: 1,
-            channelKey: 'samvargani',
-            title: 'Debug: A new challange awaits you',
-            body: 'Can you solve today\'s word?'));
-  }
+          title: LocaleKeys.notification_title.tr(),
+          body: LocaleKeys.notification_message.tr()));
   print(r);
 }
 
@@ -81,8 +66,8 @@ Future<String> testnotification() async {
         content: NotificationContent(
             id: 1,
             channelKey: 'samvargani',
-            title: '${DateTime.now().hour}:${DateTime.now().minute} ',
-            body: 'Can you solve today\'s word?'));
+            title: LocaleKeys.notification_title.tr(),
+            body: LocaleKeys.notification_message.tr()));
     return r ? 'Notification created' : 'Notification not created';
   } catch (e) {
     return e.toString();

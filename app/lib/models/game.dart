@@ -127,22 +127,6 @@ class Game {
         : LocaleKeys.game_gameMessages_incorrect.tr();
   }
 
-  CellState getStateForCell(String answer, String guessCharacter, int index) {
-    if (answer.allCharacters[index] == guessCharacter) {
-      return CellState.correct;
-    } else if (answer.allCharacters[index].vyanjan == guessCharacter.vyanjan) {
-      return CellState.correctVyanjan;
-    } else if (answer.allCharacters.contains(guessCharacter)) {
-      return CellState.misplaced;
-    } else if (answer.allCharacters
-        .map((e) => e.vyanjan)
-        .contains(guessCharacter.vyanjan)) {
-      return CellState.misplacedVyanjan;
-    } else {
-      return CellState.incorrect;
-    }
-  }
-
   static Game fromJson(Map json) {
     Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
@@ -171,4 +155,96 @@ class GameResult {
   String get shareMessage =>
       LocaleKeys.gameResult_share.tr(args: [answer.answer, tries.toString()]);
   GameResult({required this.win, required this.answer, this.lines = const []});
+}
+
+CellState getStateForCell(String answer, String guessCharacter, int index) {
+  bool containsMatra = guessCharacter.matraOnly.isNotEmpty;
+  bool containsAdha = guessCharacter.halfOnly.isNotEmpty;
+  List<String> answerList = answer.allCharacters;
+  if (answerList[index] == guessCharacter) {
+    return CellState.correct;
+  } else if (answerList[index].vyanjan == guessCharacter.vyanjan) {
+    if (containsMatra) {
+      if (containsAdha) {
+        if (answerList[index].matraOnly == guessCharacter.matraOnly) {
+          return CellState.correctVyanjanWithMatraAndAdhaRemoveAdha;
+        } else if (answerList[index].halfOnly == guessCharacter.halfOnly) {
+          return CellState.correctVyanjanWithMatraAndAdhaRemoveMatra;
+        } else {
+          return CellState.correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha;
+        }
+      } else {
+        // check if the answer has a matra at the same index
+        if (answerList[index].matraOnly == guessCharacter.matraOnly) {
+          return CellState.correctVyanjanWithMatraAddAdha;
+        } else {
+          return CellState.correctVyanjanWithMatraRemoveMatra;
+        }
+      }
+    } else {
+      if (containsAdha) {
+        if (answerList[index].halfOnly == guessCharacter.halfOnly) {
+          return CellState.correctVyanjanWithAdhaAddMatra;
+        } else {
+          return CellState.correctVyanjanWithAdhaRemoveAdha;
+        }
+      } else {
+        if ((answerList[index]).matraOnly.isNotEmpty) {
+          if (answerList[index].halfOnly.isNotEmpty) {
+            return CellState.correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha;
+          } else {
+            return CellState.correctVyanjanWithoutMatraAndAdhaAddMatra;
+          }
+        } else {
+          return CellState.correctVyanjanWithoutMatraAndAdhaAddAdha;
+        }
+      }
+    }
+  } else if (answerList.contains(guessCharacter)) {
+    return CellState.misplaced;
+  } else if (answerList
+      .map((e) => e.vyanjan)
+      .contains(guessCharacter.vyanjan)) {
+    String toCompare = answerList[answerList
+        .map((e) => e.vyanjan)
+        .toList()
+        .indexOf(guessCharacter.vyanjan)];
+    if (containsMatra) {
+      if (containsAdha) {
+        if (toCompare.matraOnly == guessCharacter.matraOnly) {
+          return CellState.misplacedVyanjanWithMatraAndAdhaRemoveAdha;
+        } else if (toCompare.halfOnly == guessCharacter.halfOnly) {
+          return CellState.misplacedVyanjanWithMatraAndAdhaRemoveMatra;
+        } else {
+          return CellState.misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha;
+        }
+      } else {
+        if (toCompare.matraOnly == guessCharacter.matraOnly) {
+          return CellState.misplacedVyanjanWithMatraAddAdha;
+        } else {
+          return CellState.misplacedVyanjanWithMatraRemoveMatra;
+        }
+      }
+    } else {
+      if (containsAdha) {
+        if (toCompare.halfOnly == guessCharacter.halfOnly) {
+          return CellState.misplacedVyanjanWithAdhaAddMatra;
+        } else {
+          return CellState.misplacedVyanjanWithAdhaRemoveAdha;
+        }
+      } else {
+        if (toCompare.matraOnly.isNotEmpty) {
+          if (toCompare.halfOnly.isNotEmpty) {
+            return CellState.misplacedVyanjanWithoutMatraAndAdhaAddMatraAndAdha;
+          } else {
+            return CellState.misplacedVyanjanWithoutMatraAndAdhaAddMatra;
+          }
+        } else {
+          return CellState.misplacedVyanjanWithoutMatraAndAdhaAddAdha;
+        }
+      }
+    }
+  } else {
+    return CellState.incorrect;
+  }
 }

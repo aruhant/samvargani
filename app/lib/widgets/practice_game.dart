@@ -9,7 +9,6 @@ import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../models/user_prefs.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 
 class PracticeGame extends StatefulWidget {
   const PracticeGame({Key? key}) : super(key: key);
@@ -23,80 +22,21 @@ class PracticeGameState extends State<PracticeGame> {
   void initState() {
     super.initState();
     game = Game.load(
-      answer: practiceAnswers[UserPrefs.instance.practiceGameIndex],
+      answer: practiceWords[UserPrefs.instance.practiceGameIndex],
       onSuceess: displayResult,
-      onGuess: onGuess,
     );
   }
 
-  void onGuess(String guess) {
-    if (UserPrefs.instance.practiceGameIndex == 0 &&
-        guess != 'दावत' &&
-        guess != 'बालक') {
-      FirebaseAnalytics.instance
-          .logEvent(name: 'tg${game.tries - 1}', parameters: {'guess': guess});
-    }
-    if (UserPrefs.instance.practiceGameIndex == 0 &&
-        game.tries == 2 &&
-        guess != 'दावत' &&
-        guess != 'बालक') {
-      FirebaseAnalytics.instance.logEvent(
-          name: 'tutorial_begin',
-          parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
-      print("TTP");
-      print(UserPrefs.instance.tooltipsPressed);
-    }
-  }
-
   displayResult(GameResult result) async {
-    bool s = UserPrefs.instance.makeProgress(practiceAnswers.length);
-    if (UserPrefs.instance.practiceGameIndex == 1) {
-      FirebaseAnalytics.instance.logEvent(
-          name: 'tutorial_complete', parameters: {'tries': game.tries - 2});
-      await showDialog(
-          context: context,
-          builder: (context) => Material(
-              color: const Color.fromRGBO(213, 204, 158, 1),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    LocaleKeys.intro_tutorial_mainMessage.tr(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 30),
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(240, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      backgroundColor: Colors.orangeAccent,
-                      padding: const EdgeInsets.all(15),
-                    ),
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text(LocaleKeys.intro_tutorial_next.tr(),
-                        style: const TextStyle(fontSize: 18)),
-                  )
-                ],
-              )),
-          barrierDismissible: false);
-
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const DailyGame()));
-      return;
-    }
+    bool s = UserPrefs.instance.makeProgress(practiceWords.length);
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
     setState(() {
       if (s) {
         game = Game.load(
-          answer: practiceAnswers[UserPrefs.instance.practiceGameIndex],
+          answer: practiceWords[UserPrefs.instance.practiceGameIndex],
           onSuceess: displayResult,
-          onGuess: onGuess,
         );
       }
     });
@@ -104,7 +44,7 @@ class PracticeGameState extends State<PracticeGame> {
 
   @override
   Widget build(BuildContext context) {
-    if (practiceAnswers.length - 1 == UserPrefs.instance.practiceGameIndex) {
+    if (practiceWords.length - 1 == UserPrefs.instance.practiceGameIndex) {
       return Material(
         color: const Color.fromRGBO(213, 204, 158, 1),
         child: Center(
@@ -118,63 +58,57 @@ class PracticeGameState extends State<PracticeGame> {
     }
     return GameWidget(
         game: game,
-        footer: (game) => (UserPrefs.instance.practiceGameIndex == 0)
-            ? Container()
-            : (UserPrefs.instance.practiceGameIndex < 4) ||
-                    (UserPrefs.instance.practiceGameIndex < 10 &&
-                        game.tries > 3) ||
-                    (UserPrefs.instance.practiceGameIndex < 30 &&
-                        game.tries > 5) ||
-                    game.tries > 10 ||
-                    kDebugMode
-                ? TextButton(
-                    onPressed: () {
-                      displayResult(GameResult(
-                          win: false, answer: game.answer, lines: game.lines));
-                    },
-                    child: Text(LocaleKeys.practiceGame_resetButton.tr()),
-                  )
-                : null,
-        header: (game) => (UserPrefs.instance.practiceGameIndex == 0)
-            ? Container()
-            : Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0.w, top: 10.h),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                        backgroundColor: Colors.orangeAccent,
-                        padding: const EdgeInsets.all(6),
+        footer: (game) => (UserPrefs.instance.practiceGameIndex < 4) ||
+                (UserPrefs.instance.practiceGameIndex < 10 && game.tries > 3) ||
+                (UserPrefs.instance.practiceGameIndex < 30 && game.tries > 5) ||
+                game.tries > 10 ||
+                kDebugMode
+            ? TextButton(
+                onPressed: () {
+                  displayResult(GameResult(
+                      win: false, answer: game.answer, lines: game.lines));
+                },
+                child: Text(LocaleKeys.practiceGame_resetButton.tr()),
+              )
+            : null,
+        header: (game) => Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0.w, top: 10.h),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const DailyGame()));
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(6.0.w),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.arrow_back,
-                              size: 16.sp,
-                            ),
-                            SizedBox(width: 8.w),
-                            Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
-                                style: TextStyle(
-                                    fontSize: 14.sp, color: Colors.white)),
-                          ],
-                        ),
+                      backgroundColor: Colors.orangeAccent,
+                      padding: const EdgeInsets.all(6),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const DailyGame()));
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(6.0.w),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            size: 16.sp,
+                          ),
+                          SizedBox(width: 8.w),
+                          Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Colors.white)),
+                        ],
                       ),
                     ),
                   ),
-                ],
-              ));
+                ),
+              ],
+            ));
   }
 }

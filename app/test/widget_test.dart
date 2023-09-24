@@ -3,24 +3,14 @@ import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/utils/string.dart';
 
 void main() {
-  print("वध्".endsWith('्'));
-  print("ज्ञ".endsWith('्'));
-  print('विद्य'.endsWith('्'));
-/* 
   for (final word in wordList) {
-    if (word.characters.length == 3 &&
-        word.characters.toList()[0] == ('बा') &&
-        word.characters.toList()[1].matra.isEmpty &&
-        word.characters.toList()[2].matra.isEmpty &&
-        (word.characters.toList()[2].vyanjan == 'द' ||
-            word.characters.toList()[1].vyanjan == 'द' ||
-            word.characters.toList()[2].vyanjan == 'ल' ||
-            word.characters.toList()[1].vyanjan == 'ल')) {
+    if (word.allCharacters.length == 3 &&
+        word.allCharacters.last == 'द' &&
+        word.allCharacters[0].matra == '' &&
+        word.allCharacters[1].matra == '') {
       print(word);
     }
   }
-  print("a");
-} */
 
   // print('ढ़'.contains('़'));
   // print('टढ़ड़ा'.getAllVaraitions);

@@ -11,6 +11,7 @@ class UserPrefs {
   int _initState;
   int _runCount;
   int _practiceGameIndex;
+  int _tutorialIndex;
   int _tooltipsPressed;
   String _locale = 'en';
   final SharedPreferences _sharedPrefs;
@@ -20,13 +21,15 @@ class UserPrefs {
       required int practiceGameIndex,
       required int runCount,
       required SharedPreferences sharedPrefs,
-      required int tooltipsPressed})
+      required int tooltipsPressed,
+      required int tutorialIndex})
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
         _sharedPrefs = sharedPrefs,
         _runCount = runCount,
-        _tooltipsPressed = tooltipsPressed;
+        _tooltipsPressed = tooltipsPressed,
+        _tutorialIndex = tutorialIndex;
 
   static UserPrefs? _instance;
   static UserPrefs get instance => _instance!;
@@ -35,6 +38,7 @@ class UserPrefs {
   bool get shouldShowLocaleSettings => _initState < 1;
   int get practiceGameIndex => _practiceGameIndex;
   int get tooltipsPressed => _tooltipsPressed;
+  int get tutorialIndex => _tutorialIndex;
   int get runCount => _runCount;
   String get locale => _locale;
 
@@ -48,6 +52,7 @@ class UserPrefs {
           initState: sharedPrefs.getInt('initState') ?? 0,
           runCount: sharedPrefs.getInt('runCount') ?? 0,
           tooltipsPressed: sharedPrefs.getInt('tooltipsPressed') ?? 0,
+          tutorialIndex: sharedPrefs.getInt('tutorialIndex') ?? 0,
           sharedPrefs: sharedPrefs);
     }
     return _instance!;
@@ -84,6 +89,17 @@ class UserPrefs {
           .logLevelStart(levelName: '${_instance!._practiceGameIndex + 1}');
     }
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
+    return true;
+  }
+
+  bool makeTutorialProgress(int max) {
+    if (_instance!._tutorialIndex == max - 1) {
+      _instance!._tutorialIndex++;
+      return false;
+    }
+    _instance!._tutorialIndex++;
+
+    _sharedPrefs.setInt('tutorialIndex', _instance!._tutorialIndex);
     return true;
   }
 

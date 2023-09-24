@@ -44,22 +44,16 @@ class GameAnswer {
   String get title =>
       _title ??
       LocaleKeys.practiceGame_level
-          .tr(args: [(practiceAnswers.indexOf(this) + 1).toString()]);
+          .tr(args: [(practiceWords.indexOf(this) + 1).toString()]);
 
   get hintIcons async {
-    // return await Future.wait([
-    //   '''<svg height="210" width="500">  <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"/></svg>'''
-    // ].map((e) async => (await vg.loadPicture(SvgStringLoader(e), null))
-    //     .picture
-    //     .toImage(210, 500)));
-
-    if (icons != null && icons!.isNotEmpty) return icons;
     if (images != null && images!.isNotEmpty) {
-      await Future.wait(images!.map((e) async =>
+      return await Future.wait(images!.map((e) async =>
           (await vg.loadPicture(SvgStringLoader(e), null))
               .picture
               .toImage(210, 500)));
     }
+    if (icons != null && icons!.isNotEmpty) return icons;
     return [Icons.cloud];
   }
 
@@ -75,10 +69,10 @@ class GameAnswer {
             ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)
                 .toList()
-            : const [Color.fromARGB(255, 210, 161, 183)],
+            : const [Color.fromRGBO(213, 204, 158, 1)],
         backgroundColor: json['backgroundColor'] != null
             ? TinyColor.fromString(json['backgroundColor']).color
-            : const Color.fromARGB(255, 180, 207, 229),
+            : const Color.fromRGBO(213, 204, 158, 1),
         icons: json['icons'] != null
             ? (json['icons'] as List)
                 .map((e) => e is String
@@ -131,16 +125,7 @@ class GameAnswer {
   }
 }
 
-final List<GameAnswer> practiceAnswers = [
-  GameAnswer(
-      title: LocaleKeys.intro_tutorial_title.tr(),
-      answer: 'बादल',
-      meaning: 'पृथ्वी के जल से बुनी हुई वह भाप, जिससे पानी बरसता है',
-      moveHorizontal: true,
-      moveVertical: false,
-      backgroundColor: Colors.blue[100],
-      colors: [const Color.fromARGB(255, 47, 46, 59)],
-      whenToShowIcons: -1),
+final List<GameAnswer> practiceWords = [
   GameAnswer(
       answer: 'मेघ',
       meaning: 'बादल',
@@ -435,4 +420,42 @@ final List<GameAnswer> practiceAnswers = [
   GameAnswer(answer: 'साहस', meaning: 'वीरता'),
   GameAnswer(answer: 'उत्तराधिकारी', meaning: 'वारिस'),
   GameAnswer(answer: 'विशेषाधिकार', meaning: 'विशिष्ट अधिकार'),
+];
+final List<GameAnswer> tutorialWords = [
+  GameAnswer(
+      title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
+      answer: 'बादल',
+      meaning: 'पृथ्वी के जल से बुनी हुई वह भाप, जिससे पानी बरसता है',
+      moveHorizontal: true,
+      moveVertical: false,
+      backgroundColor: Colors.blue[100],
+      colors: [const Color.fromARGB(255, 47, 46, 59)],
+      whenToShowIcons: -1),
+  GameAnswer(
+      title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+      answer: 'मघ',
+      meaning: 'बादल',
+      icons: [LineIcons.cloud],
+      moveHorizontal: true,
+      moveVertical: false,
+      colors: [Colors.blue, Colors.cyan],
+      backgroundColor: Colors.blue[100],
+      whenToShowIcons: -1),
+  GameAnswer(
+      title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
+      answer: 'नकद',
+      meaning: 'रुपया-पैसा\nके रूप में धन',
+      // icons: [LineIcons.moneyBill],
+      images: [
+        '''
+<svg height="210" width="500">
+  <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"/>
+</svg>
+'''
+      ],
+      moveHorizontal: false,
+      moveVertical: true,
+      colors: const [Color.fromARGB(255, 119, 208, 147)],
+      backgroundColor: const Color.fromARGB(255, 215, 255, 229),
+      whenToShowIcons: -1),
 ];

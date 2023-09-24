@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui' as ui;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +13,7 @@ import 'package:paheli/widgets/lines_widget.dart';
 import 'package:vitality/models/ItemBehaviour.dart';
 import 'package:vitality/models/WhenOutOfScreenMode.dart';
 import 'package:vitality/vitality.dart';
+import 'dart:ui' as ui;
 
 class GameWidget extends StatefulWidget {
   const GameWidget({required this.game, this.footer, super.key, this.header});
@@ -51,25 +51,29 @@ class _GameWidgetState extends State<GameWidget> {
       message = '';
       widget.game.answer.hintIcons
           .then((value) => setState(() => hintIcons = value));
-      if (widget.game.answer.answer.contains('त्र') ||
-          widget.game.answer.answer.contains('ज्ञ') ||
-          widget.game.answer.answer.contains('श्र') ||
-          widget.game.answer.answer.contains('क्ष')) {
-        if (UserPrefs.instance.runCount < 25) {
-          message =
-              LocaleKeys.game_gameMessages_startingMessages_containsTra.tr();
-        }
-      } else {
-        if (widget.game.answer.answer.contains('्')) {
-          if (UserPrefs.instance.runCount < 20) {
+
+      if (!widget.game.complete) {
+        if (widget.game.answer.answer.contains('त्र') ||
+            widget.game.answer.answer.contains('ज्ञ') ||
+            widget.game.answer.answer.contains('श्र') ||
+            widget.game.answer.answer.contains('क्ष')) {
+          if (UserPrefs.instance.runCount < 25) {
             message =
-                LocaleKeys.game_gameMessages_startingMessages_containsAdha.tr();
+                LocaleKeys.game_gameMessages_startingMessages_containsTra.tr();
+          }
+        } else {
+          if (widget.game.answer.answer.contains('्')) {
+            if (UserPrefs.instance.runCount < 20) {
+              message = LocaleKeys
+                  .game_gameMessages_startingMessages_containsAdha
+                  .tr();
+            }
           }
         }
-      }
-      if (UserPrefs.instance.runCount < 10) {
-        message =
-            LocaleKeys.game_gameMessages_startingMessages_basicMessage.tr();
+        if (UserPrefs.instance.runCount < 10) {
+          message =
+              LocaleKeys.game_gameMessages_startingMessages_basicMessage.tr();
+        }
       }
     }
   }
@@ -186,9 +190,42 @@ class _GameWidgetState extends State<GameWidget> {
                           .map((line) => line.cells
                               .where((element) => [
                                     CellState.correct,
-                                    CellState.correctVyanjan,
                                     CellState.misplaced,
-                                    CellState.misplacedVyanjan
+                                    CellState.correctVyanjanWithAdhaRemoveAdha,
+                                    CellState.correctVyanjanWithAdhaAddMatra,
+                                    CellState
+                                        .correctVyanjanWithMatraRemoveMatra,
+                                    CellState.correctVyanjanWithMatraAddAdha,
+                                    CellState
+                                        .correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha,
+                                    CellState
+                                        .correctVyanjanWithMatraAndAdhaRemoveMatra,
+                                    CellState
+                                        .correctVyanjanWithMatraAndAdhaRemoveAdha,
+                                    CellState
+                                        .correctVyanjanWithoutMatraAndAdhaAddMatra,
+                                    CellState
+                                        .correctVyanjanWithoutMatraAndAdhaAddAdha,
+                                    CellState
+                                        .correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha,
+                                    CellState
+                                        .misplacedVyanjanWithAdhaRemoveAdha,
+                                    CellState.misplacedVyanjanWithAdhaAddMatra,
+                                    CellState
+                                        .misplacedVyanjanWithMatraRemoveMatra,
+                                    CellState.misplacedVyanjanWithMatraAddAdha,
+                                    CellState
+                                        .misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha,
+                                    CellState
+                                        .misplacedVyanjanWithMatraAndAdhaRemoveMatra,
+                                    CellState
+                                        .misplacedVyanjanWithMatraAndAdhaRemoveAdha,
+                                    CellState
+                                        .misplacedVyanjanWithoutMatraAndAdhaAddMatra,
+                                    CellState
+                                        .misplacedVyanjanWithoutMatraAndAdhaAddAdha,
+                                    CellState
+                                        .misplacedVyanjanWithoutMatraAndAdhaAddMatraAndAdha,
                                   ].contains(element.state))
                               .map((e) => e.value.vyanjan))
                           .expand((element) => element)

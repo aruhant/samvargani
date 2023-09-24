@@ -29,9 +29,9 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
 
   void _onIntroEnd(context) {
     widget.onIntroEnd();
-    Game t = Game.load(answer: practiceAnswers[0]);
-    t.addGuess('दावत');
+    Game t = Game.load(answer: tutorialWords[0]);
     t.addGuess('बालक');
+    t.addGuess('नकद');
     UserPrefs.instance.saveGame(t);
   }
 
@@ -120,7 +120,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               LineWidget(
                   line: Line(cells: [
-                    Cell('दा', state: CellState.misplacedVyanjan),
+                    Cell('दा', state: CellState.misplaced),
                     Cell('व', state: CellState.incorrect),
                     Cell('त', state: CellState.incorrect)
                   ]),

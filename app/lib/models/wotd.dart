@@ -25,6 +25,13 @@ class WotD {
   static int hour = 6;
   static int minute = 00;
   Map<int, GameAnswer> _answers = {};
+  GameAnswer get debugAnswer => GameAnswer(
+      answer: 'दावत',
+      meaning: 'निमंत्रण',
+      icons: [LineIcons.envelope],
+      title: "21 सितम्बर का दैनिक शब्द",
+      colors: const [Color.fromARGB(255, 255, 255, 255)],
+      backgroundColor: const Color.fromARGB(255, 240, 207, 255));
 
   GameAnswer get answer =>
       _answers[day] ??

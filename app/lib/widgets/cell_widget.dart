@@ -6,14 +6,16 @@ import 'package:paheli/models/user_prefs.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 class CellWidget extends StatelessWidget {
-  const CellWidget(
-      {required this.cell,
-      super.key,
-      required this.group,
-      this.disableTooltip = false});
+  const CellWidget({
+    required this.cell,
+    super.key,
+    required this.group,
+    this.disableTooltip = false,
+  });
   final AutoSizeGroup group;
   final Cell cell;
   final bool disableTooltip;
+
   @override
   Widget build(BuildContext context) {
     return Container(
