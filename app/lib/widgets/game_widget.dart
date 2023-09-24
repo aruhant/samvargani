@@ -107,7 +107,7 @@ class _GameWidgetState extends State<GameWidget> {
                     ? widget.game.answer.colors
                     : [widget.game.answer.backgroundColor!],
             randomItemsBehaviours: hintIcons.isEmpty
-                ? [ItemBehaviour(shape: ShapeType.FilledCircle)]
+                ? [ItemBehaviour(shape: ShapeType.Icon)]
                 : hintIcons
                     .map((e) => e is IconData
                         ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
