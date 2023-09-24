@@ -47,10 +47,11 @@ class GameAnswer {
 
   get hintIcons async {
     if (images != null && images!.isNotEmpty) {
-      return await Future.wait(images!.map((e) async =>
-          (await vg.loadPicture(SvgStringLoader(e), null))
-              .picture
-              .toImage(210, 500)));
+      return await Future.wait(images!.map((e) async {
+        var pictureInfo = (await vg.loadPicture(SvgStringLoader(e), null));
+        return pictureInfo.picture.toImage(
+            pictureInfo.size.width.toInt(), pictureInfo.size.height.toInt());
+      }));
     }
     if (icons != null && icons!.isNotEmpty) return icons;
     return [Icons.cloud];
