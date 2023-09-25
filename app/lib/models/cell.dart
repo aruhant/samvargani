@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 enum CellState {
   correct,
   incorrect,
+  incorrectButContainsAdha,
   empty,
   misplaced,
   correctVyanjanWithAdhaRemoveAdha,
@@ -33,6 +34,7 @@ enum CellState {
     switch (this) {
       case CellState.correct:
         return const Color.fromRGBO(129, 178, 154, 1);
+      case CellState.incorrectButContainsAdha:
       case CellState.incorrect:
         return const Color.fromRGBO(224, 122, 95, 1);
       case CellState.empty:
@@ -179,6 +181,9 @@ enum CellState {
       case CellState.incorrect:
         return LocaleKeys.cellTooltip_incorrect
             .tr(args: [cellContents.vyanjan]);
+      case incorrectButContainsAdha:
+        return LocaleKeys.cellTooltip_incorrectButContainsAdha
+            .tr(args: [cellContents.vyanjan, cellContents.halfOnly]);
       case CellState.empty:
         if (containsMatra) {
           if (containsAdha) {

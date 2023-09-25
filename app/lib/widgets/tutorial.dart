@@ -91,17 +91,21 @@ class TutorialState extends State<Tutorial> {
           .push(MaterialPageRoute(builder: (context) => const DailyGame()));
     }
 
-    FirebaseAnalytics.instance
-        .logEvent(name: 't${UserPrefs.instance.tutorialIndex}complete');
     return;
   }
 
   void onGuess(String guess) {
-    if (UserPrefs.instance.tutorialIndex == 0 &&
-        guess != 'नकद' &&
-        guess != 'बालक') {
-      FirebaseAnalytics.instance
-          .logEvent(name: 'tg${game.tries - 1}', parameters: {'guess': guess});
+    if (UserPrefs.instance.tutorialIndex < tutorialWords.length &&
+        (UserPrefs.instance.tutorialIndex != 0 ||
+            (guess != 'नकद' && guess != 'बालक'))) {
+      if (game.tries == 0 ||
+          (game.tries == 2 && UserPrefs.instance.tutorialIndex == 0)) {
+        FirebaseAnalytics.instance
+            .logEvent(name: 't${UserPrefs.instance.tutorialIndex + 1}begin');
+      }
+      FirebaseAnalytics.instance.logEvent(
+          name: 't${UserPrefs.instance.tutorialIndex}g${game.tries - 1}',
+          parameters: {'guess': guess});
     }
   }
 

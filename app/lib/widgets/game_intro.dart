@@ -108,16 +108,19 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                   group: autoSizeGroupCells),
               const SizedBox(height: 20),
               makeBody(LocaleKeys.intro_page3_body_line1.tr(),
-                  maxlines: 2, group: groupPage3,
-                  rectangleColor: Colors.green,
+                  maxlines: 2,
+                  group: groupPage3,
+                  rectangleColor: const Color.fromRGBO(129, 178, 154, 1),
                   textAlign: TextAlign.left),
               makeBody(LocaleKeys.intro_page3_body_line2.tr(),
-                  maxlines: 2, group: groupPage3,
-                  rectangleColor: Colors.yellow,
+                  maxlines: 2,
+                  group: groupPage3,
+                  rectangleColor: const Color.fromRGBO(242, 204, 143, 1),
                   textAlign: TextAlign.left),
               makeBody(LocaleKeys.intro_page3_body_line3.tr(),
-                  maxlines: 2, group: groupPage3,
-                  rectangleColor: Colors.red,
+                  maxlines: 2,
+                  group: groupPage3,
+                  rectangleColor: const Color.fromRGBO(224, 122, 95, 1),
                   textAlign: TextAlign.left),
             ],
           ),
@@ -131,16 +134,16 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               LineWidget(
                   line: Line(cells: [
-                    Cell('दा', state: CellState.misplaced),
-                    Cell('व', state: CellState.incorrect),
-                    Cell('त', state: CellState.incorrect)
+                    Cell('बा', state: CellState.correct),
+                    Cell('ल', state: CellState.misplaced),
+                    Cell('क', state: CellState.incorrect)
                   ]),
                   group: autoSizeGroupCells),
               LineWidget(
                   line: Line(cells: [
-                    Cell('बा', state: CellState.correct),
-                    Cell('ल', state: CellState.misplaced),
-                    Cell('क', state: CellState.incorrect)
+                    Cell('न', state: CellState.incorrect),
+                    Cell('क', state: CellState.incorrect),
+                    Cell('द', state: CellState.misplaced)
                   ]),
                   group: autoSizeGroupCells),
               LineWidget(

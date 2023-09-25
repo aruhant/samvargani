@@ -244,6 +244,11 @@ CellState getStateForCell(String answer, String guessCharacter, int index) {
       }
     }
   } else {
-    return CellState.incorrect;
+    if (answerList
+        .any((element) => element.halfOnly.contains(guessCharacter.vyanjan))) {
+      return CellState.incorrectButContainsAdha;
+    } else {
+      return CellState.incorrect;
+    }
   }
 }

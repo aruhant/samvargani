@@ -93,6 +93,8 @@ class UserPrefs {
   }
 
   bool makeTutorialProgress(int max) {
+    FirebaseAnalytics.instance
+        .logEvent(name: 't${UserPrefs.instance.tutorialIndex + 1}complete');
     if (_instance!._tutorialIndex == max - 1) {
       _instance!._tutorialIndex++;
       return false;

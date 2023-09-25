@@ -21,9 +21,12 @@
         "page3": {
             "title": "After you make a guess, observe the colour of each cell in your guess-word.",
             "body":{ 
-        "line1":"🟥 The letter is not present in the target word.",
-          "line2":  "🟩 The letter is present in the correct answer at the correct position.",
-          "line3": " 🟨 The letter is present in the correct answer but not at the correct position."}
+        "line1":"The letter is present in the target word at that same position.",
+          "line2":  "The letter is present in the correct answer, but at a different position.",
+          "line3":"The letter is not present in the target word at all."
+        
+        
+        }
         },
         "page4": {
             "title": "Now, can you guess this word using the following pre-filled guesses?",
@@ -85,6 +88,7 @@
         "misplacedWithMatraAndAdha": "'{}' is present in the word with this correct matra and half-letter, but not at this position.",
         "misplacedWithoutMatraAndAdha": "'{}' is present in the word like this without any matra or half-letter, but not at this position.",
         "incorrect": "'{}' is not present in the word in any form.",
+        "incorrectButContainsAdha": "Full '{}' is not present in the word, but remember it still contains the '{}' half-letter.",
         "emptyWithMatra": "This cell contains a letter along with the '{}' matra.",
         "emptyWithAdha": "This cell contains a letter along with the '{}' half-letter.",
         "emptyWithMatraAndAdha": "This cell contains a letter along with the '{}' half-letter and the '{}' matra.",

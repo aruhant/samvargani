@@ -65,6 +65,7 @@ abstract class  LocaleKeys {
   static const cellTooltip_misplacedWithMatraAndAdha = 'cellTooltip.misplacedWithMatraAndAdha';
   static const cellTooltip_misplacedWithoutMatraAndAdha = 'cellTooltip.misplacedWithoutMatraAndAdha';
   static const cellTooltip_incorrect = 'cellTooltip.incorrect';
+  static const cellTooltip_incorrectButContainsAdha = 'cellTooltip.incorrectButContainsAdha';
   static const cellTooltip_emptyWithMatra = 'cellTooltip.emptyWithMatra';
   static const cellTooltip_emptyWithAdha = 'cellTooltip.emptyWithAdha';
   static const cellTooltip_emptyWithMatraAndAdha = 'cellTooltip.emptyWithMatraAndAdha';
