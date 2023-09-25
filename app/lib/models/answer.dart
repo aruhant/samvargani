@@ -45,7 +45,7 @@ class GameAnswer {
       LocaleKeys.practiceGame_level
           .tr(args: [(practiceWords.indexOf(this) + 1).toString()]);
 
-  get hintIcons async {
+  Future<List> get hintIcons async {
     if (images != null && images!.isNotEmpty) {
       return await Future.wait(images!.map((e) async {
         var pictureInfo = (await vg.loadPicture(SvgStringLoader(e), null));
@@ -53,7 +53,7 @@ class GameAnswer {
             pictureInfo.size.width.toInt(), pictureInfo.size.height.toInt());
       }));
     }
-    if (icons != null && icons!.isNotEmpty) return icons;
+    if (icons != null && icons!.isNotEmpty) return icons!;
     return [Icons.cloud];
   }
 
@@ -423,7 +423,7 @@ final List<GameAnswer> practiceWords = [
 ];
 final List<GameAnswer> tutorialWords = [
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial1_title,
+      title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
       answer: 'बादल',
       meaning: 'पृथ्वी के जल से बुनी हुई वह भाप, जिससे पानी बरसता है',
       moveHorizontal: true,
@@ -432,7 +432,7 @@ final List<GameAnswer> tutorialWords = [
       colors: [const Color.fromARGB(255, 47, 46, 59)],
       whenToShowIcons: -1),
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial2_title,
+      title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
       answer: 'मघ',
       meaning: 'बादल',
       icons: [LineIcons.cloud],
@@ -442,7 +442,7 @@ final List<GameAnswer> tutorialWords = [
       backgroundColor: Colors.blue[100],
       whenToShowIcons: -1),
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial3_title,
+      title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
       answer: 'नकद',
       meaning: 'रुपया-पैसा\nके रूप में धन',
       images: [

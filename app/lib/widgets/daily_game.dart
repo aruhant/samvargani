@@ -33,10 +33,12 @@ class DailyGameState extends State<DailyGame> {
   void initState() {
     super.initState();
     print('loading');
-    WotD.listen().listen((g) => setState(() {
-          game = Game.load(
-              answer: g.answer, onSuceess: displayResult, onGuess: onGuess);
-        }));
+    WotD.listen().listen((g) => mounted
+        ? setState(() {
+            game = Game.load(
+                answer: g.answer, onSuceess: displayResult, onGuess: onGuess);
+          })
+        : null);
     hasPermissions().then((value) => setState(() {
           needPermissions = !value;
         }));

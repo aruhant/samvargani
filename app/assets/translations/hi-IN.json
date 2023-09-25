@@ -31,18 +31,19 @@
             "tutorial1":
             {
             "title": "अभ्यास शब्द 1",
-            "mainMessage": "शाबाश! चलो अब एक और शब्द बूझे।\nइस बार आप हर अनुमान स्वयं करेंगे।",
-            "next": "अगला अभ्यास"
+            "mainMessage": "शाबाश! चलो अब एक और शब्द बूझे। इसमें कोई मात्रा या आधा अक्षर नहीं है।\nइस बार आप हर अनुमान स्वयं करे।",
+            "next": "अगला अभ्यास!"
         },
         "tutorial2":
             {"title": "अभ्यास शब्द 2",
-            "mainMessage": "शाबाश!\nआइए अब एक आधे-अक्षर वला शब्द बूझे।",
-            "next": "आखिरी अभ्यास"
+            "mainMessage": "शाबाश!\nआइए अब एक आधे-अक्षर वाला शब्द बूझे।",
+            "next": "आखिरी अभ्यास!"
         },
         "tutorial3":
-            {"title": "अभ्यास शब्द 3",
+            {
+            "title": "अभ्यास शब्द 3",
             "mainMessage": "शाबाश!\nचलिए अब आज का दैनिक शब्द बूझते हैं!\nएक नया शब्द सीखने के लिए प्रतिदिन वापस आएं।",
-            "next": "दैनिक चुनौती"
+            "next": "दैनिक चुनौती!"
         }
         }
 
@@ -51,7 +52,7 @@
     "cellTooltip": {
         "correct": "इस स्थान पर '{}' बिल्कुल ऐसे ही मौजुद हे।",
 
-        "correctVyanjanWithMatraRemoveMatra": "इस स्थान पर '{}' सही व्यंजन है, लेकिन इसके साथ '{}' की मात्रा सही नहीं है।",
+        "correctVyanjanWithMatraRemoveMatra": "इस स्थान पर '{}' सही व्यंजन है, लेकिन इसके साथ '{}' की मात्रा नहीं है।",
         "correctVyanjanWithMatraAddAdha":"इस स्थान पर '{}' सही है, लेकिन इसके साथ कोई आधा-अक्षर है।",
         "correctVyanjanWithAdhaRemoveAdha": "इस स्थान पर '{}' सही व्यंजन है, लेकिन इसके साथ आधा '{}' नहीं है।",
         "correctVyanjanWithAdhaAddMatra": "इस स्थान पर '{}' सही है, लेकिन इसके साथ कोई मात्रा है।",
@@ -67,13 +68,13 @@
         "misplacedWithMatraAndAdha": "'{}' इसी आधे-अक्षर और मात्रा के साथ उत्तर शब्द में कोई दुसरे स्थान पर मौजूद हैं।",
         "misplacedWithoutMatraAndAdha": "'{}', एसे ही, बिना आधे-अक्षर और मात्रा के साथ उत्तर शब्द में कोई दुसरे स्थान पर मौजूद हैं।",
 
-        "misplacedVyanjanWithMatraRemoveMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन '{}' की मात्रा के साथ नहीं है।",
+        "misplacedVyanjanWithMatraRemoveMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन '{}' की मात्रा के साथ नहीं।",
         "misplacedVyanjanWithMatraAddAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ कोई आधा-अक्षर है।",
-        "misplacedVyanjanWithAdhaRemoveAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ आधा '{}' नहीं है।",
+        "misplacedVyanjanWithAdhaRemoveAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन आधा '{}' के साथ नहीं।",
         "misplacedVyanjanWithAdhaAddMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ कोई मात्रा है।",
-        "misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन '{}' की मात्रा और आधा '{}' नहीं है।",
-        "misplacedVyanjanWithMatraAndAdhaRemoveMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ '{}' की मात्रा नहीं है।",
-        "misplacedVyanjanWithMatraAndAdhaRemoveAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ आधा '{}' नहीं है।",
+        "misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन '{}' की मात्रा और आधा '{}' के साथ नहीं।",
+        "misplacedVyanjanWithMatraAndAdhaRemoveMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन '{}' की मात्रा के साथ नहीं।",
+        "misplacedVyanjanWithMatraAndAdhaRemoveAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन आधा '{}' के साथ नहीं।",
         "misplacedVyanjanWithoutMatraAndAdhaAddMatra": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ कोई मात्रा है।",
         "misplacedVyanjanWithoutMatraAndAdhaAddAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ कोई आधा-अक्षर है।",
         "misplacedVyanjanWithoutMatraAndAdhaAddMatraAndAdha": "'{}' उत्तर शब्द में एक अलग स्थान पर मौजूद है, लेकिन इसके साथ कोई आधा-अक्षर और कोई मात्रा है।",

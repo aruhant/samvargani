@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/utils/string.dart';
 
 void main() {
   for (final word in wordList) {
     if (word.allCharacters.length == 3 &&
-        word.allCharacters.last == 'द' &&
-        word.allCharacters[0].matra == '' &&
-        word.allCharacters[1].matra == '') {
+        (word.contains('ग')) &&
+        word.contains('ल')) {
       print(word);
     }
   }

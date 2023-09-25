@@ -94,7 +94,7 @@ enum CellState {
       case CellState.correctVyanjanWithMatraAndAdhaRemoveMatra:
         return LocaleKeys.cellTooltip_correctVyanjanWithMatraAndAdhaRemoveMatra
             .tr(args: [
-          cellContents.vyanjan + cellContents.halfOnly,
+          cellContents.halfOnly + cellContents.vyanjan,
           cellContents.matraOnly
         ]);
       case CellState.correctVyanjanWithMatraAndAdhaRemoveAdha:
@@ -131,7 +131,6 @@ enum CellState {
                 .tr(args: [cellContents]);
           }
         }
-
       case CellState.misplacedVyanjanWithAdhaRemoveAdha:
         return LocaleKeys.cellTooltip_misplacedVyanjanWithAdhaRemoveAdha
             .tr(args: [cellContents.vyanjan, cellContents.halfOnly]);
@@ -156,7 +155,7 @@ enum CellState {
         return LocaleKeys
             .cellTooltip_misplacedVyanjanWithMatraAndAdhaRemoveMatra
             .tr(args: [
-          cellContents.vyanjan + cellContents.halfOnly,
+          cellContents.halfOnly + cellContents.vyanjan,
           cellContents.matraOnly
         ]);
       case CellState.misplacedVyanjanWithMatraAndAdhaRemoveAdha:

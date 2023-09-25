@@ -20,7 +20,10 @@
         },
         "page3": {
             "title": "After you make a guess, observe the colour of each cell in your guess-word.",
-            "body": "🟥 The letter is not present in the target word.\n🟩 The letter is present in the correct answer at the correct position.\n🟨 The letter is present in the correct answer but not at the correct position."
+            "body":{ 
+        "line1":"🟥 The letter is not present in the target word.",
+          "line2":  "🟩 The letter is present in the correct answer at the correct position.",
+          "line3": " 🟨 The letter is present in the correct answer but not at the correct position."}
         },
         "page4": {
             "title": "Now, can you guess this word using the following pre-filled guesses?",
@@ -32,22 +35,22 @@
             "tutorial1":
         {
             "title": "Tutorial 1",
-            "mainMessage": "Wow! That was fast!\nNow let's try another word!\nThis time, make all the guesses on your own!",
-            "next": "Tutorial 2"
+            "mainMessage": "Wow! That was fast!\nNow let's try another word! It has no matras and no half letters.\nThis time, make all the guesses on your own!",
+            "next": "Tutorial 2!"
 
         },
         "tutorial2":
         {
             "title": "Tutorial 2",
-            "mainMessage": "Amazing! You're Almost Ready!\nLet's try a word with a half-letter!",
-            "next": "Tutorial 3"
+            "mainMessage": "You're the Best! You're nearly Ready!\nThis time, let's try a word with a half-letter!",
+            "next": "Last Tutorial!"
 
         },
         "tutorial3":
         {
             "title": "Tutorial 3",
-            "mainMessage": "Great Job! \nNow, proceed with today's daily word!\nCome back everyday to learn a new word!",
-            "next": "Daily Game"
+            "mainMessage": "Great Job!\nNow, proceed with today's daily word!\nCome back everyday to learn a new word!",
+            "next": "Daily Game!"
         }
     
     
@@ -59,12 +62,13 @@
         "correctVyanjanWithAdhaAddMatra": "This cell contains '{}', but it contains an additional matra.",   
         "correctVyanjanWithMatraRemoveMatra": "This cell contains the letter '{}', but not with the '{}' matra.",  
         "correctVyanjanWithMatraAddAdha": "This cell contains '{}', but it contains an additional half-letter.",   
-        "correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha": "This cell contains the letter '{}', but not without the '{}' matra and without the '{}' half-letter.",  
-        "correctVyanjanWithMatraAndAdhaRemoveMatra": "This cell contains '{}', but not without the '{}' matra.",
-        "correctVyanjanWithMatraAndAdhaRemoveAdha": "This cell contains '{}', but not without the '{}' half-letter.",
+        "correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha": "This cell contains the letter '{}', but without the '{}' matra and without the '{}' half-letter.",  
+        "correctVyanjanWithMatraAndAdhaRemoveMatra": "This cell contains '{}', but without the '{}' matra.",
+        "correctVyanjanWithMatraAndAdhaRemoveAdha": "This cell contains '{}', but without the '{}' half-letter.",
         "correctVyanjanWithoutMatraAndAdhaAddMatra": "This cell contains the letter '{}', but with a matra.",  
         "correctVyanjanWithoutMatraAndAdhaAddAdha": "This cell contains the letter '{}', but with a half-letter.",  
-        "correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha": "This cell contains the letter '{}', but with a matra and a half-letter.",  
+        "correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha": "This cell contains the letter '{}', but with a matra and a half-letter.", 
+
         "misplacedVyanjanWithAdhaRemoveAdha": "'{}' is present in the word, but not at this position, and without the '{}' half-letter.",
         "misplacedVyanjanWithAdhaAddMatra": "'{}' is present in the word, but not at this position, and it contains an additional matra.",   
         "misplacedVyanjanWithMatraRemoveMatra": "'{}' is present in the word, but not at this position, and without the '{}' matra.",  
@@ -75,6 +79,7 @@
         "misplacedVyanjanWithoutMatraAndAdhaAddMatra": "'{}' is present in the word, but not at this position, and with a matra.",  
         "misplacedVyanjanWithoutMatraAndAdhaAddAdha": "'{}' is present in the word, but not at this position, and with a half-letter.",  
         "misplacedVyanjanWithoutMatraAndAdhaAddMatraAndAdha": "'{}' is present in the word, but not at this position, and with a matra and a half-letter.",  
+        
         "misplacedWithMatra": "'{}' is present in the word with this correct matra, but not at this position.",
         "misplacedWithAdha": "'{}' is present in the word with this correct half-letter, but not at this position.",
         "misplacedWithMatraAndAdha": "'{}' is present in the word with this correct matra and half-letter, but not at this position.",

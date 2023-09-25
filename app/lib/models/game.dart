@@ -174,7 +174,6 @@ CellState getStateForCell(String answer, String guessCharacter, int index) {
           return CellState.correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha;
         }
       } else {
-        // check if the answer has a matra at the same index
         if (answerList[index].matraOnly == guessCharacter.matraOnly) {
           return CellState.correctVyanjanWithMatraAddAdha;
         } else {

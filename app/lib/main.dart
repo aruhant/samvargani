@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -55,42 +56,46 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     UserPrefs.instance.setContext(context);
+    if (kIsWeb) return makeMaterialApp(context);
+
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: false,
       builder: (context, child) {
-        return MaterialApp(
-            color: const Color.fromRGBO(244, 241, 222, 1),
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            debugShowCheckedModeBanner: false,
-            theme: FlexThemeData.light(scheme: FlexScheme.gold),
-            darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
-            themeMode: ThemeMode.light,
-            home: UpgradeAlert(
-              upgrader: Upgrader(
-                  showIgnore: false,
-                  showLater: false,
-                  dialogStyle: Platform.isIOS
-                      ? UpgradeDialogStyle.cupertino
-                      : UpgradeDialogStyle.material),
-              child: (UserPrefs.instance.shouldShowLocaleSettings)
-                  ? LanguagePicker(
-                      onLocaleSelected: () =>
-                          setState(() => UserPrefs.instance.localeSet()),
-                    )
-                  : (UserPrefs.instance.shouldShowHelp)
-                      ? GameHelpWidget(
-                          onIntroEnd: () =>
-                              setState(() => UserPrefs.instance.firstRunDone()),
-                        )
-                      : UserPrefs.instance.tutorialIndex > tutorialWords.length
-                          ? const DailyGame()
-                          : const Tutorial(),
-            ));
+        return makeMaterialApp(context);
       },
     );
+  }
+
+  MaterialApp makeMaterialApp(BuildContext context) {
+    return MaterialApp(
+        color: const Color.fromRGBO(244, 241, 222, 1),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        theme: FlexThemeData.light(scheme: FlexScheme.gold),
+        darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
+        themeMode: ThemeMode.light,
+        home: UpgradeAlert(
+            upgrader: Upgrader(
+                showIgnore: false,
+                showLater: false,
+                dialogStyle: UpgradeDialogStyle.cupertino),
+            child: (UserPrefs.instance.shouldShowLocaleSettings)
+                ? LanguagePicker(
+                    onLocaleSelected: () =>
+                        setState(() => UserPrefs.instance.localeSet()),
+                  )
+                : (UserPrefs.instance.shouldShowHelp)
+                    ? GameHelpWidget(
+                        onIntroEnd: () =>
+                            setState(() => UserPrefs.instance.firstRunDone()),
+                      )
+                    : UserPrefs.instance.tutorialIndex > tutorialWords.length ||
+                            UserPrefs.instance.practiceGameIndex > 0
+                        ? const DailyGame()
+                        : const Tutorial()));
   }
 }

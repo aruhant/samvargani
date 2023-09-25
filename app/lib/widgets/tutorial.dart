@@ -103,14 +103,6 @@ class TutorialState extends State<Tutorial> {
       FirebaseAnalytics.instance
           .logEvent(name: 'tg${game.tries - 1}', parameters: {'guess': guess});
     }
-    if (UserPrefs.instance.tutorialIndex == 0 &&
-        game.tries == 2 &&
-        guess != 'नकद' &&
-        guess != 'बालक') {
-      FirebaseAnalytics.instance.logEvent(
-          name: 'tutorial_begin',
-          parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
-    }
   }
 
   @override
