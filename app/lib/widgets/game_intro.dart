@@ -41,6 +41,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
 
   @override
   Widget build(BuildContext context) {
+    AutoSizeGroup groupPage3 = AutoSizeGroup();
     const pageDecoration = PageDecoration(
       titleTextStyle: TextStyle(
           fontSize: 24.0, fontWeight: FontWeight.w700, color: Colors.black),
@@ -106,7 +107,17 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
                   ]),
                   group: autoSizeGroupCells),
               const SizedBox(height: 20),
-              makeBody(LocaleKeys.intro_page3_body.tr(),
+              makeBody(LocaleKeys.intro_page3_body_line1.tr(),
+                  maxlines: 2, group: groupPage3,
+                  rectangleColor: Colors.green,
+                  textAlign: TextAlign.left),
+              makeBody(LocaleKeys.intro_page3_body_line2.tr(),
+                  maxlines: 2, group: groupPage3,
+                  rectangleColor: Colors.yellow,
+                  textAlign: TextAlign.left),
+              makeBody(LocaleKeys.intro_page3_body_line3.tr(),
+                  maxlines: 2, group: groupPage3,
+                  rectangleColor: Colors.red,
                   textAlign: TextAlign.left),
             ],
           ),
@@ -187,31 +198,34 @@ makeTitle(String text) => AutoSizeText(
     );
 
 makeBody(String text,
-        {textAlign = TextAlign.center, Color? rectangleColor = null}) =>
+        {textAlign = TextAlign.center,
+        AutoSizeGroup? group = null,
+        Color? rectangleColor = null,
+        int maxlines = 6}) =>
     AutoSizeText.rich(
-      TextSpan(
-        children: [
-          if (rectangleColor != null)
+        TextSpan(
+          children: [
+            if (rectangleColor != null)
+              TextSpan(
+                  text: '  ',
+                  style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Courier',
+                      backgroundColor: rectangleColor)),
+            if (rectangleColor != null)
+              TextSpan(
+                  text: ' ',
+                  style: TextStyle(fontSize: 24.sp, fontFamily: 'Courier')),
             TextSpan(
-                text: '  ',
+                text: text,
                 style: TextStyle(
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Courier',
-                    backgroundColor: rectangleColor)),
-          if (rectangleColor != null)
-            TextSpan(
-                text: ' ',
-                style: TextStyle(fontSize: 24.sp, fontFamily: 'Courier')),
-          TextSpan(
-              text: text,
-              style:
-                  TextStyle(fontSize: 24.sp, color: Colors.black, height: 1.5)),
-        ],
-      ),
-      style: TextStyle(fontSize: 24.sp, color: Colors.black),
-      maxLines: 6,
-      maxFontSize: (24.sp.truncateToDouble()),
-      minFontSize: 8.sp.truncateToDouble(),
-      textAlign: textAlign,
-    );
+                    fontSize: 24.sp, color: Colors.black, height: 1.5)),
+          ],
+        ),
+        style: TextStyle(fontSize: 24.sp, color: Colors.black),
+        maxLines: maxlines,
+        maxFontSize: (24.sp.truncateToDouble()),
+        minFontSize: 8.sp.truncateToDouble(),
+        textAlign: textAlign,
+        group: group);
