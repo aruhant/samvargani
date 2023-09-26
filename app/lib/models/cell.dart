@@ -183,7 +183,7 @@ enum CellState {
             .tr(args: [cellContents.vyanjan]);
       case incorrectButContainsAdha:
         return LocaleKeys.cellTooltip_incorrectButContainsAdha
-            .tr(args: [cellContents.vyanjan, cellContents.halfOnly]);
+            .tr(args: [cellContents.vyanjan, '${cellContents.vyanjan}्']);
       case CellState.empty:
         if (containsMatra) {
           if (containsAdha) {
