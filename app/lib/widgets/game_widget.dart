@@ -80,14 +80,18 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.game.answer.answer +
+        hintIcons.length.toString() +
+        widget.game.complete.toString() +
+        (widget.game.tries > widget.game.answer.whenToShowIcons).toString());
     return Scaffold(
       body: Stack(
         children: [
           Vitality.randomly(
             key: ValueKey(widget.game.answer.answer +
-                hintIcons.length.toString() +
-                (widget.game.tries > widget.game.answer.whenToShowIcons ||
-                        widget.game.complete)
+                hintIcons.toString() +
+                widget.game.complete.toString() +
+                (widget.game.tries > widget.game.answer.whenToShowIcons)
                     .toString()),
             background: widget.game.answer.backgroundColor,
             maxOpacity: widget.game.answer.maxOpacity, // 0,4

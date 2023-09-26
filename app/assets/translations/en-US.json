@@ -22,7 +22,7 @@
             "title": "After you make a guess, observe the colour of each cell in your guess-word.",
             "body":{ 
         "line1":"The letter is present in the target word at that same position.",
-          "line2":  "The letter is present in the correct answer, but at a different position.",
+          "line2":  "The letter is present in the target word, but at a different position.",
           "line3":"The letter is not present in the target word at all."
         
         
@@ -38,7 +38,7 @@
             "tutorial1":
         {
             "title": "Tutorial 1",
-            "mainMessage": "Wow! That was fast!\nNow let's try another word! It has no matras and no half letters.\nThis time, make all the guesses on your own!",
+            "mainMessage": "Wow! That was fast!\nNow let's try another word!\nThis time, make all the guesses on your own!",
             "next": "Tutorial 2!"
 
         },

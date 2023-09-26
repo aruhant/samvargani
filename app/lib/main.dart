@@ -68,6 +68,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   MaterialApp makeMaterialApp(BuildContext context) {
+    print(UserPrefs.instance.tutorialIndex);
+    print(tutorialWords.length);
     return MaterialApp(
         color: const Color.fromRGBO(244, 241, 222, 1),
         localizationsDelegates: context.localizationDelegates,
@@ -92,7 +94,8 @@ class _MyAppState extends State<MyApp> {
                         onIntroEnd: () =>
                             setState(() => UserPrefs.instance.firstRunDone()),
                       )
-                    : UserPrefs.instance.tutorialIndex > tutorialWords.length ||
+                    : UserPrefs.instance.tutorialIndex >=
+                                tutorialWords.length ||
                             UserPrefs.instance.practiceGameIndex > 0
                         ? const DailyGame()
                         : const Tutorial()));

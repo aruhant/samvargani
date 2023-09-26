@@ -433,20 +433,14 @@ final List<GameAnswer> tutorialWords = [
       backgroundColor: Colors.blue[100],
       whenToShowIcons: -1),
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
-      answer: 'नकद',
-      meaning: 'रुपया-पैसा\nके रूप में धन',
-      images: [
-        '''
-<svg height="210" width="500">
-  <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"/>
-</svg>
-'''
-      ],
+      title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+      answer: 'किताब',
+      meaning: 'पुस्तक',
+      icons: [LineIcons.book],
       moveHorizontal: false,
       moveVertical: true,
-      colors: const [Color.fromARGB(255, 119, 208, 147)],
-      backgroundColor: const Color.fromARGB(255, 215, 255, 229),
+      colors: [Color.fromARGB(255, 209, 116, 255)],
+      backgroundColor: Colors.pink[50],
       whenToShowIcons: -1),
   GameAnswer(
       title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
