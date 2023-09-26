@@ -1,7 +1,7 @@
 PODS:
-  - awesome_notifications (0.7.5-dev.3):
+  - awesome_notifications (0.7.5):
     - Flutter
-    - IosAwnCore (= 0.7.5-dev.3)
+    - IosAwnCore (= 0.7.5)
   - device_info_plus (0.0.1):
     - Flutter
   - Firebase/Analytics (10.15.0):
@@ -101,7 +101,7 @@ PODS:
     - GoogleUtilities/Logger
   - in_app_review (0.2.0):
     - Flutter
-  - IosAwnCore (0.7.5-dev.3)
+  - IosAwnCore (0.7.5)
   - leveldb-library (1.22.2)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
@@ -181,7 +181,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  awesome_notifications: 1b6393d6ce02878dc50d0ae87baf7bdbc9d802a2
+  awesome_notifications: 866bda0a8fcf8f83cb0fe76762f730c6b77083db
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   Firebase: 66043bd4579e5b73811f96829c694c7af8d67435
   firebase_analytics: 84fbf469b4964adb5410e25f3f45433dac480ccf
@@ -197,7 +197,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 722db6550d1e6d552b08398b69a975ac61039338
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   in_app_review: 318597b3a06c22bb46dc454d56828c85f444f99d
-  IosAwnCore: edf31913fd18960ebcde7c05912dc860ca2b63b2
+  IosAwnCore: 29cb6224ff81d33529b0055556897b63471de801
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
@@ -209,4 +209,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 92dadb5eb2a4691b389c7ab5b9d5a7302a07afa3
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0
