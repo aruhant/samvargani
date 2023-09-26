@@ -128,14 +128,22 @@ class Game {
   }
 
   static Game fromJson(Map json) {
+    List<Line> toReturnLines = [];
+    for (final Map<String, dynamic> line in json['lines']) {
+      List<Cell> cells = [];
+      for (int i = 0; i < line['cells']!.length; i++) {
+        cells.add(Cell(line['cells']![i]['value'],
+            state: getStateForCell(
+                json['answer']['answer'], line['cells']![i]['value'], i)));
+      }
+      toReturnLines.add(Line(cells: cells));
+    }
+
     Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
         onSuceess: (GameResult result) {},
-        loadLines: json['lines']
-            .map<Line>((e) => Line.fromJson(e))
-            .toList()
-            .cast<Line>()
-            .toList());
+        loadLines: toReturnLines);
+
     return game;
   }
 
