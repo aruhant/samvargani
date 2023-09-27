@@ -93,10 +93,13 @@ class UserPrefs {
   }
 
   bool makeTutorialProgress(int max) {
+    print("entered");
     FirebaseAnalytics.instance
         .logEvent(name: 't${UserPrefs.instance.tutorialIndex + 1}complete');
     if (_instance!._tutorialIndex == max - 1) {
+      print("entered2");
       _instance!._tutorialIndex++;
+      _sharedPrefs.setInt('tutorialIndex', _instance!._tutorialIndex);
       return false;
     }
     _instance!._tutorialIndex++;

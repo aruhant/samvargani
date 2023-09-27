@@ -436,7 +436,10 @@ final List<GameAnswer> tutorialWords = [
       title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
       answer: 'किताब',
       meaning: 'पुस्तक',
-      icons: [LineIcons.book],
+      icons: [
+        LineIcons.book,
+        LineIcons.bookOpen,
+      ],
       moveHorizontal: false,
       moveVertical: true,
       colors: [Color.fromARGB(255, 209, 116, 255)],

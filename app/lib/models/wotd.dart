@@ -32,17 +32,7 @@ class WotD {
       colors: const [Color.fromARGB(255, 255, 255, 255)],
       backgroundColor: const Color.fromARGB(255, 240, 207, 255));
 
-  GameAnswer get answer => _answers[
-          27]! /*  GameAnswer(
-          title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
-          answer: 'पहेलि',
-          meaning: 'एक प्रकार का खेल',
-          moveHorizontal: true,
-          moveVertical: false,
-          backgroundColor: Colors.blue[100],
-          colors: [const Color.fromARGB(255, 47, 46, 59)],
-          whenToShowIcons: -1) */
-      /* 
+  GameAnswer get answer =>
       _answers[day] ??
       GameAnswer(
           answer: 'दावत',
@@ -50,8 +40,7 @@ class WotD {
           icons: [LineIcons.envelope],
           title: LocaleKeys.dailyGame_noDailyWord.tr(),
           colors: const [Color.fromARGB(255, 255, 255, 255)],
-          backgroundColor: const Color.fromARGB(255, 240, 207, 255)) */
-      ;
+          backgroundColor: const Color.fromARGB(255, 240, 207, 255));
 
   GameAnswer get yesterdayAnswer =>
       _answers[yesterday] ??
