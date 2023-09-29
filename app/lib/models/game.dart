@@ -105,6 +105,11 @@ class Game {
         !wordList.contains(guess)) {
       final allVariations = guess.getAllVaraitions;
       if (!allVariations.any((element) => wordList.contains(element))) {
+        print(answerList.map((e) => e.vyanjan).toList());
+        if (UserPrefs.instance.runCount < 5 &&
+            answerList.map((e) => e.vyanjan).toList().join() == guess) {
+          return LocaleKeys.game_gameMessages_addedNoMatras.tr(args: [guess]);
+        }
         return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
       }
       guess = allVariations.firstWhere((element) => wordList.contains(element));
@@ -121,6 +126,10 @@ class Game {
     if (answer.answer == guess && onSuceess != null) {
       onSuceess!(GameResult(win: true, answer: answer, lines: lines));
       return '';
+    }
+    if (UserPrefs.instance.runCount < 5 &&
+        answerList.map((e) => e.vyanjan).toList().join() == guess) {
+      return LocaleKeys.game_gameMessages_addedNoMatras.tr(args: [guess]);
     }
     return UserPrefs.instance.tooltipsPressed > 20
         ? ''

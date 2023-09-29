@@ -106,6 +106,7 @@
             "incorrect": "For assistance, you may tap on the cells, and see what they mean.",
             "alreadyGuessed": "You have already tried this word.",
             "halantError": "'्' must be followed by a vyanjan.",
+            "addedNoMatras": "Try adding matras to '{}' according to the structure shown above. The correct matras are also marked green on the keybaord.",
             "startingMessages":{
                 "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' is each considered a single letter.",
                 "containsAdha":"Remember that half-letters in a cell are present along with a full letter.",

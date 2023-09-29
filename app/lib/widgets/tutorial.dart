@@ -72,6 +72,16 @@ class TutorialState extends State<Tutorial> {
   }
 
   generateNextTutorial(GameResult uselessResult) async {
+    if (UserPrefs.instance.tutorialIndex == 0) {
+      FirebaseAnalytics.instance.logEvent(
+          name: 't${UserPrefs.instance.tutorialIndex + 1}complete',
+          parameters: {'tries': game.tries - 2});
+    } else {
+      FirebaseAnalytics.instance.logEvent(
+          name: 't${UserPrefs.instance.tutorialIndex + 1}complete',
+          parameters: {'tries': game.tries});
+    }
+
     bool s = UserPrefs.instance.makeTutorialProgress(tutorialWords.length);
 
     await showDialog(
@@ -95,16 +105,27 @@ class TutorialState extends State<Tutorial> {
   }
 
   void onGuess(String guess) {
-    if (UserPrefs.instance.tutorialIndex != 0 ||
-        (guess != 'नकद' && guess != 'बालक')) {
-      if (game.tries == 0 ||
-          (game.tries == 2 && UserPrefs.instance.tutorialIndex == 0)) {
-        FirebaseAnalytics.instance
-            .logEvent(name: 't${UserPrefs.instance.tutorialIndex + 1}begin');
+    if (UserPrefs.instance.tutorialIndex == 0) {
+      if (guess != 'शायद' && guess != 'बालक') {
+        if (game.tries == 2) {
+          FirebaseAnalytics.instance.logEvent(
+              name: 't1begin',
+              parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+        } else {
+          FirebaseAnalytics.instance.logEvent(
+              name: 't1g${game.tries - 1}', parameters: {'guess': guess});
+        }
       }
-      FirebaseAnalytics.instance.logEvent(
-          name: 't${UserPrefs.instance.tutorialIndex + 1}g${game.tries + 1}',
-          parameters: {'guess': guess});
+    } else {
+      if (game.tries == 0) {
+        FirebaseAnalytics.instance.logEvent(
+            name: 't${UserPrefs.instance.tutorialIndex + 1}begin',
+            parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+      } else {
+        FirebaseAnalytics.instance.logEvent(
+            name: 't${UserPrefs.instance.tutorialIndex + 1}g${game.tries + 1}',
+            parameters: {'guess': guess});
+      }
     }
   }
 

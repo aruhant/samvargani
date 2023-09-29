@@ -81,6 +81,7 @@ abstract class  LocaleKeys {
   static const game_gameMessages_incorrect = 'game.gameMessages.incorrect';
   static const game_gameMessages_alreadyGuessed = 'game.gameMessages.alreadyGuessed';
   static const game_gameMessages_halantError = 'game.gameMessages.halantError';
+  static const game_gameMessages_addedNoMatras = 'game.gameMessages.addedNoMatras';
   static const game_gameMessages_startingMessages_containsTra = 'game.gameMessages.startingMessages.containsTra';
   static const game_gameMessages_startingMessages_containsAdha = 'game.gameMessages.startingMessages.containsAdha';
   static const game_gameMessages_startingMessages_basicMessage = 'game.gameMessages.startingMessages.basicMessage';

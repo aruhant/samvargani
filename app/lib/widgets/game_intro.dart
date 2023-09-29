@@ -30,8 +30,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
   void _onIntroEnd(context) {
     widget.onIntroEnd();
     Game t = Game.load(answer: tutorialWords[0]);
+    t.addGuess('शायद');
     t.addGuess('बालक');
-    t.addGuess('नकद');
     UserPrefs.instance.saveGame(t);
   }
 
@@ -133,17 +133,19 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               makeTitle(LocaleKeys.intro_page4_title.tr()),
               const SizedBox(height: 20),
               LineWidget(
+                  line: Line(
+                    cells: [
+                      Cell('शा', state: CellState.incorrect),
+                      Cell('य', state: CellState.incorrect),
+                      Cell('द', state: CellState.misplaced)
+                    ],
+                  ),
+                  group: autoSizeGroupCells),
+              LineWidget(
                   line: Line(cells: [
                     Cell('बा', state: CellState.correct),
                     Cell('ल', state: CellState.misplaced),
                     Cell('क', state: CellState.incorrect)
-                  ]),
-                  group: autoSizeGroupCells),
-              LineWidget(
-                  line: Line(cells: [
-                    Cell('न', state: CellState.incorrect),
-                    Cell('क', state: CellState.incorrect),
-                    Cell('द', state: CellState.misplaced)
                   ]),
                   group: autoSizeGroupCells),
               LineWidget(
