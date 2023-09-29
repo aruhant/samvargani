@@ -53,8 +53,7 @@ class WotD {
           colors: [Colors.pink[100]!],
           backgroundColor: Colors.pink[50],
           whenToShowIcons: -1,
-          title: LocaleKeys.dailyGame_title
-              .tr(args: [yesterday.toString(), yesterdayMonth]));
+          title: LocaleKeys.dailyGame_yesterdayWord.tr());
   static int get day {
     return DateTime.now().subtract(Duration(hours: hour, minutes: minute)).day;
   }

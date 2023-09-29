@@ -91,8 +91,8 @@ class Game {
     }
 
     if (length != guessList.length) {
-      return LocaleKeys.game_gameMessages_wrongWordLength
-          .tr(args: [guessList.length.toString()]);
+      return LocaleKeys.game_gameMessages_wrongWordLength.tr(
+          args: [guessList.length.toString(), answerList.length.toString()]);
     }
     if ((_loadLines
             .map((e) => e.cells.map((e) => e.value).toList().join())

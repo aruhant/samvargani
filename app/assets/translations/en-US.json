@@ -98,7 +98,7 @@
         "title": "Guess a {} letter word",
         "answerLabel": "Your answer:",
         "gameMessages": {
-            "wrongWordLength": "The answer is not a {} letter word.",
+            "wrongWordLength": "You have entered a {} letter word, but the correct answer is a {} letter word.",
             "notInDictonary": "Your answer '{}' is not in the Hindi dictionary.",
             "matraError": "Please type the matra ('{}') after the vyanjan and not vice-versa.",
             "aoError": "Pehaps you meant to type 'ओ', not 'अो'.",
