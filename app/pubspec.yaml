@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 7.0.9999+9999
+version: 7.0.211+211
 environment:
   sdk: ">=3.0.6 <4.0.0"
 
@@ -40,6 +40,7 @@ dependencies:
       url: https://github.com/aruhant/vitality.git
   flutter_screenutil:
   slide_countdown:
+  url_launcher:
 
 dev_dependencies:
   flutter_launcher_icons:
@@ -50,7 +51,7 @@ dev_dependencies:
   screenshot:
   upgrader:
   flutter_svg:
-  awesome_notifications: ^0.7.4
+  awesome_notifications:
   path_provider:
   in_app_review:
   line_icons:

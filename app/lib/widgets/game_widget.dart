@@ -274,11 +274,12 @@ class _GameWidgetState extends State<GameWidget> {
   }
 
   void submit(value) {
-    if (value.trim().toLowerCase() == 'notify')
+    if (value.trim().toLowerCase() == 'notify') {
       testnotification().then((value) => setState(() {
             message = value;
             controller.clear();
           }));
+    }
     String msg = widget.game.addGuess(value.trim());
     setState(() {
       controller.clear();

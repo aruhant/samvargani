@@ -204,8 +204,8 @@ makeTitle(String text) => AutoSizeText(
 
 makeBody(String text,
         {textAlign = TextAlign.center,
-        AutoSizeGroup? group = null,
-        Color? rectangleColor = null,
+        AutoSizeGroup? group,
+        Color? rectangleColor,
         int maxlines = 6}) =>
     AutoSizeText.rich(
         TextSpan(

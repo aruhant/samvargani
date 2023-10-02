@@ -29,8 +29,9 @@ Future<bool> requestPermissions() async {
     bool pressedYes =
         await AwesomeNotifications().requestPermissionToSendNotifications();
     return pressedYes;
-  } else
+  } else {
     print('Permissions already granted');
+  }
   return true;
 }
 

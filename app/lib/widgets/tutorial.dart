@@ -9,7 +9,7 @@ import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_widget.dart';
 
 class TransitionPage extends StatelessWidget {
-  TransitionPage({super.key});
+  const TransitionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class TutorialState extends State<Tutorial> {
 
     await showDialog(
         context: context,
-        builder: (context) => TransitionPage(),
+        builder: (context) => const TransitionPage(),
         barrierDismissible: false);
 
     if (s) {
