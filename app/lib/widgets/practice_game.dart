@@ -21,10 +21,18 @@ class PracticeGameState extends State<PracticeGame> {
   @override
   void initState() {
     super.initState();
-    game = Game.load(
-      answer: practiceWords[UserPrefs.instance.practiceGameIndex],
-      onSuceess: displayResult,
-    );
+    loadGame();
+  }
+
+  void loadGame() {
+    bool completed = true;
+    while (completed) {
+      game = Game.load(
+        answer: practiceWords[UserPrefs.instance.practiceGameIndex],
+        onSuceess: displayResult,
+      );
+      completed = game.complete;
+    }
   }
 
   displayResult(GameResult result) async {
@@ -33,12 +41,7 @@ class PracticeGameState extends State<PracticeGame> {
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
     setState(() {
-      if (s) {
-        game = Game.load(
-          answer: practiceWords[UserPrefs.instance.practiceGameIndex],
-          onSuceess: displayResult,
-        );
-      }
+      if (s) loadGame();
     });
   }
 
