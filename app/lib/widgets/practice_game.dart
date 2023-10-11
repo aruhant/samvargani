@@ -32,6 +32,9 @@ class PracticeGameState extends State<PracticeGame> {
         onSuceess: displayResult,
       );
       completed = game.complete;
+      if (completed) {
+        UserPrefs.instance.makeProgress(practiceWords.length);
+      }
     }
   }
 
