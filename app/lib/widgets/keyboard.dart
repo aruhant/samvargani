@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const _keys = [
   ["अ", "आ", "इ", "ई", "उ", "ऊ", "ए", "ऐ", "ओ", "औ"],
-  ["क", "ख", "ग", "घ", "ङ", "च", "छ", "ज", "झ", "ञ"],
-  ["ट", "ठ", "ड", "ढ", "ण", "त", "थ", "द", "ध", "न"],
-  ["प", "फ", "ब", "भ", "म", "य", "र", "ल", "व", "श"],
+  ["क", "ख", "ग", "घ", "ङ ", " च", "छ", "ज", "झ", "ञ"],
+  ["ट", "ठ", "ड", "ढ", "ण ", " त", "थ", "द", "ध", "न"],
+  ["प", "फ", "ब", "भ", "म ", " य", "र", "ल", "व", "श"],
   ["ष", "स", "ह", "क्ष", "त्र", "ज्ञ", "श्र", "ऋ", "अं", "अः", "अँ"],
   ["्", "ा", "ि", "ी", "ु", "ू", "े", "ै", "⌫"],
   ["ो", "ौ", "ृ", "ं", "़", "ः", "ँ", "⏎"]
@@ -40,7 +40,9 @@ class HindiKeyboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: row
                   .map<Widget>((e) => _Key(
-                        text: e,
+                        text: e.trim(),
+                        leftMargin: e.startsWith(' '),
+                        rightMargin: e.endsWith(' '),
                         onTap: (t) {
                           if (t == '⏎') {
                             onReturn();
@@ -66,8 +68,12 @@ class _Key extends StatelessWidget {
       {required this.text,
       required this.onTap,
       required this.highlight,
-      required this.lowlight});
+      required this.lowlight,
+      required this.rightMargin,
+      required this.leftMargin});
+
   final String text;
+  final bool leftMargin, rightMargin;
   final Function(String) onTap;
   final bool highlight;
   final bool lowlight;
@@ -78,9 +84,17 @@ class _Key extends StatelessWidget {
         aspectRatio: 1,
         child: Container(
           padding: const EdgeInsets.all(0),
-          margin: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(2),
+              border: Border(
+                top: BorderSide(color: Colors.white54, width: 2),
+                bottom: BorderSide(color: Colors.white54, width: 2),
+                left: leftMargin
+                    ? BorderSide(color: Colors.black45, width: 4)
+                    : BorderSide(color: Colors.white54, width: 2),
+                right: rightMargin
+                    ? BorderSide(color: Colors.black45, width: 4)
+                    : BorderSide(color: Colors.white54, width: 2),
+              ),
               color: highlight
                   ? const Color.fromRGBO(129, 178, 154, 1)
                   : lowlight
