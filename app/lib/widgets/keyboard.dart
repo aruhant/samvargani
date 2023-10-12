@@ -52,8 +52,8 @@ class HindiKeyboard extends StatelessWidget {
                             onTap(t);
                           }
                         },
-                        highlight: highlights.contains(e),
-                        lowlight: lowlights.contains(e),
+                        highlight: highlights.contains(e.trim()),
+                        lowlight: lowlights.contains(e.trim()),
                       ))
                   .toList(),
             ),
@@ -89,10 +89,10 @@ class _Key extends StatelessWidget {
                 top: BorderSide(color: Colors.white54, width: 2),
                 bottom: BorderSide(color: Colors.white54, width: 2),
                 left: leftMargin
-                    ? BorderSide(color: Colors.black45, width: 4)
+                    ? BorderSide(color: Colors.black12, width: 4)
                     : BorderSide(color: Colors.white54, width: 2),
                 right: rightMargin
-                    ? BorderSide(color: Colors.black45, width: 4)
+                    ? BorderSide(color: Colors.black12, width: 4)
                     : BorderSide(color: Colors.white54, width: 2),
               ),
               color: highlight

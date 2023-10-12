@@ -191,16 +191,24 @@ CellState getStateForCell(String answer, String guessCharacter, int index) {
           return CellState.correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha;
         }
       } else {
-        if (answerList[index].matraOnly == guessCharacter.matraOnly) {
-          return CellState.correctVyanjanWithMatraAddAdha;
+        if (answerList[index].matraOnly.contains(guessCharacter.matraOnly)) {
+          if (answerList[index].matraOnly == guessCharacter.matraOnly) {
+            return CellState.correctVyanjanWithMatraAddAdha;
+          } else {
+            return CellState.correctVyanjanWithMatraAddMatra;
+          }
         } else {
           return CellState.correctVyanjanWithMatraRemoveMatra;
         }
       }
     } else {
       if (containsAdha) {
-        if (answerList[index].halfOnly == guessCharacter.halfOnly) {
-          return CellState.correctVyanjanWithAdhaAddMatra;
+        if (answerList[index].halfOnly.contains(guessCharacter.halfOnly)) {
+          if (answerList[index].halfOnly == guessCharacter.halfOnly) {
+            return CellState.correctVyanjanWithAdhaAddMatra;
+          } else {
+            return CellState.correctVyanjanWithAdhaAddAdha;
+          }
         } else {
           return CellState.correctVyanjanWithAdhaRemoveAdha;
         }

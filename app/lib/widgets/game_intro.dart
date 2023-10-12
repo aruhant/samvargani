@@ -30,8 +30,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
   void _onIntroEnd(context) {
     widget.onIntroEnd();
     Game t = Game.load(answer: tutorialWords[0]);
-    t.addGuess('शायद');
-    t.addGuess('बालक');
+    t.addGuess('समझ');
+    t.addGuess('तनय');
     UserPrefs.instance.saveGame(t);
   }
 
@@ -84,7 +84,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               const SizedBox(height: 20),
               LineWidget(
                   disableTooltip: true,
-                  line: Line(cells: [Cell('ा'), Cell(''), Cell('')]),
+                  line: Line(cells: [Cell(''), Cell('े'), Cell('ी')]),
                   group: autoSizeGroupCells),
               const SizedBox(height: 20),
               makeBody(LocaleKeys.intro_page2_body.tr()),
@@ -101,9 +101,9 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
               LineWidget(
                   disableTooltip: true,
                   line: Line(cells: [
-                    Cell('बा', state: CellState.correct),
-                    Cell('ल', state: CellState.misplaced),
-                    Cell('क', state: CellState.incorrect)
+                    Cell('प', state: CellState.correct),
+                    Cell('हे', state: CellState.misplaced),
+                    Cell('ली', state: CellState.incorrect)
                   ]),
                   group: autoSizeGroupCells),
               const SizedBox(height: 20),
@@ -132,24 +132,25 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
             children: [
               makeTitle(LocaleKeys.intro_page4_title.tr()),
               const SizedBox(height: 20),
-              LineWidget(
-                  line: Line(
-                    cells: [
-                      Cell('शा', state: CellState.incorrect),
-                      Cell('य', state: CellState.incorrect),
-                      Cell('द', state: CellState.misplaced)
-                    ],
-                  ),
-                  group: autoSizeGroupCells),
+
               LineWidget(
                   line: Line(cells: [
-                    Cell('बा', state: CellState.correct),
-                    Cell('ल', state: CellState.misplaced),
-                    Cell('क', state: CellState.incorrect)
+                    Cell('स', state: CellState.correct),
+                    Cell('म', state: CellState.correct),
+                    Cell('झ', state: CellState.incorrect)
                   ]),
                   group: autoSizeGroupCells),
+              //तनय
               LineWidget(
-                  line: Line(cells: [Cell('ा'), Cell(''), Cell('')]),
+                  line: Line(cells: [
+                    Cell('त', state: CellState.incorrect),
+                    Cell('न', state: CellState.incorrect),
+                    Cell('य', state: CellState.correct)
+                  ]),
+                  group: autoSizeGroupCells),
+
+              LineWidget(
+                  line: Line(cells: [Cell(''), Cell(''), Cell('')]),
                   group: autoSizeGroupCells),
               const SizedBox(height: 20),
               makeBody(

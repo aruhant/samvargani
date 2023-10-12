@@ -11,8 +11,10 @@ enum CellState {
   misplaced,
   correctVyanjanWithAdhaRemoveAdha,
   correctVyanjanWithAdhaAddMatra,
+  correctVyanjanWithAdhaAddAdha,
   correctVyanjanWithMatraRemoveMatra,
   correctVyanjanWithMatraAddAdha,
+  correctVyanjanWithMatraAddMatra,
   correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha,
   correctVyanjanWithMatraAndAdhaRemoveMatra,
   correctVyanjanWithMatraAndAdhaRemoveAdha,
@@ -21,8 +23,10 @@ enum CellState {
   correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha,
   misplacedVyanjanWithAdhaRemoveAdha,
   misplacedVyanjanWithAdhaAddMatra,
+  misplacedVyanjanWithAdhaAddAdha,
   misplacedVyanjanWithMatraRemoveMatra,
   misplacedVyanjanWithMatraAddAdha,
+  misplacedVyanjanWithMatraAddMatra,
   misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha,
   misplacedVyanjanWithMatraAndAdhaRemoveMatra,
   misplacedVyanjanWithMatraAndAdhaRemoveAdha,
@@ -43,8 +47,10 @@ enum CellState {
         return const Color.fromRGBO(242, 204, 143, 1);
       case CellState.correctVyanjanWithAdhaRemoveAdha:
       case CellState.correctVyanjanWithAdhaAddMatra:
+      case CellState.correctVyanjanWithAdhaAddAdha:
       case CellState.correctVyanjanWithMatraRemoveMatra:
       case CellState.correctVyanjanWithMatraAddAdha:
+      case CellState.correctVyanjanWithMatraAddMatra:
       case CellState.correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha:
       case CellState.correctVyanjanWithMatraAndAdhaRemoveMatra:
       case CellState.correctVyanjanWithMatraAndAdhaRemoveAdha:
@@ -54,8 +60,10 @@ enum CellState {
         return const Color.fromARGB(255, 177, 213, 171);
       case CellState.misplacedVyanjanWithAdhaRemoveAdha:
       case CellState.misplacedVyanjanWithAdhaAddMatra:
+      case CellState.misplacedVyanjanWithAdhaAddAdha:
       case CellState.misplacedVyanjanWithMatraRemoveMatra:
       case CellState.misplacedVyanjanWithMatraAddAdha:
+      case CellState.misplacedVyanjanWithMatraAddMatra:
       case CellState.misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha:
       case CellState.misplacedVyanjanWithMatraAndAdhaRemoveMatra:
       case CellState.misplacedVyanjanWithMatraAndAdhaRemoveAdha:
@@ -79,11 +87,18 @@ enum CellState {
       case CellState.correctVyanjanWithAdhaAddMatra:
         return LocaleKeys.cellTooltip_correctVyanjanWithAdhaAddMatra
             .tr(args: [cellContents]);
+      case CellState.correctVyanjanWithAdhaAddAdha:
+        return LocaleKeys.cellTooltip_correctVyanjanWithAdhaAddAdha
+            .tr(args: [cellContents]);
+
       case CellState.correctVyanjanWithMatraRemoveMatra:
         return LocaleKeys.cellTooltip_correctVyanjanWithMatraRemoveMatra
             .tr(args: [cellContents.vyanjan, cellContents.matraOnly]);
       case CellState.correctVyanjanWithMatraAddAdha:
         return LocaleKeys.cellTooltip_correctVyanjanWithMatraAddAdha
+            .tr(args: [cellContents]);
+      case CellState.correctVyanjanWithMatraAddMatra:
+        return LocaleKeys.cellTooltip_correctVyanjanWithMatraAddMatra
             .tr(args: [cellContents]);
       case CellState.correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha:
         return LocaleKeys
@@ -116,6 +131,7 @@ enum CellState {
             .cellTooltip_correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha
             .tr(args: [cellContents]);
       case CellState.misplaced:
+        //return LocaleKeys.cellTooltip_misplaced.tr(args: [cellContents]);
         if (containsMatra) {
           if (containsAdha) {
             return LocaleKeys.cellTooltip_misplacedWithMatraAndAdha
@@ -139,11 +155,18 @@ enum CellState {
       case CellState.misplacedVyanjanWithAdhaAddMatra:
         return LocaleKeys.cellTooltip_misplacedVyanjanWithAdhaAddMatra
             .tr(args: [cellContents]);
+      case CellState.misplacedVyanjanWithAdhaAddAdha:
+        return LocaleKeys.cellTooltip_misplacedVyanjanWithAdhaAddAdha
+            .tr(args: [cellContents]);
       case CellState.misplacedVyanjanWithMatraRemoveMatra:
         return LocaleKeys.cellTooltip_misplacedVyanjanWithMatraRemoveMatra
             .tr(args: [cellContents.vyanjan, cellContents.matraOnly]);
       case CellState.misplacedVyanjanWithMatraAddAdha:
         return LocaleKeys.cellTooltip_misplacedVyanjanWithMatraAddAdha
+            .tr(args: [cellContents]);
+
+      case CellState.misplacedVyanjanWithMatraAddMatra:
+        return LocaleKeys.cellTooltip_misplacedVyanjanWithMatraAddMatra
             .tr(args: [cellContents]);
       case CellState.misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha:
         return LocaleKeys

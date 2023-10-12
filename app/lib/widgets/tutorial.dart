@@ -25,30 +25,33 @@ class TransitionPage extends StatelessWidget {
     ];
     return Material(
         color: const Color.fromRGBO(213, 204, 158, 1),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              mainMessages[UserPrefs.instance.tutorialIndex - 1],
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 30),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(240, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                backgroundColor: Colors.orangeAccent,
-                padding: const EdgeInsets.all(15),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                mainMessages[UserPrefs.instance.tutorialIndex - 1],
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 30),
               ),
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(nextMessages[UserPrefs.instance.tutorialIndex - 1],
-                  style: const TextStyle(fontSize: 18)),
-            )
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(240, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: Colors.orangeAccent,
+                  padding: const EdgeInsets.all(15),
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(nextMessages[UserPrefs.instance.tutorialIndex - 1],
+                    style: const TextStyle(fontSize: 18)),
+              )
+            ],
+          ),
         ));
   }
 }
@@ -95,6 +98,10 @@ class TutorialState extends State<Tutorial> {
         onSuceess: generateNextTutorial,
         onGuess: onGuess,
       );
+      if (UserPrefs.instance.tutorialIndex == 1) {
+        game.addGuess('शायद');
+        game.addGuess('बालक');
+      }
       setState(() {});
     } else {
       Navigator.of(context)

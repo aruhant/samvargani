@@ -42,8 +42,10 @@ abstract class  LocaleKeys {
   static const cellTooltip_correct = 'cellTooltip.correct';
   static const cellTooltip_correctVyanjanWithAdhaRemoveAdha = 'cellTooltip.correctVyanjanWithAdhaRemoveAdha';
   static const cellTooltip_correctVyanjanWithAdhaAddMatra = 'cellTooltip.correctVyanjanWithAdhaAddMatra';
+  static const cellTooltip_correctVyanjanWithAdhaAddAdha = 'cellTooltip.correctVyanjanWithAdhaAddAdha';
   static const cellTooltip_correctVyanjanWithMatraRemoveMatra = 'cellTooltip.correctVyanjanWithMatraRemoveMatra';
   static const cellTooltip_correctVyanjanWithMatraAddAdha = 'cellTooltip.correctVyanjanWithMatraAddAdha';
+  static const cellTooltip_correctVyanjanWithMatraAddMatra = 'cellTooltip.correctVyanjanWithMatraAddMatra';
   static const cellTooltip_correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha = 'cellTooltip.correctVyanjanWithMatraAndAdhaRemoveMatraAndAdha';
   static const cellTooltip_correctVyanjanWithMatraAndAdhaRemoveMatra = 'cellTooltip.correctVyanjanWithMatraAndAdhaRemoveMatra';
   static const cellTooltip_correctVyanjanWithMatraAndAdhaRemoveAdha = 'cellTooltip.correctVyanjanWithMatraAndAdhaRemoveAdha';
@@ -52,8 +54,10 @@ abstract class  LocaleKeys {
   static const cellTooltip_correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha = 'cellTooltip.correctVyanjanWithoutMatraAndAdhaAddMatraAndAdha';
   static const cellTooltip_misplacedVyanjanWithAdhaRemoveAdha = 'cellTooltip.misplacedVyanjanWithAdhaRemoveAdha';
   static const cellTooltip_misplacedVyanjanWithAdhaAddMatra = 'cellTooltip.misplacedVyanjanWithAdhaAddMatra';
+  static const cellTooltip_misplacedVyanjanWithAdhaAddAdha = 'cellTooltip.misplacedVyanjanWithAdhaAddAdha';
   static const cellTooltip_misplacedVyanjanWithMatraRemoveMatra = 'cellTooltip.misplacedVyanjanWithMatraRemoveMatra';
   static const cellTooltip_misplacedVyanjanWithMatraAddAdha = 'cellTooltip.misplacedVyanjanWithMatraAddAdha';
+  static const cellTooltip_misplacedVyanjanWithMatraAddMatra = 'cellTooltip.misplacedVyanjanWithMatraAddMatra';
   static const cellTooltip_misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha = 'cellTooltip.misplacedVyanjanWithMatraAndAdhaRemoveMatraAndAdha';
   static const cellTooltip_misplacedVyanjanWithMatraAndAdhaRemoveMatra = 'cellTooltip.misplacedVyanjanWithMatraAndAdhaRemoveMatra';
   static const cellTooltip_misplacedVyanjanWithMatraAndAdhaRemoveAdha = 'cellTooltip.misplacedVyanjanWithMatraAndAdhaRemoveAdha';
@@ -64,6 +68,7 @@ abstract class  LocaleKeys {
   static const cellTooltip_misplacedWithAdha = 'cellTooltip.misplacedWithAdha';
   static const cellTooltip_misplacedWithMatraAndAdha = 'cellTooltip.misplacedWithMatraAndAdha';
   static const cellTooltip_misplacedWithoutMatraAndAdha = 'cellTooltip.misplacedWithoutMatraAndAdha';
+  static const cellTooltip_misplaced = 'cellTooltip.misplaced';
   static const cellTooltip_incorrect = 'cellTooltip.incorrect';
   static const cellTooltip_incorrectButContainsAdha = 'cellTooltip.incorrectButContainsAdha';
   static const cellTooltip_emptyWithMatra = 'cellTooltip.emptyWithMatra';

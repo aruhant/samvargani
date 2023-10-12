@@ -424,6 +424,17 @@ final List<GameAnswer> practiceWords = [
 final List<GameAnswer> tutorialWords = [
   GameAnswer(
       title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
+      answer: 'समय',
+      meaning: 'वह अवधि जिसमें कोई कार्य किया जाता है',
+      itemsCount: 8,
+      icons: [LineIcons.clock],
+      moveHorizontal: true,
+      moveVertical: false,
+      colors: [Color.fromARGB(255, 99, 108, 104)],
+      backgroundColor: Color.fromARGB(255, 222, 197, 165),
+      whenToShowIcons: -1),
+  GameAnswer(
+      title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
       answer: 'बादल',
       meaning: 'पृथ्वी के जल से बुनी हुई वह भाप, जिससे पानी बरसता है',
       icons: [LineIcons.cloud],
@@ -433,7 +444,7 @@ final List<GameAnswer> tutorialWords = [
       backgroundColor: Colors.blue[100],
       whenToShowIcons: -1),
   GameAnswer(
-      title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+      title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
       answer: 'किताब',
       meaning: 'पुस्तक',
       images: [
@@ -444,7 +455,7 @@ final List<GameAnswer> tutorialWords = [
       colors: [const Color.fromARGB(255, 209, 116, 255)],
       backgroundColor: const Color.fromARGB(255, 195, 177, 226),
       whenToShowIcons: -1),
-  GameAnswer(
+/*   GameAnswer(
       title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
       answer: 'चश्मा',
       meaning: 'आँखों की रोशनी बढ़ाने वाला यंत्र',
@@ -453,5 +464,5 @@ final List<GameAnswer> tutorialWords = [
       moveVertical: false,
       colors: const [Color.fromARGB(221, 78, 60, 60)],
       backgroundColor: const Color.fromARGB(255, 241, 228, 252),
-      whenToShowIcons: -1),
+      whenToShowIcons: -1), */
 ];
