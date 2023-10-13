@@ -79,6 +79,16 @@ class _Key extends StatelessWidget {
   final bool lowlight;
   @override
   Widget build(BuildContext context) {
+    Color? fillcolor = highlight
+        ? const Color.fromRGBO(129, 178, 154, 1)
+        : lowlight
+            ? const Color.fromRGBO(224, 122, 95, 1)
+            : ['⌫', '⏎'].contains(text)
+                ? const Color.fromARGB(255, 42, 110, 145).withOpacity(0.8)
+                : null;
+
+    Color borderColor = Colors.white24;
+    Color separatorColor = Colors.white38;
     return Expanded(
       child: AspectRatio(
         aspectRatio: 1,
@@ -86,23 +96,16 @@ class _Key extends StatelessWidget {
           padding: const EdgeInsets.all(0),
           decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(color: Colors.white54, width: 2),
-                bottom: BorderSide(color: Colors.white54, width: 2),
+                top: BorderSide(color: borderColor, width: 2),
+                bottom: BorderSide(color: borderColor, width: 2),
                 left: leftMargin
-                    ? BorderSide(color: Colors.black12, width: 4)
-                    : BorderSide(color: Colors.white54, width: 2),
+                    ? BorderSide(color: separatorColor, width: 4)
+                    : BorderSide(color: borderColor, width: 2),
                 right: rightMargin
-                    ? BorderSide(color: Colors.black12, width: 4)
-                    : BorderSide(color: Colors.white54, width: 2),
+                    ? BorderSide(color: separatorColor, width: 4)
+                    : BorderSide(color: borderColor, width: 2),
               ),
-              color: highlight
-                  ? const Color.fromRGBO(129, 178, 154, 1)
-                  : lowlight
-                      ? const Color.fromRGBO(224, 122, 95, 1)
-                      : ['⌫', '⏎'].contains(text)
-                          ? const Color.fromARGB(255, 42, 110, 145)
-                              .withOpacity(0.8)
-                          : Colors.black12),
+              color: fillcolor ?? Colors.black12),
           child: TextButton(
             clipBehavior: Clip.antiAlias,
             style: ButtonStyle(

@@ -430,8 +430,8 @@ final List<GameAnswer> tutorialWords = [
       icons: [LineIcons.clock],
       moveHorizontal: true,
       moveVertical: false,
-      colors: [Color.fromARGB(255, 99, 108, 104)],
-      backgroundColor: Color.fromARGB(255, 222, 197, 165),
+      colors: [const Color.fromARGB(255, 99, 108, 104)],
+      backgroundColor: const Color.fromARGB(255, 222, 197, 165),
       whenToShowIcons: -1),
   GameAnswer(
       title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
