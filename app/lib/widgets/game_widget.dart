@@ -70,7 +70,8 @@ class _GameWidgetState extends State<GameWidget> {
             }
           }
         }
-        if (UserPrefs.instance.runCount < 10) {
+        if (UserPrefs.instance.runCount < 8 &&
+            UserPrefs.instance.tutorialIndex > 2) {
           message =
               LocaleKeys.game_gameMessages_startingMessages_basicMessage.tr();
         }
@@ -107,7 +108,7 @@ class _GameWidgetState extends State<GameWidget> {
             randomItemsColors:
                 (widget.game.tries > widget.game.answer.whenToShowIcons ||
                         widget.game.complete ||
-                        UserPrefs.instance.runCount < 3)
+                        UserPrefs.instance.runCount < 5)
                     ? widget.game.answer.colors
                     : [widget.game.answer.backgroundColor!],
             randomItemsBehaviours: hintIcons.isEmpty

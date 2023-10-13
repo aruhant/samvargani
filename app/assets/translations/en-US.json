@@ -29,7 +29,7 @@
         }
         },
         "page4": {
-            "title": "Now, can you guess this three letter word with no matras and no half letters.",
+            "title": "Now, can you guess this three letter word with no matras and no half letters?",
             "body": "Use the following pre-filled guesses. Tap on a cell if you have any confusion with its colour and meaning."
         },
         "done": "START",
@@ -116,7 +116,7 @@
             "addedNoMatras": "Try adding matras to '{}' according to the structure shown above. The correct matras are also marked green on the keybaord.",
             "startingMessages":{
                 "containsTra":"Just remember that 'क्ष', 'त्र', 'ज्ञ', and 'श्र' is each considered a single letter.",
-                "containsAdha":"Remember that half-letters in a cell are present along with a full letter.",
+                "containsAdha":"Remember that half-letters in a cell are present along with a full letter. Use the '्' symbol for a half-letter.",
                 "basicMessage":"Remember, to find out which letters are in the answer, you can also make gusses that do not follow the above matra structure."
             }
         }
