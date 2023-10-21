@@ -48,11 +48,7 @@ class Game2WidgetState extends State<Game2Widget> {
                           left: 0,
                           top: 0,
                           child: MaterialButton(
-                              onPressed: () {
-                                widget.matrices.merge(
-                                    widget.matrices.matrices[0],
-                                    widget.matrices.matrices[1]);
-                              },
+                              onPressed: () => widget.matrices.checkMerges(),
                               child: Text('Test')),
                         ),
                       ],

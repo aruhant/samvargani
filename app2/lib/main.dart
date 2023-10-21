@@ -101,29 +101,38 @@ class _MyAppState extends State<MyApp> {
 
 WordMatrices getTestMatrices() {
   return WordMatrices(matrices: [
-    WordMatrix.fromValues(offset: const Offset(1, 1), values: [
-      (0, 0, 'a'),
-      (0, 1, 'p'),
-      (0, 2, 'p'),
-      (0, 3, 'l'),
-      (0, 4, 'e')
-    ]),
-    WordMatrix.fromValues(values: [
-      (0, 0, 'o'),
-      (1, 0, 'r'),
-      (2, 0, 'a'),
-      (3, 0, 'n'),
-      (4, 0, 'g'),
-      (5, 0, 'e'),
-      (6, 0, 's'),
-    ], offset: const Offset(5, 5)),
-    WordMatrix.fromValues(values: [
-      (0, 0, 'b'),
-      (0, 1, 'a'),
-      (0, 2, 'n'),
-      (0, 3, 'a'),
-      (0, 4, 'n'),
-      (0, 5, 'a'),
-    ], offset: const Offset(10, 10)),
+    WordMatrix.fromValues(
+        answer: const Offset(0, 1),
+        offset: const Offset(1, 1),
+        values: [
+          (0, 0, 'a'),
+          (0, 1, 'p'),
+          (0, 2, 'p'),
+          (0, 3, 'l'),
+          (0, 4, 'e')
+        ]),
+    WordMatrix.fromValues(
+        answer: const Offset(0, 0),
+        values: [
+          (0, 0, 'o'),
+          (1, 0, 'r'),
+          (2, 0, 'a'),
+          (3, 0, 'n'),
+          (4, 0, 'g'),
+          (5, 0, 'e'),
+          (6, 0, 's'),
+        ],
+        offset: const Offset(5, 5)),
+    WordMatrix.fromValues(
+        answer: const Offset(6, 1),
+        values: [
+          (0, 0, 'b'),
+          (0, 1, 'a'),
+          (0, 2, 'n'),
+          (0, 3, 'a'),
+          (0, 4, 'n'),
+          (0, 5, 'a'),
+        ],
+        offset: const Offset(10, 10)),
   ]);
 }

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hindi/utils/logging.dart';
 
 class WordMatrices {
@@ -12,6 +13,8 @@ class WordMatrices {
     matrices.remove(second);
     Offset newOffset = Offset(min(first.rect.left, second.rect.left),
         min(first.rect.top, second.rect.top));
+    Offset newAnswer = Offset(newOffset.dx - first.rect.left + first.answer.dx,
+        newOffset.dy - first.rect.top + first.answer.dy);
     matrices.add(WordMatrix.fromValues(values: [
       ...first.map.entries.map((e) => ((
             e.key.$1 + first.rect.left.round() - newOffset.dx.round(),
@@ -23,21 +26,36 @@ class WordMatrices {
             e.key.$2 + second.rect.top.round() - newOffset.dy.round(),
             e.value
           ))),
-    ], offset: newOffset));
+    ], answer: newAnswer, offset: newOffset));
   }
 
   void moveMatrixTo(WordMatrix matrix, Offset offset) {
     matrices.remove(matrix);
     matrices.add(matrix.copyWithOffset(offset));
   }
+
+  void checkMerges() {
+    for (int i = 0; i < matrices.length; i++) {
+      for (int j = i + 1; j < matrices.length; j++) {
+        if ((matrices[i].rect.topLeft - matrices[i].answer) ==
+            (matrices[j].rect.topLeft - matrices[j].answer)) {
+          Log.d('merging $i and $j');
+          merge(matrices[i], matrices[j]);
+          return;
+        }
+      }
+    }
+  }
 }
 
 class WordMatrix {
-  WordMatrix({required this.map, required this.rect});
+  WordMatrix({required this.map, required this.rect, required this.answer});
   set offset(Offset offset) =>
       rect = Rect.fromLTWH(offset.dx, offset.dy, rect.width, rect.height);
   WordMatrix.fromValues(
-      {required List<(int, int, String)> values, required Offset offset})
+      {required List<(int, int, String)> values,
+      required Offset offset,
+      required this.answer})
       : map = Map<(int, int), String>.fromEntries(
             values.map(((int, int, String) e) => MapEntry((e.$1, e.$2), e.$3))),
         rect = Rect.fromLTWH(
@@ -52,11 +70,13 @@ class WordMatrix {
   WordMatrix copyWithOffset(Offset offset) {
     return WordMatrix(
         map: map,
+        answer: answer,
         rect: Rect.fromLTWH(offset.dx, offset.dy, rect.width, rect.height));
   }
 
   final Map<(int, int), String> map;
   Rect rect;
+  final Offset answer;
   bool collidesWith(WordMatrix other, Offset offset) {
     if (other == this) return false;
     for (final entry in map.entries) {
@@ -74,26 +94,27 @@ class WordMatrix {
     var offset = Offset(
         max(0, min(WordMatrices.bounds.width, rect.left.roundToDouble())),
         max(0, min(WordMatrices.bounds.height, rect.top.roundToDouble())));
-
+    Log.w('snap position for $offset');
     int x = 0;
     int y = 0;
     int dx = 0;
     int dy = -1;
-    for (int i = 0;
-        i < WordMatrices.bounds.width * WordMatrices.bounds.width;
-        i++) {
+    int maxI = (WordMatrices.bounds.width * WordMatrices.bounds.width).round();
+    for (int i = 0; i < maxI; i++) {
       if ((-WordMatrices.bounds.width / 2 <= x &&
               x <= WordMatrices.bounds.width / 2) &&
           (-WordMatrices.bounds.height / 2 <= y &&
               y <= WordMatrices.bounds.height / 2)) {
         Offset o = Offset(offset.dx + x, offset.dy + y);
-        // Log.d('checking : $o');
+        Log.d(' $o');
         if (WordMatrices.bounds.contains(o) &&
             WordMatrices.bounds
                 .contains(Offset(o.dx + rect.width, o.dy + rect.height)) &&
             o.dx > 0 &&
-            o.dy > 0 &&
-            !(matrices.any((e) => collidesWith(e, o)))) return o;
+            o.dy > 0) {
+          Log.d('checking : $o');
+          if (!(matrices.any((e) => collidesWith(e, o)))) return o;
+        }
       }
       if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {
         int temp = dx;
@@ -103,7 +124,6 @@ class WordMatrix {
       x += dx;
       y += dy;
     }
-
     Log.e('No snap position found for $offset');
 
     return offset;
