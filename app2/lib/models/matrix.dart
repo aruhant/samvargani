@@ -21,7 +21,6 @@ class WordMatrix {
       rect = Rect.fromLTWH(offset.dx, offset.dy, rect.width, rect.height);
   bool collidesWith(WordMatrix other, Offset offset) {
     if (other == this) return false;
-    Log.d('Checking $offset');
     for (final entry in map.entries) {
       if (other.map.containsKey((
         entry.key.$1 + offset.dx.round() - other.rect.left.round(),
@@ -30,8 +29,7 @@ class WordMatrix {
         return true;
       }
     }
-    Log.d('No collision');
-    return false;
+     return false;
   }
 
   Offset getSnapPosition(List<WordMatrix> matrices) {
@@ -41,12 +39,13 @@ class WordMatrix {
     int i = 0;
     while (i < 100) {
       for (int s = -1; s <= 1; s += 2) {
-        offset = Offset(offset.dx + s * i, offset.dy);
-        if (!(matrices.any((e) => collidesWith(e, offset)))) return offset;
-        offset = Offset(offset.dx, offset.dy + s * i);
-        if (!(matrices.any((e) => collidesWith(e, offset)))) return offset;
-        offset = Offset(offset.dx + s  * i~/2, offset.dy + s * i~/2);
-        if (!(matrices.any((e) => collidesWith(e, offset)))) return offset;
+        Offset o = Offset(offset.dx + (s * i), offset.dy);
+        if (!(matrices.any((e) => collidesWith(e, o)))) return o;
+
+        o = Offset(offset.dx, offset.dy + (s * i));
+        if (!(matrices.any((e) => collidesWith(e, o)))) return o;
+        o = Offset(offset.dx + s * i ~/ 2, offset.dy + s * i ~/ 2);
+        if (!(matrices.any((e) => collidesWith(e, o)))) return o;
       }
       i++;
     }

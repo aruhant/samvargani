@@ -91,12 +91,7 @@ class MatrixWidgetState extends State<MatrixWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onPanEnd: (details) {
-        // final offset = Offset(widget.matrix.rect.left.roundToDouble(),
-        //     widget.matrix.rect.top.roundToDouble());
-        Log.e(widget.matrix.rect.topLeft);
         final Offset offset = widget.getSnapPosition();
-        Log.w(offset);
-
         setState(() {
           widget.onOffsetChange(offset);
         });
