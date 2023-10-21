@@ -27,6 +27,7 @@ class Game2WidgetState extends State<Game2Widget> {
                       children: [
                         InteractiveViewer(
                           constrained: false,
+                          minScale: 0.01,
                           child: GridPaper(
                             interval: GRID_SIZE.toDouble(),
                             divisions: 1,
@@ -98,9 +99,7 @@ class MatrixWidgetState extends State<MatrixWidget> {
     return GestureDetector(
       onPanEnd: (details) {
         final Offset offset = widget.getSnapPosition();
-        setState(() {
-          widget.onOffsetChange(offset);
-        });
+        setState(() => widget.onOffsetChange(offset));
       },
       onPanUpdate: (details) {
         setState(() {

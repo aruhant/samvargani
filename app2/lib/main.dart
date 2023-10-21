@@ -67,8 +67,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   MaterialApp makeMaterialApp(BuildContext context) {
-    print(UserPrefs.instance.tutorialIndex);
-    print(tutorialWords.length);
     return MaterialApp(
         color: const Color.fromRGBO(244, 241, 222, 1),
         localizationsDelegates: context.localizationDelegates,
@@ -103,14 +101,14 @@ class _MyAppState extends State<MyApp> {
 
 WordMatrices getTestMatrices() {
   return WordMatrices(matrices: [
-    WordMatrix(offset: const Offset(1, 1), values: [
+    WordMatrix.fromValues(offset: const Offset(1, 1), values: [
       (0, 0, 'a'),
       (0, 1, 'p'),
       (0, 2, 'p'),
       (0, 3, 'l'),
       (0, 4, 'e')
     ]),
-    WordMatrix(values: [
+    WordMatrix.fromValues(values: [
       (0, 0, 'o'),
       (1, 0, 'r'),
       (2, 0, 'a'),
@@ -119,7 +117,7 @@ WordMatrices getTestMatrices() {
       (5, 0, 'e'),
       (6, 0, 's'),
     ], offset: const Offset(5, 5)),
-    WordMatrix(values: [
+    WordMatrix.fromValues(values: [
       (0, 0, 'b'),
       (0, 1, 'a'),
       (0, 2, 'n'),
