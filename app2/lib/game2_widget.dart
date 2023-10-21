@@ -7,7 +7,7 @@ const GRID_SIZE = 100;
 
 class Game2Widget extends StatefulWidget {
   const Game2Widget({super.key, required this.matrices});
-  final List<WordMatrix> matrices;
+  final WordMatrices matrices;
   @override
   State<Game2Widget> createState() => Game2WidgetState();
 }
@@ -36,17 +36,23 @@ class Game2WidgetState extends State<Game2Widget> {
                               width: 40.0 * GRID_SIZE,
                               height: 40.0 * GRID_SIZE,
                               child: Stack(
-                                children: widget.matrices
+                                children: widget.matrices.matrices
                                     .map((e) => makeWidget(e))
                                     .toList(),
                               ),
                             ),
                           ),
                         ),
-                        const Positioned(
+                        Positioned(
                           left: 0,
                           top: 0,
-                          child: Text('Toolbars'),
+                          child: MaterialButton(
+                              onPressed: () {
+                                widget.matrices.merge(
+                                    widget.matrices.matrices[0],
+                                    widget.matrices.matrices[1]);
+                              },
+                              child: Text('Test')),
                         ),
                       ],
                     ),
@@ -65,7 +71,7 @@ class Game2WidgetState extends State<Game2Widget> {
       child: MatrixWidget(
         matrix: e,
         getSnapPosition: () {
-          return e.getSnapPosition(widget.matrices);
+          return e.getSnapPosition(widget.matrices.matrices);
         },
         onOffsetChange: (offset) => setState(() => e.offset = offset),
       ),
@@ -107,7 +113,6 @@ class MatrixWidgetState extends State<MatrixWidget> {
       child: Container(
         width: widget.matrix.rect.width * GRID_SIZE.toDouble(),
         height: widget.matrix.rect.height * GRID_SIZE.toDouble(),
-        color: Colors.black38,
         child: Stack(
           children: widget.matrix.map.entries
               .map((e) => Positioned(
@@ -116,6 +121,7 @@ class MatrixWidgetState extends State<MatrixWidget> {
                     child: Container(
                         height: GRID_SIZE.toDouble(),
                         width: GRID_SIZE.toDouble(),
+                        color: Colors.black38,
                         alignment: Alignment.center,
                         child: AutoSizeText(
                           e.value,

@@ -1,5 +1,34 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hindi/utils/logging.dart';
+
+class WordMatrices {
+  List<WordMatrix> matrices = [];
+  WordMatrices({required this.matrices});
+  void merge(WordMatrix first, WordMatrix second) {
+    matrices.remove(first);
+    matrices.remove(second);
+    Offset newOffset = Offset(min(first.rect.left, second.rect.left),
+        min(first.rect.top, second.rect.top));
+    List<(int, int, String)> newValues = [];
+    for (final entry in first.map.entries) {
+      newValues.add((
+        entry.key.$1 + first.rect.left.round() - newOffset.dx.round(),
+        entry.key.$2 + first.rect.top.round() - newOffset.dy.round(),
+        entry.value
+      ));
+    }
+    for (final entry in second.map.entries) {
+      newValues.add((
+        entry.key.$1 + second.rect.left.round() - newOffset.dx.round(),
+        entry.key.$2 + second.rect.top.round() - newOffset.dy.round(),
+        entry.value
+      ));
+    }
+    matrices.add(WordMatrix(values: newValues, offset: newOffset));
+  }
+}
 
 class WordMatrix {
   WordMatrix({required List<(int, int, String)> values, required Offset offset})
@@ -29,7 +58,7 @@ class WordMatrix {
         return true;
       }
     }
-     return false;
+    return false;
   }
 
   Offset getSnapPosition(List<WordMatrix> matrices) {

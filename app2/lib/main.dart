@@ -101,9 +101,8 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-List<WordMatrix> getTestMatrices() {
-// generate test data
-  return [
+WordMatrices getTestMatrices() {
+  return WordMatrices(matrices: [
     WordMatrix(offset: const Offset(1, 1), values: [
       (0, 0, 'a'),
       (0, 1, 'p'),
@@ -128,5 +127,5 @@ List<WordMatrix> getTestMatrices() {
       (0, 4, 'n'),
       (0, 5, 'a'),
     ], offset: const Offset(10, 10)),
-  ];
+  ]);
 }
