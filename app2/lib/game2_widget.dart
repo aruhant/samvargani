@@ -1,7 +1,7 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hindi/models/matrix.dart';
+import 'package:hindi/utils/logging.dart';
 
 const GRID_SIZE = 100;
 
@@ -64,16 +64,24 @@ class Game2WidgetState extends State<Game2Widget> {
       left: e.rect.left * GRID_SIZE.toDouble(),
       child: MatrixWidget(
         matrix: e,
-        onDrag: (offset) => setState(() => e.offset = offset),
+        getSnapPosition: () {
+          return e.getSnapPosition(widget.matrices);
+        },
+        onOffsetChange: (offset) => setState(() => e.offset = offset),
       ),
     );
   }
 }
 
 class MatrixWidget extends StatefulWidget {
-  const MatrixWidget({super.key, required this.matrix, required this.onDrag});
+  const MatrixWidget(
+      {super.key,
+      required this.matrix,
+      required this.getSnapPosition,
+      required this.onOffsetChange});
   final WordMatrix matrix;
-  final Function(Offset) onDrag;
+  final Function(Offset) onOffsetChange;
+  final Offset Function() getSnapPosition;
   @override
   State<MatrixWidget> createState() => MatrixWidgetState();
 }
@@ -81,14 +89,16 @@ class MatrixWidget extends StatefulWidget {
 class MatrixWidgetState extends State<MatrixWidget> {
   @override
   Widget build(BuildContext context) {
-    print(
-        'width: ${widget.matrix.rect.width * GRID_SIZE.toDouble()}, height: ${widget.matrix.rect.height * GRID_SIZE.toDouble()}');
     return GestureDetector(
       onPanEnd: (details) {
+        // final offset = Offset(widget.matrix.rect.left.roundToDouble(),
+        //     widget.matrix.rect.top.roundToDouble());
+        Log.e(widget.matrix.rect.topLeft);
+        final Offset offset = widget.getSnapPosition();
+        Log.w(offset);
+
         setState(() {
-          final offset = Offset(widget.matrix.rect.left.roundToDouble(),
-              widget.matrix.rect.top.roundToDouble());
-          widget.onDrag(offset);
+          widget.onOffsetChange(offset);
         });
       },
       onPanUpdate: (details) {
@@ -96,7 +106,7 @@ class MatrixWidgetState extends State<MatrixWidget> {
           final offset = Offset(
               widget.matrix.rect.left + details.delta.dx / GRID_SIZE,
               widget.matrix.rect.top + details.delta.dy / GRID_SIZE);
-          widget.onDrag(offset);
+          widget.onOffsetChange(offset);
         });
       },
       child: Container(
@@ -115,7 +125,8 @@ class MatrixWidgetState extends State<MatrixWidget> {
                         child: AutoSizeText(
                           e.value,
                           maxLines: 1,
-                          style: const TextStyle(fontSize: 100, color: Colors.black87),
+                          style: const TextStyle(
+                              fontSize: 100, color: Colors.black87),
                         )),
                   ))
               .toList(),
