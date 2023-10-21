@@ -100,10 +100,12 @@ class _MyAppState extends State<MyApp> {
 }
 
 WordMatrices getTestMatrices() {
-  return WordMatrices(matrices: [
+  WordMatrices matrices = WordMatrices(matrices: []);
+  var m = [
     WordMatrix.fromValues(
         answer: const Offset(0, 1),
         offset: const Offset(1, 1),
+        partOf: matrices,
         values: [
           (0, 0, 'a'),
           (0, 1, 'p'),
@@ -113,6 +115,7 @@ WordMatrices getTestMatrices() {
         ]),
     WordMatrix.fromValues(
         answer: const Offset(0, 0),
+        partOf: matrices,
         values: [
           (0, 0, 'o'),
           (1, 0, 'r'),
@@ -125,6 +128,7 @@ WordMatrices getTestMatrices() {
         offset: const Offset(5, 5)),
     WordMatrix.fromValues(
         answer: const Offset(6, 1),
+        partOf: matrices,
         values: [
           (0, 0, 'b'),
           (0, 1, 'a'),
@@ -134,5 +138,7 @@ WordMatrices getTestMatrices() {
           (0, 5, 'a'),
         ],
         offset: const Offset(10, 10)),
-  ]);
+  ];
+  matrices.matrices.addAll(m);
+  return matrices;
 }

@@ -1,11 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hindi/utils/logging.dart';
 
 class WordMatrices {
-  static final Rect bounds = Rect.fromLTWH(0, 0, 40.0, 40.0);
+  static const Rect bounds = Rect.fromLTWH(0, 0, 40.0, 40.0);
   List<WordMatrix> matrices = [];
   WordMatrices({required this.matrices});
   void merge(WordMatrix first, WordMatrix second) {
@@ -26,7 +25,7 @@ class WordMatrices {
             e.key.$2 + second.rect.top.round() - newOffset.dy.round(),
             e.value
           ))),
-    ], answer: newAnswer, offset: newOffset));
+    ], partOf: first.partOf, answer: newAnswer, offset: newOffset));
   }
 
   void moveMatrixTo(WordMatrix matrix, Offset offset) {
@@ -49,12 +48,17 @@ class WordMatrices {
 }
 
 class WordMatrix {
-  WordMatrix({required this.map, required this.rect, required this.answer});
+  WordMatrix(
+      {required this.map,
+      required this.rect,
+      required this.answer,
+      required this.partOf});
   set offset(Offset offset) =>
       rect = Rect.fromLTWH(offset.dx, offset.dy, rect.width, rect.height);
   WordMatrix.fromValues(
       {required List<(int, int, String)> values,
       required Offset offset,
+      required this.partOf,
       required this.answer})
       : map = Map<(int, int), String>.fromEntries(
             values.map(((int, int, String) e) => MapEntry((e.$1, e.$2), e.$3))),
@@ -71,12 +75,14 @@ class WordMatrix {
     return WordMatrix(
         map: map,
         answer: answer,
+        partOf: partOf,
         rect: Rect.fromLTWH(offset.dx, offset.dy, rect.width, rect.height));
   }
 
   final Map<(int, int), String> map;
   Rect rect;
   final Offset answer;
+  final WordMatrices partOf;
   bool collidesWith(WordMatrix other, Offset offset) {
     if (other == this) return false;
     for (final entry in map.entries) {
@@ -90,7 +96,7 @@ class WordMatrix {
     return false;
   }
 
-  Offset getSnapPosition(List<WordMatrix> matrices) {
+  Offset getSnapPosition() {
     var offset = Offset(
         max(0, min(WordMatrices.bounds.width, rect.left.roundToDouble())),
         max(0, min(WordMatrices.bounds.height, rect.top.roundToDouble())));
@@ -113,7 +119,7 @@ class WordMatrix {
             o.dx > 0 &&
             o.dy > 0) {
           Log.d('checking : $o');
-          if (!(matrices.any((e) => collidesWith(e, o)))) return o;
+          if (!(partOf.matrices.any((e) => collidesWith(e, o)))) return o;
         }
       }
       if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {

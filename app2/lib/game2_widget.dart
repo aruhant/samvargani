@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hindi/models/matrix.dart';
-import 'package:hindi/utils/logging.dart';
 
 const GRID_SIZE = 100;
 
@@ -49,7 +48,7 @@ class Game2WidgetState extends State<Game2Widget> {
                           top: 0,
                           child: MaterialButton(
                               onPressed: () => widget.matrices.checkMerges(),
-                              child: Text('Test')),
+                              child: const Text('Test')),
                         ),
                       ],
                     ),
@@ -67,8 +66,8 @@ class Game2WidgetState extends State<Game2Widget> {
       left: e.rect.left * GRID_SIZE.toDouble(),
       child: MatrixWidget(
         matrix: e,
-        getSnapPosition: () {
-          return e.getSnapPosition(widget.matrices.matrices);
+        onSnap: () {
+          widget.matrices.checkMerges();
         },
         onOffsetChange: (offset) => setState(() => e.offset = offset),
       ),
@@ -80,11 +79,11 @@ class MatrixWidget extends StatefulWidget {
   const MatrixWidget(
       {super.key,
       required this.matrix,
-      required this.getSnapPosition,
+      required this.onSnap,
       required this.onOffsetChange});
   final WordMatrix matrix;
   final Function(Offset) onOffsetChange;
-  final Offset Function() getSnapPosition;
+  final Function() onSnap;
   @override
   State<MatrixWidget> createState() => MatrixWidgetState();
 }
@@ -94,8 +93,9 @@ class MatrixWidgetState extends State<MatrixWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onPanEnd: (details) {
-        final Offset offset = widget.getSnapPosition();
+        final Offset offset = widget.matrix.getSnapPosition();
         setState(() => widget.onOffsetChange(offset));
+        widget.onSnap();
       },
       onPanUpdate: (details) {
         setState(() {
@@ -105,7 +105,7 @@ class MatrixWidgetState extends State<MatrixWidget> {
           widget.onOffsetChange(offset);
         });
       },
-      child: Container(
+      child: SizedBox(
         width: widget.matrix.rect.width * GRID_SIZE.toDouble(),
         height: widget.matrix.rect.height * GRID_SIZE.toDouble(),
         child: Stack(
