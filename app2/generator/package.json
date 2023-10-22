@@ -1,0 +1,26 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "start": "node  ./lib/index.js",
+    "go": "npm run build &&  node ./lib/index.js"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/cli-color": "^2.0.1",
+    "@types/marked": "^4.0.3",
+    "canvas": "^2.11.2",
+    "cli-color": "^2.0.0",
+    "jsome": "^1.1.0",
+    "crossword": "file:./crossword"
+  },
+  "devDependencies": {
+    "tslint": "^5.20.1",
+    "typescript": "^4.5.4"
+  },
+  "private": true,
+  "engines": {
+    "node": "18"
+  }
+}

@@ -1,0 +1,70 @@
+html, body {
+  font-family: 'Noto Sans Myanmar', sans-serif;
+}
+
+canvas {
+  border: 1px solid #444;
+}
+
+#add-clue {
+  background: #ccc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+#add-clue input {
+  font-size: 16pt;
+}
+
+#add-clue button {
+  background: #448;
+  font-size: 14pt;
+  color: #fff;
+  padding: 8px;
+  cursor: button;
+}
+
+.clearfix {
+  clear: both;
+}
+
+#across, #down {
+  width: 300px;
+  float: left;
+}
+
+#clues li {
+  list-style-type: none;
+  -webkit-padding-start: 0;
+  -moz-padding-start: 0;
+  padding-start: 0;
+}
+
+li strong {
+  margin-right: 10px;
+}
+
+input {
+  line-height: 150%;
+  margin-bottom: 10pt;
+}
+
+#add-clue label {
+  margin-right: 10px;
+}
+
+small {
+  background: #000;
+  color: #000;
+  margin-left: 10px;
+}
+
+small:hover, small:active {
+  color: #fff;
+}
+
+@media print {
+  small, #add-clue, .no-print {
+    display: none;
+  }
+}
