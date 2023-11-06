@@ -93,7 +93,20 @@ class _GameWidgetState extends State<GameWidget> {
                 hintIcons.toString() +
                 widget.game.complete.toString() +
                 (widget.game.tries > widget.game.answer.whenToShowIcons)
-                    .toString()),
+                    .toString() +
+                widget.game.answer.backgroundColor.toString() +
+                widget.game.answer.maxOpacity.toString() +
+                widget.game.answer.minOpacity.toString() +
+                widget.game.answer.itemsCount.toString() +
+                widget.game.answer.moveHorizontal.toString() +
+                widget.game.answer.moveVertical.toString() +
+                widget.game.answer.maxSpeed.toString() +
+                widget.game.answer.maxSize.toString() +
+                widget.game.answer.minSpeed.toString() +
+                widget.game.answer.minSize.toString() +
+                widget.game.answer.colors.toString() +
+                widget.game.answer.whenToShowIcons.toString() +
+                widget.game.answer.title.toString()),
             background: widget.game.answer.backgroundColor,
             maxOpacity: widget.game.answer.maxOpacity, // 0,4
             minOpacity: widget.game.answer.minOpacity, // 0,15
