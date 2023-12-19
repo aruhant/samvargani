@@ -86,55 +86,55 @@ class _GameWidgetState extends State<GameWidget> {
         widget.game.complete.toString() +
         (widget.game.tries > widget.game.answer.whenToShowIcons).toString());
     return Scaffold(
+      backgroundColor: widget.game.answer.backgroundColor ??
+          const Color.fromRGBO(213, 204, 158, 1),
       body: Stack(
         children: [
-          Vitality.randomly(
-            key: ValueKey(widget.game.answer.answer +
-                hintIcons.toString() +
-                widget.game.complete.toString() +
-                (widget.game.tries > widget.game.answer.whenToShowIcons)
-                    .toString() +
-                widget.game.answer.backgroundColor.toString() +
-                widget.game.answer.maxOpacity.toString() +
-                widget.game.answer.minOpacity.toString() +
-                widget.game.answer.itemsCount.toString() +
-                widget.game.answer.moveHorizontal.toString() +
-                widget.game.answer.moveVertical.toString() +
-                widget.game.answer.maxSpeed.toString() +
-                widget.game.answer.maxSize.toString() +
-                widget.game.answer.minSpeed.toString() +
-                widget.game.answer.minSize.toString() +
-                widget.game.answer.colors.toString() +
-                widget.game.answer.whenToShowIcons.toString() +
-                widget.game.answer.title.toString()),
-            background: widget.game.answer.backgroundColor,
-            maxOpacity: widget.game.answer.maxOpacity, // 0,4
-            minOpacity: widget.game.answer.minOpacity, // 0,15
-            itemsCount: widget.game.answer.itemsCount, // 6
-            enableXMovements: widget.game.answer.moveHorizontal,
-            enableYMovements: widget.game.answer.moveVertical,
-            whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
-            maxSpeed: widget.game.answer.maxSpeed, // 0,4
-            maxSize: widget.game.answer.maxSize, // 30
-            minSpeed: widget.game.answer.minSpeed, // 0,25
-            minSize: widget.game.answer.minSize, // 150
-            randomItemsColors:
-                (widget.game.tries > widget.game.answer.whenToShowIcons ||
-                        widget.game.complete ||
-                        UserPrefs.instance.runCount < 5)
-                    ? widget.game.answer.colors
-                    : [widget.game.answer.backgroundColor!],
-            randomItemsBehaviours: hintIcons.isEmpty
-                ? [ItemBehaviour(shape: ShapeType.Icon)]
-                : hintIcons
-                    .map((e) => e is IconData
-                        ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
-                        : (e is ui.Image)
-                            ? ItemBehaviour(shape: ShapeType.Image, image: e)
-                            : ItemBehaviour(shape: ShapeType.FilledCircle))
-                    .toList()
-                    .cast<ItemBehaviour>(),
-          ),
+          if ((widget.game.tries < widget.game.answer.whenToShowIcons &&
+              !widget.game.complete &&
+              UserPrefs.instance.runCount > 5))
+            Vitality.randomly(
+              key: ValueKey(widget.game.answer.answer +
+                  hintIcons.toString() +
+                  widget.game.complete.toString() +
+                  (widget.game.tries > widget.game.answer.whenToShowIcons)
+                      .toString() +
+                  widget.game.answer.backgroundColor.toString() +
+                  widget.game.answer.maxOpacity.toString() +
+                  widget.game.answer.minOpacity.toString() +
+                  widget.game.answer.itemsCount.toString() +
+                  widget.game.answer.moveHorizontal.toString() +
+                  widget.game.answer.moveVertical.toString() +
+                  widget.game.answer.maxSpeed.toString() +
+                  widget.game.answer.maxSize.toString() +
+                  widget.game.answer.minSpeed.toString() +
+                  widget.game.answer.minSize.toString() +
+                  widget.game.answer.colors.toString() +
+                  widget.game.answer.whenToShowIcons.toString() +
+                  widget.game.answer.title.toString()),
+              background: widget.game.answer.backgroundColor,
+              maxOpacity: widget.game.answer.maxOpacity, // 0,4
+              minOpacity: widget.game.answer.minOpacity, // 0,15
+              itemsCount: widget.game.answer.itemsCount, // 6
+              enableXMovements: widget.game.answer.moveHorizontal,
+              enableYMovements: widget.game.answer.moveVertical,
+              whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
+              maxSpeed: widget.game.answer.maxSpeed, // 0,4
+              maxSize: widget.game.answer.maxSize, // 30
+              minSpeed: widget.game.answer.minSpeed, // 0,25
+              minSize: widget.game.answer.minSize, // 150
+              randomItemsColors: widget.game.answer.colors,
+              randomItemsBehaviours: hintIcons.isEmpty
+                  ? [ItemBehaviour(shape: ShapeType.Icon)]
+                  : hintIcons
+                      .map((e) => e is IconData
+                          ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
+                          : (e is ui.Image)
+                              ? ItemBehaviour(shape: ShapeType.Image, image: e)
+                              : ItemBehaviour(shape: ShapeType.FilledCircle))
+                      .toList()
+                      .cast<ItemBehaviour>(),
+            ),
           SingleChildScrollView(
             child: SafeArea(
               child: Column(
