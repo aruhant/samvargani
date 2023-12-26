@@ -43,15 +43,13 @@ class Game {
   String get name => answer.answer;
 
   String addGuess(String guess) {
-    print("ttp");
-    print(UserPrefs.instance.tooltipsPressed);
     if (guess.isEmpty) return '';
     if (onGuess != null) onGuess!(guess);
 
     print('guess_${tries + 1}_$name');
     print('guess: $guess');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
-    if (guess.trim().toLowerCase().startsWith('timemachine')) {
+    if (guess.replaceAll(' ', '').toLowerCase().startsWith('tm')) {
       String sdelta = guess.trim().toLowerCase().split(' ').last;
       int delta = int.tryParse(sdelta) ?? 0;
       UserPrefs.instance.timeTravel(delta);

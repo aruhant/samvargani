@@ -54,7 +54,7 @@ class GameAnswer {
       }));
     }
     if (icons != null && icons!.isNotEmpty) return icons!;
-    return [Icons.cloud];
+    return [];
   }
 
   static GameAnswer fromJson(Map json) {
@@ -76,13 +76,13 @@ class GameAnswer {
         icons: json['icons'] != null
             ? (json['icons'] as List)
                 .map((e) => e is String
-                    ? LineIcons.byName(e)
+                    ? LineIcons.byName(e) ?? LineIcons.cloud
                     : IconData(e,
                         fontFamily: 'Awesome Line Icons 1.3.0',
                         fontPackage: 'line_icons'))
                 .toList()
                 .cast()
-            : [LineIcons.handshake],
+            : [],
         images: json['images'] != null
             ? (json['images'] as List).cast<String>()
             : [],
