@@ -282,7 +282,7 @@ class DailyGameState extends State<DailyGame> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(0),
                     ),
-                    textStyle: TextStyle(
+                    style: TextStyle(
                         fontSize: 20.sp,
                         color: const Color.fromARGB(255, 43, 81, 100)),
                   ),

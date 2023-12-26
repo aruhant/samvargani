@@ -12,6 +12,7 @@ class UserPrefs {
   int _runCount;
   int _practiceGameIndex;
   int _tutorialIndex;
+  int _timeDelta;
   int _tooltipsPressed;
   String _locale = 'en';
   final SharedPreferences _sharedPrefs;
@@ -22,12 +23,14 @@ class UserPrefs {
       required int runCount,
       required SharedPreferences sharedPrefs,
       required int tooltipsPressed,
+      required int timeDelta,
       required int tutorialIndex})
       : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
         _sharedPrefs = sharedPrefs,
         _runCount = runCount,
+        _timeDelta = timeDelta,
         _tooltipsPressed = tooltipsPressed,
         _tutorialIndex = tutorialIndex;
 
@@ -40,6 +43,7 @@ class UserPrefs {
   int get tooltipsPressed => _tooltipsPressed;
   int get tutorialIndex => _tutorialIndex;
   int get runCount => _runCount;
+  int get timeDelta => _timeDelta;
   String get locale => _locale;
 
   static Future<UserPrefs> init() async {
@@ -53,6 +57,7 @@ class UserPrefs {
           runCount: sharedPrefs.getInt('runCount') ?? 0,
           tooltipsPressed: sharedPrefs.getInt('tooltipsPressed') ?? 0,
           tutorialIndex: sharedPrefs.getInt('tutorialIndex') ?? 0,
+          timeDelta: sharedPrefs.getInt('timeDelta') ?? 0,
           sharedPrefs: sharedPrefs);
     }
     return _instance!;
@@ -130,5 +135,10 @@ class UserPrefs {
 
   void setContext(BuildContext context) {
     _instance!._locale = context.locale.toString();
+  }
+
+  void timeTravel(int delta) {
+    _instance!._timeDelta = delta;
+    _sharedPrefs.setInt('timeDelta', _instance!._timeDelta);
   }
 }

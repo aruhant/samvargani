@@ -51,6 +51,12 @@ class Game {
     print('guess_${tries + 1}_$name');
     print('guess: $guess');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
+    if (guess.trim().toLowerCase().startsWith('timemachine')) {
+      String sdelta = guess.trim().toLowerCase().split(' ').last;
+      int delta = int.tryParse(sdelta) ?? 0;
+      UserPrefs.instance.timeTravel(delta);
+      return 'Time Travelled $delta';
+    }
     if (guess.toLowerCase() == 'clear') {
       UserPrefs.instance.clear();
       return 'Cleared';

@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:paheli/models/user_prefs.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 
 class WotD {
@@ -55,7 +56,10 @@ class WotD {
           whenToShowIcons: -1,
           title: LocaleKeys.dailyGame_yesterdayWord.tr());
   static int get day {
-    return DateTime.now().subtract(Duration(hours: hour, minutes: minute)).day;
+    return DateTime.now()
+        .subtract(Duration(
+            hours: hour, minutes: minute, days: -UserPrefs.instance.timeDelta))
+        .day;
   }
 
   static int get yesterday {
