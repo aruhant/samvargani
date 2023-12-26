@@ -34,30 +34,29 @@ class _YesterdayWordState extends State<YesterdayWord> {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Vitality.randomly(
-              key: ValueKey(widget.answer.answer + hintIcons.toString()),
-              background: widget.answer.backgroundColor,
-              maxOpacity: widget.answer.maxOpacity, // 0,4
-              minOpacity: widget.answer.minOpacity, // 0,15
-              itemsCount: 10, // 6
-              enableXMovements: widget.answer.moveHorizontal,
-              enableYMovements: widget.answer.moveVertical,
-              whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
-              maxSpeed: widget.answer.maxSpeed, // 0,4
-              maxSize: widget.answer.maxSize, // 30
-              minSpeed: widget.answer.minSpeed, // 0,25
-              minSize: widget.answer.minSize, // 150
-              randomItemsColors: widget.answer.colors,
-              randomItemsBehaviours: hintIcons.isEmpty
-                  ? [ItemBehaviour(shape: ShapeType.Icon)]
-                  : hintIcons
-                      .map((e) => e is IconData
-                          ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
-                          : (e is ui.Image)
-                              ? ItemBehaviour(shape: ShapeType.Image, image: e)
-                              : ItemBehaviour(shape: ShapeType.FilledCircle))
-                      .toList()
-                      .cast<ItemBehaviour>()),
+          if (hintIcons.isNotEmpty)
+            Vitality.randomly(
+                key: ValueKey(widget.answer.answer + hintIcons.toString()),
+                background: widget.answer.backgroundColor,
+                maxOpacity: widget.answer.maxOpacity, // 0,4
+                minOpacity: widget.answer.minOpacity, // 0,15
+                itemsCount: 10, // 6
+                enableXMovements: widget.answer.moveHorizontal,
+                enableYMovements: widget.answer.moveVertical,
+                whenOutOfScreenMode: WhenOutOfScreenMode.Teleport,
+                maxSpeed: widget.answer.maxSpeed, // 0,4
+                maxSize: widget.answer.maxSize, // 30
+                minSpeed: widget.answer.minSpeed, // 0,25
+                minSize: widget.answer.minSize, // 150
+                randomItemsColors: widget.answer.colors,
+                randomItemsBehaviours: hintIcons
+                    .map((e) => e is IconData
+                        ? ItemBehaviour(shape: ShapeType.Icon, icon: e)
+                        : (e is ui.Image)
+                            ? ItemBehaviour(shape: ShapeType.Image, image: e)
+                            : ItemBehaviour(shape: ShapeType.FilledCircle))
+                    .toList()
+                    .cast<ItemBehaviour>()),
           Padding(
             padding: const EdgeInsets.all(12.0).w,
             child: Align(
@@ -80,7 +79,7 @@ class _YesterdayWordState extends State<YesterdayWord> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 10.h),
-                  Text(widget.answer.title,
+                  Text(LocaleKeys.dailyGame_yesterdayWord.tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 24.sp,

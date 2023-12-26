@@ -57,14 +57,15 @@ class GameAnswer {
     return [];
   }
 
-  static GameAnswer fromJson(Map json) {
+  static GameAnswer fromJson(Map json, [int? day]) {
     return GameAnswer(
         answer: json['answer'] ?? 'समाधान',
         meaning: json['meaning'] ?? 'संशय दूर करना',
         title: (UserPrefs.instance.locale.contains('hi')
-                ? json['title_hi']
-                : json['title_en']) ??
-            json['title'],
+                ? json['title_hi1']
+                : json['title_en1']) ??
+            json['title1'] ??
+            makeDailyGameTitle(json, day),
         colors: json['colors'] != null
             ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)
@@ -122,6 +123,13 @@ class GameAnswer {
 
   static List<GameAnswer> fromJsonList(List json) {
     return json.map((e) => GameAnswer.fromJson(e)).toList();
+  }
+
+  static String? makeDailyGameTitle(Map map, int? day) {
+    if (day == null) return null;
+    String month =
+        DateFormat.MMMM(UserPrefs.instance.locale).format(DateTime.now());
+    return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
   }
 }
 

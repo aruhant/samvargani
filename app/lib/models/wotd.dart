@@ -85,7 +85,7 @@ class WotD {
       Map val = event.snapshot.value as Map;
       for (String key
           in val.keys.where((element) => RegExp(r'^\d+$').hasMatch(element))) {
-        GameAnswer answer = GameAnswer.fromJson(val[key]);
+        GameAnswer answer = GameAnswer.fromJson(val[key], int.parse(key));
         answers[int.parse(key)] = answer;
       }
       return WotD._internal(answers);
@@ -99,10 +99,8 @@ class WotD {
       print(val);
       for (String key
           in val.keys.where((element) => RegExp(r'^\d+$').hasMatch(element))) {
-        print(key);
-        GameAnswer answer = GameAnswer.fromJson(val[key]);
+        GameAnswer answer = GameAnswer.fromJson(val[key], int.parse(key));
         answers[int.parse(key)] = answer;
-        print(answer.answer);
       }
       return WotD._internal(answers);
     }).catchError((e) {
