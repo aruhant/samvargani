@@ -14,6 +14,9 @@ game.clearCanvas(true);
 var sourceFile = process.argv[2];
 var buffer = fs.readFileSync(sourceFile, { encoding: 'utf-8' });
 var lines = buffer.trim().split(/[\r|\n]+/);
+lines.sort(function () {
+  return Math.random() - 0.5;
+});
 function addClue(i) {
   if (i >= lines.length) {
     console.log(JSON.stringify(
