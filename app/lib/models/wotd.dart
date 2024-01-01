@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -68,16 +70,23 @@ class WotD {
         .day;
   }
 
-  static String get month => monthsInString[
+  static String month([int delta = 0]) => monthsInString[
       (DateTime.now().subtract(Duration(hours: hour, minutes: minute)).month) -
-          1];
+          1 +
+          delta];
 
   static String get yesterdayMonth => monthsInString[(DateTime.now()
           .subtract(Duration(hours: hour, minutes: minute, days: 1))
           .month) -
       1];
-  static makeTitle(int day) =>
-      LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
+  static makeTitle(int day) {
+    if ((DateTime.now().day - day) > 15)
+      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month(1)]);
+    else if ((DateTime.now().day - day) < -15)
+      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month(-1)]);
+    else
+      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month()]);
+  }
 
   static Stream<WotD> listen() {
     return FirebaseDatabase.instance.ref('wotd').onValue.map((event) {

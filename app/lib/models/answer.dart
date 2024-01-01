@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:paheli/widgets/game_intro.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -127,9 +129,23 @@ class GameAnswer {
 
   static String? makeDailyGameTitle(Map map, int? day) {
     if (day == null) return null;
-    String month =
-        DateFormat.MMMM(UserPrefs.instance.locale).format(DateTime.now());
-    return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
+
+    if ((DateTime.now().day - day) > 15) {
+      DateTime now = DateTime.now();
+      String nextmonth = DateFormat.MMMM(UserPrefs.instance.locale)
+          .format(now.copyWith(month: now.month + 1));
+      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), nextmonth]);
+    } else if ((DateTime.now().day - day) < -15) {
+      DateTime now = DateTime.now();
+      String previousmonth = DateFormat.MMMM(UserPrefs.instance.locale)
+          .format(now.copyWith(month: now.month - 1));
+      return LocaleKeys.dailyGame_title
+          .tr(args: [day.toString(), previousmonth]);
+    } else {
+      String month =
+          DateFormat.MMMM(UserPrefs.instance.locale).format(DateTime.now());
+      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
+    }
   }
 }
 
