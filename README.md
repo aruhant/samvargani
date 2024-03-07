@@ -3,6 +3,11 @@
 
 Samvargani is a powerful framework for designing beautiful and easy-to-play word games for vernacular languages, specifically Indian ones. Samvargani's unique utility files are made to be customizable for many Indian languages, providing support for 'matras', 'half-letters' etc.
  
+<a href="https://play.google.com/store/apps/details?id=com.aruhant.paheli">
+<img height="40px" alt="Get it on Google Play" src="https://aruhant.github.io/s/and.png" /></a>
+<a href="https://apps.apple.com/us/app/samvargini/id6455461367">
+<img height="40px" alt="Get it on App Store" src="https://aruhant.github.io/s/ios.png" /></a>
+
 
 ## Flexibility between languages
 
