@@ -79,10 +79,9 @@ class _MyAppState extends State<MyApp> {
         darkTheme: FlexThemeData.light(scheme: FlexScheme.gold),
         themeMode: ThemeMode.light,
         home: UpgradeAlert(
-            upgrader: Upgrader(
-                showIgnore: false,
-                showLater: false,
-                dialogStyle: UpgradeDialogStyle.cupertino),
+            showIgnore: false,
+            showLater: false,
+            dialogStyle: UpgradeDialogStyle.cupertino,
             child: (UserPrefs.instance.shouldShowLocaleSettings)
                 ? LanguagePicker(
                     onLocaleSelected: () =>
