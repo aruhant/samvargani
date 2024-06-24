@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:paheli/models/user_prefs.dart';
-import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
-import 'package:paheli/widgets/game_intro.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';

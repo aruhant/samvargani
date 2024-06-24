@@ -11,7 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 import '../models/user_prefs.dart';
 
 class PracticeGame extends StatefulWidget {
-  const PracticeGame({Key? key}) : super(key: key);
+  const PracticeGame({super.key});
   @override
   PracticeGameState createState() => PracticeGameState();
 }
@@ -96,14 +96,14 @@ class PracticeGameState extends State<PracticeGame> {
                           builder: (context) => const DailyGame()));
                     },
                     child: Padding(
-                      padding: EdgeInsets.all(6.0.w),
+                      padding: EdgeInsets.all(6.w),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
                             Icons.arrow_back,
-                            size: 16.sp,
+                            size: 18.sp,
                           ),
                           SizedBox(width: 8.w),
                           Text(LocaleKeys.practiceGame_dailyGameButton.tr(),

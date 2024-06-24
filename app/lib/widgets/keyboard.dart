@@ -109,7 +109,7 @@ class _Key extends StatelessWidget {
           child: TextButton(
             clipBehavior: Clip.antiAlias,
             style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.zero)),
+                padding: WidgetStateProperty.all(EdgeInsets.zero)),
             onPressed: () => onTap(text),
             child: ['⌫', '⏎'].contains(text)
                 ? Icon(text == '⌫' ? Icons.backspace : Icons.keyboard_return,

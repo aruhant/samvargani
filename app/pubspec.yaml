@@ -57,11 +57,10 @@ dependencies:
   screenshot:
   upgrader:
 
+  easy_localization: any
 dev_dependencies:
   flutter_launcher_icons:
-  expandable_menu:
-  easy_localization:
-  flutter_test:
+  expandable_menuflutter_test:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to

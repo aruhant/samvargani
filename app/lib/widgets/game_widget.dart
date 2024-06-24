@@ -88,7 +88,7 @@ class _GameWidgetState extends State<GameWidget> {
           const Color.fromRGBO(213, 204, 158, 1),
       body: Stack(
         children: [
-          if (shouldShowHint && !hintIcons.isEmpty)
+          if (shouldShowHint && hintIcons.isNotEmpty)
             Vitality.randomly(
               key: valueKey,
               background: widget.game.answer.backgroundColor,

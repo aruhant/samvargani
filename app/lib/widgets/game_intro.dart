@@ -14,7 +14,7 @@ import 'package:paheli/widgets/line_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 class GameHelpWidget extends StatefulWidget {
-  const GameHelpWidget({Key? key, required this.onIntroEnd}) : super(key: key);
+  const GameHelpWidget({super.key, required this.onIntroEnd});
   final VoidCallback onIntroEnd;
 
   @override

@@ -4,8 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LanguagePicker extends StatelessWidget {
-  const LanguagePicker({Key? key, required this.onLocaleSelected})
-      : super(key: key);
+  const LanguagePicker({super.key, required this.onLocaleSelected});
   final VoidCallback onLocaleSelected;
   @override
   Widget build(BuildContext context) {

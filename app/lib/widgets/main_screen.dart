@@ -5,7 +5,7 @@ import 'package:paheli/widgets/game_intro.dart';
 import 'package:paheli/widgets/practice_game.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();

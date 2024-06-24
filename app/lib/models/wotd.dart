@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -80,9 +79,9 @@ class WotD {
           .month) -
       1];
   static makeTitle(int day) {
-    if ((DateTime.now().day - day) > 15)
+    if ((DateTime.now().day - day) > 15) {
       return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month(1)]);
-    else if ((DateTime.now().day - day) < -15)
+    } else if ((DateTime.now().day - day) < -15)
       return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month(-1)]);
     else
       return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month()]);

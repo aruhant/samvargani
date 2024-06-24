@@ -8,6 +8,7 @@ import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
+import 'package:paheli/widgets/leaderboard.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/yesterday.dart';
 import 'package:paheli/widgets/result_widget.dart';
@@ -21,7 +22,7 @@ import 'package:in_app_review/in_app_review.dart';
 final InAppReview inAppReview = InAppReview.instance;
 
 class DailyGame extends StatefulWidget {
-  const DailyGame({Key? key}) : super(key: key);
+  const DailyGame({super.key});
   @override
   DailyGameState createState() => DailyGameState();
 }
@@ -157,7 +158,7 @@ class DailyGameState extends State<DailyGame> {
                 children: [
                   Icon(
                     Icons.share,
-                    size: 14.sp,
+                    size: 18.sp,
                   ),
                   SizedBox(width: 10.w),
                   if (game.complete)
@@ -170,30 +171,49 @@ class DailyGameState extends State<DailyGame> {
               ),
             ),
           ),
-          MaterialButton(
-            minWidth: 0,
-            onPressed: () async {
-              WotD w = (await WotD.load());
-              // ignore: use_build_context_synchronously
-              await showDialog(
-                  context: context,
-                  builder: (context) => Container(
-                      padding: EdgeInsets.all(8.w),
-                      margin: EdgeInsets.all(12.w),
-                      decoration: BoxDecoration(
-                        color: w.yesterdayAnswer.backgroundColor,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                      ),
-                      child: YesterdayWord(answer: w.yesterdayAnswer)));
-            },
-            child: Padding(
-                padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
-                child: Icon(
-                  Icons.calendar_month,
-                  size: 18.sp,
-                )),
+          Row(
+            children: [
+              MaterialButton(
+                minWidth: 0,
+                onPressed: () async {
+                  WotD w = (await WotD.load());
+                  // ignore: use_build_context_synchronously
+                  await showDialog(
+                      context: context,
+                      builder: (context) => Container(
+                          padding: EdgeInsets.all(8.w),
+                          margin: EdgeInsets.all(12.w),
+                          decoration: BoxDecoration(
+                            color: w.yesterdayAnswer.backgroundColor,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          child: YesterdayWord(answer: w.yesterdayAnswer)));
+                },
+                child: Padding(
+                    padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
+                    child: Icon(
+                      Icons.calendar_month,
+                      size: 22.sp,
+                    )),
+              ),
+              // add a button to show leaderboard
+
+              MaterialButton(
+                minWidth: 0,
+                onPressed: () async {
+                  await showDialog(
+                      context: context, builder: (context) => const Leaderboard());
+                },
+                child: Padding(
+                    padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
+                    child: Icon(
+                      Icons.leaderboard,
+                      size: 22.sp,
+                    )),
+              ),
+            ],
           ),
         ],
       ),
