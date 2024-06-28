@@ -13,14 +13,14 @@ PODS:
   - Firebase/Database (10.27.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 10.27.0)
-  - firebase_analytics (11.0.1):
+  - firebase_analytics (11.1.0):
     - Firebase/Analytics (= 10.27.0)
     - firebase_core
     - FlutterMacOS
-  - firebase_core (3.1.0):
+  - firebase_core (3.1.1):
     - Firebase/CoreOnly (~> 10.27.0)
     - FlutterMacOS
-  - firebase_database (11.0.1):
+  - firebase_database (11.0.2):
     - Firebase/CoreOnly (~> 10.27.0)
     - Firebase/Database (~> 10.27.0)
     - firebase_core
@@ -193,9 +193,9 @@ SPEC CHECKSUMS:
   awesome_notifications: 428f5c15a700b117418aed09e29c21c5806fcf69
   device_info_plus: ce1b7762849d3ec103d0e0517299f2db7ad60720
   Firebase: 26b040b20866a55f55eb3611b9fcf3ae64816b86
-  firebase_analytics: 2370857414db883542ff3cc0cf4634d1de55b37b
-  firebase_core: 3cf30a8be4c850f7192bf9597f5939d0c3af706b
-  firebase_database: c8194c0d56b7295613a7c92f746073dea85dbb93
+  firebase_analytics: 79d06f2ac1e2dd7aae0a79cc3ccf708df81424f1
+  firebase_core: df33f64432203e675060e475de6ea8127eb8398a
+  firebase_database: 5e1c6b3bc949b7fa02feb139b2f3b6440d2dbbcd
   FirebaseAnalytics: f9211b719db260cc91aebee8bb539cb367d0dfd1
   FirebaseAppCheckInterop: 5315f40293191bfec04b2cfab0215760e441540a
   FirebaseCore: a2b95ae4ce7c83ceecfbbbe3b6f1cddc7415a808
@@ -216,6 +216,6 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   url_launcher_macos: 5f437abeda8c85500ceb03f5c1938a8c5a705399
 
-PODFILE CHECKSUM: 855357ddd1b59ce0c7f951ac581811828eb4d101
+PODFILE CHECKSUM: 236401fc2c932af29a9fcf0e97baeeb2d750d367
 
 COCOAPODS: 1.15.2
