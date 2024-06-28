@@ -10,6 +10,7 @@ import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
 import 'package:paheli/widgets/leaderboard.dart';
+import 'package:paheli/widgets/loading.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/yesterday.dart';
 import 'package:paheli/widgets/result_widget.dart';
@@ -40,7 +41,9 @@ class DailyGameState extends State<DailyGame> {
     WotD.listen().listen((g) => mounted
         ? setState(() {
             game = Game.load(
-                answer: g.answer, onSuceess: displayResult, onGuess: onGuess);
+                answer: g.answer,
+                onSuceess: dailyGameOnSuccess,
+                onGuess: onGuess);
           })
         : null);
 
@@ -55,7 +58,7 @@ class DailyGameState extends State<DailyGame> {
           WotD.load().then((g) => setState(() {
                 game = Game.load(
                     answer: g.answer,
-                    onSuceess: displayResult,
+                    onSuceess: dailyGameOnSuccess,
                     onGuess: onGuess);
               }));
         }));
@@ -87,8 +90,7 @@ class DailyGameState extends State<DailyGame> {
     }
   }
 
-  // Display the result of the game and log analytics events
-  displayResult(GameResult result) async {
+  dailyGameOnSuccess(GameResult result) async {
     if (UserProperties.instance.name != '') {
       // write to leaderboard
       FirebaseDatabase.instance.ref('leaderboard/${WotD.day}').push().set({
@@ -101,6 +103,11 @@ class DailyGameState extends State<DailyGame> {
     FirebaseAnalytics.instance.logEvent(
         name: 'completed_${DateTime.now().day}_${DateTime.now().month}',
         parameters: {'tries': result.tries});
+    await displayResult(result);
+  }
+
+  // Display the result of the game and log analytics events
+  displayResult(GameResult result) async {
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
@@ -114,7 +121,7 @@ class DailyGameState extends State<DailyGame> {
   @override
   Widget build(BuildContext context) {
     if (game == null) {
-      return makeLoading();
+      return Loading();
     } else {
       return GameWidget(
           game: game!,
@@ -225,13 +232,9 @@ class DailyGameState extends State<DailyGame> {
                   await showDialog(
                       context: context,
                       builder: (context) {
-                        try {
-                          return Leaderboard(
-                              tries: game.tries,
-                              hasCompletedDailyChallenge: game.complete);
-                        } catch (e) {
-                          return makeLoading();
-                        }
+                        return Leaderboard(
+                            tries: game.tries,
+                            hasCompletedDailyChallenge: game.complete);
                       });
                 },
                 child: Padding(
@@ -246,23 +249,6 @@ class DailyGameState extends State<DailyGame> {
         ],
       ),
     );
-  }
-
-  // Create the loading widget
-  Material makeLoading() {
-    return Material(
-        color: const Color.fromARGB(255, 226, 149, 174),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(LocaleKeys.dailyGame_loading.tr()),
-            ),
-            const CircularProgressIndicator(),
-          ],
-        ));
   }
 
   // Create the success footer widget
@@ -324,7 +310,7 @@ class DailyGameState extends State<DailyGame> {
                       WotD.load().then((g) => setState(() {
                             game = Game.load(
                                 answer: g.answer,
-                                onSuceess: displayResult,
+                                onSuceess: dailyGameOnSuccess,
                                 onGuess: onGuess);
                           }));
                     },
