@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/wotd.dart';
@@ -14,7 +15,7 @@ import 'package:paheli/widgets/yesterday.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:screenshot/screenshot.dart';
-import '../models/user_prefs.dart';
+import '../models/user_properties.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -33,16 +34,22 @@ class DailyGameState extends State<DailyGame> {
   @override
   void initState() {
     super.initState();
-    print('loading');
+    //print('loading');
+
+    // Listen for changes in the Word of the Day (WotD) and update the game accordingly
     WotD.listen().listen((g) => mounted
         ? setState(() {
             game = Game.load(
                 answer: g.answer, onSuceess: displayResult, onGuess: onGuess);
           })
         : null);
+
+    // Check if the app has necessary permissions and update the state accordingly
     hasPermissions().then((value) => setState(() {
           needPermissions = !value;
         }));
+
+    // Load the Word of the Day and update the game after a certain delay
     Duration nextUpdateIn = getCountdownDuration(1);
     Future.delayed(nextUpdateIn).then((value) => setState(() {
           WotD.load().then((g) => setState(() {
@@ -54,6 +61,7 @@ class DailyGameState extends State<DailyGame> {
         }));
   }
 
+  // Calculate the countdown duration until the next midnight
   Duration getCountdownDuration([int seconds = 0]) {
     DateTime now = DateTime.now();
     DateTime nextMidnight =
@@ -65,24 +73,34 @@ class DailyGameState extends State<DailyGame> {
     return countdown;
   }
 
+  // Handle the user's guess in the game
   void onGuess(String guess) {
-    if (UserPrefs.instance.runCount < 5) {
+    if (UserProperties.instance.runCount < 5) {
       FirebaseAnalytics.instance.logEvent(
           name: 'dg${game!.tries + 1}',
           parameters: {'answer': game!.name, 'guess': guess});
       if (game?.tries == 0) {
         FirebaseAnalytics.instance.logEvent(
             name: 'started_${DateTime.now().day}_${DateTime.now().month}',
-            parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+            parameters: {'ttp': UserProperties.instance.tooltipsPressed});
       }
     }
   }
 
+  // Display the result of the game and log analytics events
   displayResult(GameResult result) async {
+    if (UserProperties.instance.name != '') {
+      // write to leaderboard
+      FirebaseDatabase.instance.ref('leaderboard/${WotD.day}').push().set({
+        'name': UserProperties.instance.name,
+        'score': result.tries,
+        'UTC': ServerValue.timestamp,
+        'local': DateTime.now().toString(),
+      });
+    }
     FirebaseAnalytics.instance.logEvent(
         name: 'completed_${DateTime.now().day}_${DateTime.now().month}',
         parameters: {'tries': result.tries});
-
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
@@ -90,6 +108,7 @@ class DailyGameState extends State<DailyGame> {
     setState(() {});
   }
 
+  // sets screenshot controller for sharing
   final _screenShotController = ScreenshotController();
 
   @override
@@ -173,6 +192,7 @@ class DailyGameState extends State<DailyGame> {
           ),
           Row(
             children: [
+              // Button to show yesterday's word
               MaterialButton(
                 minWidth: 0,
                 onPressed: () async {
@@ -198,13 +218,21 @@ class DailyGameState extends State<DailyGame> {
                       size: 22.sp,
                     )),
               ),
-              // add a button to show leaderboard
-
+              // Button to show leaderboard
               MaterialButton(
                 minWidth: 0,
                 onPressed: () async {
                   await showDialog(
-                      context: context, builder: (context) => const Leaderboard());
+                      context: context,
+                      builder: (context) {
+                        try {
+                          return Leaderboard(
+                              tries: game.tries,
+                              hasCompletedDailyChallenge: game.complete);
+                        } catch (e) {
+                          return makeLoading();
+                        }
+                      });
                 },
                 child: Padding(
                     padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
@@ -220,6 +248,7 @@ class DailyGameState extends State<DailyGame> {
     );
   }
 
+  // Create the loading widget
   Material makeLoading() {
     return Material(
         color: const Color.fromARGB(255, 226, 149, 174),
@@ -236,9 +265,9 @@ class DailyGameState extends State<DailyGame> {
         ));
   }
 
+  // Create the success footer widget
   successFooter(BuildContext context) {
     Duration countdown = getCountdownDuration();
-//    print(countdown);
     return Container(
       padding: const EdgeInsets.all(8.0).w,
       margin: const EdgeInsets.all(12.0).w,
@@ -314,27 +343,6 @@ class DailyGameState extends State<DailyGame> {
                     ),
                 ],
               )),
-          /*  MaterialButton(
-            onPressed: () async {
-              await requestPermissions();
-              testNotification();
-            },
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.r),
-              side: const BorderSide(
-                color: Color.fromARGB(255, 43, 81, 100),
-                width: 2,
-              ),
-            ),
-            child: Text(LocaleKeys.dailyGame_notification.tr(),
-                style: const TextStyle(
-                    fontSize: 18, color: Color.fromARGB(255, 43, 81, 100))),
-          ), */
-          /*  MaterialButton(
-               onPressed: () async {
-           inAppReview.openStoreListing(appStoreId: '6455461367');
-               },
-               child: const Text('Write a review')), */
           Text(
             LocaleKeys.dailyGame_line3.tr(),
             textAlign: TextAlign.center,
@@ -361,7 +369,7 @@ class DailyGameState extends State<DailyGame> {
                 padding: EdgeInsets.all(8.w),
                 child: Text(
                   LocaleKeys.dailyGame_button.tr(args: [
-                    (UserPrefs.instance.practiceGameIndex + 1).toString()
+                    (UserProperties.instance.practiceGameIndex + 1).toString()
                   ]),
                   style: TextStyle(
                     fontSize: 16.sp,

@@ -38,7 +38,6 @@ class LanguagePicker extends StatelessWidget {
                     onPressed: () {
                       context.setLocale(const Locale('en', 'US'));
                       onLocaleSelected();
-
                       FirebaseAnalytics.instance
                           .logEvent(name: 'language_selected_English');
                       FirebaseAnalytics.instance

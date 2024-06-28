@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/utils/dictionary.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/string.dart';
@@ -33,7 +33,7 @@ class Game {
       : _loadLines = loadLines;
   Game.load({this.onSuceess, required this.answer, this.onGuess})
       : _loadLines =
-            UserPrefs.instance.loadGame(answer.answer)?._loadLines ?? [];
+            UserProperties.instance.loadGame(answer.answer)?._loadLines ?? [];
   int get length => answer.answer.allCharacters.length;
   List<String> get answerList => answer.answer.allCharacters;
   bool get complete =>
@@ -46,17 +46,17 @@ class Game {
     if (guess.isEmpty) return '';
     if (onGuess != null) onGuess!(guess);
 
-    print('guess_${tries + 1}_$name');
-    print('guess: $guess');
+    //print('guess_${tries + 1}_$name');
+    //print('guess: $guess');
     if (guess.toLowerCase() == 'iddqd') return answer.answer;
     if (guess.replaceAll(' ', '').toLowerCase().startsWith('tm')) {
       String sdelta = guess.trim().toLowerCase().split(' ').last;
       int delta = int.tryParse(sdelta) ?? 0;
-      UserPrefs.instance.timeTravel(delta);
+      UserProperties.instance.timeTravel(delta);
       return 'Time Travelled $delta';
     }
     if (guess.toLowerCase() == 'clear') {
-      UserPrefs.instance.clear();
+      UserProperties.instance.clear();
       return 'Cleared';
     }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
@@ -109,8 +109,8 @@ class Game {
         !wordList.contains(guess)) {
       final allVariations = guess.getAllVaraitions;
       if (!allVariations.any((element) => wordList.contains(element))) {
-        print(answerList.map((e) => e.vyanjan).toList());
-        if (UserPrefs.instance.runCount < 5 &&
+        //print(answerList.map((e) => e.vyanjan).toList());
+        if (UserProperties.instance.runCount < 5 &&
             answerList.map((e) => e.vyanjan).toList().join() == guess) {
           return LocaleKeys.game_gameMessages_addedNoMatras.tr(args: [guess]);
         }
@@ -126,16 +126,16 @@ class Game {
           state: getStateForCell(answer.answer, guessList[i], i)));
     }
     _loadLines.add(Line(cells: cells));
-    UserPrefs.instance.saveGame(this);
+    UserProperties.instance.saveGame(this);
     if (answer.answer == guess && onSuceess != null) {
       onSuceess!(GameResult(win: true, answer: answer, lines: lines));
       return '';
     }
-    if (UserPrefs.instance.runCount < 5 &&
+    if (UserProperties.instance.runCount < 5 &&
         answerList.map((e) => e.vyanjan).toList().join() == guess) {
       return LocaleKeys.game_gameMessages_addedNoMatras.tr(args: [guess]);
     }
-    return UserPrefs.instance.tooltipsPressed > 20
+    return UserProperties.instance.tooltipsPressed > 20
         ? ''
         : LocaleKeys.game_gameMessages_incorrect.tr();
   }

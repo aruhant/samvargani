@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/cell.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 class CellWidget extends StatelessWidget {
@@ -40,10 +40,10 @@ class CellWidget extends StatelessWidget {
               textStyle: TextStyle(color: Colors.white, fontSize: 15.sp),
               message: cell.state.tooltip(cell.value),
               onTriggered: () {
-                UserPrefs.instance.onTooltipPressed();
+                UserProperties.instance.onTooltipPressed();
                 FirebaseAnalytics.instance.setUserProperty(
                     name: 'tooltipsPressed',
-                    value: UserPrefs.instance.tooltipsPressed.toString());
+                    value: UserProperties.instance.tooltipsPressed.toString());
               },
               child: makeCellContents(),
             ),

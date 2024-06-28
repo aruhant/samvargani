@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/game.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -32,7 +32,7 @@ class TransitionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                mainMessages[UserPrefs.instance.tutorialIndex - 1],
+                mainMessages[UserProperties.instance.tutorialIndex - 1],
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 30),
               ),
@@ -47,7 +47,8 @@ class TransitionPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                 ),
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text(nextMessages[UserPrefs.instance.tutorialIndex - 1],
+                child: Text(
+                    nextMessages[UserProperties.instance.tutorialIndex - 1],
                     style: const TextStyle(fontSize: 18)),
               )
             ],
@@ -68,24 +69,24 @@ class TutorialState extends State<Tutorial> {
   void initState() {
     super.initState();
     game = Game.load(
-      answer: tutorialWords[UserPrefs.instance.tutorialIndex],
+      answer: tutorialWords[UserProperties.instance.tutorialIndex],
       onSuceess: generateNextTutorial,
       onGuess: onGuess,
     );
   }
 
   generateNextTutorial(GameResult uselessResult) async {
-    if (UserPrefs.instance.tutorialIndex == 0) {
+    if (UserProperties.instance.tutorialIndex == 0) {
       FirebaseAnalytics.instance.logEvent(
-          name: 't${UserPrefs.instance.tutorialIndex + 1}complete',
+          name: 't${UserProperties.instance.tutorialIndex + 1}complete',
           parameters: {'tries': game.tries - 2});
     } else {
       FirebaseAnalytics.instance.logEvent(
-          name: 't${UserPrefs.instance.tutorialIndex + 1}complete',
+          name: 't${UserProperties.instance.tutorialIndex + 1}complete',
           parameters: {'tries': game.tries});
     }
 
-    bool s = UserPrefs.instance.makeTutorialProgress(tutorialWords.length);
+    bool s = UserProperties.instance.makeTutorialProgress(tutorialWords.length);
 
     await showDialog(
         context: context,
@@ -94,11 +95,11 @@ class TutorialState extends State<Tutorial> {
 
     if (s) {
       game = Game.load(
-        answer: tutorialWords[UserPrefs.instance.tutorialIndex],
+        answer: tutorialWords[UserProperties.instance.tutorialIndex],
         onSuceess: generateNextTutorial,
         onGuess: onGuess,
       );
-      if (UserPrefs.instance.tutorialIndex == 1) {
+      if (UserProperties.instance.tutorialIndex == 1) {
         game.addGuess('शायद');
         game.addGuess('बालक');
       }
@@ -112,24 +113,25 @@ class TutorialState extends State<Tutorial> {
   }
 
   void onGuess(String guess) {
-    if (UserPrefs.instance.tutorialIndex == 0) {
+    if (UserProperties.instance.tutorialIndex == 0) {
       if (guess != 'शायद' && guess != 'बालक') {
         FirebaseAnalytics.instance.logEvent(
             name: 't1g${game.tries - 1}', parameters: {'guess': guess});
         if (game.tries == 2) {
           FirebaseAnalytics.instance.logEvent(
               name: 't1begin',
-              parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+              parameters: {'ttp': UserProperties.instance.tooltipsPressed});
         }
       }
     } else {
       FirebaseAnalytics.instance.logEvent(
-          name: 't${UserPrefs.instance.tutorialIndex + 1}g${game.tries + 1}',
+          name:
+              't${UserProperties.instance.tutorialIndex + 1}g${game.tries + 1}',
           parameters: {'guess': guess});
       if (game.tries == 0) {
         FirebaseAnalytics.instance.logEvent(
-            name: 't${UserPrefs.instance.tutorialIndex + 1}begin',
-            parameters: {'ttp': UserPrefs.instance.tooltipsPressed});
+            name: 't${UserProperties.instance.tutorialIndex + 1}begin',
+            parameters: {'ttp': UserProperties.instance.tooltipsPressed});
       }
     }
   }

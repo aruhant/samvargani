@@ -1,12 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class UserPrefs {
+class UserProperties {
   final bool _darkMode;
   int _initState;
   int _runCount;
@@ -15,27 +14,30 @@ class UserPrefs {
   int _timeDelta;
   int _tooltipsPressed;
   String _locale = 'en';
+  String _name = '';
   final SharedPreferences _sharedPrefs;
-  UserPrefs(
-      {required bool darkMode,
-      required int initState,
-      required int practiceGameIndex,
-      required int runCount,
-      required SharedPreferences sharedPrefs,
-      required int tooltipsPressed,
-      required int timeDelta,
-      required int tutorialIndex})
-      : _initState = initState,
+  UserProperties({
+    required bool darkMode,
+    required int initState,
+    required int practiceGameIndex,
+    required int runCount,
+    required SharedPreferences sharedPrefs,
+    required int tooltipsPressed,
+    required int timeDelta,
+    required int tutorialIndex,
+    required String name,
+  })  : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
         _sharedPrefs = sharedPrefs,
         _runCount = runCount,
         _timeDelta = timeDelta,
         _tooltipsPressed = tooltipsPressed,
-        _tutorialIndex = tutorialIndex;
+        _tutorialIndex = tutorialIndex,
+        _name = name;
 
-  static UserPrefs? _instance;
-  static UserPrefs get instance => _instance!;
+  static UserProperties? _instance;
+  static UserProperties get instance => _instance!;
   bool get darkMode => _darkMode;
   bool get shouldShowHelp => _initState < 2;
   bool get shouldShowLocaleSettings => _initState < 1;
@@ -45,12 +47,13 @@ class UserPrefs {
   int get runCount => _runCount;
   int get timeDelta => _timeDelta;
   String get locale => _locale;
+  String get name => _name;
 
-  static Future<UserPrefs> init() async {
+  static Future<UserProperties> init() async {
     if (_instance == null) {
       WidgetsFlutterBinding.ensureInitialized();
       var sharedPrefs = await SharedPreferences.getInstance();
-      _instance = UserPrefs(
+      _instance = UserProperties(
           practiceGameIndex: sharedPrefs.getInt('progress') ?? 0,
           darkMode: sharedPrefs.getBool('darkMode') ?? false,
           initState: sharedPrefs.getInt('initState') ?? 0,
@@ -58,7 +61,8 @@ class UserPrefs {
           tooltipsPressed: sharedPrefs.getInt('tooltipsPressed') ?? 0,
           tutorialIndex: sharedPrefs.getInt('tutorialIndex') ?? 0,
           timeDelta: sharedPrefs.getInt('timeDelta') ?? 0,
-          sharedPrefs: sharedPrefs);
+          sharedPrefs: sharedPrefs,
+          name: sharedPrefs.getString('name') ?? '');
     }
     return _instance!;
   }
@@ -115,7 +119,7 @@ class UserPrefs {
   }
 
   onTooltipPressed() {
-    print('ttp ${_instance!._tooltipsPressed}');
+    //print('ttp ${_instance!._tooltipsPressed}');
     _instance!._tooltipsPressed++;
     _sharedPrefs.setInt('tooltipsPressed', _instance!._tooltipsPressed);
   }
@@ -140,5 +144,10 @@ class UserPrefs {
   void timeTravel(int delta) {
     _instance!._timeDelta = delta;
     _sharedPrefs.setInt('timeDelta', _instance!._timeDelta);
+  }
+
+  void setName(String name) {
+    _instance!._name = name;
+    _sharedPrefs.setString('name', _instance!._name);
   }
 }

@@ -8,7 +8,7 @@ import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/result_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
-import '../models/user_prefs.dart';
+import '../models/user_properties.dart';
 
 class PracticeGame extends StatefulWidget {
   const PracticeGame({super.key});
@@ -28,18 +28,18 @@ class PracticeGameState extends State<PracticeGame> {
     bool completed = true;
     while (completed) {
       game = Game.load(
-        answer: practiceWords[UserPrefs.instance.practiceGameIndex],
+        answer: practiceWords[UserProperties.instance.practiceGameIndex],
         onSuceess: displayResult,
       );
       completed = game.complete;
       if (completed) {
-        UserPrefs.instance.makeProgress(practiceWords.length);
+        UserProperties.instance.makeProgress(practiceWords.length);
       }
     }
   }
 
   displayResult(GameResult result) async {
-    bool s = UserPrefs.instance.makeProgress(practiceWords.length);
+    bool s = UserProperties.instance.makeProgress(practiceWords.length);
     await showDialog(
         context: context,
         builder: (context) => ResultWidget(gameResult: result));
@@ -50,7 +50,7 @@ class PracticeGameState extends State<PracticeGame> {
 
   @override
   Widget build(BuildContext context) {
-    if (practiceWords.length - 1 == UserPrefs.instance.practiceGameIndex) {
+    if (practiceWords.length - 1 == UserProperties.instance.practiceGameIndex) {
       return Material(
         color: const Color.fromRGBO(213, 204, 158, 1),
         child: Center(
@@ -64,9 +64,11 @@ class PracticeGameState extends State<PracticeGame> {
     }
     return GameWidget(
         game: game,
-        footer: (game) => (UserPrefs.instance.practiceGameIndex < 4) ||
-                (UserPrefs.instance.practiceGameIndex < 10 && game.tries > 3) ||
-                (UserPrefs.instance.practiceGameIndex < 30 && game.tries > 5) ||
+        footer: (game) => (UserProperties.instance.practiceGameIndex < 4) ||
+                (UserProperties.instance.practiceGameIndex < 10 &&
+                    game.tries > 3) ||
+                (UserProperties.instance.practiceGameIndex < 30 &&
+                    game.tries > 5) ||
                 game.tries > 10 ||
                 kDebugMode
             ? TextButton(

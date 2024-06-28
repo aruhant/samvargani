@@ -54,6 +54,7 @@ dependencies:
   firebase_analytics:
   introduction_screen:
   flex_color_scheme:
+  jiffy: 
   screenshot:
   upgrader:
 

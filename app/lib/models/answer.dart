@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
+import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -61,11 +62,12 @@ class GameAnswer {
     return GameAnswer(
         answer: json['answer'] ?? 'समाधान',
         meaning: json['meaning'] ?? 'संशय दूर करना',
-        title: (UserPrefs.instance.locale.contains('hi')
+        title: (UserProperties.instance.locale.contains('hi')
                 ? json['title_hi1']
                 : json['title_en1']) ??
             json['title1'] ??
-            makeDailyGameTitle(json, day),
+            LocaleKeys.dailyGame_title
+                .tr(args: WotD.getDayAndMonthForTitle(day)),
         colors: json['colors'] != null
             ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)
@@ -123,27 +125,6 @@ class GameAnswer {
 
   static List<GameAnswer> fromJsonList(List json) {
     return json.map((e) => GameAnswer.fromJson(e)).toList();
-  }
-
-  static String? makeDailyGameTitle(Map map, int? day) {
-    if (day == null) return null;
-
-    if ((DateTime.now().day - day) > 15) {
-      DateTime now = DateTime.now();
-      String nextmonth = DateFormat.MMMM(UserPrefs.instance.locale)
-          .format(now.copyWith(month: now.month + 1));
-      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), nextmonth]);
-    } else if ((DateTime.now().day - day) < -15) {
-      DateTime now = DateTime.now();
-      String previousmonth = DateFormat.MMMM(UserPrefs.instance.locale)
-          .format(now.copyWith(month: now.month - 1));
-      return LocaleKeys.dailyGame_title
-          .tr(args: [day.toString(), previousmonth]);
-    } else {
-      String month =
-          DateFormat.MMMM(UserPrefs.instance.locale).format(DateTime.now());
-      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
-    }
   }
 }
 

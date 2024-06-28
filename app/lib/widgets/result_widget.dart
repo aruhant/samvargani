@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/game.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/utils/share.dart';
@@ -67,8 +67,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                       onPressed: () async {
                         Navigator.of(context).pop();
                         if (await inAppReview.isAvailable() &&
-                            UserPrefs.instance.runCount > 1 &&
-                            UserPrefs.instance.runCount % 3 == 0) {
+                            UserProperties.instance.runCount > 1 &&
+                            UserProperties.instance.runCount % 3 == 0) {
                           inAppReview.requestReview();
                         }
                       },
@@ -89,12 +89,12 @@ class _ResultWidgetState extends State<ResultWidget> {
                                 : Icons.sentiment_dissatisfied_outlined),
                             size: 120.sp,
                             color: const Color.fromARGB(255, 6, 7, 10)),
-                        Text(LocaleKeys.app_title.tr(),
+/*                         Text(LocaleKeys.app_title.tr(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 24.sp,
                                 fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 6, 7, 10))),
+                                color: const Color.fromARGB(255, 6, 7, 10))), */
                         SizedBox(height: 10.h),
                         Text(
                             widget.gameResult.win

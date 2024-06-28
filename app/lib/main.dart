@@ -2,9 +2,10 @@ import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:paheli/firebase_options.dart';
 import 'package:paheli/models/answer.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/widgets/daily_game.dart';
 import 'package:paheli/widgets/game_intro.dart';
@@ -30,13 +31,12 @@ Future<void> main() async {
     FirebaseAnalytics.instance
         .setUserProperty(name: 'os', value: Platform.operatingSystem);
   } catch (e) {
-    print(e);
+    //print(e);
   }
   await EasyLocalization.ensureInitialized();
-  await UserPrefs.init();
-  UserPrefs.instance.increaseRunCount();
+  await UserProperties.init();
+  UserProperties.instance.increaseRunCount();
   WotD.load();
-
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('hi', 'IN')],
       path: 'assets/translations',
@@ -53,8 +53,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    UserPrefs.instance.setContext(context);
+    UserProperties.instance.setContext(context);
+    Jiffy.setLocale(UserProperties.instance.locale.split('_').first);
 
     return ScreenUtilInit(
       designSize: const Size(360, 690),
@@ -67,8 +73,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   MaterialApp makeMaterialApp(BuildContext context) {
-    print(UserPrefs.instance.tutorialIndex);
-    print(tutorialWords.length);
+    //print(UserPrefs.instance.tutorialIndex);
+    //print(tutorialWords.length);
     return MaterialApp(
         color: const Color.fromRGBO(244, 241, 222, 1),
         localizationsDelegates: context.localizationDelegates,
@@ -82,19 +88,19 @@ class _MyAppState extends State<MyApp> {
             showIgnore: false,
             showLater: false,
             dialogStyle: UpgradeDialogStyle.cupertino,
-            child: (UserPrefs.instance.shouldShowLocaleSettings)
+            child: (UserProperties.instance.shouldShowLocaleSettings)
                 ? LanguagePicker(
                     onLocaleSelected: () =>
-                        setState(() => UserPrefs.instance.localeSet()),
+                        setState(() => UserProperties.instance.localeSet()),
                   )
-                : (UserPrefs.instance.shouldShowHelp)
+                : (UserProperties.instance.shouldShowHelp)
                     ? GameHelpWidget(
-                        onIntroEnd: () =>
-                            setState(() => UserPrefs.instance.firstRunDone()),
+                        onIntroEnd: () => setState(
+                            () => UserProperties.instance.firstRunDone()),
                       )
-                    : UserPrefs.instance.tutorialIndex >=
+                    : UserProperties.instance.tutorialIndex >=
                                 tutorialWords.length ||
-                            UserPrefs.instance.practiceGameIndex > 0
+                            UserProperties.instance.practiceGameIndex > 0
                         ? const DailyGame()
                         : const Tutorial()));
   }

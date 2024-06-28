@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:paheli/utils/notifications.dart';
 import 'package:paheli/utils/string.dart';
@@ -57,21 +57,21 @@ class _GameWidgetState extends State<GameWidget> {
             widget.game.answer.answer.contains('ज्ञ') ||
             widget.game.answer.answer.contains('श्र') ||
             widget.game.answer.answer.contains('क्ष')) {
-          if (UserPrefs.instance.runCount < 25) {
+          if (UserProperties.instance.runCount < 25) {
             message =
                 LocaleKeys.game_gameMessages_startingMessages_containsTra.tr();
           }
         } else {
           if (widget.game.answer.answer.contains('्')) {
-            if (UserPrefs.instance.runCount < 20) {
+            if (UserProperties.instance.runCount < 20) {
               message = LocaleKeys
                   .game_gameMessages_startingMessages_containsAdha
                   .tr();
             }
           }
         }
-        if (UserPrefs.instance.runCount < 8 &&
-            UserPrefs.instance.tutorialIndex > 2) {
+        if (UserProperties.instance.runCount < 8 &&
+            UserProperties.instance.tutorialIndex > 2) {
           message =
               LocaleKeys.game_gameMessages_startingMessages_basicMessage.tr();
         }
@@ -81,8 +81,7 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'valueKey: $valueKey, shouldShowHint: $shouldShowHint, hintIcons.isEmpty: ${hintIcons.isEmpty}');
+    //print('valueKey: $valueKey, shouldShowHint: $shouldShowHint, hintIcons.isEmpty: ${hintIcons.isEmpty}');
     return Scaffold(
       backgroundColor: widget.game.answer.backgroundColor ??
           const Color.fromRGBO(213, 204, 158, 1),
@@ -255,11 +254,10 @@ class _GameWidgetState extends State<GameWidget> {
   }
 
   bool get shouldShowHint {
-    print(
-        'tries: ${widget.game.tries}, whenToShowIcons: ${widget.game.answer.whenToShowIcons}, complete: ${widget.game.complete}, runCount: ${UserPrefs.instance.runCount}');
+    //print('tries: ${widget.game.tries}, whenToShowIcons: ${widget.game.answer.whenToShowIcons}, complete: ${widget.game.complete}, runCount: ${UserPrefs.instance.runCount}');
     return (widget.game.tries > widget.game.answer.whenToShowIcons ||
         widget.game.complete ||
-        UserPrefs.instance.runCount < 5);
+        UserProperties.instance.runCount < 5);
   }
 
   ValueKey<String> get valueKey {

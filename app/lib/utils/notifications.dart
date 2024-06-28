@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 
 initializeNotifications() {
-  print('Initializing notifications');
+  //print('Initializing notifications');
   AwesomeNotifications().initialize('resource://drawable/ic_stat_no', [
     NotificationChannel(
         channelGroupKey: 'samvargani',
@@ -30,13 +30,13 @@ Future<bool> requestPermissions() async {
         await AwesomeNotifications().requestPermissionToSendNotifications();
     return pressedYes;
   } else {
-    print('Permissions already granted');
+    //print('Permissions already granted');
   }
   return true;
 }
 
 setupNotification() async {
-  print('setupNotification');
+  //print('setupNotification');
   bool r = await AwesomeNotifications().createNotification(
       schedule: NotificationCalendar(
           timeZone: AwesomeNotifications.localTimeZoneIdentifier,
@@ -50,7 +50,7 @@ setupNotification() async {
           channelKey: 'samvargani',
           title: LocaleKeys.notification_title.tr(),
           body: LocaleKeys.notification_message.tr()));
-  print(r);
+  //print(r);
 }
 
 Future<String> testnotification() async {

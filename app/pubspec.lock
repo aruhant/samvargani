@@ -162,7 +162,7 @@ packages:
     source: hosted
     version: "2.1.2"
   easy_localization:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: easy_localization
       sha256: fa59bcdbbb911a764aa6acf96bbb6fa7a5cf8234354fc45ec1a43a0349ef0201
@@ -185,14 +185,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
-  expandable_menu:
-    dependency: "direct dev"
-    description:
-      name: expandable_menu
-      sha256: "0a56238179c7a177baabea1bac159547abb13c6b801179e53e4c9cf02057e032"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -404,7 +396,7 @@ packages:
     source: hosted
     version: "2.0.10+1"
   flutter_test:
-    dependency: "direct dev"
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -477,6 +469,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.14"
+  jiffy:
+    dependency: "direct main"
+    description:
+      name: jiffy
+      sha256: "3497caaa36d36a29033e66803c9739ce6bccbc7e241ca46070f76ee9e6f6eb0c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.1"
   json_annotation:
     dependency: transitive
     description:

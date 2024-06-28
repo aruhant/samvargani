@@ -7,7 +7,7 @@ import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/models/line.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/widgets/line_widget.dart';
@@ -32,7 +32,7 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
     Game t = Game.load(answer: tutorialWords[0]);
     t.addGuess('समझ');
     t.addGuess('तनय');
-    UserPrefs.instance.saveGame(t);
+    UserProperties.instance.saveGame(t);
   }
 
   Widget _buildImage(String assetName, [double width = 350]) {

@@ -1,14 +1,13 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:paheli/models/answer.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:paheli/models/user_prefs.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 
 class WotD {
-  static final List<String> monthsInString = [
+  static final List<String> nameOfMonths = [
     LocaleKeys.dailyGame_months_1.tr(),
     LocaleKeys.dailyGame_months_2.tr(),
     LocaleKeys.dailyGame_months_3.tr(),
@@ -59,7 +58,9 @@ class WotD {
   static int get day {
     return DateTime.now()
         .subtract(Duration(
-            hours: hour, minutes: minute, days: -UserPrefs.instance.timeDelta))
+            hours: hour,
+            minutes: minute,
+            days: -UserProperties.instance.timeDelta))
         .day;
   }
 
@@ -69,22 +70,25 @@ class WotD {
         .day;
   }
 
-  static String month([int delta = 0]) => monthsInString[
-      (DateTime.now().subtract(Duration(hours: hour, minutes: minute)).month) -
-          1 +
-          delta];
+  static List<String>? getDayAndMonthForTitle(int? day) {
+    if (day == null) return null;
 
-  static String get yesterdayMonth => monthsInString[(DateTime.now()
-          .subtract(Duration(hours: hour, minutes: minute, days: 1))
-          .month) -
-      1];
-  static makeTitle(int day) {
     if ((DateTime.now().day - day) > 15) {
-      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month(1)]);
-    } else if ((DateTime.now().day - day) < -15)
-      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month(-1)]);
-    else
-      return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month()]);
+      DateTime now = DateTime.now();
+      String nextmonth = DateFormat.MMMM(UserProperties.instance.locale)
+          .format(now.copyWith(month: now.month + 1));
+      return [day.toString(), nextmonth];
+    } else if ((DateTime.now().day - day) < -15) {
+      DateTime now = DateTime.now();
+      String previousmonth = DateFormat.MMMM(UserProperties.instance.locale)
+          .format(now.copyWith(month: now.month - 1));
+      return [day.toString(), previousmonth];
+    } else {
+      String month = DateFormat.MMMM(UserProperties.instance.locale)
+          .format(DateTime.now());
+      return [day.toString(), month];
+      // return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
+    }
   }
 
   static Stream<WotD> listen() {
@@ -104,7 +108,6 @@ class WotD {
     return FirebaseDatabase.instance.ref('wotd').once().then((event) {
       Map<int, GameAnswer> answers = {};
       Map val = event.snapshot.value as Map;
-      print(val);
       for (String key
           in val.keys.where((element) => RegExp(r'^\d+$').hasMatch(element))) {
         GameAnswer answer = GameAnswer.fromJson(val[key], int.parse(key));
@@ -112,7 +115,7 @@ class WotD {
       }
       return WotD._internal(answers);
     }).catchError((e) {
-      print(e);
+      //print(e);
       return WotD._internal({});
     });
   }
