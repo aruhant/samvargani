@@ -120,7 +120,7 @@
     "practiceGame": {
         "level": "Level {}",
         "resetButton": "Give Up?",
-        "gameOver": "You have completed all the words. You have finished this game.",
+        "gameOver": "Congratulations!\nYou have completed all levels!\nStay tuned for more to come!",
         "dailyGameButton": "Daily Challenge"
     },
     "dailyGame": {
@@ -165,10 +165,14 @@
     },
     "leaderboard": {
         "title": "Leaderboard",
+        "practice":{
+            "subtitle": "Practice Levels",
+            "level": "Level {}"
+        },
         "tries": " tries",
         "name": "Enter your name",
         "loading": "Loading...",
-        "noScores": "No entries yet!\nBe the first to play!",
+        "noScores": "No entries yet!\nBe the first to be featured!",
         "noInternet": "Connect to the internet to view the leaderboard.",
         "alert": {
             "submit": "Submit",

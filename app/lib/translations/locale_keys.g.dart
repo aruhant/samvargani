@@ -143,6 +143,9 @@ abstract class  LocaleKeys {
   static const notification_message = 'notification.message';
   static const notification = 'notification';
   static const leaderboard_title = 'leaderboard.title';
+  static const leaderboard_practice_subtitle = 'leaderboard.practice.subtitle';
+  static const leaderboard_practice_level = 'leaderboard.practice.level';
+  static const leaderboard_practice = 'leaderboard.practice';
   static const leaderboard_tries = 'leaderboard.tries';
   static const leaderboard_name = 'leaderboard.name';
   static const leaderboard_loading = 'leaderboard.loading';

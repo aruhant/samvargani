@@ -15,19 +15,17 @@ import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:profanity_filter/profanity_filter.dart';
 
-class Leaderboard extends StatefulWidget {
+class DailyLeaderboard extends StatefulWidget {
   final int tries;
-  final bool hasCompletedDailyChallenge;
-  const Leaderboard(
-      {super.key,
-      required this.tries,
-      required this.hasCompletedDailyChallenge});
+  final bool hasCompletedDailyGame;
+  const DailyLeaderboard(
+      {super.key, required this.tries, required this.hasCompletedDailyGame});
   @override
-  State<Leaderboard> createState() => _LeaderboardState();
+  State<DailyLeaderboard> createState() => _DailyLeaderboardState();
 }
 
-class _LeaderboardState extends State<Leaderboard> {
-  List<LeaderboardEntry>? entries;
+class _DailyLeaderboardState extends State<DailyLeaderboard> {
+  List<DailyLeaderboardEntry>? entries;
 
   @override
   void initState() {
@@ -40,7 +38,7 @@ class _LeaderboardState extends State<Leaderboard> {
         : null);
   }
 
-  Stream<List<LeaderboardEntry>> listen() {
+  Stream<List<DailyLeaderboardEntry>> listen() {
     return FirebaseDatabase.instance
         .ref('leaderboard/${WotD.day}')
         .onValue
@@ -58,7 +56,7 @@ class _LeaderboardState extends State<Leaderboard> {
 
         if (val != null) {
           try {
-            LeaderboardEntry entry = LeaderboardEntry.fromJson(val);
+            DailyLeaderboardEntry entry = DailyLeaderboardEntry.fromJson(val);
             entries!.add(entry);
           } on Exception catch (e) {
             print("Error: $e");
@@ -208,7 +206,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 name = ProfanityFilter().censor(name);
                                 UserProperties.instance.setName(name);
                                 // add the user to the leaderboard
-                                if (widget.hasCompletedDailyChallenge) {
+                                if (widget.hasCompletedDailyGame) {
                                   FirebaseDatabase.instance
                                       .ref('leaderboard/${WotD.day}')
                                       .push()
@@ -236,7 +234,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                   name = ProfanityFilter().censor(name);
                                   UserProperties.instance.setName(name);
                                   // add the user to the leaderboard
-                                  if (widget.hasCompletedDailyChallenge) {
+                                  if (widget.hasCompletedDailyGame) {
                                     FirebaseDatabase.instance
                                         .ref('leaderboard/${WotD.day}')
                                         .push()
@@ -297,7 +295,7 @@ class _LeaderboardState extends State<Leaderboard> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: entries!.length,
                         itemBuilder: (context, index) {
-                          return LeaderboardEntryWidget(
+                          return DailyLeaderboardEntryWidget(
                               entry: entries![index], index: index);
                         },
                       )
@@ -321,14 +319,14 @@ class _LeaderboardState extends State<Leaderboard> {
   }
 }
 
-class LeaderboardEntryWidget extends StatelessWidget {
-  const LeaderboardEntryWidget({
+class DailyLeaderboardEntryWidget extends StatelessWidget {
+  const DailyLeaderboardEntryWidget({
     super.key,
     required this.index,
     required this.entry,
   });
 
-  final LeaderboardEntry entry;
+  final DailyLeaderboardEntry entry;
   final int index;
   @override
   Widget build(BuildContext context) {

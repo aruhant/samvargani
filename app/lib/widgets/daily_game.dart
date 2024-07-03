@@ -11,7 +11,7 @@ import 'package:paheli/utils/string.dart';
 import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
-import 'package:paheli/widgets/leaderboard.dart';
+import 'package:paheli/widgets/daily_leaderboard.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/yesterday.dart';
 import 'package:paheli/widgets/result_widget.dart';
@@ -134,7 +134,7 @@ class DailyGameState extends State<DailyGame> {
   // contains share button, leaderboard button and yesterday's word button
   Widget makeHeader(Game game, BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 10.0.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
@@ -208,9 +208,9 @@ class DailyGameState extends State<DailyGame> {
                   await showDialog(
                       context: context,
                       builder: (context) {
-                        return Leaderboard(
+                        return DailyLeaderboard(
                             tries: game.tries,
-                            hasCompletedDailyChallenge: game.complete);
+                            hasCompletedDailyGame: game.complete);
                       });
                 },
                 child: Padding(

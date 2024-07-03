@@ -1,17 +1,17 @@
-class LeaderboardEntry {
+class DailyLeaderboardEntry {
   final String name;
   final int score;
   final DateTime UTC;
   final DateTime local;
-  LeaderboardEntry({
+  DailyLeaderboardEntry({
     required this.name,
     required this.score,
     required this.UTC,
     required this.local,
   });
 
-  static LeaderboardEntry fromJson(Map val) {
-    return LeaderboardEntry(
+  static DailyLeaderboardEntry fromJson(Map val) {
+    return DailyLeaderboardEntry(
         name: val['name'],
         score: val['score'],
         // date might be stored as int or string
@@ -27,6 +27,29 @@ class LeaderboardEntry {
       'score': score,
       'UTC': UTC.toIso8601String(),
       'local': local.toIso8601String(),
+    };
+  }
+}
+
+class PracticeLeaderboardEntry {
+  final String name;
+  final int level;
+  PracticeLeaderboardEntry({
+    required this.name,
+    required this.level,
+  });
+
+  static PracticeLeaderboardEntry fromJson(Map val) {
+    return PracticeLeaderboardEntry(
+      name: val['name'],
+      level: val['level'],
+    );
+  }
+
+  Map toJson() {
+    return {
+      'name': name,
+      'level': level,
     };
   }
 }
