@@ -108,6 +108,7 @@ abstract class  LocaleKeys {
   static const practiceGame_dailyGameButton = 'practiceGame.dailyGameButton';
   static const practiceGame = 'practiceGame';
   static const dailyGame_loading = 'dailyGame.loading';
+  static const dailyGame_noInternet = 'dailyGame.noInternet';
   static const dailyGame_line1 = 'dailyGame.line1';
   static const dailyGame_line2 = 'dailyGame.line2';
   static const dailyGame_line3 = 'dailyGame.line3';
@@ -141,5 +142,16 @@ abstract class  LocaleKeys {
   static const notification_title = 'notification.title';
   static const notification_message = 'notification.message';
   static const notification = 'notification';
+  static const leaderboard_title = 'leaderboard.title';
+  static const leaderboard_tries = 'leaderboard.tries';
+  static const leaderboard_name = 'leaderboard.name';
+  static const leaderboard_loading = 'leaderboard.loading';
+  static const leaderboard_noScores = 'leaderboard.noScores';
+  static const leaderboard_noInternet = 'leaderboard.noInternet';
+  static const leaderboard_alert_submit = 'leaderboard.alert.submit';
+  static const leaderboard_alert_title = 'leaderboard.alert.title';
+  static const leaderboard_alert_message = 'leaderboard.alert.message';
+  static const leaderboard_alert = 'leaderboard.alert';
+  static const leaderboard = 'leaderboard';
 
 }

@@ -125,7 +125,8 @@
     },
     "dailyGame": {
         "loading": "Loading...",
-        "line1": "You have completed today's Daily Word Challenge!",
+        "noInternet": "Connect to the internet to play today's Daily Word.",
+        "line1": "You have completed today's Daily Word!",
         "line2": "New word in:",
         "line3": "In the meantime, try practice mode!",
         "button": "Practice Level {}",
@@ -156,10 +157,23 @@
     },
     "shareHelp": {
         "title": "Can you help me guess this Hindi word:",
-        "message": "{}\nCan you help me guess this {} letter Hindi word. I am playing today's Samvargani daily word challenge!\nhttps://aruhant.github.io/s/"
+        "message": "{}\nCan you help me guess this {} letter Hindi word. I am playing today's Samvargani Daily Word!\nhttps://aruhant.github.io/s/"
     },
     "notification": {
         "title": "A new challange awaits you!",
         "message": "Can you solve today's word?"
+    },
+    "leaderboard": {
+        "title": "Leaderboard",
+        "tries": " tries",
+        "name": "Enter your name",
+        "loading": "Loading...",
+        "noScores": "No entries yet!\nBe the first to play!",
+        "noInternet": "Connect to the internet to view the leaderboard.",
+        "alert": {
+            "submit": "Submit",
+            "title": "Enter your name",
+            "message":"You cannot change your name once submitted."
+        }
     }
 }

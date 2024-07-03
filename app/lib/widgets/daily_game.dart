@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +12,6 @@ import 'package:paheli/widgets/game_widget.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/widgets/help_share.dart';
 import 'package:paheli/widgets/leaderboard.dart';
-import 'package:paheli/widgets/loading.dart';
 import 'package:paheli/widgets/practice_game.dart';
 import 'package:paheli/widgets/yesterday.dart';
 import 'package:paheli/widgets/result_widget.dart';
@@ -121,7 +122,7 @@ class DailyGameState extends State<DailyGame> {
   @override
   Widget build(BuildContext context) {
     if (game == null) {
-      return Loading();
+      return DailyGameLoading();
     } else {
       return GameWidget(
           game: game!,
@@ -130,6 +131,7 @@ class DailyGameState extends State<DailyGame> {
     }
   }
 
+  // contains share button, leaderboard button and yesterday's word button
   Widget makeHeader(Game game, BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -199,6 +201,25 @@ class DailyGameState extends State<DailyGame> {
           ),
           Row(
             children: [
+              // Button to show leaderboard
+              MaterialButton(
+                minWidth: 0,
+                onPressed: () async {
+                  await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Leaderboard(
+                            tries: game.tries,
+                            hasCompletedDailyChallenge: game.complete);
+                      });
+                },
+                child: Padding(
+                    padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
+                    child: Icon(
+                      Icons.leaderboard,
+                      size: 22.sp,
+                    )),
+              ),
               // Button to show yesterday's word
               MaterialButton(
                 minWidth: 0,
@@ -222,25 +243,6 @@ class DailyGameState extends State<DailyGame> {
                     padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
                     child: Icon(
                       Icons.calendar_month,
-                      size: 22.sp,
-                    )),
-              ),
-              // Button to show leaderboard
-              MaterialButton(
-                minWidth: 0,
-                onPressed: () async {
-                  await showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Leaderboard(
-                            tries: game.tries,
-                            hasCompletedDailyChallenge: game.complete);
-                      });
-                },
-                child: Padding(
-                    padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 6.w),
-                    child: Icon(
-                      Icons.leaderboard,
                       size: 22.sp,
                     )),
               ),
@@ -365,6 +367,52 @@ class DailyGameState extends State<DailyGame> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class DailyGameLoading extends StatefulWidget {
+  @override
+  State<DailyGameLoading> createState() => _DailyGameLoadingState();
+}
+
+class _DailyGameLoadingState extends State<DailyGameLoading> {
+  bool showAdditionalMessage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Start a timer after 10 seconds to show the additional message
+    Timer(const Duration(seconds: 10), () {
+      if (mounted) {
+        setState(() {
+          showAdditionalMessage = true;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: const Color.fromARGB(255, 226, 149, 174),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          if (!showAdditionalMessage)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(LocaleKeys.dailyGame_loading.tr()),
+            ),
+          if (showAdditionalMessage)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(LocaleKeys.dailyGame_noInternet.tr()),
+            ),
+          const CircularProgressIndicator(),
         ],
       ),
     );

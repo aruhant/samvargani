@@ -1,5 +1,10 @@
+import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:filter_profanity_flutter/filter_profanity_flutter.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
@@ -7,7 +12,8 @@ import 'package:paheli/models/leaderboard_entry.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/models/wotd.dart';
-import 'package:paheli/widgets/loading.dart';
+import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:profanity_filter/profanity_filter.dart';
 
 class Leaderboard extends StatefulWidget {
   final int tries;
@@ -64,8 +70,6 @@ class _LeaderboardState extends State<Leaderboard> {
     });
   }
 
-  // return LeaderboardEntry._internal(entries);
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -85,113 +89,210 @@ class _LeaderboardState extends State<Leaderboard> {
         padding: EdgeInsets.only(top: 8.0.w),
         margin: EdgeInsets.all(10.0.w),
         child: SingleChildScrollView(
-          child: entries == null
-              ? Loading()
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Row(
-                        children: [
-                          SizedBox(width: 286.0.w, height: 0.0.w),
-                          IconButton(
-                            icon: Icon(Icons.close),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Row(
+              children: [
+                SizedBox(width: 286.0.w, height: 0.0.w),
+                IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
 
-                      // crown icon
-                      LineIcon(
-                        LineIcons.crown,
-                        size: 65.sp,
-                        color: Color.fromARGB(255, 93, 67, 95),
-                      ),
-                      Text(
-                        'Leaderboard',
-                        style: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 93, 67, 95),
-                        ),
-                      ),
-                      Text(
-                        WotD.getDayAndMonthForTitle(WotD.day)?.join(' ') ?? '',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          color: Color.fromARGB(255, 93, 67, 95),
-                        ),
-                      ),
-                      if (UserProperties.instance.name == '')
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16.0.w),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 14.0.w, horizontal: 16.0.w),
-                              backgroundColor: Color.fromARGB(255, 232, 168, 6),
-                              foregroundColor: Colors.black,
+            // crown icon
+            LineIcon(
+              LineIcons.crown,
+              size: 65.sp,
+              color: Color.fromARGB(255, 93, 67, 95),
+            ),
+            Text(
+              LocaleKeys.leaderboard_title.tr(),
+              style: TextStyle(
+                fontSize: 30.sp,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 93, 67, 95),
+              ),
+            ),
+            Text(
+              WotD.getDayAndMonthForTitle(WotD.day)?.join(' ') ?? '',
+              style: TextStyle(
+                fontSize: 20.sp,
+                color: Color.fromARGB(255, 93, 67, 95),
+              ),
+            ),
+            if (UserProperties.instance.name == '')
+              Padding(
+                padding: EdgeInsets.only(bottom: 16.0.w, top: 20.0.w),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 15.0.w, horizontal: 12.0.w),
+                    backgroundColor: Color.fromARGB(255, 232, 168, 6),
+                    foregroundColor: Colors.black,
+                  ),
+                  onPressed: () {
+                    // input name using keyboard
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        String name = '';
+                        return AlertDialog(
+                          // add border
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0.w),
+                            side: BorderSide(
+                              color: Color.fromARGB(255, 171, 121, 4),
+                              width: 6.w,
                             ),
-                            onPressed: () {
-                              // input name using keyboard
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  String name = '';
-                                  return AlertDialog(
-                                    title: Text('Enter your name'),
-                                    content: TextField(
-                                      onChanged: (value) {
-                                        name = value;
-                                      },
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          if (name.trim().isNotEmpty) {
-                                            UserProperties.instance
-                                                .setName(name);
-                                            // add the user to the leaderboard
-                                            if (widget
-                                                .hasCompletedDailyChallenge) {
-                                              FirebaseDatabase.instance
-                                                  .ref(
-                                                      'leaderboard/${WotD.day}')
-                                                  .push()
-                                                  .set({
-                                                'name': name,
-                                                'score': widget.tries,
-                                                'UTC': ServerValue.timestamp,
-                                                'local':
-                                                    DateTime.now().toString(),
-                                              });
-                                            }
-                                            print(ServerValue.timestamp);
-                                            // check
-                                            print(
-                                                "UserProperties.instance.name: ${UserProperties.instance.name}");
-                                            Navigator.pop(context);
-                                          }
-                                        },
-                                        child: Text('Submit'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            child: Text(
-                              "Add your name to the leaderboard",
-                              style: TextStyle(
-                                fontSize: 12.sp,
+                          ),
+                          backgroundColor: Color.fromARGB(255, 228, 182, 107),
+                          title: Column(
+                            children: [
+                              // Text(LocaleKeys.leaderboard_alert_title.tr(),
+                              //     textAlign: TextAlign.center,
+                              //     style: TextStyle(
+                              //       fontSize: 14.sp,
+                              //       color: Color.fromARGB(255, 93, 67, 95),
+                              //     )),
+                              Text(LocaleKeys.leaderboard_alert_message.tr(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    color: Color.fromARGB(255, 93, 67, 95),
+                                  )),
+                            ],
+                          ),
+                          // message
+
+                          content: TextField(
+                            // a max of 20 characters
+                            maxLength: 30,
+                            // do not show the character counter
+                            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                            buildCounter: (context,
+                                    {required currentLength,
+                                    required isFocused,
+                                    required maxLength}) =>
+                                null,
+
+                            // reduce distance between text and line
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Color.fromARGB(255, 93, 67, 95),
+                            ),
+                            textAlignVertical: TextAlignVertical.top,
+                            textAlign: TextAlign.center,
+
+                            decoration: InputDecoration(
+                              fillColor: Color.fromARGB(22, 137, 106, 38),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0.w, horizontal: 0.0.w),
+                              hintStyle: TextStyle(
+                                fontSize: 14.sp,
                                 color: Color.fromARGB(255, 93, 67, 95),
                               ),
+                              hintText: LocaleKeys.leaderboard_alert_title.tr(),
                             ),
+
+                            onChanged: (value) {
+                              name = value;
+                            },
+                            onSubmitted: (value) {
+                              // make sure name isnt empty and isnt profane
+                              if (name.trim().isNotEmpty &&
+                                  !hasProfanity(name)) {
+                                name = ProfanityFilter().censor(name);
+                                UserProperties.instance.setName(name);
+                                // add the user to the leaderboard
+                                if (widget.hasCompletedDailyChallenge) {
+                                  FirebaseDatabase.instance
+                                      .ref('leaderboard/${WotD.day}')
+                                      .push()
+                                      .set({
+                                    'name': name,
+                                    'score': widget.tries,
+                                    'UTC': ServerValue.timestamp,
+                                    'local': DateTime.now().toString(),
+                                  });
+                                }
+                                setState(() {});
+                                print(ServerValue.timestamp);
+                                // check
+                                print(
+                                    "UserProperties.instance.name: ${UserProperties.instance.name}");
+                                Navigator.pop(context);
+                              }
+                            },
                           ),
-                        ),
-                      SizedBox(height: 20.0.w),
-                      ListView.builder(
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                if (name.trim().isNotEmpty &&
+                                    !hasProfanity(name)) {
+                                  name = ProfanityFilter().censor(name);
+                                  UserProperties.instance.setName(name);
+                                  // add the user to the leaderboard
+                                  if (widget.hasCompletedDailyChallenge) {
+                                    FirebaseDatabase.instance
+                                        .ref('leaderboard/${WotD.day}')
+                                        .push()
+                                        .set({
+                                      'name': name,
+                                      'score': widget.tries,
+                                      'UTC': ServerValue.timestamp,
+                                      'local': DateTime.now().toString(),
+                                    });
+                                  }
+                                  setState(() {});
+                                  print(ServerValue.timestamp);
+                                  // check
+                                  print(
+                                      "UserProperties.instance.name: ${UserProperties.instance.name}");
+                                  Navigator.pop(context);
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                    LocaleKeys.leaderboard_alert_submit.tr(),
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Color.fromARGB(255, 93, 67, 95),
+                                    )),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Text(
+                    LocaleKeys.leaderboard_name.tr(),
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Color.fromARGB(255, 93, 67, 95),
+                    ),
+                  ),
+                ),
+              ),
+            SizedBox(height: 20.0.w),
+            entries == null
+                ? LeaderboardLoading()
+                : entries!.isEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 220.0),
+                        child: Text(LocaleKeys.leaderboard_noScores.tr(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              color: Color.fromARGB(255, 93, 67, 95),
+                            )),
+                      )
+                    : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: entries!.length,
@@ -200,7 +301,7 @@ class _LeaderboardState extends State<Leaderboard> {
                               entry: entries![index], index: index);
                         },
                       )
-                    ]),
+          ]),
         ),
         //   bottomNavigationBar: TextField(
         //     decoration: InputDecoration(
@@ -268,11 +369,12 @@ class LeaderboardEntryWidget extends StatelessWidget {
             ),
           ),
           title: Text(entry.name),
-          trailing: Text(entry.score.toString() + " tries",
-              style: TextStyle(
-                fontSize: 12.sp,
-                color: Color.fromARGB(255, 93, 67, 95),
-              )),
+          trailing:
+              Text(entry.score.toString() + LocaleKeys.leaderboard_tries.tr(),
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: Color.fromARGB(255, 93, 67, 95),
+                  )),
           subtitle: Text(
             Jiffy.parseFromDateTime(entry.local).fromNow(),
             // entries[index].date.toString(),
@@ -290,5 +392,61 @@ class LeaderboardEntryWidget extends StatelessWidget {
       );
     }
     return Container();
+  }
+}
+
+class LeaderboardLoading extends StatefulWidget {
+  @override
+  State<LeaderboardLoading> createState() => _LeaderboardLoadingState();
+}
+
+class _LeaderboardLoadingState extends State<LeaderboardLoading> {
+  bool showAdditionalMessage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Start a timer after 10 seconds to show the additional message
+    Timer(const Duration(seconds: 10), () {
+      if (mounted) {
+        setState(() {
+          showAdditionalMessage = true;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        SizedBox(height: 200.0.w),
+        if (!showAdditionalMessage)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(LocaleKeys.leaderboard_loading.tr(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  color: Color.fromARGB(255, 93, 67, 95),
+                )),
+          ),
+        if (showAdditionalMessage)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AutoSizeText(LocaleKeys.leaderboard_noInternet.tr(),
+                maxLines: 1,
+                maxFontSize: 14,
+                minFontSize: 10,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 93, 67, 95),
+                )),
+          ),
+        const CircularProgressIndicator(),
+      ],
+    );
   }
 }
