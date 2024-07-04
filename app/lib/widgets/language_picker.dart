@@ -17,7 +17,7 @@ class LanguagePicker extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Select Language / भाषा चुनें',
+                'Select Language/\nभाषा चुनें',
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.black,

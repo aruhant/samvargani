@@ -148,7 +148,7 @@ class PracticeGameState extends State<PracticeGame> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 170.w, height: 0),
+                  SizedBox(width: 120.w, height: 0),
                   MaterialButton(
                     minWidth: 0,
                     onPressed: () async {

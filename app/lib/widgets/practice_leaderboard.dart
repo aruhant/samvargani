@@ -14,7 +14,7 @@ import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:profanity_filter/profanity_filter.dart';
 
-const minLevelForLeaderboard = 5;
+const minLevelForLeaderboard = 4;
 
 class PracticeLeaderboard extends StatefulWidget {
   final int? triesToCompleteDailyGame;
