@@ -14,7 +14,8 @@ import 'package:easy_localization/easy_localization.dart';
 import '../models/user_properties.dart';
 
 class PracticeGame extends StatefulWidget {
-  const PracticeGame({super.key});
+  final int? triesToCompleteDailyGame;
+  const PracticeGame({super.key, this.triesToCompleteDailyGame});
   @override
   PracticeGameState createState() => PracticeGameState();
 }
@@ -147,14 +148,17 @@ class PracticeGameState extends State<PracticeGame> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 130.w, height: 0),
+                  SizedBox(width: 170.w, height: 0),
                   MaterialButton(
                     minWidth: 0,
                     onPressed: () async {
                       await showDialog(
                         context: context,
                         builder: (context) {
-                          return PracticeLeaderboard();
+                          return PracticeLeaderboard(
+                            triesToCompleteDailyGame:
+                                widget.triesToCompleteDailyGame,
+                          );
                         },
                       );
                     },

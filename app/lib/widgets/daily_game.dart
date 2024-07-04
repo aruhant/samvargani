@@ -344,7 +344,8 @@ class DailyGameState extends State<DailyGame> {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const PracticeGame()));
+                    builder: (context) =>
+                        PracticeGame(triesToCompleteDailyGame: game!.tries)));
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(

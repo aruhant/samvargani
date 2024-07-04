@@ -13,6 +13,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
+import 'package:paheli/widgets/practice_leaderboard.dart';
 import 'package:profanity_filter/profanity_filter.dart';
 
 class DailyLeaderboard extends StatefulWidget {
@@ -91,7 +92,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Row(
               children: [
-                SizedBox(width: 286.0.w, height: 0.0.w),
+                SizedBox(width: 276.0.w, height: 0.0.w),
                 IconButton(
                   icon: Icon(Icons.close),
                   onPressed: () {
@@ -104,13 +105,13 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
             // crown icon
             LineIcon(
               LineIcons.crown,
-              size: 65.sp,
+              size: 80.sp,
               color: Color.fromARGB(255, 93, 67, 95),
             ),
             Text(
               LocaleKeys.leaderboard_title.tr(),
               style: TextStyle(
-                fontSize: 30.sp,
+                fontSize: 40.sp,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 93, 67, 95),
               ),
@@ -118,13 +119,14 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
             Text(
               WotD.getDayAndMonthForTitle(WotD.day)?.join(' ') ?? '',
               style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: 27.sp,
                 color: Color.fromARGB(255, 93, 67, 95),
               ),
             ),
+            SizedBox(height: 35.0.w),
             if (UserProperties.instance.name == '')
               Padding(
-                padding: EdgeInsets.only(bottom: 16.0.w, top: 20.0.w),
+                padding: EdgeInsets.only(bottom: 6.0.w, top: 5.0.w),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
@@ -133,13 +135,11 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                     foregroundColor: Colors.black,
                   ),
                   onPressed: () {
-                    // input name using keyboard
                     showDialog(
                       context: context,
                       builder: (context) {
                         String name = '';
                         return AlertDialog(
-                          // add border
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0.w),
                             side: BorderSide(
@@ -159,7 +159,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                               Text(LocaleKeys.leaderboard_alert_message.tr(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 18.sp,
                                     color: Color.fromARGB(255, 93, 67, 95),
                                   )),
                             ],
@@ -190,8 +190,8 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0.w, horizontal: 0.0.w),
                               hintStyle: TextStyle(
-                                fontSize: 14.sp,
-                                color: Color.fromARGB(255, 93, 67, 95),
+                                fontSize: 16.sp,
+                                color: Color.fromARGB(146, 93, 67, 95),
                               ),
                               hintText: LocaleKeys.leaderboard_alert_title.tr(),
                             ),
@@ -215,6 +215,18 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                                     'score': widget.tries,
                                     'UTC': ServerValue.timestamp,
                                     'local': DateTime.now().toString(),
+                                  });
+                                }
+                                // also add to the practice leaderboard
+                                if (UserProperties.instance.practiceGameIndex >
+                                    minLevelForLeaderboard) {
+                                  FirebaseDatabase.instance
+                                      .ref('leaderboard/practice')
+                                      .push()
+                                      .set({
+                                    'name': UserProperties.instance.name,
+                                    'level': UserProperties
+                                        .instance.practiceGameIndex
                                   });
                                 }
                                 setState(() {});
@@ -245,6 +257,18 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                                       'local': DateTime.now().toString(),
                                     });
                                   }
+                                  if (UserProperties
+                                          .instance.practiceGameIndex >
+                                      minLevelForLeaderboard) {
+                                    FirebaseDatabase.instance
+                                        .ref('leaderboard/practice')
+                                        .push()
+                                        .set({
+                                      'name': UserProperties.instance.name,
+                                      'level': UserProperties
+                                          .instance.practiceGameIndex
+                                    });
+                                  }
                                   setState(() {});
                                   print(ServerValue.timestamp);
                                   // check
@@ -258,7 +282,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                                 child: Text(
                                     LocaleKeys.leaderboard_alert_submit.tr(),
                                     style: TextStyle(
-                                      fontSize: 12.sp,
+                                      fontSize: 14.sp,
                                       color: Color.fromARGB(255, 93, 67, 95),
                                     )),
                               ),
@@ -271,18 +295,17 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                   child: Text(
                     LocaleKeys.leaderboard_name.tr(),
                     style: TextStyle(
-                      fontSize: 14.sp,
+                      fontSize: 19.sp,
                       color: Color.fromARGB(255, 93, 67, 95),
                     ),
                   ),
                 ),
               ),
-            SizedBox(height: 20.0.w),
             entries == null
                 ? LeaderboardLoading()
                 : entries!.isEmpty
                     ? Padding(
-                        padding: const EdgeInsets.only(top: 220.0),
+                        padding: const EdgeInsets.only(top: 180.0),
                         child: Text(LocaleKeys.leaderboard_noScores.tr(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -359,8 +382,9 @@ class DailyLeaderboardEntryWidget extends StatelessWidget {
               child: Text(
                 (index + 1).toString(),
                 style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 17.sp,
+                  fontWeight:
+                      (index + 1) <= 3 ? FontWeight.bold : FontWeight.normal,
                   color: Color.fromARGB(255, 93, 67, 95),
                 ),
               ),
@@ -370,7 +394,7 @@ class DailyLeaderboardEntryWidget extends StatelessWidget {
           trailing:
               Text(entry.score.toString() + LocaleKeys.leaderboard_tries.tr(),
                   style: TextStyle(
-                    fontSize: 12.sp,
+                    fontSize: 14.sp,
                     color: Color.fromARGB(255, 93, 67, 95),
                   )),
           subtitle: Text(
@@ -379,11 +403,11 @@ class DailyLeaderboardEntryWidget extends StatelessWidget {
           ),
           titleTextStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 14.sp,
+            fontSize: 16.sp,
             color: Color.fromARGB(255, 93, 67, 95),
           ),
           subtitleTextStyle: TextStyle(
-            fontSize: 10.sp,
+            fontSize: 12.sp,
             color: Color.fromARGB(255, 93, 67, 95),
           ),
         ),
@@ -420,7 +444,7 @@ class _LeaderboardLoadingState extends State<LeaderboardLoading> {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        SizedBox(height: 200.0.w),
+        SizedBox(height: 120.0.w),
         if (!showAdditionalMessage)
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -435,9 +459,7 @@ class _LeaderboardLoadingState extends State<LeaderboardLoading> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: AutoSizeText(LocaleKeys.leaderboard_noInternet.tr(),
-                maxLines: 1,
-                maxFontSize: 14,
-                minFontSize: 10,
+                minFontSize: 14,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color.fromARGB(255, 93, 67, 95),

@@ -10,13 +10,15 @@ import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:paheli/models/leaderboard_entry.dart';
 import 'package:paheli/models/user_properties.dart';
+import 'package:paheli/models/wotd.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:profanity_filter/profanity_filter.dart';
 
 const minLevelForLeaderboard = 5;
 
 class PracticeLeaderboard extends StatefulWidget {
-  const PracticeLeaderboard({super.key});
+  final int? triesToCompleteDailyGame;
+  const PracticeLeaderboard({super.key, this.triesToCompleteDailyGame});
   @override
   State<PracticeLeaderboard> createState() => _PracticeLeaderboardState();
 }
@@ -30,7 +32,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
     listen().listen((g) => mounted
         ? setState(() {
             entries = g;
-            entries!.sort((a, b) => a.level.compareTo(b.level));
+            entries!.sort((a, b) => b.level.compareTo(a.level));
           })
         : null);
   }
@@ -89,7 +91,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Row(
               children: [
-                SizedBox(width: 286.0.w, height: 0.0.w),
+                SizedBox(width: 276.0.w, height: 0.0.w),
                 IconButton(
                   icon: Icon(Icons.close),
                   onPressed: () {
@@ -102,13 +104,13 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
             // crown icon
             LineIcon(
               LineIcons.crown,
-              size: 65.sp,
+              size: 80.sp,
               color: Color.fromARGB(255, 93, 67, 95),
             ),
             Text(
               LocaleKeys.leaderboard_title.tr(),
               style: TextStyle(
-                fontSize: 30.sp,
+                fontSize: 40.sp,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 93, 67, 95),
               ),
@@ -116,13 +118,14 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
             Text(
               LocaleKeys.leaderboard_practice_subtitle.tr(),
               style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: 27.sp,
                 color: Color.fromARGB(255, 93, 67, 95),
               ),
             ),
+            SizedBox(height: 35.0.w),
             if (UserProperties.instance.name == '')
               Padding(
-                padding: EdgeInsets.only(bottom: 16.0.w, top: 20.0.w),
+                padding: EdgeInsets.only(bottom: 6.0.w, top: 5.0.w),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
@@ -157,7 +160,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                               Text(LocaleKeys.leaderboard_alert_message.tr(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 18.sp,
                                     color: Color.fromARGB(255, 93, 67, 95),
                                   )),
                             ],
@@ -183,7 +186,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0.w, horizontal: 0.0.w),
                               hintStyle: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 16.sp,
                                 color: Color.fromARGB(255, 93, 67, 95),
                               ),
                               hintText: LocaleKeys.leaderboard_alert_title.tr(),
@@ -208,6 +211,15 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                         .instance.practiceGameIndex
                                   });
                                 }
+                                FirebaseDatabase.instance
+                                    .ref('leaderboard/${WotD.day}')
+                                    .push()
+                                    .set({
+                                  'name': name,
+                                  'score': widget.triesToCompleteDailyGame,
+                                  'UTC': ServerValue.timestamp,
+                                  'local': DateTime.now().toString(),
+                                });
                                 setState(() {});
                                 print(ServerValue.timestamp);
                                 // check
@@ -237,6 +249,15 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                           .instance.practiceGameIndex,
                                     });
                                   }
+                                  FirebaseDatabase.instance
+                                      .ref('leaderboard/${WotD.day}')
+                                      .push()
+                                      .set({
+                                    'name': name,
+                                    'score': widget.triesToCompleteDailyGame,
+                                    'UTC': ServerValue.timestamp,
+                                    'local': DateTime.now().toString(),
+                                  });
                                   setState(() {});
                                   print(ServerValue.timestamp);
                                   // check
@@ -250,7 +271,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                 child: Text(
                                     LocaleKeys.leaderboard_alert_submit.tr(),
                                     style: TextStyle(
-                                      fontSize: 12.sp,
+                                      fontSize: 14.sp,
                                       color: Color.fromARGB(255, 93, 67, 95),
                                     )),
                               ),
@@ -263,18 +284,17 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                   child: Text(
                     LocaleKeys.leaderboard_name.tr(),
                     style: TextStyle(
-                      fontSize: 14.sp,
+                      fontSize: 19.sp,
                       color: Color.fromARGB(255, 93, 67, 95),
                     ),
                   ),
                 ),
               ),
-            SizedBox(height: 20.0.w),
             entries == null
                 ? LeaderboardLoading()
                 : entries!.isEmpty
                     ? Padding(
-                        padding: const EdgeInsets.only(top: 220.0),
+                        padding: const EdgeInsets.only(top: 180.0),
                         child: Text(LocaleKeys.leaderboard_noScores.tr(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -332,7 +352,7 @@ class PracticeLeaderboardEntryWidget extends StatelessWidget {
         color: Color.fromARGB(255, 215, 163, 78),
       ),
       child: ListTile(
-        minTileHeight: 35.0.w,
+        minTileHeight: 42.0.w,
         // decrease padding
         dense: false,
         // add a list number
@@ -343,14 +363,15 @@ class PracticeLeaderboardEntryWidget extends StatelessWidget {
                 Border.all(color: Color.fromARGB(255, 93, 67, 95), width: 0.w),
             color: Color.fromARGB(136, 238, 182, 91),
           ),
-          width: 20.0.w,
-          height: 20.0.w,
+          width: 25.0.w,
+          height: 25.0.w,
           child: Center(
             child: Text(
               (index + 1).toString(),
               style: TextStyle(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.bold,
+                fontSize: 19.sp,
+                fontWeight:
+                    (index + 1) <= 3 ? FontWeight.bold : FontWeight.normal,
                 color: Color.fromARGB(255, 93, 67, 95),
               ),
             ),
@@ -362,16 +383,16 @@ class PracticeLeaderboardEntryWidget extends StatelessWidget {
               entry.level.toString(),
             ]),
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize: 16.sp,
               color: Color.fromARGB(255, 93, 67, 95),
             )),
         titleTextStyle: TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: 14.sp,
+          fontSize: 18.sp,
           color: Color.fromARGB(255, 93, 67, 95),
         ),
         subtitleTextStyle: TextStyle(
-          fontSize: 10.sp,
+          fontSize: 12.sp,
           color: Color.fromARGB(255, 93, 67, 95),
         ),
       ),
@@ -406,7 +427,7 @@ class _LeaderboardLoadingState extends State<LeaderboardLoading> {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        SizedBox(height: 200.0.w),
+        SizedBox(height: 120.0.w),
         if (!showAdditionalMessage)
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -421,9 +442,7 @@ class _LeaderboardLoadingState extends State<LeaderboardLoading> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: AutoSizeText(LocaleKeys.leaderboard_noInternet.tr(),
-                maxLines: 1,
-                maxFontSize: 14,
-                minFontSize: 10,
+                minFontSize: 14,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color.fromARGB(255, 93, 67, 95),
