@@ -68,7 +68,7 @@ class PracticeGameState extends State<PracticeGame> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -127,25 +127,28 @@ class PracticeGameState extends State<PracticeGame> {
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       backgroundColor: Colors.orangeAccent,
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(6.0.w),
                     ),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const DailyGame()));
                     },
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.arrow_back,
-                          size: 18.sp,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
-                            style: TextStyle(
-                                fontSize: 14.sp, color: Colors.white)),
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.all(6.0.w),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            size: 18.sp,
+                          ),
+                          SizedBox(width: 8.w),
+                          Text(LocaleKeys.practiceGame_dailyGameButton.tr(),
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Colors.white)),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(width: 120.w, height: 0),

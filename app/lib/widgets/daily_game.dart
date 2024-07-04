@@ -355,7 +355,7 @@ class DailyGameState extends State<DailyGame> {
                 padding: const EdgeInsets.all(6),
               ),
               child: Padding(
-                padding: EdgeInsets.all(8.w),
+                padding: EdgeInsets.all(6.w),
                 child: Text(
                   LocaleKeys.dailyGame_button.tr(args: [
                     (UserProperties.instance.practiceGameIndex + 1).toString()
