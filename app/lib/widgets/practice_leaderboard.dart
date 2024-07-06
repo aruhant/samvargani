@@ -53,7 +53,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
         print(
             "val: $val"); // "val: {name: test, score: 0, date: 2021-09-01 00:00:00}
 
-        if (val != null) {
+        if (val != null && val is Map) {
           try {
             PracticeLeaderboardEntry entry =
                 PracticeLeaderboardEntry.fromJson(val);
@@ -313,7 +313,6 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                       )
           ]),
         ),
-  
       ),
     );
   }

@@ -55,8 +55,9 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
         print(
             "val: $val"); // "val: {name: test, score: 0, date: 2021-09-01 00:00:00}
 
-        if (val != null) {
+        if (val != null && val is Map) {
           try {
+            print("val: $val");
             DailyLeaderboardEntry entry = DailyLeaderboardEntry.fromJson(val);
             entries!.add(entry);
           } on Exception catch (e) {
@@ -324,7 +325,6 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                       )
           ]),
         ),
- 
       ),
     );
   }
