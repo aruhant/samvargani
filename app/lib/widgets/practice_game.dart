@@ -47,7 +47,9 @@ class PracticeGameState extends State<PracticeGame> {
     // write to leaderboard
     if (UserProperties.instance.name.trim().isNotEmpty &&
         UserProperties.instance.practiceGameIndex > minLevelForLeaderboard) {
-      FirebaseDatabase.instance.ref('leaderboard/practice').push().set({
+      FirebaseDatabase.instance
+          .ref('leaderboard/practice/${UserProperties.instance.uid}')
+          .set({
         'name': UserProperties.instance.name,
         'level': UserProperties.instance.practiceGameIndex
       });

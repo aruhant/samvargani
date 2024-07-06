@@ -203,8 +203,8 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                 if (UserProperties.instance.practiceGameIndex >
                                     minLevelForLeaderboard) {
                                   FirebaseDatabase.instance
-                                      .ref('leaderboard/practice')
-                                      .push()
+                                      .ref(
+                                          'leaderboard/practice/${UserProperties.instance.uid}')
                                       .set({
                                     'name': name,
                                     'level': UserProperties
@@ -212,8 +212,8 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                   });
                                 }
                                 FirebaseDatabase.instance
-                                    .ref('leaderboard/${WotD.day}')
-                                    .push()
+                                    .ref(
+                                        'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
                                     .set({
                                   'name': name,
                                   'score': widget.triesToCompleteDailyGame,
@@ -241,8 +241,8 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                           .instance.practiceGameIndex >
                                       minLevelForLeaderboard) {
                                     FirebaseDatabase.instance
-                                        .ref('leaderboard/practice')
-                                        .push()
+                                        .ref(
+                                            'leaderboard/practice/${UserProperties.instance.uid}')
                                         .set({
                                       'name': name,
                                       'level': UserProperties
@@ -250,8 +250,8 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                     });
                                   }
                                   FirebaseDatabase.instance
-                                      .ref('leaderboard/${WotD.day}')
-                                      .push()
+                                      .ref(
+                                          'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
                                       .set({
                                     'name': name,
                                     'score': widget.triesToCompleteDailyGame,
@@ -313,19 +313,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                       )
           ]),
         ),
-        //   bottomNavigationBar: TextField(
-        //     decoration: InputDecoration(
-        //       hintText: 'Enter your name',
-        //     ),
-        //     onSubmitted: (name) {
-        //       // add the user to the leaderboard
-        //       FirebaseDatabase.instance.ref('leaderboard').push().set({
-        //         'name': name,
-        //         'score': 0,
-        //         'date': ServerValue.timestamp,
-        //       });
-        //     },
-        //   ),
+  
       ),
     );
   }

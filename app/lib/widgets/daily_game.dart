@@ -94,7 +94,7 @@ class DailyGameState extends State<DailyGame> {
   dailyGameOnSuccess(GameResult result) async {
     if (UserProperties.instance.name != '') {
       // write to leaderboard
-      FirebaseDatabase.instance.ref('leaderboard/${WotD.day}').push().set({
+      FirebaseDatabase.instance.ref('leaderboard/${WotD.day}/${UserProperties.instance.uid}').set({
         'name': UserProperties.instance.name,
         'score': result.tries,
         'UTC': ServerValue.timestamp,

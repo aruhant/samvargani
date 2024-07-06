@@ -4,6 +4,7 @@ import 'package:paheli/models/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:uuid/uuid.dart';
 
 class UserProperties {
   final bool _darkMode;
@@ -14,6 +15,7 @@ class UserProperties {
   int _timeDelta;
   int _tooltipsPressed;
   String _locale = 'en';
+  String _uid = '';
   String _name = '';
   final SharedPreferences _sharedPrefs;
   UserProperties({
@@ -26,6 +28,7 @@ class UserProperties {
     required int timeDelta,
     required int tutorialIndex,
     required String name,
+    required String uid,
   })  : _initState = initState,
         _darkMode = darkMode,
         _practiceGameIndex = practiceGameIndex,
@@ -34,6 +37,7 @@ class UserProperties {
         _timeDelta = timeDelta,
         _tooltipsPressed = tooltipsPressed,
         _tutorialIndex = tutorialIndex,
+        _uid = uid,
         _name = name;
 
   static UserProperties? _instance;
@@ -47,6 +51,7 @@ class UserProperties {
   int get runCount => _runCount;
   int get timeDelta => _timeDelta;
   String get locale => _locale;
+  String get uid => _uid;
   String get name => _name;
 
   static Future<UserProperties> init() async {
@@ -61,8 +66,10 @@ class UserProperties {
           tooltipsPressed: sharedPrefs.getInt('tooltipsPressed') ?? 0,
           tutorialIndex: sharedPrefs.getInt('tutorialIndex') ?? 0,
           timeDelta: sharedPrefs.getInt('timeDelta') ?? 0,
+          uid: sharedPrefs.getString('uid') ?? const Uuid().v4(),
           sharedPrefs: sharedPrefs,
           name: sharedPrefs.getString('name') ?? '');
+      sharedPrefs.setString('uid', _instance!._uid);
     }
     return _instance!;
   }
