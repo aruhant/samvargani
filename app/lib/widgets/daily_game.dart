@@ -44,7 +44,8 @@ class DailyGameState extends State<DailyGame> {
             game = Game.load(
                 answer: g.answer,
                 onSuceess: dailyGameOnSuccess,
-                onGuess: onGuess);
+                onGuess: onGuess,
+                gameType: GameType.daily);
           })
         : null);
 
@@ -60,7 +61,8 @@ class DailyGameState extends State<DailyGame> {
                 game = Game.load(
                     answer: g.answer,
                     onSuceess: dailyGameOnSuccess,
-                    onGuess: onGuess);
+                    onGuess: onGuess,
+                    gameType: GameType.daily);
               }));
         }));
   }
@@ -94,7 +96,9 @@ class DailyGameState extends State<DailyGame> {
   dailyGameOnSuccess(GameResult result) async {
     if (UserProperties.instance.name != '') {
       // write to leaderboard
-      FirebaseDatabase.instance.ref('leaderboard/${WotD.day}/${UserProperties.instance.uid}').set({
+      FirebaseDatabase.instance
+          .ref('leaderboard/${WotD.day}/${UserProperties.instance.uid}')
+          .set({
         'name': UserProperties.instance.name,
         'score': result.tries,
         'UTC': ServerValue.timestamp,
@@ -150,7 +154,10 @@ class DailyGameState extends State<DailyGame> {
             onPressed: () {
               if (game.complete) {
                 displayResult(GameResult(
-                    win: true, answer: game.answer, lines: game.lines));
+                    win: true,
+                    answer: game.answer,
+                    lines: game.lines,
+                    gameType: GameType.daily));
               } else {
                 {
                   _screenShotController
@@ -313,7 +320,8 @@ class DailyGameState extends State<DailyGame> {
                             game = Game.load(
                                 answer: g.answer,
                                 onSuceess: dailyGameOnSuccess,
-                                onGuess: onGuess);
+                                onGuess: onGuess,
+                                gameType: GameType.daily);
                           }));
                     },
                     decoration: BoxDecoration(

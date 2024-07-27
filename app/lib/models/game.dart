@@ -8,7 +8,27 @@ import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/line.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+enum GameType {
+  daily,
+  practice,
+  tutorial;
+
+  static GameType fromString(String type) {
+    switch (type) {
+      case 'daily':
+        return GameType.daily;
+      case 'practice':
+        return GameType.practice;
+      case 'tutorial':
+        return GameType.tutorial;
+      default:
+        return GameType.daily;
+    }
+  }
+}
+
 class Game {
+  final GameType gameType;
   GameAnswer answer;
   final List<Line> _loadLines;
   final Function(GameResult)? onSuceess;
@@ -29,9 +49,14 @@ class Game {
       {this.onSuceess,
       required this.answer,
       List<Line> loadLines = const [],
-      this.onGuess})
+      this.onGuess,
+      required this.gameType})
       : _loadLines = loadLines;
-  Game.load({this.onSuceess, required this.answer, this.onGuess})
+  Game.load(
+      {this.onSuceess,
+      required this.answer,
+      this.onGuess,
+      required this.gameType})
       : _loadLines =
             UserProperties.instance.loadGame(answer.answer)?._loadLines ?? [];
   int get length => answer.answer.allCharacters.length;
@@ -61,7 +86,8 @@ class Game {
     }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
       if (onSuceess != null) {
-        onSuceess!(GameResult(win: true, answer: answer, lines: lines));
+        onSuceess!(GameResult(
+            win: true, answer: answer, lines: lines, gameType: gameType));
       }
       return answer.answer;
     }
@@ -128,7 +154,8 @@ class Game {
     _loadLines.add(Line(cells: cells));
     UserProperties.instance.saveGame(this);
     if (answer.answer == guess && onSuceess != null) {
-      onSuceess!(GameResult(win: true, answer: answer, lines: lines));
+      onSuceess!(GameResult(
+          win: true, answer: answer, lines: lines, gameType: gameType));
       return '';
     }
     if (UserProperties.instance.runCount < 5 &&
@@ -151,31 +178,39 @@ class Game {
       }
       toReturnLines.add(Line(cells: cells));
     }
+    print(json['gameType']);
 
     Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
         onSuceess: (GameResult result) {},
-        loadLines: toReturnLines);
-
+        loadLines: toReturnLines,
+        gameType: GameType.fromString(json['gameType']));
     return game;
   }
 
   Map toJson() {
+    print("SAVE${gameType.name}");
     return {
       'answer': answer.toJson(),
-      'lines': _loadLines.map((Line e) => e.toJson()).toList()
+      'lines': _loadLines.map((Line e) => e.toJson()).toList(),
+      'gameType': gameType.name
     };
   }
 }
 
 class GameResult {
   final GameAnswer answer;
+  final GameType gameType;
   int get tries => lines.length - 1;
   bool win;
   List<Line> lines;
   String get shareMessage =>
       LocaleKeys.gameResult_share.tr(args: [answer.answer, tries.toString()]);
-  GameResult({required this.win, required this.answer, this.lines = const []});
+  GameResult(
+      {required this.win,
+      required this.answer,
+      required this.gameType,
+      this.lines = const []});
 }
 
 CellState getStateForCell(String answer, String guessCharacter, int index) {

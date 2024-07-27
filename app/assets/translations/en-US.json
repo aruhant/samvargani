@@ -115,7 +115,8 @@
         "share": "Share your score!",
         "completed": "You have completed\n{}!",
         "shareMessage": "I completed\n{}\nin {} tries!\nCan you beat my score?",
-        "shareMessageFor1Tries": "I completed\n{}\nin 1 tries!\nCan you match my score?"
+        "shareMessageFor1Tries": "I completed\n{}\nin 1 tries!\nCan you match my score?",
+        "leaderboard": "Check your rank!"
     },
     "practiceGame": {
         "level": "Level {}",
@@ -130,8 +131,8 @@
         "line2": "New word in:",
         "line3": "In the meantime, try practice mode!",
         "button": "Practice Level {}",
-        "header": "Share this challenge!",
-        "headerAlt": "Share your score?",
+        "header": "Ask for help",
+        "headerAlt": "Share your score",
         "yesterdayWord": "Yesterday's word was:",
         "notification": "Notify me!",
         "noDailyWord": "Connect to the internet to load a new word",

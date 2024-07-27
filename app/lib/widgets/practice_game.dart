@@ -34,6 +34,7 @@ class PracticeGameState extends State<PracticeGame> {
       game = Game.load(
         answer: practiceWords[UserProperties.instance.practiceGameIndex],
         onSuceess: displayResult,
+        gameType: GameType.practice,
       );
       completed = game.complete;
       if (completed) {
@@ -110,7 +111,10 @@ class PracticeGameState extends State<PracticeGame> {
             ? TextButton(
                 onPressed: () {
                   displayResult(GameResult(
-                      win: false, answer: game.answer, lines: game.lines));
+                      win: false,
+                      answer: game.answer,
+                      lines: game.lines,
+                      gameType: game.gameType));
                 },
                 child: Text(LocaleKeys.practiceGame_resetButton.tr()),
               )

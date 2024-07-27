@@ -72,6 +72,7 @@ class TutorialState extends State<Tutorial> {
       answer: tutorialWords[UserProperties.instance.tutorialIndex],
       onSuceess: generateNextTutorial,
       onGuess: onGuess,
+      gameType: GameType.tutorial,
     );
   }
 
@@ -98,6 +99,7 @@ class TutorialState extends State<Tutorial> {
         answer: tutorialWords[UserProperties.instance.tutorialIndex],
         onSuceess: generateNextTutorial,
         onGuess: onGuess,
+        gameType: GameType.tutorial,
       );
       if (UserProperties.instance.tutorialIndex == 1) {
         game.addGuess('शायद');

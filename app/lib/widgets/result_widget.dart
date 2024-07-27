@@ -5,6 +5,8 @@ import 'package:paheli/models/user_properties.dart';
 import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paheli/utils/share.dart';
+import 'package:paheli/widgets/daily_leaderboard.dart';
+import 'package:paheli/widgets/practice_leaderboard.dart';
 import 'line_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:screenshot/screenshot.dart';
@@ -89,22 +91,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                 : Icons.sentiment_dissatisfied_outlined),
                             size: 120.sp,
                             color: const Color.fromARGB(255, 6, 7, 10)),
-/*                         Text(LocaleKeys.app_title.tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 6, 7, 10))), */
                         SizedBox(height: 10.h),
-                        Text(
-                            widget.gameResult.win
-                                ? LocaleKeys.gameResult_victoryMessage.tr()
-                                : LocaleKeys.gameResult_defeatMessage.tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 44.sp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 6, 7, 10))),
+                        if (!widget.gameResult.win)
+                          Text(LocaleKeys.gameResult_defeatMessage.tr(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 44.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color.fromARGB(255, 6, 7, 10))),
                         SizedBox(height: 10.h),
                         pressedShare
                             ? AutoSizeText(
@@ -232,6 +226,60 @@ class _ResultWidgetState extends State<ResultWidget> {
                                           ),
                                         ),
                                       ),
+                                      SizedBox(height: 20.h),
+                                      Text(
+                                        //LocaleKeys.gameResult_leaderboard.tr(),
+                                        'Leaderboard',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(height: 5.h),
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          // pop current dialog
+                                          Navigator.of(context).pop();
+                                          // show leaderboard
+                                          if (widget.gameResult.gameType ==
+                                              GameType.practice) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return PracticeLeaderboard(
+                                                  triesToCompleteDailyGame:
+                                                      widget.gameResult.tries,
+                                                );
+                                              },
+                                            );
+                                          } else {
+                                            await showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return DailyLeaderboard(
+                                                      tries: widget
+                                                          .gameResult.tries,
+                                                      hasCompletedDailyGame:
+                                                          true);
+                                                });
+                                          }
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          padding: const EdgeInsets.all(10).w,
+                                          shape: const CircleBorder(),
+                                          elevation: 0,
+                                          backgroundColor: Colors.white,
+                                        ),
+                                        child: Icon(
+                                          Icons.leaderboard,
+                                          size: 30.sp,
+                                          color:
+                                              Color.fromARGB(255, 213, 119, 37),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
                                     ],
                                   )),
                                 ],
