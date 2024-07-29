@@ -101,6 +101,7 @@ abstract class  LocaleKeys {
   static const gameResult_completed = 'gameResult.completed';
   static const gameResult_shareMessage = 'gameResult.shareMessage';
   static const gameResult_shareMessageFor1Tries = 'gameResult.shareMessageFor1Tries';
+  static const gameResult_leaderboard = 'gameResult.leaderboard';
   static const gameResult = 'gameResult';
   static const practiceGame_level = 'practiceGame.level';
   static const practiceGame_resetButton = 'practiceGame.resetButton';

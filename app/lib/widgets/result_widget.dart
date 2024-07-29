@@ -228,8 +228,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                       ),
                                       SizedBox(height: 20.h),
                                       Text(
-                                        //LocaleKeys.gameResult_leaderboard.tr(),
-                                        'Leaderboard',
+                                        LocaleKeys.gameResult_leaderboard.tr(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 20.sp,
