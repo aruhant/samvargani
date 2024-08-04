@@ -344,23 +344,20 @@ class PracticeLeaderboardEntryWidget extends StatelessWidget {
         dense: false,
         // add a list number
         leading: Container(
+          padding: EdgeInsets.symmetric(horizontal: 5.0.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
             border:
                 Border.all(color: Color.fromARGB(255, 93, 67, 95), width: 0.w),
             color: Color.fromARGB(136, 238, 182, 91),
           ),
-          width: 25.0.w,
-          height: 25.0.w,
-          child: Center(
-            child: Text(
-              (index + 1).toString(),
-              style: TextStyle(
-                fontSize: 19.sp,
-                fontWeight:
-                    (index + 1) <= 3 ? FontWeight.bold : FontWeight.normal,
-                color: Color.fromARGB(255, 93, 67, 95),
-              ),
+          child: Text(
+            (index + 1).toString(),
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight:
+                  (index + 1) <= 3 ? FontWeight.bold : FontWeight.normal,
+              color: Color.fromARGB(255, 93, 67, 95),
             ),
           ),
         ),

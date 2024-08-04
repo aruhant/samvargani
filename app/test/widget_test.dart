@@ -3,13 +3,11 @@ import 'package:paheli/utils/string.dart';
 
 void main() {
   for (final word in wordList) {
-    if (word.allCharacters.length == 3 &&
+    if (word.allCharacters.length == 2 &&
         word.allCharacters[0].matra.isEmpty &&
         word.allCharacters[1].matra.isEmpty &&
-        word.allCharacters[2] == 'य' &&
-        !RegExp(r'[अ-औ]').hasMatch(word.allCharacters[0].vyanjan) &&
-        !RegExp(r'[अ-औ]').hasMatch(word.allCharacters[1].vyanjan) &&
-        !RegExp(r'[अ-औ]').hasMatch(word.allCharacters[2].vyanjan)) {
+        // ends with r
+        word.endsWith('र')) {
       print(word);
     }
   }
