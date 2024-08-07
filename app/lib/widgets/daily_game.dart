@@ -129,6 +129,7 @@ class DailyGameState extends State<DailyGame> {
       return DailyGameLoading();
     } else {
       return GameWidget(
+          key: ObjectKey(game),
           game: game!,
           header: (game) => makeHeader(game, context),
           footer: game!.complete ? (game) => successFooter(context) : null);

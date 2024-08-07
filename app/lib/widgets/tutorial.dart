@@ -140,6 +140,7 @@ class TutorialState extends State<Tutorial> {
 
   @override
   Widget build(BuildContext context) => GameWidget(
+        key: ObjectKey(game),
         game: game,
       );
 }

@@ -100,6 +100,7 @@ class PracticeGameState extends State<PracticeGame> {
       );
     }
     return GameWidget(
+        key: ObjectKey(game),
         game: game,
         footer: (game) => (UserProperties.instance.practiceGameIndex < 4) ||
                 (UserProperties.instance.practiceGameIndex < 10 &&
