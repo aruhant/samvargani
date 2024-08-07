@@ -57,7 +57,7 @@ update(){
     option_picked "Build version: $version"
     res="sed -i '' 's/version:.*$/${version}/' pubspec.yaml"
     eval $res
-    flutter pub upgrade
+#    flutter pub upgrade
     # flutter packages pub run build_runner build
 }
 
