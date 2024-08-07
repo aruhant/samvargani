@@ -329,7 +329,6 @@ class PracticeLeaderboardEntryWidget extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    // only if entry is not in future due to timezone difference
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2.0.w, horizontal: 6.0.w),
       padding: EdgeInsets.all(0),

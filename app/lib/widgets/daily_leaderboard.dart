@@ -59,7 +59,9 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
           try {
             print("val: $val");
             DailyLeaderboardEntry entry = DailyLeaderboardEntry.fromJson(val);
-            entries!.add(entry);
+            if (entry.local.isBefore(DateTime.now())) {
+              entries!.add(entry);
+            }
           } on Exception catch (e) {
             print("Error: $e");
           }
@@ -342,63 +344,59 @@ class DailyLeaderboardEntryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // only if entry is not in future due to timezone difference
-    if (entry.local.isBefore(DateTime.now())) {
-      return Container(
-        margin: EdgeInsets.symmetric(vertical: 2.0.w, horizontal: 6.0.w),
-        padding: EdgeInsets.all(0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border:
-              Border.all(color: Color.fromARGB(255, 91, 84, 73), width: 1.w),
-          color: Color.fromARGB(255, 215, 163, 78),
-        ),
-        child: ListTile(
-          minTileHeight: 0.0.w,
-          // decrease padding
-          dense: false,
-          // add a list number
-          leading: Container(
-            padding: EdgeInsets.symmetric(horizontal: 5.0.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              border: Border.all(
-                  color: Color.fromARGB(255, 93, 67, 95), width: 0.w),
-              color: Color.fromARGB(136, 238, 182, 91),
-            ),
-            child: Text(
-              (index + 1).toString(),
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight:
-                    (index + 1) <= 3 ? FontWeight.bold : FontWeight.normal,
-                color: Color.fromARGB(255, 93, 67, 95),
-              ),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 2.0.w, horizontal: 6.0.w),
+      padding: EdgeInsets.all(0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Color.fromARGB(255, 91, 84, 73), width: 1.w),
+        color: Color.fromARGB(255, 215, 163, 78),
+      ),
+      child: ListTile(
+        minTileHeight: 0.0.w,
+        // decrease padding
+        dense: false,
+        // add a list number
+        leading: Container(
+          padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            border:
+                Border.all(color: Color.fromARGB(255, 93, 67, 95), width: 0.w),
+            color: Color.fromARGB(136, 238, 182, 91),
+          ),
+          child: Text(
+            (index + 1).toString(),
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight:
+                  (index + 1) <= 3 ? FontWeight.bold : FontWeight.normal,
+              color: Color.fromARGB(255, 93, 67, 95),
             ),
           ),
-          title: Text(entry.name),
-          trailing:
-              Text(entry.score.toString() + LocaleKeys.leaderboard_tries.tr(),
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Color.fromARGB(255, 93, 67, 95),
-                  )),
-          subtitle: Text(
-            Jiffy.parseFromDateTime(entry.local).fromNow(),
-            // entries[index].date.toString(),
-          ),
-          titleTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16.sp,
-            color: Color.fromARGB(255, 93, 67, 95),
-          ),
-          subtitleTextStyle: TextStyle(
-            fontSize: 12.sp,
-            color: Color.fromARGB(255, 93, 67, 95),
-          ),
         ),
-      );
-    }
-    return Container();
+        title: Text(entry.name),
+        trailing:
+            Text(entry.score.toString() + LocaleKeys.leaderboard_tries.tr(),
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: Color.fromARGB(255, 93, 67, 95),
+                )),
+        subtitle: Text(
+          Jiffy.parseFromDateTime(entry.local).fromNow(),
+          // entries[index].date.toString(),
+        ),
+        titleTextStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16.sp,
+          color: Color.fromARGB(255, 93, 67, 95),
+        ),
+        subtitleTextStyle: TextStyle(
+          fontSize: 12.sp,
+          color: Color.fromARGB(255, 93, 67, 95),
+        ),
+      ),
+    );
   }
 }
 
