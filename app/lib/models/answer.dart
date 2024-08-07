@@ -148,15 +148,6 @@ final List<GameAnswer> practiceWords = [
       backgroundColor: const Color.fromARGB(255, 215, 255, 229),
       whenToShowIcons: -1),
   GameAnswer(
-      answer: 'दरिया',
-      meaning: 'समुद्र या नदी',
-      icons: [LineIcons.fish],
-      moveHorizontal: false,
-      moveVertical: true,
-      colors: [Colors.redAccent],
-      backgroundColor: Colors.blue[100],
-      whenToShowIcons: -1),
-  GameAnswer(
       answer: 'सेहत',
       meaning: 'स्वास्थ्य',
       icons: [LineIcons.fruitApple],
@@ -188,7 +179,7 @@ final List<GameAnswer> practiceWords = [
       whenToShowIcons: -1),
   GameAnswer(
       answer: 'अँगूठा',
-      meaning: 'हाथ की पहली उँगली।',
+      meaning: 'हाथ की पहली उँगली',
       icons: [LineIcons.fingerprint],
       moveHorizontal: true,
       moveVertical: false,
@@ -205,7 +196,7 @@ final List<GameAnswer> practiceWords = [
       backgroundColor: const Color.fromARGB(255, 255, 239, 208),
       whenToShowIcons: -1),
   GameAnswer(
-      answer: 'सियासत',
+      answer: 'प्रशासन',
       meaning: 'राज्य या\nनीति व्यवहार',
       icons: [LineIcons.crown, LineIcons.chessQueen],
       moveHorizontal: false,
@@ -261,7 +252,7 @@ final List<GameAnswer> practiceWords = [
       minSpeed: 0.4,
       whenToShowIcons: -1),
   GameAnswer(
-      answer: 'स्पन्दन',
+      answer: 'स्पंदन',
       meaning: 'कंपन',
       icons: [LineIcons.heartbeat],
       moveHorizontal: true,
@@ -359,7 +350,7 @@ final List<GameAnswer> practiceWords = [
   GameAnswer(answer: 'साहसिक', meaning: 'बहादुर'),
   GameAnswer(answer: 'विचित्र', meaning: 'अनोखा'),
   GameAnswer(answer: 'उमंग', meaning: 'उत्साह'),
-  GameAnswer(answer: 'बेख़बर', meaning: 'अनजान'),
+  GameAnswer(answer: 'बेसुध', meaning: 'अचेत'),
   GameAnswer(answer: 'विश्वास', meaning: 'भरोसा'),
   GameAnswer(answer: 'कंकाल', meaning: 'अस्थि-पंजर'),
   GameAnswer(answer: 'आकर्षण', meaning: 'आकर्षित करने\nकी शक्ति'),
@@ -434,7 +425,6 @@ final List<GameAnswer> practiceWords = [
   GameAnswer(answer: 'मोहक', meaning: 'आकर्षक'),
   GameAnswer(answer: 'कुटिल', meaning: 'धूर्त'),
   GameAnswer(answer: 'प्रतिरूप', meaning: 'नक़ल, प्रारूप'),
-  GameAnswer(answer: 'किंकर्तव्यविमूढ़', meaning: 'हक्का-बक्का'),
   GameAnswer(answer: 'प्रशस्ति', meaning: 'प्रशंसा'),
   GameAnswer(answer: 'संपन्नता', meaning: 'समृद्धि'),
   GameAnswer(answer: 'सारगर्भित', meaning: 'गंभीर'),
@@ -468,6 +458,7 @@ final List<GameAnswer> practiceWords = [
   GameAnswer(answer: 'शंकित', meaning: 'संदेहपूर्ण'),
   GameAnswer(answer: 'साक्षात्कार', meaning: 'भेंट'),
   GameAnswer(answer: 'ऊष्मा', meaning: 'गर्मी'),
+  GameAnswer(answer: 'अचेत', meaning: 'बेसुध'),
   GameAnswer(answer: 'सुप्त', meaning: 'सोया हुआ'),
   GameAnswer(answer: 'गृहस्थ', meaning: 'घर-बार या\nबाल-बच्चे वाला व्यक्ति'),
   GameAnswer(answer: 'आधुनिक', meaning: 'नवीन'),
@@ -476,12 +467,13 @@ final List<GameAnswer> practiceWords = [
       answer: 'अनुप्रास',
       meaning:
           'वह शब्दालंकार\nजिसमें किसी पद\nमें एक ही अक्षर\nबार-बार आता है'),
-  GameAnswer(answer: 'गुह्य', meaning: 'गुप्त'),
+  GameAnswer(answer: 'गुह्य', meaning: 'रहस्यमय'),
   GameAnswer(answer: 'तथाकथित', meaning: 'कथित'),
   GameAnswer(answer: 'दुर्व्यवहार', meaning: 'बदतमीजी'),
   GameAnswer(answer: 'विकलांग', meaning: 'अपंग'),
+  GameAnswer(answer: 'भ्राता', meaning: 'भाई'),
   GameAnswer(answer: 'अवसाद', meaning: 'दु:ख'),
-  GameAnswer(answer: 'दुर्लभ', meaning: 'दुर्लभ'),
+  GameAnswer(answer: 'दुर्लभ', meaning: 'अत्यंत विरल'),
   GameAnswer(answer: 'उद्गम', meaning: 'स्रोत'),
   GameAnswer(answer: 'छलावा', meaning: 'छल'),
   GameAnswer(answer: 'क्रियान्वयन', meaning: 'कार्यान्वयन'),
@@ -489,7 +481,9 @@ final List<GameAnswer> practiceWords = [
   GameAnswer(answer: 'निपुण', meaning: 'कुशल'),
   GameAnswer(answer: 'रूपक', meaning: 'वह काव्य जिसका\nअभिनय किया जाए'),
   GameAnswer(answer: 'निराकरण', meaning: 'समाधान'),
+  GameAnswer(answer: 'भृतक', meaning: 'श्रमिक'),
   GameAnswer(answer: 'प्रवंचना', meaning: 'ठगने का काम'),
+  GameAnswer(answer: 'किंकर्तव्यविमूढ़', meaning: 'हक्का-बक्का'),
 ];
 
 final List<GameAnswer> tutorialWords = [
