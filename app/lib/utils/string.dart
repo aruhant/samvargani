@@ -30,6 +30,8 @@ extension StringExtension on String {
   // function to obtain parsed unicode characters of a string
   List<String> get allCharacters {
     List<String> stringList = characters.toList();
+    print(stringList);
+    /*
     for (int i = 0; i < stringList.length - 1; i++) {
       // if the current character is a half character
       if (stringList[i].contains('्')) {
@@ -47,6 +49,7 @@ extension StringExtension on String {
         stringList.removeAt(i + 1);
       }
     }
+    */
     return stringList;
   }
 
