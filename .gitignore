@@ -1,3 +1,6 @@
 app/android/fastlane/metadata/android/en-US/changelogs
 app2/generator/node_modules
 app2/generator/pkg-config-0.28
+app/android/fastlane
+app/ios/fastlane
+google-services.json
