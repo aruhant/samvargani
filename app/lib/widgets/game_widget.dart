@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:paheli/models/answer.dart';
 import 'package:paheli/models/cell.dart';
 import 'package:paheli/models/game.dart';
 import 'package:paheli/models/user_properties.dart';
@@ -83,8 +84,7 @@ class _GameWidgetState extends State<GameWidget> {
   Widget build(BuildContext context) {
     //print('valueKey: $valueKey, shouldShowHint: $shouldShowHint, hintIcons.isEmpty: ${hintIcons.isEmpty}');
     return Scaffold(
-      backgroundColor: widget.game.answer.backgroundColor ??
-          const Color.fromRGBO(213, 204, 158, 1),
+      backgroundColor: defaultGameColor,
       body: Stack(
         children: [
           if (shouldShowHint && hintIcons.isNotEmpty)
@@ -130,8 +130,58 @@ class _GameWidgetState extends State<GameWidget> {
                           fontSize: 18.sp,
                           color: Colors.black54,
                           fontWeight: FontWeight.bold)),
+                  if (widget.game.answer.difficulty != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        children: [
+                          // Visual difficulty indicator
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(3, (index) {
+                              int starCount = widget.game.answer.difficulty!.clamp(1, 3);
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 2),
+                                child: index < starCount
+                                    ?  Icon(
+                                      Icons.star,
+                                      size: 20,
+                                      color: Colors.black45
+                                    ) 
+                                    : const Icon(
+                                        Icons.star_outline,
+                                        size: 20,
+                                        color: Colors.black38,
+                                      ),
+                              );
+                            }),
+                          ),
+                          // const SizedBox(height: 4),
+                          // // Difficulty text - commented out as requested
+                          // Text(
+                          //   switch (widget.game.answer.difficulty!) {
+                          //     1 => LocaleKeys.game_difficulty_easy.tr(),
+                          //     3 => LocaleKeys.game_difficulty_medium.tr(),
+                          //     5 => LocaleKeys.game_difficulty_difficult.tr(),
+                          //     _ => 'Level ${widget.game.answer.difficulty}',
+                          //   },
+                          //   style: TextStyle(
+                          //     fontSize: 15.sp,
+                          //     color: switch (widget.game.answer.difficulty!) {
+                          //       1 => const Color.fromARGB(255, 36, 105, 38),
+                          //       3 => const Color.fromARGB(255, 172, 117, 34),
+                          //       5 => const Color.fromARGB(255, 110, 49, 39),
+                          //       _ => const Color.fromARGB(255, 172, 117, 34),
+                          //     },
+                          //     fontWeight: FontWeight.w600,
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    ),
                   LinesWidget(
                       lines: widget.game.lines, wordLength: widget.game.length),
+
                   if (!widget.game.complete)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),

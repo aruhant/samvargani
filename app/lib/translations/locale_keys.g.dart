@@ -1,5 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
+// ignore_for_file: constant_identifier_names
+
 abstract class  LocaleKeys {
   static const app_title = 'app.title';
   static const app_description = 'app.description';
@@ -78,6 +80,10 @@ abstract class  LocaleKeys {
   static const cellTooltip = 'cellTooltip';
   static const game_title = 'game.title';
   static const game_answerLabel = 'game.answerLabel';
+  static const game_difficulty_easy = 'game.difficulty.easy';
+  static const game_difficulty_medium = 'game.difficulty.medium';
+  static const game_difficulty_difficult = 'game.difficulty.difficult';
+  static const game_difficulty = 'game.difficulty';
   static const game_gameMessages_wrongWordLength = 'game.gameMessages.wrongWordLength';
   static const game_gameMessages_notInDictonary = 'game.gameMessages.notInDictonary';
   static const game_gameMessages_matraError = 'game.gameMessages.matraError';

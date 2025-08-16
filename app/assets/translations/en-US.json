@@ -90,6 +90,11 @@
     "game": {
         "title": "Guess a {} letter word",
         "answerLabel": "Your answer:",
+        "difficulty": {
+            "easy": "Difficulty: Easy",
+            "medium": "Difficulty: Medium",
+            "difficult": "Difficulty: Difficult"
+        },
         "gameMessages": {
             "wrongWordLength": "You have entered a {} letter word, but the correct answer is a {} letter word",
             "notInDictonary": "Your answer '{}' is not in the Hindi dictionary",
