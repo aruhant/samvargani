@@ -39,10 +39,9 @@ class Game {
         ..._loadLines,
         Line(
             cells: List<Cell>.generate(
-                answer.answer.allCharacters.length,
+                answer.answer.characters.toList().length,
                 (index) => Cell(
-                    answer.answer.allCharacters[index].matra.characters
-                        .join(' '),
+                    answer.answer.characters.toList()[index].allModifiers,
                     state: CellState.empty)))
       ];
   Game(
@@ -59,8 +58,8 @@ class Game {
       required this.gameType})
       : _loadLines =
             UserProperties.instance.loadGame(answer.answer)?._loadLines ?? [];
-  int get length => answer.answer.allCharacters.length;
-  List<String> get answerList => answer.answer.allCharacters;
+  int get length => answer.answer.characters.toList().length;
+  List<String> get answerList => answer.answer.characters.toList();
   bool get complete =>
       _loadLines.isNotEmpty &&
       answer.answer == _loadLines.last.cells.map((e) => e.value).join();
@@ -92,7 +91,7 @@ class Game {
       return answer.answer;
     }
     if (guess.endsWith('्')) {
-      return LocaleKeys.game_gameMessages_halantError.tr();
+      //return LocaleKeys.game_gameMessages_halantError.tr();
     }
     guess = guess
         .replaceAll('क़', 'क़')
@@ -105,7 +104,7 @@ class Game {
         .replaceAll('य़', 'य़');
     List<String> guessList = [];
     try {
-      guessList = guess.allCharacters;
+      guessList = guess.characters.toList();
     } catch (e) {
       return LocaleKeys.game_gameMessages_halantError.tr();
     }
@@ -216,7 +215,7 @@ class GameResult {
 CellState getStateForCell(String answer, String guessCharacter, int index) {
   bool containsMatra = guessCharacter.matraOnly.isNotEmpty;
   bool containsAdha = guessCharacter.halfOnly.isNotEmpty;
-  List<String> answerList = answer.allCharacters;
+  List<String> answerList = answer.characters.toList();
   if (answerList[index] == guessCharacter) {
     return CellState.correct;
   } else if (answerList[index].vyanjan == guessCharacter.vyanjan) {

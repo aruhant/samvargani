@@ -208,19 +208,34 @@ enum CellState {
         return LocaleKeys.cellTooltip_incorrectButContainsAdha
             .tr(args: [cellContents.vyanjan, '${cellContents.vyanjan}्']);
       case CellState.empty:
+          // The problem is that cellContents has its vyanjan removed from it if its empty so let's add a random letter like 'A' and then check if it contains matras or half letters
+          String matraOnly = cellContents.matraOnly;
+          print('Matra only: $matraOnly');
+          String halfOnly;
+          if (cellContents.vyanjan.isNotEmpty) {
+             halfOnly = cellContents.halfOnly.isNotEmpty
+                 ? '${cellContents.halfOnly} ${cellContents.vyanjan}्'
+                 : cellContents.vyanjan;
+             matraOnly = cellContents.matraOnly.replaceAll('्', "");
+          }
+          else{
+           halfOnly = cellContents.halfOnly;
+
+          }
+          containsAdha = halfOnly.isNotEmpty;
+          containsMatra = matraOnly.isNotEmpty;
         if (containsMatra) {
           if (containsAdha) {
-            cellContents += 'A';
             return LocaleKeys.cellTooltip_emptyWithMatraAndAdha
-                .tr(args: [cellContents.halfOnly, cellContents.matraOnly]);
+                .tr(args: [halfOnly, matraOnly]);
           } else {
             return LocaleKeys.cellTooltip_emptyWithMatra
-                .tr(args: [cellContents]);
+                .tr(args: [matraOnly]);
           }
         } else {
           if (containsAdha) {
             return LocaleKeys.cellTooltip_emptyWithAdha
-                .tr(args: [cellContents]);
+                .tr(args: [halfOnly]);
           } else {
             return LocaleKeys.cellTooltip_emptyWithoutMatraAndAdha.tr();
           }

@@ -178,7 +178,7 @@ class DailyGameState extends State<DailyGame> {
                     shareImage(
                         capturedImage,
                         LocaleKeys.shareHelp_message.tr(args: [
-                          game.name.allCharacters.map((e) => e.matra).join('_'),
+                          game.name.characters.toList().map((e) => e.allModifiers).join('_'),
                           game.length.toString()
                         ]),
                         context);

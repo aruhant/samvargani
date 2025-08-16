@@ -274,12 +274,12 @@ class _GameWidgetState extends State<GameWidget> {
                               .map((e) => e.value.vyanjan))
                           .expand((element) => element)
                           .toList()
-                        ..addAll(widget.game.name.allCharacters
-                            .map((e) => e.matra.runes
-                                .map((e) => String.fromCharCode(e).matra))
+                        ..addAll(widget.game.name.characters.toList()
+                            .map((e) => e.allModifiers.runes
+                                .map((e) => String.fromCharCode(e).allModifiers))
                             .expand((element) => element))
-                        ..add(widget.game.name.allCharacters
-                                .map((e) => e.matra)
+                        ..add(widget.game.name.characters.toList()
+                                .map((e) => e.allModifiers)
                                 .join()
                                 .contains('्')
                             ? '्'
@@ -330,12 +330,14 @@ class _GameWidgetState extends State<GameWidget> {
         widget.game.answer.title.toString());
   }
 
+
+
   void onBackspace() {
     return setState(() => controller.text = controller.text != '' &&
-            (controller.text.allCharacters.last == 'क्ष' ||
-                controller.text.allCharacters.last == 'त्र' ||
-                controller.text.allCharacters.last == 'ज्ञ' ||
-                controller.text.allCharacters.last == 'श्र')
+            (controller.text.characters.toList().last == 'क्ष' ||
+                controller.text.characters.toList().last == 'त्र' ||
+                controller.text.characters.toList().last == 'ज्ञ' ||
+                controller.text.characters.toList().last == 'श्र')
         ? controller.text.substring(0, max(0, controller.text.length - 3))
         : controller.text.substring(0, max(0, controller.text.length - 1)));
   }
