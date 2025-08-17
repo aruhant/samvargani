@@ -122,7 +122,7 @@ class UserProperties {
 
   saveGame(Game game) {
     String s = jsonEncode(game.toJson());
-    _sharedPrefs.setString('game_${game.name}', s);
+    _sharedPrefs.setString(game.saveKey, s);
   }
 
   onTooltipPressed() {
@@ -136,8 +136,8 @@ class UserProperties {
     _sharedPrefs.setInt('progress', _instance!._practiceGameIndex);
   }
 
-  Game? loadGame(String name) {
-    var game = _sharedPrefs.getString('game_$name');
+  Game? loadGame(String saveKey) {
+    var game = _sharedPrefs.getString(saveKey);
     if (game != null) return Game.fromJson(jsonDecode(game));
     return null;
   }

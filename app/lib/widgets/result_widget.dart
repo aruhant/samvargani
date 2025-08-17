@@ -106,11 +106,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                     ? LocaleKeys
                                         .gameResult_shareMessageFor1Tries
                                         .tr(args: [
-                                        widget.gameResult.answer.title,
+                                        widget.gameResult.title,
                                       ])
                                     : LocaleKeys.gameResult_shareMessage.tr(
                                         args: [
-                                            widget.gameResult.answer.title,
+                                            widget.gameResult.title,
                                             widget.gameResult.tries.toString()
                                           ]),
                                 textAlign: TextAlign.center,
@@ -121,7 +121,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                 ))
                             : Text(
                                 LocaleKeys.gameResult_completed
-                                    .tr(args: [widget.gameResult.answer.title]),
+                                    .tr(args: [widget.gameResult.title]),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 24.sp,
@@ -198,15 +198,13 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 _screenShotController,
                                                 widget.gameResult.tries == 1
                                                     ? '${LocaleKeys.gameResult_shareMessageFor1Tries.tr(args: [
-                                                            widget.gameResult
-                                                                .answer.title,
+                                                            widget.gameResult.title,
                                                             widget.gameResult
                                                                 .tries
                                                                 .toString()
                                                           ])}\n\n${LocaleKeys.app_url.tr()}'
                                                     : '${LocaleKeys.gameResult_shareMessage.tr(args: [
-                                                            widget.gameResult
-                                                                .answer.title,
+                                                            widget.gameResult.title,
                                                             widget.gameResult
                                                                 .tries
                                                                 .toString()

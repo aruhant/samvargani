@@ -124,7 +124,7 @@ class _GameWidgetState extends State<GameWidget> {
                           fontSize: 40.sp,
                           color: Colors.black54,
                           fontWeight: FontWeight.bold)),
-                  Text(widget.game.answer.title.tr(),
+                  Text(widget.game.title.tr(),
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontSize: 18.sp,
@@ -327,7 +327,7 @@ class _GameWidgetState extends State<GameWidget> {
         widget.game.answer.minSize.toString() +
         widget.game.answer.colors.toString() +
         widget.game.answer.whenToShowIcons.toString() +
-        widget.game.answer.title.toString());
+        widget.game.title.toString());
   }
 
 

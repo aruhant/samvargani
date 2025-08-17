@@ -28,20 +28,13 @@ class WotD {
       answer: 'दावत',
       meaning: 'निमंत्रण',
       icons: [LineIcons.envelope],
-      title: "21 सितम्बर का दैनिक शब्द",
+      // title: "21 सितम्बर का दैनिक शब्द",
+      difficulty: 2, // easy
       colors: const [Color.fromARGB(255, 255, 255, 255)],
       backgroundColor: const Color.fromARGB(255, 240, 207, 255));
 
   GameAnswer get answer =>
-      _answers[day] ??
-      GameAnswer(
-          answer: 'दावत',
-          meaning: 'निमंत्रण',
-          icons: [LineIcons.envelope],
-          itemsCount: 3,
-          title: LocaleKeys.dailyGame_noDailyWord.tr(),
-          colors: const [Color.fromARGB(255, 255, 255, 255)],
-          backgroundColor: const Color.fromARGB(255, 240, 207, 255));
+     _answers[day] ?? debugAnswer;
 
   GameAnswer get yesterdayAnswer =>
       _answers[yesterday] ??

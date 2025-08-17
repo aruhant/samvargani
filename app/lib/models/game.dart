@@ -31,8 +31,9 @@ class Game {
   final GameType gameType;
   GameAnswer answer;
   final List<Line> _loadLines;
-  final Function(GameResult)? onSuceess;
-
+  final Function(GameResult)? onSuccess;
+  final String title;
+  final int id;
   final void Function(String)? onGuess;
   int get tries => lines.length - 1;
   List<Line> get lines => [
@@ -45,19 +46,23 @@ class Game {
                     state: CellState.empty)))
       ];
   Game(
-      {this.onSuceess,
+      {this.onSuccess,
       required this.answer,
       List<Line> loadLines = const [],
       this.onGuess,
+      required this.title,
+      required this.id,
       required this.gameType})
       : _loadLines = loadLines;
   Game.load(
-      {this.onSuceess,
+      {this.onSuccess,
+      required this.title,
+      required this.id,
       required this.answer,
       this.onGuess,
       required this.gameType})
       : _loadLines =
-            UserProperties.instance.loadGame(answer.answer)?._loadLines ?? [];
+            UserProperties.instance.loadGame('game_${answer.answer}_${id}_${gameType.toString()}')?._loadLines ?? [];
   int get length => answer.answer.characters.toList().length;
   List<String> get answerList => answer.answer.characters.toList();
   bool get complete =>
@@ -65,6 +70,8 @@ class Game {
       answer.answer == _loadLines.last.cells.map((e) => e.value).join();
 
   String get name => answer.answer;
+
+  String get saveKey => 'game_${answer.answer}_${id}_${gameType.toString()}';
 
   String addGuess(String guess) {
     if (guess.isEmpty) return '';
@@ -84,9 +91,9 @@ class Game {
       return 'Cleared';
     }
     if (guess.replaceAll(' ', '').toLowerCase() == 'warpten') {
-      if (onSuceess != null) {
-        onSuceess!(GameResult(
-            win: true, answer: answer, lines: lines, gameType: gameType));
+      if (onSuccess != null) {
+        onSuccess!(GameResult(
+            win: true, answer: answer, lines: lines, gameType: gameType, title: title));
       }
       return answer.answer;
     }
@@ -142,7 +149,7 @@ class Game {
         return LocaleKeys.game_gameMessages_notInDictonary.tr(args: [guess]);
       }
       guess = allVariations.firstWhere((element) => wordList.contains(element));
-      guessList = guess.allCharacters;
+      guessList = guess.characters.toList();
     }
 
     List<Cell> cells = [];
@@ -152,9 +159,9 @@ class Game {
     }
     _loadLines.add(Line(cells: cells));
     UserProperties.instance.saveGame(this);
-    if (answer.answer == guess && onSuceess != null) {
-      onSuceess!(GameResult(
-          win: true, answer: answer, lines: lines, gameType: gameType));
+    if (answer.answer == guess && onSuccess != null) {
+      onSuccess!(GameResult(
+          win: true, answer: answer, lines: lines, gameType: gameType, title: title));
       return '';
     }
     if (UserProperties.instance.runCount < 5 &&
@@ -181,9 +188,11 @@ class Game {
 
     Game game = Game(
         answer: GameAnswer.fromJson(json['answer']),
-        onSuceess: (GameResult result) {},
+        title:  '',
+        onSuccess: (GameResult result) {},
         loadLines: toReturnLines,
-        gameType: GameType.fromString(json['gameType']));
+        gameType: GameType.fromString(json['gameType']),
+        id: json['id'] ?? -1);
     return game;
   }
 
@@ -200,13 +209,15 @@ class Game {
 class GameResult {
   final GameAnswer answer;
   final GameType gameType;
+  String title;
   int get tries => lines.length - 1;
   bool win;
   List<Line> lines;
   String get shareMessage =>
       LocaleKeys.gameResult_share.tr(args: [answer.answer, tries.toString()]);
   GameResult(
-      {required this.win,
+      {required this.title,
+        required this.win,
       required this.answer,
       required this.gameType,
       this.lines = const []});

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:paheli/models/user_properties.dart';
-import 'package:paheli/models/wotd.dart';
-import 'package:paheli/translations/locale_keys.g.dart';
 import 'package:tinycolor2/tinycolor2.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 const defaultGameColor =  Color.fromRGBO(213, 204, 158, 1);
 
 class GameAnswer {
   final String answer;
-  final String? _title;
+  final String? title;
   final String meaning;
   final List<String?>? hints;
   final Color? backgroundColor;
@@ -25,7 +21,7 @@ class GameAnswer {
   final int? difficulty; // 1-5 scale where 1=easy, 5=difficult
   GameAnswer({
     required this.answer,
-    String? title,
+    this.title,
     required this.meaning,
     this.hints,
     this.colors = const [defaultGameColor],
@@ -43,14 +39,14 @@ class GameAnswer {
     this.itemsCount = 6,
     this.whenToShowIcons = 2,
     this.difficulty,
-  }) : _title = title;
-
+  });
+/*
   String get title =>
       _title ??
       LocaleKeys.practiceGame_level.tr(
         args: [(practiceWords.indexOf(this) + 1).toString()],
       );
-
+    */
   Future<List> get hintIcons async {
     if (images != null && images!.isNotEmpty) {
       return await Future.wait(
@@ -72,12 +68,13 @@ class GameAnswer {
       answer: json['answer'] ?? 'समाधान',
       meaning: json['meaning'] ?? 'संशय दूर करना',
       difficulty: json['difficulty'],
-      title:
+      title: json['title'],
+     /*  title:
           (UserProperties.instance.locale.contains('hi')
               ? json['title_hi1']
               : json['title_en1']) ??
           json['title1'] ??
-          LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(day)),
+          LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(day)), */
       colors: json['colors'] != null
           ? (json['colors'] as List)
                 .map((e) => TinyColor.fromString(e).color)
@@ -529,7 +526,7 @@ final List<GameAnswer> practiceWords = [
 
 final List<GameAnswer> tutorialWords = [
   GameAnswer(
-    title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
+    //title: LocaleKeys.intro_tutorial_tutorial1_title.tr(),
     answer: 'समय',
     meaning: 'वह अवधि जिसमें कोई कार्य किया जाता है',
     itemsCount: 8,
@@ -541,7 +538,7 @@ final List<GameAnswer> tutorialWords = [
     whenToShowIcons: -1,
   ),
   GameAnswer(
-    title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+    //title: LocaleKeys.intro_tutorial_tutorial2_title.tr(),
     answer: 'बादल',
     meaning: 'पृथ्वी के जल से बुनी हुई वह भाप, जिससे पानी बरसता है',
     icons: [LineIcons.cloud],
@@ -552,7 +549,7 @@ final List<GameAnswer> tutorialWords = [
     whenToShowIcons: -1,
   ),
   GameAnswer(
-    title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
+    //title: LocaleKeys.intro_tutorial_tutorial3_title.tr(),
     answer: 'किताब',
     meaning: 'पुस्तक',
     images: [

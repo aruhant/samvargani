@@ -33,7 +33,11 @@ class PracticeGameState extends State<PracticeGame> {
     while (completed) {
       game = Game.load(
         answer: practiceWords[UserProperties.instance.practiceGameIndex],
-        onSuceess: displayResult,
+        id: UserProperties.instance.practiceGameIndex,
+        title: practiceWords[UserProperties.instance.practiceGameIndex].title ?? LocaleKeys.practiceGame_level.tr(
+          args: [(UserProperties.instance.practiceGameIndex + 1).toString()],
+        ),
+        onSuccess: displayResult,
         gameType: GameType.practice,
       );
       completed = game.complete;
@@ -113,6 +117,9 @@ class PracticeGameState extends State<PracticeGame> {
                 onPressed: () {
                   displayResult(GameResult(
                       win: false,
+                      title: practiceWords[UserProperties.instance.practiceGameIndex].title ?? LocaleKeys.practiceGame_level.tr(
+          args: [(UserProperties.instance.practiceGameIndex + 1).toString()],
+        ),
                       answer: game.answer,
                       lines: game.lines,
                       gameType: game.gameType));

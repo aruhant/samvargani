@@ -43,8 +43,10 @@ class DailyGameState extends State<DailyGame> {
         ? setState(() {
             game = Game.load(
                 answer: g.answer,
-                onSuceess: dailyGameOnSuccess,
+                onSuccess: dailyGameOnSuccess,
                 onGuess: onGuess,
+                id: WotD.day,
+                title: g.answer.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
                 gameType: GameType.daily);
           })
         : null);
@@ -60,8 +62,10 @@ class DailyGameState extends State<DailyGame> {
           WotD.load().then((g) => setState(() {
                 game = Game.load(
                     answer: g.answer,
-                    onSuceess: dailyGameOnSuccess,
+                    onSuccess: dailyGameOnSuccess,
                     onGuess: onGuess,
+                    id: WotD.day,
+                    title: g.answer.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
                     gameType: GameType.daily);
               }));
         }));
@@ -158,6 +162,7 @@ class DailyGameState extends State<DailyGame> {
                     win: true,
                     answer: game.answer,
                     lines: game.lines,
+                    title: game.title,
                     gameType: GameType.daily));
               } else {
                 {
@@ -320,7 +325,9 @@ class DailyGameState extends State<DailyGame> {
                       WotD.load().then((g) => setState(() {
                             game = Game.load(
                                 answer: g.answer,
-                                onSuceess: dailyGameOnSuccess,
+                                id: WotD.day,
+                                title: g.answer.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                                onSuccess: dailyGameOnSuccess,
                                 onGuess: onGuess,
                                 gameType: GameType.daily);
                           }));

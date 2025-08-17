@@ -29,7 +29,8 @@ class GameHelpWidgetState extends State<GameHelpWidget> {
 
   void _onIntroEnd(context) {
     widget.onIntroEnd();
-    Game t = Game.load(answer: tutorialWords[0], gameType: GameType.tutorial);
+    Game t = Game.load(answer: tutorialWords[0], gameType: GameType.tutorial, id: 0,
+    title: tutorialWords[0].title ?? LocaleKeys.intro_tutorial_tutorial1_title.tr());
     t.addGuess('समझ');
     t.addGuess('तनय');
     UserProperties.instance.saveGame(t);

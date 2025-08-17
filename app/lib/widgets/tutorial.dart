@@ -70,7 +70,14 @@ class TutorialState extends State<Tutorial> {
     super.initState();
     game = Game.load(
       answer: tutorialWords[UserProperties.instance.tutorialIndex],
-      onSuceess: generateNextTutorial,
+      id: UserProperties.instance.tutorialIndex,
+      title: tutorialWords[UserProperties.instance.tutorialIndex].title ?? switch (UserProperties.instance.tutorialIndex + 1) {
+        1 => LocaleKeys.intro_tutorial_tutorial1_title.tr(),
+        2 => LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+        3 => LocaleKeys.intro_tutorial_tutorial3_title.tr(),
+        _ => '',
+      },
+      onSuccess: generateNextTutorial,
       onGuess: onGuess,
       gameType: GameType.tutorial,
     );
@@ -97,7 +104,14 @@ class TutorialState extends State<Tutorial> {
     if (s) {
       game = Game.load(
         answer: tutorialWords[UserProperties.instance.tutorialIndex],
-        onSuceess: generateNextTutorial,
+        id: UserProperties.instance.tutorialIndex,
+        title: practiceWords[UserProperties.instance.practiceGameIndex].title ?? switch (UserProperties.instance.tutorialIndex + 1) {
+          1 => LocaleKeys.intro_tutorial_tutorial1_title.tr(),
+          2 => LocaleKeys.intro_tutorial_tutorial2_title.tr(),
+          3 => LocaleKeys.intro_tutorial_tutorial3_title.tr(),
+          _ => '',
+        },
+        onSuccess: generateNextTutorial,
         onGuess: onGuess,
         gameType: GameType.tutorial,
       );
