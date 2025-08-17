@@ -138,14 +138,14 @@ extension StringExtension on String {
     }
  // if full letters is empty get the last half letter. also add halant to matras now
     if (fullLetters.isEmpty && halfLetters.isNotEmpty) {
-      print("Full letters is empty, taking last half letter ${this}");
+      // print("Full letters is empty, taking last half letter ${this}");
       fullLetters.add(halfLetters.removeAt(halfLetters.length - 1));
       if (matras.isEmpty) {
         matras.add('्');
       }
     }
     if (fullLetters.length != 1){
-       print('Full letters length is not 1 for $this');
+      // print('Full letters length is not 1 for $this');
       //throw Exception('Full letters length is not 1');
     }
     return {
@@ -206,7 +206,13 @@ extension StringExtension on String {
     return halfLetters.map((e) => "${e}्").join(" ");
   }
   String get allModifiers {
-    return halfOnly + matraOnly;
+    if (matraOnly == "ि" && halfOnly.isNotEmpty) {
+      final toreturnList = halfLetters.map((e) => "${e}्").toList();
+      toreturnList.last = toreturnList.last.substring(0, toreturnList.last.length - 1);
+      return "${toreturnList.join()}ि्";
+    } else {
+      return halfOnly + matraOnly;
+    }
   }
 
   /*
