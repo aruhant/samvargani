@@ -199,7 +199,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: a460e05127716ea17671f07241d4725b6dde7c6d
   FirebaseInstallations: d4c7c958f99c8860d7fcece786314ae790e2f988
   FirebaseSharedSwift: 59266c22ccfcef604d725c034c568fa666ea9bda
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
   GoogleAppMeasurement: 8f6ab04ad6ae493b53fcf56bd26323fb2f1384f3
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   in_app_review: f22c82bbf846b320935e7a431e17cc88c3729a7c

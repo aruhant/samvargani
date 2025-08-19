@@ -41,7 +41,7 @@ dependencies:
   flutter_screenutil:
   slide_countdown:
   url_launcher:
-  flutter_svg:
+  flutter_svg: ^2.2.0
   awesome_notifications:
   path_provider:
   in_app_review:
@@ -53,12 +53,12 @@ dependencies:
   share_plus:
   tinycolor2:
   custom_sliding_segmented_control:
-  firebase_core:
-  firebase_database:
-  firebase_analytics:
-  introduction_screen:
-  flex_color_scheme:
-  jiffy: 
+  firebase_core: ^4.0.0
+  firebase_database: ^12.0.0
+  firebase_analytics: ^12.0.0
+  introduction_screen:  
+  flex_color_scheme: 
+  jiffy:  
   uuid: 
   screenshot:
   upgrader:
@@ -76,7 +76,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
