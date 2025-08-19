@@ -31,7 +31,7 @@ Future<void> main() async {
     FirebaseAnalytics.instance
         .setUserProperty(name: 'os', value: Platform.operatingSystem);
   } catch (e) {
-    //print(e);
+    print(e);
   }
   await EasyLocalization.ensureInitialized();
   await UserProperties.init();
