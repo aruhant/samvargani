@@ -211,7 +211,8 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                         .instance.practiceGameIndex
                                   });
                                 }
-                                FirebaseDatabase.instance
+                                if (widget.triesToCompleteDailyGame != null)
+                                {FirebaseDatabase.instance
                                     .ref(
                                         'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
                                     .set({
@@ -219,7 +220,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                   'score': widget.triesToCompleteDailyGame,
                                   'UTC': ServerValue.timestamp,
                                   'local': DateTime.now().toString(),
-                                });
+                                });}
                                 setState(() {});
                                 print(ServerValue.timestamp);
                                 // check
@@ -249,7 +250,8 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                           .instance.practiceGameIndex,
                                     });
                                   }
-                                  FirebaseDatabase.instance
+                                  if (widget.triesToCompleteDailyGame != null) {
+                                    FirebaseDatabase.instance
                                       .ref(
                                           'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
                                       .set({
@@ -258,6 +260,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                     'UTC': ServerValue.timestamp,
                                     'local': DateTime.now().toString(),
                                   });
+                                  }
                                   setState(() {});
                                   print(ServerValue.timestamp);
                                   // check

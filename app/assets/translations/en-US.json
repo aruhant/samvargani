@@ -131,7 +131,7 @@
     },
     "dailyGame": {
         "loading": "Loading...",
-        "noInternet": "Connect to the internet to play today's Daily Word",
+        "noInternet": "Connect to the internet for today's Daily Word.\nTry a Practice Level in the meantime!",
         "line1": "You have completed today's Daily Word!",
         "line2": "New word in:",
         "line3": "In the meantime, try practice mode!",

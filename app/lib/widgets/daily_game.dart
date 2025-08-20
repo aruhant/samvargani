@@ -41,13 +41,13 @@ class DailyGameState extends State<DailyGame> {
     // Listen for changes in the Word of the Day (WotD) and update the game accordingly
     WotD.listen().listen((g) => mounted
         ? setState(() {
-            game = Game.load(
-                answer: g.answer,
+            game = g.answer != null? Game.load(
+                answer: g.answer!,
                 onSuccess: dailyGameOnSuccess,
                 onGuess: onGuess,
                 id: WotD.day,
-                title: g.answer.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
-                gameType: GameType.daily);
+                title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                gameType: GameType.daily) : null;
           })
         : null);
 
@@ -60,13 +60,14 @@ class DailyGameState extends State<DailyGame> {
     Duration nextUpdateIn = getCountdownDuration(1);
     Future.delayed(nextUpdateIn).then((value) => setState(() {
           WotD.load().then((g) => setState(() {
-                game = Game.load(
-                    answer: g.answer,
-                    onSuccess: dailyGameOnSuccess,
-                    onGuess: onGuess,
-                    id: WotD.day,
-                    title: g.answer.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
-                    gameType: GameType.daily);
+                game = g.answer != null
+                    ? Game.load(
+                        answer: g.answer!,
+                        onSuccess: dailyGameOnSuccess,
+                        onGuess: onGuess,
+                        id: WotD.day,
+                        title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                        gameType: GameType.daily): null;
               }));
         }));
   }
@@ -323,13 +324,15 @@ class DailyGameState extends State<DailyGame> {
                     ),
                     onDone: () {
                       WotD.load().then((g) => setState(() {
-                            game = Game.load(
-                                answer: g.answer,
-                                id: WotD.day,
-                                title: g.answer.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
-                                onSuccess: dailyGameOnSuccess,
-                                onGuess: onGuess,
-                                gameType: GameType.daily);
+                            game = g.answer != null
+                                ? Game.load(
+                                    answer: g.answer!,
+                                    id: WotD.day,
+                                    title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                                    onSuccess: dailyGameOnSuccess,
+                                    onGuess: onGuess,
+                                    gameType: GameType.daily)
+                                : null;
                           }));
                     },
                     decoration: BoxDecoration(
@@ -401,8 +404,8 @@ class _DailyGameLoadingState extends State<DailyGameLoading> {
   @override
   void initState() {
     super.initState();
-    // Start a timer after 10 seconds to show the additional message
-    Timer(const Duration(seconds: 10), () {
+    // Start a timer after 6 seconds to show the additional message
+    Timer(const Duration(seconds: 6), () {
       if (mounted) {
         setState(() {
           showAdditionalMessage = true;
@@ -421,15 +424,49 @@ class _DailyGameLoadingState extends State<DailyGameLoading> {
         children: [
           if (!showAdditionalMessage)
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:  EdgeInsets.all(8.w),
               child: Text(LocaleKeys.dailyGame_loading.tr()),
             ),
           if (showAdditionalMessage)
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(LocaleKeys.dailyGame_noInternet.tr()),
+              padding:  EdgeInsets.all(8.w),
+              child: Text(LocaleKeys.dailyGame_noInternet.tr(), textAlign: TextAlign.center
+              ),
             ),
           const CircularProgressIndicator(),
+          // add option to practice game if show additional message
+          if (showAdditionalMessage)
+          SizedBox(height: 20.h),
+          if (showAdditionalMessage)
+            Padding(
+            padding: EdgeInsets.all(8.w),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        PracticeGame()));
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                backgroundColor: Colors.orangeAccent,
+                padding: const EdgeInsets.all(6),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(6.w),
+                child: Text(
+                  LocaleKeys.dailyGame_button.tr(args: [
+                    (UserProperties.instance.practiceGameIndex + 1).toString()
+                  ]),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
