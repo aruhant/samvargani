@@ -9,7 +9,6 @@ class GameAnswer {
   final String answer;
   final String? title;
   final String meaning;
-  final List<String?>? hints;
   final Color? backgroundColor;
   final List<Color> colors;
   final List<IconData>? icons;
@@ -23,7 +22,6 @@ class GameAnswer {
     required this.answer,
     this.title,
     required this.meaning,
-    this.hints,
     this.colors = const [defaultGameColor],
     this.backgroundColor = defaultGameColor,
     this.icons = const [Icons.cloud],
