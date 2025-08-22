@@ -23,35 +23,26 @@ Use popular existing keyboards for your script or easily design an entirely new 
 
 utls/string.dart contains many useful algorithms for designing the core gameplay of word games. These algorithms are mostly valid for all Indic languages. It takes into account the unique characteristics of Indic languages and can be basis of word games in these languages.
 
-    for (final criticalPoint in criticalPoints.keys) {
-    
-    for (int i = 0; i < variations.length; i += 3) {
-    
+```dart
+for (final criticalPoint in criticalPoints.keys) {
+  for (int i = 0; i < variations.length; i += 3) {
     for (final letter in criticalPoints[criticalPoint]!) {
-    
-    List<String> wordToAdd = variations[i].toList();
-    
-    // replace the character at the critical point with the new letter
-    
-    // with and without the 'nukta'
-    
-    wordToAdd[criticalPoint] = wordToAdd[criticalPoint].replaceAll(
-    
-    wordToAdd[criticalPoint].contains('़')
-    
-    ? '${wordToAdd[criticalPoint].vyanjan}़'
-    
-    : wordToAdd[criticalPoint].vyanjan,
-    
-    letter);
-    
-    variations.insert(i + 1, wordToAdd);
-    
+      List<String> wordToAdd = variations[i].toList();
+
+      // replace the character at the critical point with the new letter
+      // with and without the 'nukta'
+      wordToAdd[criticalPoint] = wordToAdd[criticalPoint].replaceAll(
+        wordToAdd[criticalPoint].contains('़')
+          ? '${wordToAdd[criticalPoint].vyanjan}़'
+          : wordToAdd[criticalPoint].vyanjan,
+        letter,
+      );
+
+      variations.insert(i + 1, wordToAdd);
     }
-    
-    }
-    
-    }
+  }
+}
+```
 
 ## Daily word challenge
 
