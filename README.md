@@ -47,6 +47,7 @@ for (final criticalPoint in criticalPoints.keys) {
 ## Daily word challenge
 
 Although not limited to, Samvargani is best suited for daily word challenge games (like 'wordle' from which we are heavily inspired).
+
 <img src="https://github.com/aruhant/samvargani/assets/125254014/10bfb56a-80f7-4f5c-8682-334a026e62dd" height="450" >
 
 ### Database
@@ -59,39 +60,31 @@ Samvargani makes planning and designing daily challenges easy-peasy. The maintai
 ### Notifications, Sharing and Other Utilities
 
 Use a convenient notification system, signalling when a new challenge has arrived and so forth. Make use of the Sharing system to attract users.
+``` dart
+shareScreenShot(
+  ScreenshotController screenshotController,
+  String message,
+  BuildContext context,
+) {
+  final box = context.findRenderObject() as RenderBox?;
 
-
-    shareScreenShot(ScreenshotController screenshotController, String message,
-    
-    BuildContext context) {
-    
-    final box = context.findRenderObject() as  RenderBox?;
-    
-    screenshotController
-    
-    .capture(delay: const  Duration(milliseconds: 200))
-    
-    .then((image) async {
-    
+  screenshotController
+      .capture(delay: const Duration(milliseconds: 200))
+      .then((image) async {
     if (image != null) {
-    
-    final directory = await  getApplicationDocumentsDirectory();
-    
-    final imagePath = await  File('${directory.path}/image.png').create();
-    
-    await imagePath.writeAsBytes(image);
-    
-    await  Share.shareXFiles([XFile(imagePath.path)],
-    
-    sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-    
-    text: Platform.isAndroid ? message : null);
-    
+      final directory = await getApplicationDocumentsDirectory();
+      final imagePath = await File('${directory.path}/image.png').create();
+      await imagePath.writeAsBytes(image);
+
+      await Share.shareXFiles(
+        [XFile(imagePath.path)],
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+        text: Platform.isAndroid ? message : null,
+      );
     }
-    
-    });
-    
-    }
+  });
+}
+```
 
 
 
