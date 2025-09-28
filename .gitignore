@@ -4,3 +4,5 @@ app2/generator/pkg-config-0.28
 app/android/fastlane
 app/ios/fastlane
 google-services.json
+app/ios/Runner.app.dSYM.zip
+app/ios/Runner.ipa
