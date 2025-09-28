@@ -45,8 +45,8 @@ class DailyGameState extends State<DailyGame> {
                 answer: g.answer!,
                 onSuccess: dailyGameOnSuccess,
                 onGuess: onGuess,
-                id: WotD.day,
-                title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                id: WotD.currentDay,
+                title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.currentDay)),
                 gameType: GameType.daily) : null;
           })
         : null);
@@ -65,8 +65,8 @@ class DailyGameState extends State<DailyGame> {
                         answer: g.answer!,
                         onSuccess: dailyGameOnSuccess,
                         onGuess: onGuess,
-                        id: WotD.day,
-                        title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                        id: WotD.currentDay,
+                        title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.currentDay)),
                         gameType: GameType.daily): null;
               }));
         }));
@@ -102,7 +102,7 @@ class DailyGameState extends State<DailyGame> {
     if (UserProperties.instance.name != '') {
       // write to leaderboard
       FirebaseDatabase.instance
-          .ref('leaderboard/${WotD.day}/${UserProperties.instance.uid}')
+          .ref('leaderboard/${WotD.currentDay}/${UserProperties.instance.uid}')
           .set({
         'name': UserProperties.instance.name,
         'score': result.tries,
@@ -327,8 +327,8 @@ class DailyGameState extends State<DailyGame> {
                             game = g.answer != null
                                 ? Game.load(
                                     answer: g.answer!,
-                                    id: WotD.day,
-                                    title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.day)),
+                                    id: WotD.currentDay,
+                                    title: g.answer!.title ?? LocaleKeys.dailyGame_title.tr(args: WotD.getDayAndMonthForTitle(WotD.currentDay)),
                                     onSuccess: dailyGameOnSuccess,
                                     onGuess: onGuess,
                                     gameType: GameType.daily)

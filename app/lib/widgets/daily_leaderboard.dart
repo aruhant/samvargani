@@ -41,7 +41,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
 
   Stream<List<DailyLeaderboardEntry>> listen() {
     return FirebaseDatabase.instance
-        .ref('leaderboard/${WotD.day}')
+        .ref('leaderboard/${WotD.currentDay}')
         .onValue
         .map((event) {
       entries = [];
@@ -120,7 +120,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
               ),
             ),
             Text(
-              WotD.getDayAndMonthForTitle(WotD.day)?.join(' ') ?? '',
+              WotD.getDayAndMonthForTitle(WotD.currentDay)?.join(' ') ?? '',
               style: TextStyle(
                 fontSize: 27.sp,
                 color: Color.fromARGB(255, 93, 67, 95),
@@ -212,7 +212,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                                 if (widget.hasCompletedDailyGame) {
                                   FirebaseDatabase.instance
                                       .ref(
-                                          'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
+                                          'leaderboard/${WotD.currentDay}/${UserProperties.instance.uid}')
                                       .set({
                                     'name': name,
                                     'score': widget.tries,
@@ -252,7 +252,7 @@ class _DailyLeaderboardState extends State<DailyLeaderboard> {
                                   if (widget.hasCompletedDailyGame) {
                                     FirebaseDatabase.instance
                                         .ref(
-                                            'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
+                                            'leaderboard/${WotD.currentDay}/${UserProperties.instance.uid}')
                                         .set({
                                       'name': name,
                                       'score': widget.tries,

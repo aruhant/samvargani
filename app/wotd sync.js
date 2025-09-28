@@ -3,7 +3,7 @@ var CLIENT_EMAIL = PropertiesService.getScriptProperties().getProperty('CLIENT_E
 var PRIVATE_KEY = PropertiesService.getScriptProperties().getProperty('PRIVATE_KEY');
 
 var SHEET_NAME = "wotd";
-var FIREBASE_PATH = "testdata";
+var FIREBASE_PATH = "wotd";
 
 /**
  * Creates and returns an OAuth2 service for Firebase.
@@ -40,11 +40,11 @@ function getFirebaseInstance() {
  */
 function isValidHexColor(color) {
   if (typeof color !== 'string') return false;
-  
+
   if (color.startsWith('#')) {
     color = color.slice(1);
   }
-  
+
   return /^[0-9A-Fa-f]{6}$/.test(color);
 }
 
@@ -61,10 +61,10 @@ function validateProperty(name, value, expectedType) {
     if (name === "answer" || name === "meaning") {
       result.error = true;
       Logger.log("Error: Required property '" + name + "' is missing");
-      return {value: null, error: true};
+      return { value: null, error: true };
     }
-    else{
-      return {value: null, error: false};
+    else {
+      return { value: null, error: false };
     }
   }
 
@@ -73,7 +73,7 @@ function validateProperty(name, value, expectedType) {
       if (typeof value !== "string") {
         result.value = String(value);
       }
-      
+
       if (name === "backgroundColor") {
         if (!isValidHexColor(value)) {
           Logger.log("Error: Property '" + name + "' should be a valid hex color, got: " + value);
@@ -115,7 +115,7 @@ function validateProperty(name, value, expectedType) {
       } else if (!Array.isArray(value)) {
         result.value = [value];
       }
-      
+
       if (name === "colors") {
         for (let i = 0; i < result.value.length; i++) {
           if (!isValidHexColor(result.value[i])) {
@@ -207,7 +207,7 @@ function syncSheetToFirebase() {
       }
       errorInThisRow = errorInThisRow || validation.error;
       if (header !== "date" && validation.value != null) {
-        rowObject[header] =  validation.value;
+        rowObject[header] = validation.value;
       }
 
     });
@@ -217,7 +217,20 @@ function syncSheetToFirebase() {
       Logger.log("Error in row " + (rowIndex + 2) + ". Please fix before syncing.");
     }
     try {
-      jsonData[daysSinceEpoch(row[0])] = rowObject;
+      let dayNumber = daysSinceEpoch(row[headers.indexOf("date")]);
+      // dayNumber = daysSinceEpoch(row[0]);
+      if (isNaN(dayNumber)) {
+        throw new Error("Invalid date format in row " + (rowIndex + 2) + ": " + row[0]);
+      }
+      if (dayNumber in jsonData) {
+        throw new Error("Duplicate date found in row " + (rowIndex + 2) + ": " + row[0]);
+      }
+      if (dayNumber < daysSinceEpoch(new Date()) - 7) {
+        Logger.log("Row " + (rowIndex + 2) + " skipped. Older than 7 days ago.");
+      } else {
+        Logger.log("Row " + (rowIndex + 2) + " processed successfully.");
+        jsonData[dayNumber] = rowObject;
+      }
     } catch (e) {
       Logger.log("Error processing row " + (rowIndex + 2) + ": " + e.message);
     }
@@ -227,6 +240,16 @@ function syncSheetToFirebase() {
     throw Error("FIX ERRORS BEFORE SYNCING");
   }
 
-  firebase.setData(FIREBASE_PATH, jsonData);
+  for (var key in jsonData) {
+    firebase.setData(FIREBASE_PATH + "/" + key, jsonData[key]);
+  }
+  // firebase.setData(FIREBASE_PATH, jsonData);
   Logger.log("Data successfully synced to Firebase.");
+}
+
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('WOTD Sync')
+    .addItem('Sync to Firebase', 'syncSheetToFirebase')
+    .addToUi();
 }

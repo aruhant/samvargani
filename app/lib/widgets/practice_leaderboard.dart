@@ -214,7 +214,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                 if (widget.triesToCompleteDailyGame != null)
                                 {FirebaseDatabase.instance
                                     .ref(
-                                        'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
+                                        'leaderboard/${WotD.currentDay}/${UserProperties.instance.uid}')
                                     .set({
                                   'name': name,
                                   'score': widget.triesToCompleteDailyGame,
@@ -253,7 +253,7 @@ class _PracticeLeaderboardState extends State<PracticeLeaderboard> {
                                   if (widget.triesToCompleteDailyGame != null) {
                                     FirebaseDatabase.instance
                                       .ref(
-                                          'leaderboard/${WotD.day}/${UserProperties.instance.uid}')
+                                          'leaderboard/${WotD.currentDay}/${UserProperties.instance.uid}')
                                       .set({
                                     'name': name,
                                     'score': widget.triesToCompleteDailyGame,

@@ -34,11 +34,10 @@ class WotD {
     backgroundColor: const Color.fromARGB(255, 240, 207, 255),
   );
 
-  GameAnswer? get answer => _answers[day];
+  GameAnswer? get answer => _answers[currentDay];
 
   GameAnswer get yesterdayAnswer =>
-      _answers[yesterday] 
-      ??
+      _answers[yesterday] ??
       GameAnswer(
         answer: 'विद्या',
         meaning: 'ज्ञान',
@@ -49,19 +48,13 @@ class WotD {
         backgroundColor: Colors.pink[50],
         whenToShowIcons: -1,
         title: LocaleKeys.dailyGame_yesterdayWord.tr(),
-      )
-      ;
-  static int get day {
-    print("day: ${DateTime.now()
-            .subtract(
-              Duration(
-                hours: hour,
-                minutes: minute,
-                days: -UserProperties.instance.timeDelta,
-              ),
-            )
-            .millisecondsSinceEpoch ~/ (24 * 60 * 60 * 1000)}");
+      );
+  static int get currentDay {
+    print(
+      "day: ${DateTime.now().add(DateTime.now().timeZoneOffset).subtract(Duration(hours: hour, minutes: minute, days: -UserProperties.instance.timeDelta)).millisecondsSinceEpoch ~/ (24 * 60 * 60 * 1000)}",
+    );
     return DateTime.now()
+            .add(DateTime.now().timeZoneOffset)
             .subtract(
               Duration(
                 hours: hour,
@@ -69,8 +62,8 @@ class WotD {
                 days: -UserProperties.instance.timeDelta,
               ),
             )
-            .millisecondsSinceEpoch ~/ (24 * 60 * 60 * 1000);
-    
+            .millisecondsSinceEpoch ~/
+        (24 * 60 * 60 * 1000);
   }
 
   static int get yesterday {
@@ -84,28 +77,14 @@ class WotD {
     // day is days since epoch convert it to year, month, day. ignore the year part
     DateTime date = DateTime.fromMillisecondsSinceEpoch(
       day * 24 * 60 * 60 * 1000,
+      isUtc: true,
     );
     day = date.day;
 
-    if ((DateTime.now().day - day) > 15) {
-      DateTime now = DateTime.now();
-      String nextmonth = DateFormat.MMMM(
-        UserProperties.instance.locale,
-      ).format(now.copyWith(month: now.month + 1));
-      return [day.toString(), nextmonth];
-    } else if ((DateTime.now().day - day) < -15) {
-      DateTime now = DateTime.now();
-      String previousmonth = DateFormat.MMMM(
-        UserProperties.instance.locale,
-      ).format(now.copyWith(month: now.month - 1));
-      return [day.toString(), previousmonth];
-    } else {
-      String month = DateFormat.MMMM(
-        UserProperties.instance.locale,
-      ).format(DateTime.now());
-      return [day.toString(), month];
-      // return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
-    }
+    String month = DateFormat.MMMM(UserProperties.instance.locale).format(date);
+    print("month: $month day: $day");
+    return [day.toString(), month];
+    // return LocaleKeys.dailyGame_title.tr(args: [day.toString(), month]);
   }
 
   static Stream<WotD> listen() {
@@ -138,7 +117,7 @@ class WotD {
           return WotD._internal(answers);
         })
         .catchError((e) {
-          //print(e);
+          print(e);
           return WotD._internal({});
         });
   }
@@ -147,4 +126,3 @@ class WotD {
     _answers = answers;
   }
 }
-
