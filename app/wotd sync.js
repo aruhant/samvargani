@@ -13,6 +13,11 @@ function getFirebaseService() {
   var clientEmail = CLIENT_EMAIL;
   var privateKey = PRIVATE_KEY;
 
+  if (privateKey) {
+      // Replace literal stored newlines (\n) with actual newline characters
+      privateKey = privateKey.replace(/\\n/g, '\n'); 
+  }
+
   return OAuth2.createService('Firebase')
     .setTokenUrl('https://oauth2.googleapis.com/token')
     .setPrivateKey(privateKey)
@@ -159,6 +164,13 @@ function syncSheetToFirebase() {
   var error = false;
 
   data.forEach(function (row, rowIndex) {
+
+    var dateIndex = headers.indexOf("date");
+    var dateValue = row[dateIndex];
+
+    if (!dateValue || String(dateValue).trim() === "")  return; // Skips the rest of the loop for this row
+    
+
     var rowObject = {};
     var errorInThisRow = false;
 
@@ -233,6 +245,7 @@ function syncSheetToFirebase() {
       }
     } catch (e) {
       Logger.log("Error processing row " + (rowIndex + 2) + ": " + e.message);
+      Logger.log(row[rowIndex + 2]);
     }
   });
 
