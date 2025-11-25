@@ -49,6 +49,7 @@ class WotD {
         whenToShowIcons: -1,
         title: LocaleKeys.dailyGame_yesterdayWord.tr(),
       );
+// days since epoch at 6:00 AM UTC+0
   static int get currentDay {
     print(
       "day: ${DateTime.now().add(DateTime.now().timeZoneOffset).subtract(Duration(hours: hour, minutes: minute, days: -UserProperties.instance.timeDelta)).millisecondsSinceEpoch ~/ (24 * 60 * 60 * 1000)}",
@@ -67,9 +68,7 @@ class WotD {
   }
 
   static int get yesterday {
-    return DateTime.now()
-        .subtract(Duration(hours: hour, minutes: minute, days: 1))
-        .day;
+    return currentDay - 1;
   }
 
   static List<String>? getDayAndMonthForTitle(int? day) {
