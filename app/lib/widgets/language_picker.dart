@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:paheli/models/user_properties.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LanguagePicker extends StatelessWidget {
@@ -37,6 +38,7 @@ class LanguagePicker extends StatelessWidget {
                     ),
                     onPressed: () {
                       context.setLocale(const Locale('en', 'US'));
+                      UserProperties.instance.setLocale('en_US');
                       onLocaleSelected();
                       FirebaseAnalytics.instance
                           .logEvent(name: 'language_selected_English');
@@ -57,6 +59,7 @@ class LanguagePicker extends StatelessWidget {
                     ),
                     onPressed: () {
                       context.setLocale(const Locale('hi', 'IN'));
+                      UserProperties.instance.setLocale('hi_IN');
                       onLocaleSelected();
                       FirebaseAnalytics.instance
                           .logEvent(name: 'language_selected_Hindi');

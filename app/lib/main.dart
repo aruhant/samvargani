@@ -41,6 +41,7 @@ Future<void> main() async {
       supportedLocales: const [Locale('en', 'US'), Locale('hi', 'IN')],
       path: 'assets/translations',
       fallbackLocale: const Locale('hi', 'IN'),
+      startLocale: Locale(UserProperties.instance.locale.split('_').first, UserProperties.instance.locale.split('_').last),
       child: const MyApp()));
 }
 
@@ -61,7 +62,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     UserProperties.instance.setContext(context);
     Jiffy.setLocale(UserProperties.instance.locale.split('_').first);
-
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,

@@ -14,7 +14,7 @@ class UserProperties {
   int _tutorialIndex;
   int _timeDelta;
   int _tooltipsPressed;
-  String _locale = 'en';
+  String _locale = 'hi_IN';
   String _uid = '';
   String _name = '';
   final SharedPreferences _sharedPrefs;
@@ -28,6 +28,7 @@ class UserProperties {
     required int timeDelta,
     required int tutorialIndex,
     required String name,
+    required String locale,
     required String uid,
   })  : _initState = initState,
         _darkMode = darkMode,
@@ -38,6 +39,7 @@ class UserProperties {
         _tooltipsPressed = tooltipsPressed,
         _tutorialIndex = tutorialIndex,
         _uid = uid,
+        _locale = locale,
         _name = name;
 
   static UserProperties? _instance;
@@ -67,6 +69,7 @@ class UserProperties {
           tutorialIndex: sharedPrefs.getInt('tutorialIndex') ?? 0,
           timeDelta: sharedPrefs.getInt('timeDelta') ?? 0,
           uid: sharedPrefs.getString('uid') ?? const Uuid().v4(),
+          locale: sharedPrefs.getString('locale') ?? 'hi_IN',
           sharedPrefs: sharedPrefs,
           name: sharedPrefs.getString('name') ?? '');
       sharedPrefs.setString('uid', _instance!._uid);
@@ -144,8 +147,13 @@ class UserProperties {
 
   clear() => _sharedPrefs.clear();
 
+  setLocale(String locale) {
+    _instance!._locale = locale;
+    _sharedPrefs.setString('locale', _instance!._locale);
+  }
+
   void setContext(BuildContext context) {
-    _instance!._locale = context.locale.toString();
+    // _instance!._locale = context.locale.toString();    
   }
 
   void timeTravel(int delta) {
