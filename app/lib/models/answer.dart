@@ -24,7 +24,7 @@ class GameAnswer {
     required this.meaning,
     this.colors = const [defaultGameColor],
     this.backgroundColor = defaultGameColor,
-    this.icons = const [Icons.cloud],
+    this.icons,
     this.images,
     this.moveHorizontal = true,
     this.moveVertical = false,
@@ -85,13 +85,14 @@ class GameAnswer {
           ? (json['icons'] as List)
                 .map(
                   (e) => e is String
-                      ? LineIcons.byName(e) ?? LineIcons.cloud
+                      ? LineIcons.byName(e) 
                       : IconData(
                           e,
                           fontFamily: 'Awesome Line Icons 1.3.0',
                           fontPackage: 'line_icons',
                         ),
                 )
+                .where((e) => e != null)
                 .toList()
                 .cast()
           : [],
